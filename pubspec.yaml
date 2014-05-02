@@ -1,0 +1,7 @@
+name: dartrocket
+version: 0.0.1
+author: Tóth Róbert <kkdstryker@gmail.com>
+description: DartRocket is a HTML5 game framework written in Dart and which uses the StageXL rendering engine.
+dependencies:
+  browser: any
+  stagexl: any
