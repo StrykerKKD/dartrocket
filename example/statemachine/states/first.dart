@@ -3,7 +3,7 @@ part of statemachine;
 class First extends State {
   First(String name, [String nextState]): super(name, nextState);
 
-  run() {
+  create() {
     Background background = new Background(800, 600, mainColor);
     Text text = new Text("First State")
         ..x = 400

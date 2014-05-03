@@ -22,27 +22,39 @@ abstract class State extends Stream<String> {
 
   void _onListen() {
     print("Constructing");
-    run();
+    preload();
+    create();
+    game.stage.onEnterFrame.listen((_) {
+      update();
+    });
   }
 
   void _onPause() {
     print("Pause");
     game.stage.removeChildren();
     game.stage.juggler.clear();
+    game.stage.removeEventListeners(StageXL.Event.ENTER_FRAME);
   }
 
   void _onResume() {
     print("Resume");
-    run();
+    preload();
+    create();
+    game.stage.onEnterFrame.listen((_) {
+      update();
+    });
   }
 
   void _onCancel() {
     print("Deconstructing");
     game.stage.removeChildren();
     game.stage.juggler.clear();
+    game.stage.removeEventListeners(StageXL.Event.ENTER_FRAME);
   }
 
-  run() {}
+  preload() {}
+  create() {}
+  update() {}
 
   String get name => _name;
 

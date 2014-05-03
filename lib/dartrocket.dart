@@ -9,3 +9,6 @@ part "src/core/statemanager.dart";
 part "src/core/state.dart";
 part "src/core/background.dart";
 part "src/core/text.dart";
+
+part "src/gameobjects/sprite.dart";
+part "src/gameobjects/animatedsprite.dart";
