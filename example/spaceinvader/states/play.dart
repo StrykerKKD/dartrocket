@@ -38,7 +38,7 @@ class Play extends State {
       if(value.keyCode==spaceBar){
         bullet = bullets.firstWhere((item)=>!item.alive)
             ..x = player.x
-            ..y = player.y
+            ..y = player.y           
             ..alive = true;
         
         game.stage.addChild(bullet);
