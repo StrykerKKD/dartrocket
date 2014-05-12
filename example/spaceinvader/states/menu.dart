@@ -3,7 +3,7 @@ part of spaceinvader;
 class Menu extends State {
   Menu(String name, [String nextState]): super(name, nextState);
 
-  create() {
+  run() {
     Background background = new Background(800, 600, mainColor);
 
     Text titleText = new Text("SpaceInvader")

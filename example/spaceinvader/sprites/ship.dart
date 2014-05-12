@@ -6,7 +6,7 @@ class Ship extends AnimatedSprite {
   bool movingRight = false;
 
   Ship(var bitmapData, {int x, int y, int vx: 200}): super(bitmapData, x: x, 
-      y: y, vx: vx);
+      y: y, vx: vx){center();}
 
 
   @override
@@ -17,7 +17,6 @@ class Ship extends AnimatedSprite {
     } else if (movingRight) {
       x = x + vx * time;
     }
-    return true;
-
+    return true;   
   }
 }

@@ -4,7 +4,7 @@ class Loading extends State {
 
   Loading(String name, [String nextState]): super(name, nextState);
 
-  preload() {
+  load() {
 
     Background background = new Background(800, 600, mainColor);
 
@@ -22,7 +22,7 @@ class Loading extends State {
     });
   }
 
-  create() {
+  run() {
     new Timer(new Duration(seconds: 1), closeStream);
   }
 

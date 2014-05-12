@@ -22,8 +22,8 @@ abstract class State extends Stream<String> {
 
   void _onListen() {
     print("Constructing");
-    preload();
-    game.resourceManager.load().then(create());
+    load();
+    game.resourceManager.load().then(run());
   }
 
   void _onPause() {
@@ -34,8 +34,8 @@ abstract class State extends Stream<String> {
 
   void _onResume() {
     print("Resume");
-    preload();
-    game.resourceManager.load().then(create());
+    load();
+    game.resourceManager.load().then(run());
     
 
   }
@@ -46,8 +46,8 @@ abstract class State extends Stream<String> {
     game.stage.juggler.clear();
   }
 
-  preload() {}
-  create() {}
+  load() {}
+  run() {}
 
   String get name => _name;
 

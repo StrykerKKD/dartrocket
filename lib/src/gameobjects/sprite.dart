@@ -7,4 +7,9 @@ abstract class Sprite extends StageXL.Bitmap {
     this.x = x;
     this.y = y;
   }
+  
+  void center(){
+    pivotX = bitmapData.width / 2;
+    pivotY = bitmapData.height/ 2;
+  }
 }

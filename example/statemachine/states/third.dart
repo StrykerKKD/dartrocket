@@ -5,7 +5,7 @@ class Third extends State {
 
   static bool runned = false;
 
-  create() {
+  run() {
     Background background = new Background(800, 600, mainColor);
     Text text = new Text("Third State")
         ..x = 400
