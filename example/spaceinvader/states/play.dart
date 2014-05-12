@@ -5,26 +5,35 @@ class Play extends State {
 
   run() {
     Background background = new Background(800, 600, mainColor);
+    game.stage.addChild(background);
 
     Ship player = new Ship(game.resourceManager.getBitmapData("ship"), x: 400,
         y: 500);
-       
-    List<Bullet> bullets = new List<Bullet>();
-    for(int i=0;i<5;i++){
-      bullets.add(new Bullet(game.resourceManager.getBitmapData("bullet")));  
-    }
-    
-    game.stage.addChild(background);
     game.stage.addChild(player);
-
     game.stage.juggler.add(player);
-    
+
+    List<Bullet> bullets = new List<Bullet>();
+    for (int i = 0; i < 5; i++) {
+      bullets.add(new Bullet(game.resourceManager.getBitmapData("bullet")));
+    }
+
+    Ufo ufo;
+    List<Ufo> ufos = new List<Ufo>();
+    for (int i = 1; i < 8; i++) {
+      ufo = new Ufo(game.resourceManager.getBitmapData("ufo"), x: (i * 100), 
+          y: 50);
+      ufos.add(ufo);
+      game.stage.addChild(ufo);
+      game.stage.juggler.add(ufo);
+    }
+
+
     const spaceBar = 32;
     const leftArrow = 37;
     const rightArrow = 39;
-    
+
     Bullet bullet;
-    
+
     game.stage.onKeyDown.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
@@ -34,19 +43,19 @@ class Play extends State {
           player.movingRight = true;
           break;
       }
-      
-      if(value.keyCode==spaceBar){
-        bullet = bullets.firstWhere((item)=>!item.alive)
+
+      if (value.keyCode == spaceBar) {
+        bullet = bullets.firstWhere((item) => !item.alive)
             ..x = player.x
-            ..y = player.y           
+            ..y = player.y
             ..alive = true;
-        
+
         game.stage.addChild(bullet);
         game.stage.juggler.add(bullet);
       }
-      
-    });
 
+    });
+    
     game.stage.onKeyUp.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
@@ -56,6 +65,31 @@ class Play extends State {
           player.movingRight = false;
           break;
       }
+    });
+    
+    
+    List<Bullet> aliveBulletList = new List<Bullet>();    
+    List<Ufo> aliveUfoList = new List<Ufo>();
+    aliveUfoList.addAll(ufos.where((item)=>item.alive));
+    
+    game.stage.onEnterFrame.listen((_){
+      if( aliveUfoList.length <= 0 ){
+        closeStream();
+      }
+      
+      aliveBulletList.addAll(bullets.where((item)=>item.alive));
+      
+      aliveBulletList.forEach((bullet){
+        aliveUfoList.forEach((ufo){
+          if(ufo.hitTestObject(bullet)){
+            ufo.alive = false;
+            bullet.alive = false;           
+          }
+        });
+      });
+      
+      aliveUfoList.removeWhere((item)=>!item.alive);
+      
     });
 
   }
