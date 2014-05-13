@@ -12,8 +12,8 @@ package.
   * Added better state example
   * Added new GameObjetcs(Sprite,AnimatedSprite)
   
-### Pub version 0.0.2
+#### Pub version 0.0.2
   * Added .gitignore
 
-### Pub version 0.0.1
+#### Pub version 0.0.1
   * Initial publish
