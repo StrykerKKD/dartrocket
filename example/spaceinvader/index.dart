@@ -24,7 +24,8 @@ void main() {
   game.stateManager.addStateMap({
     "loading": new Loading("loading", "menu"),
     "menu": new Menu("menu","play"),
-    "play": new Play("play")
+    "play": new Play("play","end"),
+    "end": new End("end")
   });
   game.stateManager.initState("loading");
 }
