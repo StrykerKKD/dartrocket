@@ -3,6 +3,13 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.0.8
+  * Added documentation
+  * Added explanations where needed
+  * Breaking change: rename pauseStream to endState
+  * Breaking change: rename closeStream to terminateState
+  * Deleted Prints
+
 #### Pub version 0.0.7
   * Ufo in space invader example now move sideways
   * Added transition_function from stagexl
