@@ -74,7 +74,7 @@ class Play extends State {
     
     game.stage.onEnterFrame.listen((_){
       if( aliveUfoList.length <= 0 ){
-        closeStream();
+        terminateState();
       }
       
       aliveBulletList.addAll(bullets.where((item)=>item.alive));

@@ -14,10 +14,10 @@ class Second extends State {
     game.stage.addChild(text);
 
     if(runned){
-      new Timer(new Duration(seconds: 3), closeStream);
+      new Timer(new Duration(seconds: 3), terminateState);
     }else{
       runned = true;
-      new Timer(new Duration(seconds: 3), pauseStream);
+      new Timer(new Duration(seconds: 3), endState);
     }
         
   }

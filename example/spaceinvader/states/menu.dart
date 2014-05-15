@@ -27,7 +27,7 @@ class Menu extends State {
     game.stage.onKeyDown.listen((value){
       if(value.keyCode == spaceBar){
         game.stage.removeEventListeners("keyDown");
-        closeStream();
+        terminateState();
       }
     });
   }
