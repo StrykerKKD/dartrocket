@@ -23,7 +23,7 @@ class Loading extends State {
   }
 
   run() {
-    new Timer(new Duration(seconds: 1), terminateState);
+    new Timer(new Duration(seconds: 1), killteState);
   }
 
 

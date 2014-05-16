@@ -13,7 +13,7 @@ class End extends State {
     game.stage.addChild(background);
     game.stage.addChild(text);
     
-    new Timer(new Duration(seconds: 5),terminateState);
+    new Timer(new Duration(seconds: 5),killteState);
   }
 
 }

@@ -11,6 +11,6 @@ class First extends State {
     game.stage.addChild(background);
     game.stage.addChild(text);
 
-    new Timer(new Duration(seconds: 3), terminateState);
+    new Timer(new Duration(seconds: 3), killteState);
   }
 }
