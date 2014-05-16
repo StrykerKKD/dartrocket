@@ -1,26 +1,27 @@
 part of dartrocket;
 
 /**
- * StateManager controlls all of the statets and manage the flow of the game.
- * You only can use methodes with StateManager because all of the members are
- * private.
+ * StateManager stores all of the [State]s and manage the flow of the game.
  * 
- * You only can and need to do 2 things with the statemanager:
+ * You only can only do 2 things with the statemanager:
+ * 
  * * Add state(s)
  * * Start the first state
  * 
- * **Important:** The StateManager manage the flow of the game, 
+ * **Important:** The StateManager manages the flow of the game, 
  * but does not controll it. The Manager starts the next state based on the
- * current state's nextState value.
+ * current state's _nextStateName value.
  * This means that you can change the flow of the game in the current State.
  * 
- * There are 2 events when the StateManager change the state:
- * * endState gets called from the current state
- * * terminateState gets called from the current state
- * If currentState.nextState's value is null then there will be no nextState and
- * it will be in a stateless state. Stage will turn to black.
+ * Two events can happen when the StateManager changes the state:
  * 
- * You can see an example about usage at the [Game] class
+ * * endState gets called from the current state
+ * * killState gets called from the current state
+ * 
+ * If currentState.nextState's value is null then there will be no nextState and
+ * it will be in a stateless state and the stage will turn to black.
+ * 
+ * You can see an example in [Game] class.
  * */
 
 class StateManager {
@@ -35,7 +36,11 @@ class StateManager {
   
   State _currentState;
   StreamSubscription _currentSubscription;
-
+  /**
+   * This constructor is only used by the [Game]'s constructor.
+   * 
+   * **DO NOT USE IT.**
+   * */
   StateManager(this._game) {
     _stateMap = new Map<String, State>();
     _subscriptionMap = new Map<String, StreamSubscription>();
@@ -72,7 +77,7 @@ class StateManager {
   
   //Current state send and endState
   void _messageHandler(message) {
-    if (message == State.PAUSE) {
+    if (message == State._PAUSE) {
       new Future(_currentSubscription.pause).then(_nextState);
     }
   }
