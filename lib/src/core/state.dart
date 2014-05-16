@@ -3,26 +3,18 @@ part of dartrocket;
 /**
  * State is an absract class that represents a state of the game.
  * 
- * For using it you need to extend the state and call it's [new State].
- * Parameters:
- * * _name: the state's name
- * * nextState: next state's name
- * **Important:** You can controll where you want to go with nextState method.
- * 
- * Member:
- * * game: this lett you acces the main game object, stateManager initalize it
- * 
- * The state has 2 methodes, but only the run must be overwritten:
- * * load(): if you want to load images, use this methode for it
- * * run(): this methods get called after everything is loaded
- * To use the state you nedd to owerwrite at least one of them.
+ * For using it you need to extend the state and call it's constructor, after that
+ * you have to owerwrite the run() methode.
  * 
  * There 2 **important** methode that controls the state:
+ * 
  * * endState: This methodes end the state, but we can come back to this state
- * * terminateState: This kills that state, so you can not return back to this state
- * It's **important** to understand that after a terminateState
- * you can never go back to this state.
+ * * killState: This kills that state, so you can not return back to this state
+ * 
+ * **Important:** After you call terminateState you can never go back to this state.
  * If you want to return to a state use endState method.
+ * 
+ * **Important:** You can controll where you want to go with nextState method.
  * 
  * Example:
  *     class MyState extends State{
@@ -53,19 +45,32 @@ part of dartrocket;
 
 abstract class State extends Stream<String> {
 
-  static const String PAUSE = "PAUSE";
+  static const String _PAUSE = "PAUSE";
 
   StreamController<String> _controller;
   String _name;
   String _nextStateName;
+  /**
+   * Acces to the main game object.
+   * */
   Game game;
 
+  /**
+   * This will make a state.
+   * 
+   * Parameters:
+   * 
+   * * _name: the state's name
+   * * nextState: next state's name(optional)
+   * */
   State(this._name, [String nextState = null]): _nextStateName = nextState {
     _controller = new StreamController<String>(onListen: _onListen, onPause:
         _onPause, onResume: _onResume, onCancel: _onCancel);
   }
   /**
-   * This methode can only be used by the [StateManager].
+   * This methode can only be used by the [StateManager]'s object.
+   * 
+   * **DO NOT USE IT.**
    * */
   StreamSubscription<String> listen(void onData(String line), {void
       onError(Error error), void onDone(), bool cancelOnError}) {
@@ -86,8 +91,6 @@ abstract class State extends Stream<String> {
   void _onResume() {
     load();
     game.resourceManager.load().then(run());
-
-
   }
 
   void _onCancel() {
@@ -98,17 +101,23 @@ abstract class State extends Stream<String> {
    * Overwrite if you want to load resources.
    * */
   load() {}
-  
+
   /**
    * You must overwrite this for using the state.
+   * 
    * Called after load has completed. 
    * */
   run();
 
+  /**
+   * Gets the name of the state.
+   * */
   String get name => _name;
 
   /**
-   * Change the _nextState's value.
+   * Gets the next state's name.
+   * 
+   * **Important:** You can controll where you want to go with nextState method.
    * */
   String get nextState => _nextStateName;
 
@@ -125,12 +134,12 @@ abstract class State extends Stream<String> {
    * This methodes end the state, but we can come back to this state
    * */
   void endState() {
-    _controller.add(PAUSE);
+    _controller.add(_PAUSE);
   }
   /**
    * This kills that state, so you can not return back to this state
    * */
-  void terminateState() {
+  void killteState() {
     _controller.close();
   }
 
