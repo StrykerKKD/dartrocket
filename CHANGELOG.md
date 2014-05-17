@@ -3,6 +3,11 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.0.9
+  * Fixed documentation
+  * Breaking: terminateState renamed to killState
+  * Added Documetation site
+
 #### Pub version 0.0.8
   * Added documentation
   * Added explanations where needed

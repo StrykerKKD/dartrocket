@@ -7,8 +7,7 @@ The main goal of this framework is to provide an easy to use solution for HTML5 
 At the moment there is no starting guide, but you can find some examples in the package.
 
 ##Documentation
-You can find the documentation in the source. I need some time to generate them.
-If you are brave enough, then look into these: game,state,statemanager,animatedsprite dart files
+You can find the documentation in this site: <http://www.dartdocs.org/>
 
 ##Blog
 The Framework has a blog here: <http://dartrocket.blogspot.hu/>
