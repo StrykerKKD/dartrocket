@@ -6,16 +6,11 @@ class Ufo extends AnimatedSprite {
   bool moving = false;
   int deltaX;
 
-  Ufo(var bitmapData, {int x, int y, int vy: 30}): super(bitmapData, x: x, y: y,
-      vy: vy) {
-    center();
-    alive = true;
-  }
-
+  Ufo(State context, String resourceName) : super(context, resourceName);
 
   @override
   bool advanceTime(num time) {
-    // TODO: implement advanceTime
+    
     if (y > game.stage.sourceHeight || alive == false) {
       game.stage.removeChild(this);
       game.stage.juggler.remove(this);
