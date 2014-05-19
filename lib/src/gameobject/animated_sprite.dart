@@ -7,21 +7,19 @@ part of dartrocket;
  * 
  * Basic example:
  *     class MySprite extends AnimatedSprite{
- *       MySprite(var bitmapData):super(bitmapData);
+ *       MySprite(context,name):super(context,name);
  *       
  *       bool advanceTime(num time){
  *        //doing stuff
  *       }
  *     }
- * Note: You can only use var for bitmapdata, because DartRocket doesn't have
- * BitMapData.
  * */
 abstract class AnimatedSprite extends Sprite implements StageXL.Animatable {
   /**
    * Horizontal speed of the sprite.
    * */
   num vx;
-  
+
   /**
    * Vertical speed of the sprite
    * */
@@ -30,15 +28,10 @@ abstract class AnimatedSprite extends Sprite implements StageXL.Animatable {
   /**
    * Creates an AnimatedSprite object.
    * 
-   * * bitmapdata: bitmapdata of the image
-   * * vx: horizontal speed of the sprite
-   * * vy: vertical speed of the sprite
-   * * x,y: x,y positions of the sprite
+   * * stateContext: context of the State, which this object is in
+   * * resourceName: name of the resource for the sprite
    * 
    * */
-  AnimatedSprite(StageXL.BitmapData bitmapData, {int vx: 0, int vy: 0, 
-    int x: 0, int y: 0}): super(bitmapData, x: x, y: y) {
-    this.vx = vx;
-    this.vy = vy;
-  }
+  AnimatedSprite(State stateContext, String resourceName) : super(stateContext,
+      resourceName);
 }
