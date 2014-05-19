@@ -1,27 +1,40 @@
 part of spaceinvader;
 
 class Play extends State {
-  Play(String name, [String nextState]): super(name, nextState);
+  Play(String name, [String nextState]) : super(name, nextState);
 
   run() {
     Background background = new Background(800, 600, mainColor);
     game.stage.addChild(background);
 
-    Ship player = new Ship(game.resourceManager.getBitmapData("ship"), x: 400,
-        y: 500);
+    Ship player = new Ship(this, "ship")
+        ..center()
+        ..x = 400
+        ..y = 500
+        ..vx = 200;
+
+
     game.stage.addChild(player);
     game.stage.juggler.add(player);
 
     List<Bullet> bullets = new List<Bullet>();
     for (int i = 0; i < 5; i++) {
-      bullets.add(new Bullet(game.resourceManager.getBitmapData("bullet")));
+      bullets.add(new Bullet(this, "bullet")..center()..vy=300);
     }
+
+    /*Group<Bullet> bulletGroup = new Group<Bullet>();
+    bulletGroup.addChildByFunction(()=> new Bullet(game.resourceManager.getBitmapData("bullet")));
+    print(bulletGroup.getChildAt(0));*/
 
     Ufo ufo;
     List<Ufo> ufos = new List<Ufo>();
     for (int i = 1; i < 8; i++) {
-      ufo = new Ufo(game.resourceManager.getBitmapData("ufo"), x: (i * 100), 
-          y: 50);
+      ufo = new Ufo(this, "ufo")
+          ..center()
+          ..x = (i * 100)
+          ..y = 50
+          ..vy = 50
+          ..alive = true;
       ufos.add(ufo);
       game.stage.addChild(ufo);
       game.stage.juggler.add(ufo);
@@ -55,7 +68,7 @@ class Play extends State {
       }
 
     });
-    
+
     game.stage.onKeyUp.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
@@ -66,30 +79,30 @@ class Play extends State {
           break;
       }
     });
-    
-    
-    List<Bullet> aliveBulletList = new List<Bullet>();    
+
+
+    List<Bullet> aliveBulletList = new List<Bullet>();
     List<Ufo> aliveUfoList = new List<Ufo>();
-    aliveUfoList.addAll(ufos.where((item)=>item.alive));
-    
-    game.stage.onEnterFrame.listen((_){
-      if( aliveUfoList.length <= 0 ){
+    aliveUfoList.addAll(ufos.where((item) => item.alive));
+
+    game.stage.onEnterFrame.listen((_) {
+      if (aliveUfoList.length <= 0) {
         killteState();
       }
-      
-      aliveBulletList.addAll(bullets.where((item)=>item.alive));
-      
-      aliveBulletList.forEach((bullet){
-        aliveUfoList.forEach((ufo){
-          if(ufo.hitTestObject(bullet)){
+
+      aliveBulletList.addAll(bullets.where((item) => item.alive));
+
+      aliveBulletList.forEach((bullet) {
+        aliveUfoList.forEach((ufo) {
+          if (ufo.hitTestObject(bullet)) {
             ufo.alive = false;
-            bullet.alive = false;           
+            bullet.alive = false;
           }
         });
       });
-      
-      aliveUfoList.removeWhere((item)=>!item.alive);
-      
+
+      aliveUfoList.removeWhere((item) => !item.alive);
+
     });
 
   }
