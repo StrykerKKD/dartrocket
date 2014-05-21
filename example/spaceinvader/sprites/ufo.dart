@@ -22,7 +22,7 @@ class Ufo extends AnimatedSprite {
         deltaX = -50;
       }
       moving = true;
-      game.stage.juggler.tween(this, 1, TransitionFunction.easeInOutCubic)
+      game.stage.juggler.tween(this, 1, game.transitionFunction.easeInOutCubic)
           ..animate.x.by(deltaX)
           ..onComplete = () {
             moveRight = !moveRight;

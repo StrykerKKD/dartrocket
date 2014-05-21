@@ -5,25 +5,25 @@ part of dartrocket;
 //Copyright (c) 2012, Bernhard Pichler
 //All rights reserved.
 //
-//Redistribution and use in source and binary forms, with or without 
+//Redistribution and use in source and binary forms, with or without
 //modification, are permitted provided that the following conditions are met:
 //
-//* Redistributions of source code must retain the above copyright notice, 
+//* Redistributions of source code must retain the above copyright notice,
 //  this list of conditions and the following disclaimer.
-//* Redistributions in binary form must reproduce the above copyright notice, 
-//  this list of conditions and the following disclaimer in the documentation 
+//* Redistributions in binary form must reproduce the above copyright notice,
+//  this list of conditions and the following disclaimer in the documentation
 //  and/or other materials provided with the distribution.
 //
-//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-//AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-//IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-//ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
-//LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-//CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-//SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR 
-//BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER 
-//IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-//ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+//AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+//IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+//ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+//LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+//CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+//SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+//BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+//IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+//ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //POSSIBILITY OF SUCH DAMAGE.
 
 
@@ -62,26 +62,26 @@ class TransitionFunction {
 
   // Standard
 
-  static Random _random = new Random();
+  Random _random = new Random();
 
-  static num linear(num ratio) {
+  num linear(num ratio) {
     return ratio;
   }
 
-  static num sine(num ratio) {
+  num sine(num ratio) {
     return 0.5 - 0.5 * cos(ratio * 2.0 * PI);
   }
 
-  static num cosine(num ratio) {
+  num cosine(num ratio) {
     return 0.5 + 0.5 * cos(ratio * 2.0 * PI);
   }
 
-  static num random(num ratio) {
+  num random(num ratio) {
     if (ratio == 0.0 || ratio == 1.0) return ratio;
     return _random.nextDouble();
   }
 
-  static EaseFunction custom(num amount) {
+  EaseFunction custom(num amount) {
     if (amount < -1) amount = -1;
     if (amount > 1) amount = 1;
 
@@ -95,22 +95,22 @@ class TransitionFunction {
 
   // Quadratic
 
-  static num easeInQuadratic(num ratio) {
+  num easeInQuadratic(num ratio) {
     return ratio * ratio;
   }
 
-  static num easeOutQuadratic(num ratio) {
+  num easeOutQuadratic(num ratio) {
     ratio = 1.0 - ratio;
     return 1.0 - ratio * ratio;
   }
 
-  static num easeInOutQuadratic(num ratio) {
+  num easeInOutQuadratic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInQuadratic(ratio) : 0.5 *
         easeOutQuadratic(ratio - 1.0) + 0.5;
   }
 
-  static num easeOutInQuadratic(num ratio) {
+  num easeOutInQuadratic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutQuadratic(ratio) : 0.5 *
         easeInQuadratic(ratio - 1.0) + 0.5;
@@ -118,22 +118,22 @@ class TransitionFunction {
 
   // Cubic
 
-  static num easeInCubic(num ratio) {
+  num easeInCubic(num ratio) {
     return ratio * ratio * ratio;
   }
 
-  static num easeOutCubic(num ratio) {
+  num easeOutCubic(num ratio) {
     ratio = 1.0 - ratio;
     return 1.0 - ratio * ratio * ratio;
   }
 
-  static num easeInOutCubic(num ratio) {
+  num easeInOutCubic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInCubic(ratio) : 0.5 * easeOutCubic(ratio -
         1.0) + 0.5;
   }
 
-  static num easeOutInCubic(num ratio) {
+  num easeOutInCubic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutCubic(ratio) : 0.5 * easeInCubic(ratio -
         1.0) + 0.5;
@@ -141,22 +141,22 @@ class TransitionFunction {
 
   // Quartic
 
-  static num easeInQuartic(num ratio) {
+  num easeInQuartic(num ratio) {
     return ratio * ratio * ratio * ratio;
   }
 
-  static num easeOutQuartic(num ratio) {
+  num easeOutQuartic(num ratio) {
     ratio = 1.0 - ratio;
     return 1.0 - ratio * ratio * ratio * ratio;
   }
 
-  static num easeInOutQuartic(num ratio) {
+  num easeInOutQuartic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInQuartic(ratio) : 0.5 * easeOutQuartic(
         ratio - 1.0) + 0.5;
   }
 
-  static num easeOutInQuartic(num ratio) {
+  num easeOutInQuartic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutQuartic(ratio) : 0.5 * easeInQuartic(
         ratio - 1.0) + 0.5;
@@ -164,22 +164,22 @@ class TransitionFunction {
 
   // Quintic
 
-  static num easeInQuintic(num ratio) {
+  num easeInQuintic(num ratio) {
     return ratio * ratio * ratio * ratio * ratio;
   }
 
-  static num easeOutQuintic(num ratio) {
+  num easeOutQuintic(num ratio) {
     ratio = 1.0 - ratio;
     return 1.0 - ratio * ratio * ratio * ratio * ratio;
   }
 
-  static num easeInOutQuintic(num ratio) {
+  num easeInOutQuintic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInQuintic(ratio) : 0.5 * easeOutQuintic(
         ratio - 1.0) + 0.5;
   }
 
-  static num easeOutInQuintic(num ratio) {
+  num easeOutInQuintic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutQuintic(ratio) : 0.5 * easeInQuintic(
         ratio - 1.0) + 0.5;
@@ -187,22 +187,22 @@ class TransitionFunction {
 
   // Circular
 
-  static num easeInCircular(num ratio) {
+  num easeInCircular(num ratio) {
     return 1.0 - sqrt(1.0 - ratio * ratio);
   }
 
-  static num easeOutCircular(num ratio) {
+  num easeOutCircular(num ratio) {
     ratio = 1.0 - ratio;
     return sqrt(1.0 - ratio * ratio);
   }
 
-  static num easeInOutCircular(num ratio) {
+  num easeInOutCircular(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInCircular(ratio) : 0.5 * easeOutCircular(
         ratio - 1.0) + 0.5;
   }
 
-  static num easeOutInCircular(num ratio) {
+  num easeOutInCircular(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutCircular(ratio) : 0.5 * easeInCircular(
         ratio - 1.0) + 0.5;
@@ -210,21 +210,21 @@ class TransitionFunction {
 
   // Sine
 
-  static num easeInSine(num ratio) {
+  num easeInSine(num ratio) {
     return 1.0 - cos(ratio * (PI / 2.0));
   }
 
-  static num easeOutSine(num ratio) {
+  num easeOutSine(num ratio) {
     return sin(ratio * (PI / 2.0));
   }
 
-  static num easeInOutSine(num ratio) {
+  num easeInOutSine(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInSine(ratio) : 0.5 * easeOutSine(ratio -
         1.0) + 0.5;
   }
 
-  static num easeOutInSine(num ratio) {
+  num easeOutInSine(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutSine(ratio) : 0.5 * easeInSine(ratio -
         1.0) + 0.5;
@@ -232,23 +232,23 @@ class TransitionFunction {
 
   // Exponential
 
-  static num easeInExponential(num ratio) {
+  num easeInExponential(num ratio) {
     if (ratio == 0.0) return 0.0;
     return pow(2.0, 10.0 * (ratio - 1.0));
   }
 
-  static num easeOutExponential(num ratio) {
+  num easeOutExponential(num ratio) {
     if (ratio == 1.0) return 1.0;
     return 1.0 - pow(2.0, -10.0 * ratio);
   }
 
-  static num easeInOutExponential(num ratio) {
+  num easeInOutExponential(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInExponential(ratio) : 0.5 *
         easeOutExponential(ratio - 1.0) + 0.5;
   }
 
-  static num easeOutInExponential(num ratio) {
+  num easeOutInExponential(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutExponential(ratio) : 0.5 *
         easeInExponential(ratio - 1.0) + 0.5;
@@ -256,24 +256,24 @@ class TransitionFunction {
 
   // Back
 
-  static num easeInBack(num ratio) {
+  num easeInBack(num ratio) {
     num s = 1.70158;
     return ratio * ratio * ((s + 1.0) * ratio - s);
   }
 
-  static num easeOutBack(num ratio) {
+  num easeOutBack(num ratio) {
     num s = 1.70158;
     ratio = ratio - 1.0;
     return ratio * ratio * ((s + 1.0) * ratio + s) + 1.0;
   }
 
-  static num easeInOutBack(num ratio) {
+  num easeInOutBack(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInBack(ratio) : 0.5 * easeOutBack(ratio -
         1.0) + 0.5;
   }
 
-  static num easeOutInBack(num ratio) {
+  num easeOutInBack(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutBack(ratio) : 0.5 * easeInBack(ratio -
         1.0) + 0.5;
@@ -281,26 +281,26 @@ class TransitionFunction {
 
   // Elastic
 
-  static num easeInElastic(num ratio) {
+  num easeInElastic(num ratio) {
     if (ratio == 0.0 || ratio == 1.0) return ratio;
     ratio = ratio - 1.0;
     return -pow(2.0, 10.0 * ratio) * sin((ratio - 0.3 / 4.0) * (2.0 * PI) / 0.3
         );
   }
 
-  static num easeOutElastic(num ratio) {
+  num easeOutElastic(num ratio) {
     if (ratio == 0.0 || ratio == 1.0) return ratio;
     return pow(2.0, -10.0 * ratio) * sin((ratio - 0.3 / 4.0) * (2.0 * PI) / 0.3)
         + 1;
   }
 
-  static num easeInOutElastic(num ratio) {
+  num easeInOutElastic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInElastic(ratio) : 0.5 * easeOutElastic(
         ratio - 1.0) + 0.5;
   }
 
-  static num easeOutInElastic(num ratio) {
+  num easeOutInElastic(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutElastic(ratio) : 0.5 * easeInElastic(
         ratio - 1.0) + 0.5;
@@ -308,11 +308,11 @@ class TransitionFunction {
 
   // Bounce
 
-  static num easeInBounce(num ratio) {
+  num easeInBounce(num ratio) {
     return 1.0 - easeOutBounce(1.0 - ratio);
   }
 
-  static num easeOutBounce(num ratio) {
+  num easeOutBounce(num ratio) {
     if (ratio < 1 / 2.75) {
       return 7.5625 * ratio * ratio;
     } else if (ratio < 2 / 2.75) {
@@ -327,13 +327,13 @@ class TransitionFunction {
     }
   }
 
-  static num easeInOutBounce(num ratio) {
+  num easeInOutBounce(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeInBounce(ratio) : 0.5 * easeOutBounce(ratio
         - 1.0) + 0.5;
   }
 
-  static num easeOutInBounce(num ratio) {
+  num easeOutInBounce(num ratio) {
     ratio = ratio * 2.0;
     return (ratio < 1.0) ? 0.5 * easeOutBounce(ratio) : 0.5 * easeInBounce(ratio
         - 1.0) + 0.5;
