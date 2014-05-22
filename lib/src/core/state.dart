@@ -49,7 +49,12 @@ abstract class State extends Stream<String> {
 
   StreamController<String> _controller;
   String _name;
-  String _nextStateName;
+  /**
+   * The next state's name.
+   * 
+   * **Important:** You can controll where you want to go with this member.
+   */
+  String nextState;
   /**
    * Acces to the main game object.
    * */
@@ -63,7 +68,7 @@ abstract class State extends Stream<String> {
    * * _name: the state's name
    * * nextState: next state's name(optional)
    * */
-  State(this._name, [String nextState = null]): _nextStateName = nextState {
+  State(this._name, [String nextState = null]): nextState = nextState {
     _controller = new StreamController<String>(onListen: _onListen, onPause:
         _onPause, onResume: _onResume, onCancel: _onCancel);
   }
@@ -113,15 +118,6 @@ abstract class State extends Stream<String> {
    * Gets the name of the state.
    * */
   String get name => _name;
-
-  /**
-   * Gets the next state's name.
-   * 
-   * **Important:** You can controll where you want to go with nextState method.
-   * */
-  String get nextState => _nextStateName;
-
-  set nextState(state) => _nextStateName = state;
 
   /**
    * You can send message to the StateManager.
