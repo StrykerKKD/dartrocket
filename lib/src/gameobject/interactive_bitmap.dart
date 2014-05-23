@@ -1,22 +1,10 @@
 part of dartrocket;
 
-/**
- * This interface is the most basic object.
- * */
+abstract class InteractiveBitmap extends StageXL.InteractiveObject {
 
-abstract class InteractiveSprite extends StageXL.InteractiveObject implements Sprite{
- 
   StageXL.BitmapData bitmapData;
-  /**
-     * Creates a Sprite object.
-     * 
-     * * stateContext: context of the State, which this object is in
-     * * resourceName: name of the resource for the sprite
-     * 
-     * */
-  InteractiveSprite(State stateContext, String resourceName) {
-    bitmapData = stateContext.game.resourceManager.getBitmapData(resourceName);    
-  }
+
+  InteractiveBitmap(this.bitmapData);
 
   StageXL.Rectangle<num> getBoundsTransformed(StageXL.Matrix
       matrix, [StageXL.Rectangle<num> returnRectangle]) {
