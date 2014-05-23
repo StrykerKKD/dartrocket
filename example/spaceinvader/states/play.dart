@@ -7,7 +7,7 @@ class Play extends State {
     Background background = new Background(800, 600, mainColor);
     game.stage.addChild(background);
 
-    Ship player = new Ship(this, "ship")
+    /*Ship player = new Ship(this, "ship")
         ..center()
         ..x = 400
         ..y = 500
@@ -15,8 +15,16 @@ class Play extends State {
 
 
     game.stage.addChild(player);
-    game.stage.juggler.add(player);
-
+    game.stage.juggler.add(player);*/
+    
+    FullSprite playerFullSprite = new FullSprite(this,"ship")
+      ..center()
+      ..x = 400
+      ..y = 500;
+    
+    game.stage.addChild(playerFullSprite);
+    game.stage.juggler.add(playerFullSprite);
+    
     List<Bullet> bullets = new List<Bullet>();
     for (int i = 0; i < 5; i++) {
       bullets.add(new Bullet(this, "bullet")..center()..vy=300);
@@ -47,20 +55,23 @@ class Play extends State {
 
     Bullet bullet;
 
+    int playerSpeed = 200;
     game.stage.onKeyDown.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
-          player.movingLeft = true;
+          //player.movingLeft = true;
+          playerFullSprite.vx = playerSpeed;
           break;
         case rightArrow:
-          player.movingRight = true;
+          //player.movingRight = true;
+          playerFullSprite.vx = -playerSpeed;
           break;
       }
 
       if (value.keyCode == spaceBar) {
         bullet = bullets.firstWhere((item) => !item.alive)
-            ..x = player.x
-            ..y = player.y
+            ..x = playerFullSprite.x
+            ..y = playerFullSprite.y
             ..alive = true;
 
         game.stage.addChild(bullet);
@@ -72,10 +83,12 @@ class Play extends State {
     game.stage.onKeyUp.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
-          player.movingLeft = false;
+          //player.movingLeft = false;
+          playerFullSprite.vx = 0;
           break;
         case rightArrow:
-          player.movingRight = false;
+          //player.movingRight = false;
+          playerFullSprite.vx = 0;
           break;
       }
     });
@@ -87,6 +100,7 @@ class Play extends State {
 
     game.stage.onEnterFrame.listen((_) {
       if (aliveUfoList.length <= 0) {
+        game.stage.removeEventListeners("keyDown");
         killteState();
       }
 

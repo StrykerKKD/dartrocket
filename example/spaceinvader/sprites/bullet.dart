@@ -1,6 +1,6 @@
 part of spaceinvader;
 
-class Bullet extends AnimatedSprite {
+class Bullet extends FullSprite {
   Bullet(State context, String resourceName) : super(context, resourceName);
 
   @override
