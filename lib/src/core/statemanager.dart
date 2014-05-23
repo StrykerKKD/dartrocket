@@ -90,7 +90,7 @@ class StateManager {
   }
   
   /*
-   * Explaining: The state is based on a Single-Subscription Stream and because
+   * Explanation: The state is based on a Single-Subscription Stream and because
    * of it, ti can be listened only once, so we can not close it if we want to
    * re run the state again
    * When we end a state we only pause the stream, but to resume the state,
