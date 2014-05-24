@@ -5,7 +5,7 @@ class Ship extends FullSprite {
   bool movingLeft = false;
   bool movingRight = false;
 
-  Ship(context, resourceName) : super(context, resourceName);
+  Ship(context, resourceName) : super(context, resourceName,isMoveAble:true);
 
 
   @override

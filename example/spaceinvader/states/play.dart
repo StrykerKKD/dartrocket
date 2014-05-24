@@ -7,27 +7,19 @@ class Play extends State {
     Background background = new Background(800, 600, mainColor);
     game.stage.addChild(background);
 
-    /*Ship player = new Ship(this, "ship")
+    Ship player = new Ship(this, "ship")
         ..center()
         ..x = 400
         ..y = 500
         ..vx = 200;
 
 
-    game.stage.addChild(player);
-    game.stage.juggler.add(player);*/
-    
-    FullSprite playerFullSprite = new FullSprite(this,"ship")
-      ..center()
-      ..x = 400
-      ..y = 500;
-    
-    game.stage.addChild(playerFullSprite);
-    game.stage.juggler.add(playerFullSprite);
-    
-    List<Bullet> bullets = new List<Bullet>();
+    List bullets = new List();
     for (int i = 0; i < 5; i++) {
-      bullets.add(new Bullet(this, "bullet")..center()..vy=300);
+      bullets.add(new FullSprite(this, "bullet", addToStage: false, isMoveAble:
+          true)
+          ..center()
+          ..vy = 300);
     }
 
     /*Group<Bullet> bulletGroup = new Group<Bullet>();
@@ -53,29 +45,28 @@ class Play extends State {
     const leftArrow = 37;
     const rightArrow = 39;
 
-    Bullet bullet;
+    FullSprite bullet;
 
     int playerSpeed = 200;
     game.stage.onKeyDown.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
-          //player.movingLeft = true;
-          playerFullSprite.vx = playerSpeed;
+          player.movingLeft = true;
           break;
         case rightArrow:
-          //player.movingRight = true;
-          playerFullSprite.vx = -playerSpeed;
+          player.movingRight = true;
           break;
       }
 
       if (value.keyCode == spaceBar) {
-        bullet = bullets.firstWhere((item) => !item.alive)
-            ..x = playerFullSprite.x
-            ..y = playerFullSprite.y
-            ..alive = true;
+        if (bullets.any((item) => !item.alive)) {
+          bullet = bullets.firstWhere((item) => !item.alive)
+              ..x = player.x
+              ..y = player.y
+              ..alive = true;
 
-        game.stage.addChild(bullet);
-        game.stage.juggler.add(bullet);
+          bullet.addToStage();
+        }
       }
 
     });
@@ -83,18 +74,16 @@ class Play extends State {
     game.stage.onKeyUp.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
-          //player.movingLeft = false;
-          playerFullSprite.vx = 0;
+          player.movingLeft = false;
           break;
         case rightArrow:
-          //player.movingRight = false;
-          playerFullSprite.vx = 0;
+          player.movingRight = false;
           break;
       }
     });
 
 
-    List<Bullet> aliveBulletList = new List<Bullet>();
+    List<FullSprite> aliveBulletList = new List<FullSprite>();
     List<Ufo> aliveUfoList = new List<Ufo>();
     aliveUfoList.addAll(ufos.where((item) => item.alive));
 
@@ -110,7 +99,7 @@ class Play extends State {
         aliveUfoList.forEach((ufo) {
           if (ufo.hitTestObject(bullet)) {
             ufo.alive = false;
-            bullet.alive = false;
+            bullet.removeFromStage();
           }
         });
       });
