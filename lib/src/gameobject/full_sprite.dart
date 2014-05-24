@@ -8,6 +8,8 @@ class FullSprite extends InteractiveBitmap implements StageXL.Animatable {
 
   bool isMoveAble;
 
+  State _context;
+
   /**
    * Is the sprite alive?
    * */
@@ -34,12 +36,17 @@ class FullSprite extends InteractiveBitmap implements StageXL.Animatable {
       true, bool isMoveAble: false}) : super(
       stateContext.game.resourceManager.getBitmapData(resourceName)) {
     this.isMoveAble = isMoveAble;
-    if(addToStage){
-      this.addToStage(stateContext);
+    _context = stateContext;
+    if (addToStage) {
+      this.addToStage();
     }
   }
 
   bool advanceTime(num time) {
+    if ((x <= 0 || x >= _context.game.stage.sourceWidth) || 
+        (y <= 0 || y >= _context.game.stage.sourceHeight)) {
+      removeFromStage();      
+    }
     x = x - vx * time;
     y = y - vy * time;
   }
@@ -49,17 +56,18 @@ class FullSprite extends InteractiveBitmap implements StageXL.Animatable {
     pivotY = bitmapData.height / 2;
   }
 
-  addToStage(State context) {
-    context.game.stage.addChild(this);
+  addToStage() {
+    _context.game.stage.addChild(this);
     if (isMoveAble) {
-      context.game.stage.juggler.add(this);
+      _context.game.stage.juggler.add(this);
     }
   }
-  
-  killSprite(State context){
-    context.game.stage.removeChild(this);
-    if(isMoveAble){
-      context.game.stage.juggler.remove(this);
+
+  removeFromStage() {
+    alive=false;
+    _context.game.stage.removeChild(this);
+    if (isMoveAble) {
+      _context.game.stage.juggler.remove(this);
     }
   }
 
