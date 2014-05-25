@@ -14,8 +14,6 @@ part "src/core/text.dart";
 
 part "src/animation/transition_function.dart";
 
-part "src/gameobject/sprite.dart";
-part "src/gameobject/animated_sprite.dart";
 part "src/gameobject/interactive_bitmap.dart";
-part "src/gameobject/full_sprite.dart";
+part "src/gameobject/sprite.dart";
 part "src/gameobject/group.dart";
