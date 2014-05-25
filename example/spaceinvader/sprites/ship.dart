@@ -1,6 +1,6 @@
 part of spaceinvader;
 
-class Ship extends FullSprite {
+class Ship extends Sprite {
 
   bool movingLeft = false;
   bool movingRight = false;

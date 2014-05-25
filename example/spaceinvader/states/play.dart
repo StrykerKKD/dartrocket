@@ -16,7 +16,7 @@ class Play extends State {
 
     List bullets = new List();
     for (int i = 0; i < 5; i++) {
-      bullets.add(new FullSprite(this, "bullet", addToStage: false, isMoveAble:
+      bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble:
           true)
           ..center()
           ..vy = 300);
@@ -45,7 +45,7 @@ class Play extends State {
     const leftArrow = 37;
     const rightArrow = 39;
 
-    FullSprite bullet;
+    Sprite bullet;
 
     int playerSpeed = 200;
     game.stage.onKeyDown.listen((value) {
@@ -83,7 +83,7 @@ class Play extends State {
     });
 
 
-    List<FullSprite> aliveBulletList = new List<FullSprite>();
+    List<Sprite> aliveBulletList = new List<Sprite>();
     List<Ufo> aliveUfoList = new List<Ufo>();
     aliveUfoList.addAll(ufos.where((item) => item.alive));
 

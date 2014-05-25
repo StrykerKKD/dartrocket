@@ -1,6 +1,6 @@
 part of spaceinvader;
 
-class Ufo extends FullSprite {
+class Ufo extends Sprite {
 
   bool moveRight = true;
   bool moving = false;
