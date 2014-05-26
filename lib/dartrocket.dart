@@ -3,7 +3,9 @@ library dartrocket;
 import "dart:math";
 import "dart:async";
 import "dart:html" show Element,querySelector;
+import 'dart:collection' show ListBase;
 import "package:stagexl/stagexl.dart" as StageXL;
+
 
 
 part "src/core/game.dart";

@@ -1,26 +1,23 @@
 part of dartrocket;
 
-class Group<T extends StageXL.DisplayObject> extends StageXL.DisplayObjectContainer{  
-  
-  void addChildByFunction(Function newFunction){
-    super.addChild(newFunction());
+class Group<E> extends ListBase<E> {
+  List<E> _innerList = new List<E>();
+
+  @override
+  E operator [](int index) {
+    return _innerList[index];
   }
-  
-  void addChildrenByFunction(Function newFunction,int size){
-    for(int i = 0;i < size;i++){
-      super.addChild(newFunction());
-    }
+
+  @override
+  void operator []=(int index, E value) {
+    _innerList[index] = value;
   }
-  
-  T getChildAt(int index){
-    return (super.getChildAt(index) as T);
-  }
-  
-  T getChildByName(String name){
-    return (super.getChildByName(name) as T);
-  }
-  
-  void foreach(Function test(item)){
-    
+
+  @override
+  int get length => _innerList.length;
+
+  @override
+  void set length(int newLength) {
+    _innerList.length = newLength;
   }
 }
