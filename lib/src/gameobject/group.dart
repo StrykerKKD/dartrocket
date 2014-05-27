@@ -20,4 +20,14 @@ class Group<E> extends ListBase<E> {
   void set length(int newLength) {
     _innerList.length = newLength;
   }
+
+  void forEachAlive(void action(E element)) {
+    _innerList.where((item) => item.alive).forEach((item) {
+      action(item);
+    });
+  }
+  
+  bool anyAlive(){
+    return _innerList.any((item)=>item.alive);
+  }
 }
