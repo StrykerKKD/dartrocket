@@ -6,12 +6,13 @@ class Ufo extends Sprite {
   bool moving = false;
   int deltaX;
 
-  Ufo(State context, String resourceName) : super(context, resourceName);
+  Ufo(State context, String resourceName) : super(context, resourceName,isMoveAble:true);
 
   @override
   bool advanceTime(num time) {
     
     if (y > game.stage.sourceHeight || alive == false) {
+      alive = false;
       game.stage.removeChild(this);
       game.stage.juggler.remove(this);
     }

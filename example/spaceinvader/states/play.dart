@@ -14,20 +14,15 @@ class Play extends State {
         ..vx = 200;
 
 
-    List bullets = new List();
+    Group<Sprite> bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
-      bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble:
-          true)
+      bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble: true)
           ..center()
           ..vy = 300);
     }
 
-    /*Group<Bullet> bulletGroup = new Group<Bullet>();
-    bulletGroup.addChildByFunction(()=> new Bullet(game.resourceManager.getBitmapData("bullet")));
-    print(bulletGroup.getChildAt(0));*/
-
     Ufo ufo;
-    List<Ufo> ufos = new List<Ufo>();
+    Group<Ufo> ufos = new Group<Ufo>();
     for (int i = 1; i < 8; i++) {
       ufo = new Ufo(this, "ufo")
           ..center()
@@ -36,8 +31,6 @@ class Play extends State {
           ..vy = 50
           ..alive = true;
       ufos.add(ufo);
-      game.stage.addChild(ufo);
-      game.stage.juggler.add(ufo);
     }
 
 
@@ -82,21 +75,15 @@ class Play extends State {
       }
     });
 
-
-    List<Sprite> aliveBulletList = new List<Sprite>();
-    List<Ufo> aliveUfoList = new List<Ufo>();
-    aliveUfoList.addAll(ufos.where((item) => item.alive));
-
     game.stage.onEnterFrame.listen((_) {
-      if (aliveUfoList.length <= 0) {
+      
+      if (!ufos.anyAlive()) {
         game.stage.removeEventListeners("keyDown");
         killteState();
       }
 
-      aliveBulletList.addAll(bullets.where((item) => item.alive));
-
-      aliveBulletList.forEach((bullet) {
-        aliveUfoList.forEach((ufo) {
+      ufos.forEachAlive((ufo) {
+        bullets.forEachAlive((bullet) {
           if (ufo.hitTestObject(bullet)) {
             ufo.alive = false;
             bullet.removeFromStage();
@@ -104,9 +91,6 @@ class Play extends State {
         });
       });
 
-      aliveUfoList.removeWhere((item) => !item.alive);
-
     });
-
   }
 }
