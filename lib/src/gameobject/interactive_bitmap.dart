@@ -1,5 +1,10 @@
 part of dartrocket;
 
+/**
+ * It's a bitmap wich can have event listeners.
+ * 
+ * This is used by the [Sprite] class and it's only a helper class.
+ */
 abstract class InteractiveBitmap extends StageXL.InteractiveObject {
 
   StageXL.BitmapData bitmapData;
