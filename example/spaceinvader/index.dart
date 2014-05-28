@@ -10,7 +10,6 @@ part 'states/end.dart';
 
 part 'sprites/ship.dart';
 part 'sprites/ufo.dart';
-part 'sprites/bullet.dart';
 
 
 int mainColor = 0xFFC8A1;
