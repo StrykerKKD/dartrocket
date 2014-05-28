@@ -3,6 +3,14 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.0
+  * Breaking: There is onyl one Sprite class and removed other sprite classes
+  * New Group class for storing Sprites
+  * SpaceInvader example is refactored due to he canges
+  * TransitionFunction can be acces through game object
+  * Added InteractiveBitmap helper class
+  * Documentation updated
+  
 #### Pub version 0.0.9
   * Fixed documentation
   * Breaking: terminateState renamed to killState
