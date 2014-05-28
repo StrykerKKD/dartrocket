@@ -5,7 +5,7 @@ class Ship extends Sprite {
   bool movingLeft = false;
   bool movingRight = false;
 
-  Ship(context, resourceName) : super(context, resourceName,isMoveAble:true);
+  Ship(context, resourceName) : super(context, resourceName);
 
 
   @override

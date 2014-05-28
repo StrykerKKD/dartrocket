@@ -6,7 +6,7 @@ class Ufo extends Sprite {
   bool moving = false;
   int deltaX;
 
-  Ufo(State context, String resourceName) : super(context, resourceName,isMoveAble:true);
+  Ufo(State context, String resourceName) : super(context, resourceName);
 
   @override
   bool advanceTime(num time) {
