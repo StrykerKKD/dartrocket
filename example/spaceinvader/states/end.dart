@@ -8,7 +8,8 @@ class End extends State {
 
     Text text = new Text("The End. Bye Bye")
         ..x = 400
-        ..y = 300;
+        ..y = 300
+        ..width = 500;
 
     game.stage.addChild(background);
     game.stage.addChild(text);

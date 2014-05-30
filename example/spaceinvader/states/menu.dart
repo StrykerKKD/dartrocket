@@ -14,10 +14,10 @@ class Menu extends State {
 
     String instructions = "You can move with left(<-) and right(->) cursor.\n Hit Space to play.";    
     Text instructionsText = new Text(instructions)
-    ..x = 50
+    ..x = 40
     ..y = 300
     ..defaultTextFormat.size = 28
-    ..width = 600;
+    ..width = 800;
 
     game.stage.addChild(background);
     game.stage.addChild(titleText);
