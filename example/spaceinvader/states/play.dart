@@ -36,6 +36,8 @@ class Play extends State {
           ..alive = true;
       ufos.add(ufo);
     }
+    
+    Sound laserSound = new Sound(this,"laser");
 
 
     const spaceBar = 32;
@@ -63,6 +65,7 @@ class Play extends State {
               ..alive = true;
 
           bullet.addToStage();
+          laserSound.play();
         }
       }
 

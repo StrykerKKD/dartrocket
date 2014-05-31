@@ -16,6 +16,8 @@ class Loading extends State {
       "bullet": "images/laserBlue01.png",
       "background":"images/purple.png"
     });
+    
+    game.resourceManager.addSound("laser", "sounds/sfx_laser1.ogg");
   }
 
   run() {
