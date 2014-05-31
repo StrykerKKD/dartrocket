@@ -1,10 +1,39 @@
 part of dartrocket;
 
-class Background extends StageXL.Bitmap {
-  num _width, _height;
-  num _color;
+class Background {
+  List _backgroundTileList = new List();
+  State _context;
 
-  Background(this._width, this._height, this._color): super() {
-    bitmapData = new StageXL.BitmapData(_width, _height, false, _color);
+  Background(State stateContext, String resourceName, {bool addToStage:
+      true, bool repeatX: true, bool repeatY: true}) : super() {
+    
+    _context = stateContext;
+    
+    StageXL.BitmapData backgroundTileBitmapdata =
+        stateContext.game.resourceManager.getBitmapData(resourceName);
+    StageXL.Bitmap backgroundTileBitmap;
+
+    int yTimes = (_context.game.stage.sourceHeight / backgroundTileBitmapdata.height).ceil();
+    int xTimes = (_context.game.stage.sourceWidth / backgroundTileBitmapdata.width).ceil();
+
+    for (int i = 0; i < yTimes; i++) {
+      for (int j = 0; j < xTimes; j++) {
+        backgroundTileBitmap = new StageXL.Bitmap(backgroundTileBitmapdata);
+        backgroundTileBitmap
+        ..x = backgroundTileBitmap.width * j
+        ..y = backgroundTileBitmap.height * i;
+        _backgroundTileList.add(backgroundTileBitmap);
+      }
+    }
+    
+    if (addToStage) {
+      this.addToStage();
+    }
+  }
+
+  addToStage() {
+    _backgroundTileList.forEach((tile){
+      _context.game.stage.addChild(tile);
+    });    
   }
 }
