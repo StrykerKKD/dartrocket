@@ -7,11 +7,13 @@ part "states/first.dart";
 part "states/second.dart";
 part "states/third.dart";
 
-int mainColor = 0x7AA241;
+
 
 void main() {
 
-  Game game = new Game("canvas");
+  int mainColor = 0x7AA241;
+  
+  Game game = new Game("canvas",color:mainColor);
 
   game.stateManager.addStateMap({
     "first": new First("first", "second"),

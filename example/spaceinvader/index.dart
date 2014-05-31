@@ -12,13 +12,14 @@ part 'sprites/ship.dart';
 part 'sprites/ufo.dart';
 
 
-int mainColor = 0xFFC8A1;
+
 
 Game game;
 
 void main() {
+  int mainColor = 0xFFC8A1;
 
-  game = new Game("canvas");
+  game = new Game("canvas",color:mainColor);
 
   game.stateManager.addStateMap({
     "loading": new Loading("loading", "menu"),

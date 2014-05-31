@@ -6,11 +6,9 @@ class Second extends State {
   static bool runned = false;
   
   run() {
-    Background background = new Background(800, 600, mainColor);
     Text text = new Text("Second State")
         ..x = 400
         ..y = 300;
-    game.stage.addChild(background);
     game.stage.addChild(text);
 
     if(runned){

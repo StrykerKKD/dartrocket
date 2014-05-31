@@ -4,7 +4,6 @@ class Menu extends State {
   Menu(String name, [String nextState]): super(name, nextState);
 
   run() {
-    Background background = new Background(800, 600, mainColor);
 
     Text titleText = new Text("SpaceInvader")
         ..x = 200
@@ -19,7 +18,6 @@ class Menu extends State {
     ..defaultTextFormat.size = 28
     ..width = 800;
 
-    game.stage.addChild(background);
     game.stage.addChild(titleText);
     game.stage.addChild(instructionsText);
     

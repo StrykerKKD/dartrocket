@@ -4,8 +4,6 @@ class Play extends State {
   Play(String name, [String nextState]) : super(name, nextState);
 
   run() {
-    Background background = new Background(800, 600, mainColor);
-    game.stage.addChild(background);
 
     Ship player = new Ship(this, "ship")
         ..center()
