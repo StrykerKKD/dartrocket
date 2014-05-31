@@ -1,12 +1,17 @@
 part of dartrocket;
 
-class Background {
-  List _backgroundTileList = new List();
+class Background implements StageXL.Animatable{
+  List<StageXL.Bitmap> _backgroundTileList = new List<StageXL.Bitmap>();
   State _context;
+  
+  int vx = 0;
+  int vy = 0;
+  
+  bool isMoveAble;
 
-  Background(State stateContext, String resourceName, {bool addToStage:
+  Background(State stateContext, String resourceName, {bool isMoveable:false,bool addToStage:
       true, bool repeatX: true, bool repeatY: true}) : super() {
-    
+        
     _context = stateContext;
     
     StageXL.BitmapData backgroundTileBitmapdata =
@@ -15,9 +20,12 @@ class Background {
 
     int yTimes = (_context.game.stage.sourceHeight / backgroundTileBitmapdata.height).ceil();
     int xTimes = (_context.game.stage.sourceWidth / backgroundTileBitmapdata.width).ceil();
-
-    for (int i = 0; i < yTimes; i++) {
-      for (int j = 0; j < xTimes; j++) {
+    
+    if(!repeatX) xTimes = 1;
+    if(!repeatY) yTimes = 1;
+    
+    for (int i = -1; i < yTimes; i++) {
+      for (int j = -1; j < xTimes; j++) {
         backgroundTileBitmap = new StageXL.Bitmap(backgroundTileBitmapdata);
         backgroundTileBitmap
         ..x = backgroundTileBitmap.width * j
@@ -26,6 +34,7 @@ class Background {
       }
     }
     
+    this.isMoveAble = isMoveable;
     if (addToStage) {
       this.addToStage();
     }
@@ -34,6 +43,24 @@ class Background {
   addToStage() {
     _backgroundTileList.forEach((tile){
       _context.game.stage.addChild(tile);
-    });    
+    });
+    if(isMoveAble){
+      _context.game.stage.juggler.add(this);
+    }
+  }
+
+  @override
+  bool advanceTime(num time) {
+    _backgroundTileList.forEach((tile){            
+      tile.x = tile.x + vx * time;
+      tile.y = tile.y + vy * time;
+      
+      if(tile.x >= _context.game.stage.sourceWidth){
+        tile.x = tile.x - _context.game.stage.sourceWidth - tile.width;
+      }else if(tile.y >= _context.game.stage.sourceHeight){
+        tile.y = tile.y - _context.game.stage.sourceHeight - tile.height;        
+      }      
+    });
+    
   }
 }
