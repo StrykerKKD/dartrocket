@@ -17,6 +17,7 @@ part "src/gameobject/interactive_bitmap.dart";
 part "src/gameobject/sprite.dart";
 part "src/gameobject/background.dart";
 part "src/gameobject/text.dart";
+part "src/gameobject/sound.dart";
 
 part "src/animation/transition_function.dart";
 
