@@ -19,7 +19,7 @@ class Play extends State {
     for (int i = 0; i < 5; i++) {
       bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble: true)
           ..center()
-          ..vy = 300);
+          ..vy = -300);
     }
 
     Ufo ufo;

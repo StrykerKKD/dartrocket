@@ -81,8 +81,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         (y <= 0 || y >= _context.game.stage.sourceHeight)) {
       removeFromStage();      
     }
-    x = x - vx * time;
-    y = y - vy * time;
+    x = x + vx * time;
+    y = y + vy * time;
   }
   /**
    * Put the pivot point into the center of the sprite.
