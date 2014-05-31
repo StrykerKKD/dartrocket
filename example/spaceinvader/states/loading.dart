@@ -6,11 +6,9 @@ class Loading extends State {
 
   load() {
 
-    Text text = new Text("Loading...")
+    Text text = new Text(this,"Loading...")
         ..x = 400
         ..y = 300;
-
-    game.stage.addChild(text);
 
     game.addDataMap({
       "ship": "images/playerShip1_blue.png",

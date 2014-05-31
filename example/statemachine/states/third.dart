@@ -7,10 +7,9 @@ class Third extends State {
 
   run() {
     
-    Text text = new Text("Third State")
+    Text text = new Text(this,"Third State")
         ..x = 400
         ..y = 300;
-    game.stage.addChild(text);
 
     if (runned) {
       nextState = null;

@@ -5,12 +5,10 @@ class End extends State {
 
   run() {
 
-    Text text = new Text("The End. Bye Bye")
+    Text text = new Text(this,"The End. Bye Bye")
         ..x = 400
         ..y = 300
         ..width = 500;
-
-    game.stage.addChild(text);
     
     new Timer(new Duration(seconds: 5),killteState);
   }
