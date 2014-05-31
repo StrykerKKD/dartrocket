@@ -2,11 +2,11 @@ part of dartrocket;
 
 class Text extends StageXL.TextField {
 
-  Text(text, [StageXL.TextFormat textformat]): super() {
+  Text(text, {String font: 'Arial', int size: 14, int color:
+      StageXL.Color.Black}) : super() {
+    
     this.text = text;
-    if (textformat == null) {
-      this.defaultTextFormat = new StageXL.TextFormat('Arial', 14,
-          StageXL.Color.Black, bold: true, italic: true);
-    }
+    
+    this.defaultTextFormat = new StageXL.TextFormat(font, size, color);
   }
 }
