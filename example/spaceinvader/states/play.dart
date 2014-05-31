@@ -4,7 +4,9 @@ class Play extends State {
   Play(String name, [String nextState]) : super(name, nextState);
 
   run() {
-    Background bg = new Background(this, "background");
+    Background bg = new Background(this, "background",isMoveable: true)
+    ..vx = 100
+    ..vy = 250;
     
     Ship player = new Ship(this, "ship")
         ..center()
