@@ -8,6 +8,9 @@ class Play extends State {
     ..vx = 100
     ..vy = 250;
     
+    int score = 0;
+    Text scoreText = new Text(this,"Score: $score",size:20);
+    
     Ship player = new Ship(this, "ship")
         ..center()
         ..x = 400
@@ -88,6 +91,7 @@ class Play extends State {
           if (ufo.hitTestObject(bullet)) {
             ufo.alive = false;
             bullet.removeFromStage();
+            scoreText.text = "Score: ${score+=10}";
           }
         });
       });
