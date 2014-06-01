@@ -11,7 +11,7 @@ class Menu extends State {
         ..defaultTextFormat.size = 56
         ..width = 600;
 
-    String instructions = "You can move with left(<-) and right(->) cursor.\n Hit Space to play.";    
+    String instructions = "You can move with left(<-) and right(->) cursor.";    
     Text instructionsText = new Text(this,instructions)
     ..x = 40
     ..y = 300

@@ -4,49 +4,63 @@ class Play extends State {
   Play(String name, [String nextState]) : super(name, nextState);
 
   run() {
-    Background bg = new Background(this, "background",isMoveable: true)
-    ..vx = 100
-    ..vy = 250;
-    
+    Background bg = new Background(this, "background", isMoveable: true)
+        ..vx = 100
+        ..vy = 250;
+
     int score = 0;
-    Text scoreText = new Text(this,"Score: $score",size:20);
-    
+    Text scoreText = new Text(this, "Score: $score", size: 20);
+
     Ship player = new Ship(this, "ship")
         ..center()
         ..x = 400
         ..y = 500
-        ..vx = 200;
+        ..vx = 300;
 
 
     Group<Sprite> bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
-      bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble: true)
+      bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble: true
+          )
           ..center()
-          ..vy = -300);
+          ..vy = -500);
     }
 
     Ufo ufo;
     Group<Ufo> ufos = new Group<Ufo>();
-    for (int i = 1; i < 8; i++) {
-      ufo = new Ufo(this, "ufo")
-          ..center()
-          ..x = (i * 100)
-          ..y = 50
-          ..vy = 50
-          ..alive = true;
-      ufos.add(ufo);
+    for (int j = 0; j < 2; j++) {
+      for (int i = 0; i < 7; i++) {
+        ufo = new Ufo(this, "ufo")
+            ..x = (i * 100 + 10)
+            ..y = 100 * j
+            ..vy = 30
+            ..alive = true;
+        ufos.add(ufo);
+      }
     }
-    
-    Sound laserSound = new Sound(this,"laser");
+
+
+    Sound laserSound = new Sound(this, "laser");
 
 
     const spaceBar = 32;
     const leftArrow = 37;
     const rightArrow = 39;
 
-    Sprite bullet;
 
-    int playerSpeed = 200;
+    Sprite bullet;
+    Timer bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_) {
+      if (bullets.any((item) => !item.alive)) {
+        bullet = bullets.firstWhere((item) => !item.alive)
+            ..x = player.x
+            ..y = player.y
+            ..alive = true;
+
+        bullet.addToStage();
+        laserSound.play();
+      }
+    });
+
     game.stage.onKeyDown.listen((value) {
       switch (value.keyCode) {
         case leftArrow:
@@ -55,18 +69,6 @@ class Play extends State {
         case rightArrow:
           player.movingRight = true;
           break;
-      }
-
-      if (value.keyCode == spaceBar) {
-        if (bullets.any((item) => !item.alive)) {
-          bullet = bullets.firstWhere((item) => !item.alive)
-              ..x = player.x
-              ..y = player.y
-              ..alive = true;
-
-          bullet.addToStage();
-          laserSound.play();
-        }
       }
 
     });
@@ -83,9 +85,10 @@ class Play extends State {
     });
 
     game.stage.onEnterFrame.listen((_) {
-      
+
       if (!ufos.anyAlive()) {
         game.stage.removeEventListeners("keyDown");
+        bulletTimer.cancel();
         killteState();
       }
 
@@ -97,6 +100,11 @@ class Play extends State {
             scoreText.text = "Score: ${score+=10}";
           }
         });
+        if(ufo.hitTestObject(player)){
+          game.stage.removeEventListeners("keyDown");
+          bulletTimer.cancel();
+          killteState();
+        }
       });
 
     });

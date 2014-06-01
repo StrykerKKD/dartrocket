@@ -1,7 +1,7 @@
 part of spaceinvader;
 
 class Ufo extends Sprite {
-
+  
   bool moveRight = true;
   bool moving = false;
   int deltaX;
@@ -11,10 +11,10 @@ class Ufo extends Sprite {
   @override
   bool advanceTime(num time) {
     
-    if (y > game.stage.sourceHeight || alive == false) {
+    if (y > (game.stage.sourceHeight - height)  || alive == false) {
       alive = false;
       game.stage.removeChild(this);
-      game.stage.juggler.remove(this);
+      game.stage.juggler.remove(this);      
     }
     if (!moving) {
       if (moveRight) {
