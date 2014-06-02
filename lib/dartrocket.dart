@@ -1,12 +1,11 @@
 library dartrocket;
 
-import "dart:math";
+export "package:stagexl/stagexl.dart" show TransitionFunction;
+
 import "dart:async";
 import "dart:html" show Element,querySelector;
 import 'dart:collection' show ListBase;
 import "package:stagexl/stagexl.dart" as StageXL;
-
-
 
 part "src/core/game.dart";
 part "src/core/statemanager.dart";
@@ -18,7 +17,6 @@ part "src/gameobject/sprite.dart";
 part "src/gameobject/background.dart";
 part "src/gameobject/text.dart";
 part "src/gameobject/sound.dart";
-
-part "src/animation/transition_function.dart";
+part "src/gameobject/button.dart";
 
 

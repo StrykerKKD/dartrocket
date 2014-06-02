@@ -49,10 +49,6 @@ class Game {
    * [StateManager] object
    * */
   StateManager stateManager;
-  /**
-   * [TransitionFunction] object
-   */
-  TransitionFunction transitionFunction;
 
   /**
    * Creates a new Game object.
@@ -71,7 +67,6 @@ class Game {
     renderLoop = new StageXL.RenderLoop();
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
-    transitionFunction = new TransitionFunction();
     
     renderLoop.addStage(stage);
 
