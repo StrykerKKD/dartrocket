@@ -3,6 +3,13 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.1
+  * New Sound class
+  * Breaking: Background is now can be animated
+  * Breaking: Text class reworked
+  * I simplified the usage of Text and Background
+  * A lot of new stuff in space invader example
+
 #### Pub version 0.1.0
   * Breaking: There is onyl one Sprite class and removed other sprite classes
   * New Group class for storing Sprites
