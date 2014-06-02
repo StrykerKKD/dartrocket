@@ -14,7 +14,9 @@ class Loading extends State {
       "ship": "images/playerShip1_blue.png",
       "ufo": "images/ufoRed.png",
       "bullet": "images/laserBlue01.png",
-      "background":"images/purple.png"
+      "background":"images/purple.png",
+      "buttonUp":"images/blue_button04.png",
+      "buttonDown":"images/blue_button05.png"
     });
     
     game.resourceManager.addSound("laser", "sounds/sfx_laser1.ogg");
