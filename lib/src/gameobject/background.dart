@@ -1,14 +1,32 @@
 part of dartrocket;
 
+/**
+ * You can make (moving)background with this class.
+ * 
+ * Background is made of an image, which in this case I use it as a tile.
+ * Basically the background is just a bunch of tiles.
+ */
 class Background implements StageXL.Animatable{
   List<StageXL.Bitmap> _backgroundTileList = new List<StageXL.Bitmap>();
   State _context;
   
+  /**
+   * Horizontal speed of the tiles
+   */
   int vx = 0;
+  /**
+   * Vertical speed of the tiles.
+   */
   int vy = 0;
   
+  /**
+   * Is the background movable.
+   */
   bool isMoveAble;
 
+  /**
+   * Makes a new (tile)Background object.
+   */
   Background(State stateContext, String resourceName, {bool isMoveable:false,bool addToStage:
       true, bool repeatX: true, bool repeatY: true}) : super() {
         
@@ -39,7 +57,7 @@ class Background implements StageXL.Animatable{
       this.addToStage();
     }
   }
-
+  
   addToStage() {
     _backgroundTileList.forEach((tile){
       _context.game.stage.addChild(tile);

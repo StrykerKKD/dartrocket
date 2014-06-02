@@ -1,8 +1,14 @@
 part of dartrocket;
 
+/**
+ * This class represents a Text in the game.
+ */
 class Text extends StageXL.TextField {
   State _context;
   
+  /**
+   * Makes a new text object.
+   */
   Text(State context, String text, {String font: 'Arial', int size: 14, int color:
       StageXL.Color.Black,bool addToStage:true}) : super() {
     
