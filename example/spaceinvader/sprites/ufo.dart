@@ -10,7 +10,7 @@ class Ufo extends Sprite {
 
   @override
   bool advanceTime(num time) {
-    
+       
     if (y > (game.stage.sourceHeight - height)  || alive == false) {
       alive = false;
       game.stage.removeChild(this);
@@ -23,7 +23,7 @@ class Ufo extends Sprite {
         deltaX = -50;
       }
       moving = true;
-      game.stage.juggler.tween(this, 1, game.transitionFunction.easeInOutCubic)
+      game.stage.juggler.tween(this, 1, TransitionFunction.easeInOutCubic)
           ..animate.x.by(deltaX)
           ..onComplete = () {
             moveRight = !moveRight;
