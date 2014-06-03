@@ -1,5 +1,19 @@
 part of dartrocket;
 
-class Button extends StageXL.SimpleButton{
-  Button(State context, String resourceName):super(new Sprite(context,resourceName,isMoveAble: false));
+class Button extends Sprite {
+
+  Text buttonText;
+
+  Button(State context, String resourceName,String buttonText) : super(context, resourceName,
+      isMoveAble: false) {
+    this.buttonText = new Text(context, buttonText);
+  }
+
+  void setCoordinates(int x, int y) {
+    this.x = x;
+    this.y = y;
+    buttonText.x = x;
+    buttonText.y = y;
+  }
+
 }
