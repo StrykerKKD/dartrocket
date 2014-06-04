@@ -6,7 +6,10 @@ class Button extends Sprite {
 
   Button(State context, String resourceName,String buttonText) : super(context, resourceName,
       isMoveAble: false) {
-    this.buttonText = new Text(context, buttonText);
+    this.buttonText = new Text(context, buttonText)
+    ..width = width
+    ..height = height
+    ..defaultTextFormat.align="center";    
   }
 
   void setCoordinates(int x, int y) {
@@ -15,5 +18,8 @@ class Button extends Sprite {
     buttonText.x = x;
     buttonText.y = y;
   }
+  
+  StageXL.EventStream<StageXL.MouseEvent> get onMouseClick => StageXL.InteractiveObject.mouseClickEvent.forTarget(buttonText);
+
 
 }
