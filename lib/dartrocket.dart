@@ -1,6 +1,6 @@
 library dartrocket;
 
-export "package:stagexl/stagexl.dart" show TransitionFunction;
+export "package:stagexl/stagexl.dart" show TransitionFunction,Color;
 
 import "dart:async";
 import "dart:html" show Element,querySelector;
@@ -18,5 +18,3 @@ part "src/gameobject/background.dart";
 part "src/gameobject/text.dart";
 part "src/gameobject/sound.dart";
 part "src/gameobject/button.dart";
-
-
