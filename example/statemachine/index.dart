@@ -10,10 +10,8 @@ part "states/third.dart";
 
 
 void main() {
-
-  int mainColor = 0x7AA241;
   
-  Game game = new Game("canvas",color:mainColor);
+  Game game = new Game("canvas",color:Color.LightGreen);
 
   game.stateManager.addStateMap({
     "first": new First("first", "second"),
