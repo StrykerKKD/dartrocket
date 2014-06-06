@@ -16,14 +16,17 @@ class Loading extends State {
       "bullet": "images/laserBlue01.png",
       "background":"images/purple.png",
       "buttonUp":"images/blue_button04.png",
-      "buttonDown":"images/blue_button05.png"
+      "buttonDown":"images/blue_button05.png",
+      "leftButton":"images/flatDark23.png",
+      "rightButton":"images/flatDark24.png"
     });
     
     game.resourceManager.addSound("laser", "sounds/sfx_laser1.ogg");
   }
 
   run() {
-    new Timer(new Duration(seconds: 1), killteState);
+    //new Timer(new Duration(seconds: 1), killteState);
+    killteState();
   }
 
 
