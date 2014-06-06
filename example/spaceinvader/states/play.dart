@@ -11,11 +11,35 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
+    Button leftButton = new Button(this, "leftButton", "")
+        ..x = 10
+        ..y = 510;
+
+    Button rightButton = new Button(this, "rightButton", '')
+        ..x = 710
+        ..y = 510;
+
     Ship player = new Ship(this, "ship")
         ..center()
         ..x = 400
         ..y = 500
         ..vx = 300;
+
+    leftButton.onMouseDown.listen((_) {
+      player.movingLeft = true;
+    });
+
+    leftButton.onMouseUp.listen((_) {
+      player.movingLeft = false;
+    });
+
+    rightButton.onMouseDown.listen((_) {
+      player.movingRight = true;
+    });
+
+    rightButton.onMouseUp.listen((_) {
+      player.movingRight = false;
+    });
 
 
     Group<Sprite> bullets = new Group<Sprite>();
@@ -49,7 +73,8 @@ class Play extends State {
 
 
     Sprite bullet;
-    Timer bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_) {
+    Timer bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_)
+        {
       if (bullets.any((item) => !item.alive)) {
         bullet = bullets.firstWhere((item) => !item.alive)
             ..x = player.x
@@ -100,7 +125,7 @@ class Play extends State {
             scoreText.text = "Score: ${score+=10}";
           }
         });
-        if(ufo.hitTestObject(player)){
+        if (ufo.hitTestObject(player)) {
           game.stage.removeEventListeners("keyDown");
           bulletTimer.cancel();
           killteState();
