@@ -85,7 +85,7 @@ abstract class State extends Stream<String> {
 
   void _onListen() {
     load();
-    game.resourceManager.load().then(run());
+    game.resourceManager.load().then((_){run();});
   }
 
   void _onPause() {
@@ -95,7 +95,7 @@ abstract class State extends Stream<String> {
 
   void _onResume() {
     load();
-    game.resourceManager.load().then(run());
+    game.resourceManager.load().then((_){run();});
   }
 
   void _onCancel() {
