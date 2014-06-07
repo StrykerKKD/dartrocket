@@ -30,7 +30,7 @@ part of dartrocket;
  * */
 
 class Sprite extends InteractiveBitmap implements StageXL.Animatable {
-  
+
   /**
    * Does the sprite move?
    */
@@ -62,9 +62,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * * isMoveAble: will the sprite move?
    * 
    * */
-  Sprite(State stateContext, String resourceName, {bool addToStage:
-      true, bool isMoveAble: true}) : super(
-      stateContext.game.resourceManager.getBitmapData(resourceName)) {
+  Sprite(State stateContext, String resourceName, {bool addToStage: true, bool
+      isMoveAble: true}) : super(stateContext.game.resourceManager.getBitmapData(
+      resourceName)) {
     this.isMoveAble = isMoveAble;
     _context = stateContext;
     if (addToStage) {
@@ -77,9 +77,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * You can make the sprite move with changing the vx or vy value.
    */
   bool advanceTime(num time) {
-    if ((x <= 0 || x >= _context.game.stage.sourceWidth) || 
-        (y <= 0 || y >= _context.game.stage.sourceHeight)) {
-      removeFromStage();      
+    if ((x <= 0 || x >= _context.game.stage.sourceWidth) || (y <= 0 || y >=
+        _context.game.stage.sourceHeight)) {
+      removeFromStage();
     }
     x = x + vx * time;
     y = y + vy * time;
@@ -91,7 +91,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     pivotX = bitmapData.width / 2;
     pivotY = bitmapData.height / 2;
   }
-  
+
   /**
    * Sprite will be added to the stage and to the juggler if the sprite is moveable.
    */
@@ -106,11 +106,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Removes the sprite from the stage and juggler.
    */
   removeFromStage() {
-    alive=false;
+    alive = false;
     _context.game.stage.removeChild(this);
     if (isMoveAble) {
       _context.game.stage.juggler.remove(this);
     }
   }
+
+  /**
+   * Gets the context(State) in which the Sprite was created.
+   */
+  State get context => _context;
 
 }
