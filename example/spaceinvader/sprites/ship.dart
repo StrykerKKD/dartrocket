@@ -10,10 +10,10 @@ class Ship extends Sprite {
 
   @override
   bool advanceTime(num time) {
-    
-    if (movingLeft) {
+
+    if (movingLeft && x >= 0) {
       x = x - vx * time;
-    } else if (movingRight) {
+    } else if (movingRight && x <= context.game.stage.sourceWidth - width) {
       x = x + vx * time;
     }
     return true;

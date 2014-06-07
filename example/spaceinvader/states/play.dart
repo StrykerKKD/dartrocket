@@ -20,7 +20,6 @@ class Play extends State {
         ..y = 510;
 
     Ship player = new Ship(this, "ship")
-        ..center()
         ..x = 400
         ..y = 500
         ..vx = 300;
