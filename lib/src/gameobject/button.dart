@@ -39,4 +39,6 @@ class Button extends InteractiveBitmap {
   StageXL.EventStream<StageXL.MouseEvent> get onMouseClick =>
       StageXL.InteractiveObject.mouseClickEvent.forTarget(buttonText);
 
+  State get context => _context;
+
 }
