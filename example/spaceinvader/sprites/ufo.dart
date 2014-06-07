@@ -32,5 +32,6 @@ class Ufo extends Sprite {
 
     }
     y = y + vy * time;
+    return true;
   }
 }
