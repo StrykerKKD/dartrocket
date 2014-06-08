@@ -32,7 +32,7 @@ class Game {
   /**
    * The canvas element that we are using.
    * */
-  Element canvas;
+  CanvasElement canvas;
   /**
    * [StageXL.Stage] object
    * */
@@ -59,20 +59,32 @@ class Game {
    * * framerate: framerate of the game
    * * color: backgroundcolor of the stage
    * */
-  Game(String canvasID, {bool webGL: true, int frameRate: 30, int color:
-      StageXL.Color.Black}) {
-    canvas = querySelector('#$canvasID');
-    stage = new StageXL.Stage(canvas, webGL: webGL, frameRate: frameRate, color:
-        color);
+  Game(String canvasID, {int width: 600, int height: 600, bool webGL: false, int
+      frameRate: 30, int color: StageXL.Color.Black}) {
+
+    canvas = new CanvasElement()
+        ..setAttribute("screencanvas", "true")
+        ..width = 800
+        ..height = 450;
+    document.body.children.add(canvas);
+
+    stage = new StageXL.Stage(canvas, width: width, height: height, webGL:
+        webGL, frameRate: frameRate, color: color);
     renderLoop = new StageXL.RenderLoop();
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
-    
+
+    stage.align = StageXL.StageAlign.TOP_LEFT;
+    stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;
     renderLoop.addStage(stage);
+
+    if (StageXL.Multitouch.supportsTouchEvents) {
+      StageXL.Multitouch.inputMode = StageXL.MultitouchInputMode.TOUCH_POINT;
+    }
 
     stage.focus = stage;
   }
-  
+
   /**
    * Adds a map of BitmapData to reasourceManager.
    * Example:
