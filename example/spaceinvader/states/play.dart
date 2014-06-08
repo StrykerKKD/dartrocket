@@ -11,17 +11,19 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    Button leftButton = new Button(this, "leftButton", "")
-        ..x = 10
-        ..y = 510;
+    Button leftButton = new Button(this, "leftButton", "");
+    leftButton
+        ..x = 0
+        ..y = this.game.stage.sourceHeight - 100;
 
-    Button rightButton = new Button(this, "rightButton", '')
-        ..x = 710
-        ..y = 510;
+    Button rightButton = new Button(this, "rightButton", '');
+    rightButton
+        ..x = this.game.stage.sourceWidth - rightButton.width
+        ..y = this.game.stage.sourceHeight - 100;
 
     Ship player = new Ship(this, "ship")
-        ..x = 400
-        ..y = 500
+        ..x = this.game.stage.sourceWidth ~/ 2
+        ..y = this.game.stage.sourceHeight - 150
         ..vx = 300;
 
     leftButton.onMouseDown.listen((_) {
@@ -45,14 +47,13 @@ class Play extends State {
     for (int i = 0; i < 5; i++) {
       bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble: true
           )
-          ..center()
           ..vy = -500);
     }
 
     Ufo ufo;
     Group<Ufo> ufos = new Group<Ufo>();
-    for (int j = 0; j < 2; j++) {
-      for (int i = 0; i < 7; i++) {
+    for (int j = 0; j < 1; j++) {
+      for (int i = 0; i < 6; i++) {
         ufo = new Ufo(this, "ufo")
             ..x = (i * 100 + 10)
             ..y = 100 * j
@@ -76,7 +77,7 @@ class Play extends State {
         {
       if (bullets.any((item) => !item.alive)) {
         bullet = bullets.firstWhere((item) => !item.alive)
-            ..x = player.x
+            ..x = player.x + player.width~/2
             ..y = player.y
             ..alive = true;
 

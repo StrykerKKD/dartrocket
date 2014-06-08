@@ -19,12 +19,15 @@ class Menu extends State {
         ..defaultTextFormat.size = 28
         ..width = 800;
 
-    Button btn = new Button(this, "buttonUp","continue")
+    Button btn = new Button(this, "buttonUp", "continue")
         ..setCoordinates(300, 400)
-        ..onMouseClick.listen((_){
-      killteState();
-      
-    });
+        ..onMouseClick.listen((_) {
+          killteState();
+
+        })
+        ..onTouchEnd.listen((_) {
+          killteState();
+        });
 
 
     /*const spaceBar = 32;

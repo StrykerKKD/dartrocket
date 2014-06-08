@@ -6,7 +6,7 @@ class End extends State {
   run() {
 
     Text text = new Text(this,"The End. Bye Bye")
-        ..x = 400
+        ..x = 300
         ..y = 300
         ..width = 500;
     
