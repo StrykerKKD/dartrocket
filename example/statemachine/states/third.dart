@@ -8,7 +8,7 @@ class Third extends State {
   run() {
     
     Text text = new Text(this,"Third State")
-        ..x = 400
+        ..x = 300
         ..y = 300;
 
     if (runned) {

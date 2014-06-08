@@ -5,7 +5,7 @@ class First extends State {
 
   run() {
     Text text = new Text(this,"First State")
-        ..x = 400
+        ..x = 300
         ..y = 300;
 
     new Timer(new Duration(seconds: 3), killteState);
