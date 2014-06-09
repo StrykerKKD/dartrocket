@@ -59,13 +59,13 @@ class Game {
    * * framerate: framerate of the game
    * * color: backgroundcolor of the stage
    * */
-  Game(String canvasID, {int width: 600, int height: 600, bool webGL: false, int
+  Game(String canvasID, {int width: 800, int height: 600, bool webGL: false, int
       frameRate: 30, int color: StageXL.Color.Black}) {
 
     canvas = new CanvasElement()
         ..setAttribute("screencanvas", "true")
-        ..width = 800
-        ..height = 450;
+        ..width = width
+        ..height = height;
     document.body.children.add(canvas);
 
     stage = new StageXL.Stage(canvas, width: width, height: height, webGL:
@@ -74,7 +74,7 @@ class Game {
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
 
-    stage.align = StageXL.StageAlign.TOP_LEFT;
+    stage.align = StageXL.StageAlign.TOP;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;
     renderLoop.addStage(stage);
 
