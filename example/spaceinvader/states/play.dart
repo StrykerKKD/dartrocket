@@ -26,19 +26,19 @@ class Play extends State {
         ..y = this.game.stage.sourceHeight - 150
         ..vx = 300;
 
-    leftButton.onMouseDown.listen((_) {
+    leftButton.onTouchBegin.listen((_) {
       player.movingLeft = true;
     });
 
-    leftButton.onMouseUp.listen((_) {
+    leftButton.onTouchBegin.listen((_) {
       player.movingLeft = false;
     });
 
-    rightButton.onMouseDown.listen((_) {
+    rightButton.onTouchEnd.listen((_) {
       player.movingRight = true;
     });
 
-    rightButton.onMouseUp.listen((_) {
+    rightButton.onTouchEnd.listen((_) {
       player.movingRight = false;
     });
 

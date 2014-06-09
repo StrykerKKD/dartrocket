@@ -12,7 +12,7 @@ class Menu extends State {
         ..width = 600;
 
     String instructions =
-        "You can move with left(<-) and right(->) cursor.\n Press Space to continue";
+        "You can move with left(<-) and right(->) cursor.";
     Text instructionsText = new Text(this, instructions)
         ..x = 40
         ..y = 300
@@ -21,21 +21,21 @@ class Menu extends State {
 
     Button btn = new Button(this, "buttonUp", "continue")
         ..setCoordinates(300, 400)
-        ..onMouseClick.listen((_) {
+        /*..onMouseClick.listen((_) {
           killteState();
 
-        })
+        })*/
         ..onTouchEnd.listen((_) {
           killteState();
         });
 
 
-    /*const spaceBar = 32;
+    const spaceBar = 32;
     game.stage.onKeyDown.listen((value) {
       if (value.keyCode == spaceBar) {
         game.stage.removeEventListeners("keyDown");
         killteState();
       }
-    });*/
+    });
   }
 }

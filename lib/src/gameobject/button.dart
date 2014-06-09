@@ -36,8 +36,21 @@ class Button extends InteractiveBitmap {
     buttonText.y = y;
   }
 
+  StageXL.EventStream<StageXL.MouseEvent> get onMouseOver =>
+      StageXL.InteractiveObject.mouseOverEvent.forTarget(buttonText);
+  StageXL.EventStream<StageXL.MouseEvent> get onMouseDown =>
+      StageXL.InteractiveObject.mouseDownEvent.forTarget(buttonText);
+  StageXL.EventStream<StageXL.MouseEvent> get onMouseUp =>
+      StageXL.InteractiveObject.mouseUpEvent.forTarget(buttonText);
   StageXL.EventStream<StageXL.MouseEvent> get onMouseClick =>
       StageXL.InteractiveObject.mouseClickEvent.forTarget(buttonText);
+
+  StageXL.EventStream<StageXL.TouchEvent> get onTouchOver =>
+      StageXL.InteractiveObject.touchOverEvent.forTarget(buttonText);
+  StageXL.EventStream<StageXL.TouchEvent> get onTouchBegin =>
+      StageXL.InteractiveObject.touchBeginEvent.forTarget(buttonText);
+  StageXL.EventStream<StageXL.TouchEvent> get onTouchEnd =>
+      StageXL.InteractiveObject.touchEndEvent.forTarget(buttonText);
 
   State get context => _context;
 
