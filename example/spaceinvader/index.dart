@@ -19,7 +19,7 @@ Game game;
 void main() {
   int mainColor = 0xFFC8A1;
 
-  game = new Game("canvas",color:mainColor);
+  game = new Game(color:mainColor);
 
   game.stateManager.addStateMap({
     "loading": new Loading("loading", "menu"),

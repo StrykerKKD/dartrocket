@@ -59,7 +59,7 @@ class Game {
    * * framerate: framerate of the game
    * * color: backgroundcolor of the stage
    * */
-  Game(String canvasID, {int width: 800, int height: 600, bool webGL: false, int
+  Game({int width: 800, int height: 600, bool webGL: false, int
       frameRate: 30, int color: StageXL.Color.Black}) {
 
     canvas = new CanvasElement()
