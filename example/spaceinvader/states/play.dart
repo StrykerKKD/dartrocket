@@ -11,15 +11,12 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    Button leftButton = new Button(this, "leftButton", "");
-    leftButton
-        ..x = 0
-        ..y = this.game.stage.sourceHeight - 100;
+    Button leftButton = new Button(this, "leftButton", "L");
+    leftButton.setCoordinates(0, this.game.stage.sourceHeight - 100);
 
-    Button rightButton = new Button(this, "rightButton", '');
-    rightButton
-        ..x = this.game.stage.sourceWidth - rightButton.width
-        ..y = this.game.stage.sourceHeight - 100;
+    Button rightButton = new Button(this, "rightButton", "R");
+    rightButton.setCoordinates(this.game.stage.sourceWidth - rightButton.width.toInt(),
+        this.game.stage.sourceHeight - 100);
 
     Ship player = new Ship(this, "ship")
         ..x = this.game.stage.sourceWidth ~/ 2
@@ -27,18 +24,22 @@ class Play extends State {
         ..vx = 300;
 
     leftButton.onTouchBegin.listen((_) {
+      print("StartmovingLeft");
       player.movingLeft = true;
     });
 
-    leftButton.onTouchBegin.listen((_) {
+    leftButton.onTouchEnd.listen((_) {
+      print("EndmovingLeft");
       player.movingLeft = false;
     });
 
-    rightButton.onTouchEnd.listen((_) {
+    rightButton.onTouchBegin.listen((_) {
+      print("StartmovingRight");
       player.movingRight = true;
     });
 
     rightButton.onTouchEnd.listen((_) {
+      print("EndmovingRight");
       player.movingRight = false;
     });
 
@@ -46,8 +47,7 @@ class Play extends State {
     Group<Sprite> bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
       bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble: true
-          )
-          ..vy = -500);
+          )..vy = -500);
     }
 
     Ufo ufo;
@@ -77,7 +77,7 @@ class Play extends State {
         {
       if (bullets.any((item) => !item.alive)) {
         bullet = bullets.firstWhere((item) => !item.alive)
-            ..x = player.x + player.width~/2
+            ..x = player.x + player.width ~/ 2
             ..y = player.y
             ..alive = true;
 
