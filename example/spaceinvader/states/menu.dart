@@ -20,10 +20,6 @@ class Menu extends State {
 
     Button btn = new Button(this, "buttonUp", "continue")
         ..setCoordinates(300, 400)
-        /*..onMouseClick.listen((_) {
-          killteState();
-
-        })*/
         ..onTouchEnd.listen((_) {
           game.stage.removeEventListeners("touchEnd");
           killteState();
