@@ -17,9 +17,8 @@ part 'sprites/ufo.dart';
 Game game;
 
 void main() {
-  int mainColor = 0xFFC8A1;
 
-  game = new Game(color:mainColor);
+  game = new Game(color:Color.SlateBlue);
 
   game.stateManager.addStateMap({
     "loading": new Loading("loading", "menu"),
