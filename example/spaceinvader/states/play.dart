@@ -24,22 +24,18 @@ class Play extends State {
         ..vx = 300;
 
     leftButton.onTouchBegin.listen((_) {
-      print("StartmovingLeft");
       player.movingLeft = true;
     });
 
     leftButton.onTouchEnd.listen((_) {
-      print("EndmovingLeft");
       player.movingLeft = false;
     });
 
     rightButton.onTouchBegin.listen((_) {
-      print("StartmovingRight");
       player.movingRight = true;
     });
 
     rightButton.onTouchEnd.listen((_) {
-      print("EndmovingRight");
       player.movingRight = false;
     });
 
@@ -53,7 +49,7 @@ class Play extends State {
     Ufo ufo;
     Group<Ufo> ufos = new Group<Ufo>();
     for (int j = 0; j < 1; j++) {
-      for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < 4; i++) {
         ufo = new Ufo(this, "ufo")
             ..x = (i * 100 + 10)
             ..y = 100 * j
