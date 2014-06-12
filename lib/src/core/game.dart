@@ -70,9 +70,14 @@ class Game {
 
     int padding = 30;
     if (fullScreen) {
+      double scale = 1.0;
+      double ratioWidth = (window.innerWidth - padding) / 800;
+      double ratioHeight = (window.innerHeight - padding) / 600;
+      scale = (ratioWidth < ratioHeight) ? ratioWidth : ratioHeight;
+
       canvas
-          ..width = window.innerWidth - padding
-          ..height = window.innerHeight - padding;
+          ..width = (scale * width).toInt()
+          ..height = (scale * height).toInt();
     }
 
     stage = new StageXL.Stage(canvas, width: width, height: height, webGL:
@@ -90,7 +95,7 @@ class Game {
     }
 
     stage.focus = stage;
-    
+
   }
 
   /**
