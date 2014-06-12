@@ -18,7 +18,7 @@ Game game;
 
 void main() {
 
-  game = new Game(color:Color.SlateBlue);
+  game = new Game(color:Color.SlateBlue,fullScreen: true);
 
   game.stateManager.addStateMap({
     "loading": new Loading("loading", "menu"),

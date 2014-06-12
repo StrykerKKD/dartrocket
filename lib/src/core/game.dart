@@ -59,8 +59,8 @@ class Game {
    * * framerate: framerate of the game
    * * color: backgroundcolor of the stage
    * */
-  Game({int width: 800, int height: 600, bool webGL: false, int
-      frameRate: 30, int color: StageXL.Color.Black}) {
+  Game({int width: 800, int height: 600, bool webGL: false, int frameRate:
+      30, int color: StageXL.Color.Black, bool fullScreen: false}) {
 
     canvas = new CanvasElement()
         ..setAttribute("screencanvas", "true")
@@ -68,13 +68,20 @@ class Game {
         ..height = height;
     document.body.children.add(canvas);
 
+    int padding = 30;
+    if (fullScreen) {
+      canvas
+          ..width = window.innerWidth - padding
+          ..height = window.innerHeight - padding;
+    }
+
     stage = new StageXL.Stage(canvas, width: width, height: height, webGL:
         webGL, frameRate: frameRate, color: color);
     renderLoop = new StageXL.RenderLoop();
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
 
-    stage.align = StageXL.StageAlign.TOP;
+    stage.align = StageXL.StageAlign.TOP_LEFT;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;
     renderLoop.addStage(stage);
 
@@ -83,6 +90,7 @@ class Game {
     }
 
     stage.focus = stage;
+    
   }
 
   /**

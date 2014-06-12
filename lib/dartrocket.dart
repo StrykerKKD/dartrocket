@@ -3,8 +3,7 @@ library dartrocket;
 export "package:stagexl/stagexl.dart" show TransitionFunction,Color;
 
 import "dart:async";
-import "dart:math" show max;
-import "dart:html" show CanvasElement, document;
+import "dart:html" show CanvasElement, document, window;
 import 'dart:collection' show ListBase;
 import "package:stagexl/stagexl.dart" as StageXL;
 
