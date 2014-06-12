@@ -20,7 +20,7 @@ class Play extends State {
 
     Ship player = new Ship(this, "ship")
         ..x = this.game.stage.sourceWidth ~/ 2
-        ..y = this.game.stage.sourceHeight - 150
+        ..y = this.game.stage.sourceHeight - 200
         ..vx = 300;
 
     leftButton.onTouchBegin.listen((_) {
@@ -49,7 +49,7 @@ class Play extends State {
     Ufo ufo;
     Group<Ufo> ufos = new Group<Ufo>();
     for (int j = 0; j < 1; j++) {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 7; i++) {
         ufo = new Ufo(this, "ufo")
             ..x = (i * 100 + 10)
             ..y = 100 * j
