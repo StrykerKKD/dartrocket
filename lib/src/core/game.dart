@@ -68,7 +68,7 @@ class Game {
         ..height = height;
     document.body.children.add(canvas);
 
-    int padding = 30;
+    int padding = 25;
     if (fullScreen) {
       double scale = 1.0;
       double ratioWidth = (window.innerWidth - padding) / 800;
