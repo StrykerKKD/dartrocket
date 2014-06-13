@@ -22,16 +22,14 @@ class Menu extends State {
         ..setCoordinates(300, 400)
         ..onTouchEnd.listen((_) {
           game.stage.removeEventListeners("touchEnd");
+          game.stage.removeEventListeners("mouseClick");
+          killteState();
+        })
+        ..onMouseClick.listen((_){
+          game.stage.removeEventListeners("touchEnd");
+          game.stage.removeEventListeners("mouseClick");
           killteState();
         });
-
-
-    const spaceBar = 32;
-    game.stage.onKeyDown.listen((value) {
-      if (value.keyCode == spaceBar) {
-        game.stage.removeEventListeners("keyDown");
-        killteState();
-      }
-    });
+    
   }
 }
