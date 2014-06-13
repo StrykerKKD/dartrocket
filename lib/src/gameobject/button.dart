@@ -1,10 +1,25 @@
 part of dartrocket;
 
+/**
+ * Represents a simple Button.
+ * 
+ * Example:
+ *      Button button = new Button(this, "resourceName", "buttonText")
+ *        ..setCoordinates(300, 400)
+ *        ..onMouseClick() //mouse click eventlistener
+ *        ..onTouchEnd(); //touch eventlistener
+ */
 class Button extends InteractiveBitmap {
 
   State _context;
+  /**
+   * Text on the button.
+   */
   Text buttonText;
 
+  /**
+   * Makes a Button object.
+   */
   Button(State context, String resourceName, String text, {bool addToStage:
       true}) : super(context.game.resourceManager.getBitmapData(resourceName)) {
     _context = context;
@@ -28,7 +43,11 @@ class Button extends InteractiveBitmap {
     _context.game.stage.addChild(buttonText);
 
   }
-
+  /**
+   * Sets the coordinates of the button object.
+   * 
+   * **important:** Please use this for setting the coordinates.
+   */
   void setCoordinates(int x, int y) {
     this.x = x;
     this.y = y;
@@ -36,6 +55,10 @@ class Button extends InteractiveBitmap {
     buttonText.y = y;
   }
 
+  /*
+   * We bind the eventlisteners to the buttonText object, because the buttonText
+   * is on top of the button.
+   */
   StageXL.EventStream<StageXL.MouseEvent> get onMouseOver =>
       StageXL.InteractiveObject.mouseOverEvent.forTarget(buttonText);
   StageXL.EventStream<StageXL.MouseEvent> get onMouseDown =>
