@@ -58,6 +58,7 @@ class Game {
    * * webGL: use WebGL renderer?
    * * framerate: framerate of the game
    * * color: backgroundcolor of the stage
+   * * fullScreen: stage gets full screen and keeps the aspect ratio
    * */
   Game({int width: 800, int height: 600, bool webGL: false, int frameRate:
       30, int color: StageXL.Color.Black, bool fullScreen: false}) {
@@ -68,11 +69,10 @@ class Game {
         ..height = height;
     document.body.children.add(canvas);
 
-    int padding = 25;
     if (fullScreen) {
       double scale = 1.0;
-      double ratioWidth = (window.innerWidth - padding) / 800;
-      double ratioHeight = (window.innerHeight - padding) / 600;
+      double ratioWidth = (window.innerWidth) / width;
+      double ratioHeight = (window.innerHeight) / height;
       scale = (ratioWidth < ratioHeight) ? ratioWidth : ratioHeight;
 
       canvas
@@ -86,7 +86,7 @@ class Game {
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
 
-    stage.align = StageXL.StageAlign.TOP_LEFT;
+    stage.align = StageXL.StageAlign.NONE;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;
     renderLoop.addStage(stage);
 
