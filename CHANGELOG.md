@@ -3,6 +3,11 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.2
+  * New Button class
+  * Fullscreen mode, which keeps the aspect ratio(game.dart)
+  * Space Invader has fullscreen,buttons and mobile friendlier
+
 #### Pub version 0.1.1
   * New Sound class
   * Breaking: Background is now can be animated
