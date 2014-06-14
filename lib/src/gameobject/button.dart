@@ -41,7 +41,6 @@ class Button extends InteractiveBitmap {
   addToStage() {
     _context.game.stage.addChild(this);
     _context.game.stage.addChild(buttonText);
-
   }
   /**
    * Sets the coordinates of the button object.
