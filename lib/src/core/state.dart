@@ -49,12 +49,14 @@ abstract class State extends Stream<String> {
 
   StreamController<String> _controller;
   String _name;
+  
   /**
    * The next state's name.
    * 
    * **Important:** You can controll where you want to go with this member.
    */
   String nextState;
+  
   /**
    * Acces to the main game object.
    * */
@@ -72,6 +74,7 @@ abstract class State extends Stream<String> {
     _controller = new StreamController<String>(onListen: _onListen, onPause:
         _onPause, onResume: _onResume, onCancel: _onCancel);
   }
+  
   /**
    * This methode can only be used by the [StateManager]'s object.
    * 
@@ -132,6 +135,7 @@ abstract class State extends Stream<String> {
   void endState() {
     _controller.add(_PAUSE);
   }
+  
   /**
    * This kills that state, so you can not return back to this state
    * */
