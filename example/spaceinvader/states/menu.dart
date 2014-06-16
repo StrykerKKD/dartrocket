@@ -21,15 +21,11 @@ class Menu extends State {
     Button btn = new Button(this, "buttonUp", "continue")
         ..setCoordinates(300, 400)
         ..onTouchEnd.listen((_) {
-          game.stage.removeEventListeners("touchEnd");
-          game.stage.removeEventListeners("mouseClick");
           killteState();
         })
-        ..onMouseClick.listen((_){
-          game.stage.removeEventListeners("touchEnd");
-          game.stage.removeEventListeners("mouseClick");
+        ..onMouseClick.listen((_) {
           killteState();
         });
-    
+
   }
 }

@@ -15,8 +15,8 @@ class Play extends State {
     leftButton.setCoordinates(0, this.game.stage.sourceHeight - 100);
 
     Button rightButton = new Button(this, "rightButton", "R");
-    rightButton.setCoordinates(this.game.stage.sourceWidth - rightButton.width.toInt(),
-        this.game.stage.sourceHeight - 100);
+    rightButton.setCoordinates(this.game.stage.sourceWidth -
+        rightButton.width.toInt(), this.game.stage.sourceHeight - 100);
 
     Ship player = new Ship(this, "ship")
         ..x = this.game.stage.sourceWidth ~/ 2
@@ -108,7 +108,6 @@ class Play extends State {
     game.stage.onEnterFrame.listen((_) {
 
       if (!ufos.anyAlive()) {
-        game.stage.removeEventListeners("keyDown");
         bulletTimer.cancel();
         killteState();
       }
@@ -122,7 +121,6 @@ class Play extends State {
           }
         });
         if (ufo.hitTestObject(player)) {
-          game.stage.removeEventListeners("keyDown");
           bulletTimer.cancel();
           killteState();
         }
