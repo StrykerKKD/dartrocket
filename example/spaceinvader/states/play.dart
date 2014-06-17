@@ -12,15 +12,15 @@ class Play extends State {
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
     Button leftButton = new Button(this, "leftButton", "L");
-    leftButton.setCoordinates(0, this.game.stage.sourceHeight - 100);
+    leftButton.setCoordinates(0, game.stage.sourceHeight - 100);
 
     Button rightButton = new Button(this, "rightButton", "R");
-    rightButton.setCoordinates(this.game.stage.sourceWidth -
-        rightButton.width.toInt(), this.game.stage.sourceHeight - 100);
+    rightButton.setCoordinates(game.stage.sourceWidth -
+        rightButton.width.toInt(), game.stage.sourceHeight - 100);
 
     Ship player = new Ship(this, "ship")
-        ..x = this.game.stage.sourceWidth ~/ 2
-        ..y = this.game.stage.sourceHeight - 200
+        ..x = game.stage.sourceWidth ~/ 2
+        ..y = game.stage.sourceHeight - 200
         ..vx = 300;
 
     leftButton.onTouchBegin.listen((_) {
@@ -62,12 +62,6 @@ class Play extends State {
 
     Sound laserSound = new Sound(this, "laser");
 
-
-    const spaceBar = 32;
-    const leftArrow = 37;
-    const rightArrow = 39;
-
-
     Sprite bullet;
     Timer bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_)
         {
@@ -84,10 +78,10 @@ class Play extends State {
 
     game.stage.onKeyDown.listen((value) {
       switch (value.keyCode) {
-        case leftArrow:
+        case KeyCode.LEFT:
           player.movingLeft = true;
           break;
-        case rightArrow:
+        case KeyCode.RIGHT:
           player.movingRight = true;
           break;
       }
@@ -96,10 +90,10 @@ class Play extends State {
 
     game.stage.onKeyUp.listen((value) {
       switch (value.keyCode) {
-        case leftArrow:
+        case KeyCode.LEFT:
           player.movingLeft = false;
           break;
-        case rightArrow:
+        case KeyCode.RIGHT:
           player.movingRight = false;
           break;
       }
