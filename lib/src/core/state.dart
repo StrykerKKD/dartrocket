@@ -149,7 +149,7 @@ abstract class State extends Stream<String> {
     
     game.stage.removeChildren();
     game.stage.juggler.clear();
-    Events.ALL_EVENT.forEach((event) {
+    Event.ALL_EVENT.forEach((event) {
       //killing stage eventlisteners
       if (game.stage.hasEventListener(event)) {
         game.stage.removeEventListeners(event);
