@@ -87,25 +87,19 @@ abstract class State extends Stream<String> {
   }
 
   void _onListen() {
-    load();
-    game.resourceManager.load().then((_) {
-      run();
-    });
+    _constructor();
   }
 
   void _onPause() {
-    destructor();
+    _destructor();
   }
 
   void _onResume() {
-    load();
-    game.resourceManager.load().then((_) {
-      run();
-    });
+    _constructor();
   }
 
   void _onCancel() {
-    destructor();
+    _destructor();
   }
   /**
    * Overwrite if you want to load resources.
@@ -145,17 +139,24 @@ abstract class State extends Stream<String> {
     _controller.close();
   }
 
-  void destructor() {
-    
+  void _constructor() {
+    load();
+    game.resourceManager.load().then((_) {
+      run();
+    });
+  }
+
+  void _destructor() {
+
     game.stage.removeChildren();
     game.stage.juggler.clear();
     Event.ALL_EVENT.forEach((event) {
       //killing stage eventlisteners
       if (game.stage.hasEventListener(event)) {
         game.stage.removeEventListeners(event);
-      }      
+      }
     });
-        
+
   }
 
 
