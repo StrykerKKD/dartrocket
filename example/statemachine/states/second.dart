@@ -11,7 +11,7 @@ class Second extends State {
         ..y = 300;
 
     if(runned){
-      new Timer(new Duration(seconds: 3), killteState);
+      new Timer(new Duration(seconds: 3), killState);
     }else{
       runned = true;
       new Timer(new Duration(seconds: 3), endState);

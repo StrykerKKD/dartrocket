@@ -19,13 +19,13 @@ class Menu extends State {
         ..width = 800;
 
     Button btn = new Button(this, "buttonUp", "continue")
-        ..setCoordinates(300, 400)
+        ..x = 300
+        ..y = 400
         ..onTouchEnd.listen((_) {
-          killteState();
+          killState();
         })
         ..onMouseClick.listen((_) {
-          killteState();
+          killState();
         });
-
   }
 }

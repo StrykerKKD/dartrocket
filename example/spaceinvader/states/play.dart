@@ -11,12 +11,14 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    Button leftButton = new Button(this, "leftButton", "L");
-    leftButton.setCoordinates(0, game.stage.sourceHeight - 100);
+    Button leftButton = new Button(this, "leftButton", "L")
+        ..x = 0
+        ..y = game.stage.sourceHeight - 100;
 
     Button rightButton = new Button(this, "rightButton", "R");
-    rightButton.setCoordinates(game.stage.sourceWidth -
-        rightButton.width.toInt(), game.stage.sourceHeight - 100);
+    rightButton
+        ..x = game.stage.sourceWidth - rightButton.width.toInt()
+        ..y = game.stage.sourceHeight - 100;
 
     Ship player = new Ship(this, "ship")
         ..x = game.stage.sourceWidth ~/ 2
@@ -103,7 +105,7 @@ class Play extends State {
 
       if (!ufos.anyAlive()) {
         bulletTimer.cancel();
-        killteState();
+        killState();
       }
 
       ufos.forEachAlive((ufo) {
@@ -116,7 +118,7 @@ class Play extends State {
         });
         if (ufo.hitTestObject(player)) {
           bulletTimer.cancel();
-          killteState();
+          killState();
         }
       });
 

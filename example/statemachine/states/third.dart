@@ -13,7 +13,7 @@ class Third extends State {
 
     if (runned) {
       nextState = null;
-      new Timer(new Duration(seconds: 3), killteState);
+      new Timer(new Duration(seconds: 3), killState);
     } else {
       runned = true;
       nextState = "second";

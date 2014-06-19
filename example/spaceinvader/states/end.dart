@@ -10,7 +10,7 @@ class End extends State {
         ..y = 300
         ..width = 500;
     
-    new Timer(new Duration(seconds: 5),killteState);
+    new Timer(new Duration(seconds: 5),killState);
   }
 
 }

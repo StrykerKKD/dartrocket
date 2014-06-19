@@ -8,6 +8,6 @@ class First extends State {
         ..x = 300
         ..y = 300;
 
-    new Timer(new Duration(seconds: 3), killteState);
+    new Timer(new Duration(seconds: 3), killState);
   }
 }

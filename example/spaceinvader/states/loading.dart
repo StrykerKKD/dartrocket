@@ -26,7 +26,7 @@ class Loading extends State {
 
   run() {
     //new Timer(new Duration(seconds: 1), killteState);
-    killteState();
+    killState();
   }
 
 
