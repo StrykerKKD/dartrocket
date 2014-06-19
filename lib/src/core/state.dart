@@ -135,7 +135,7 @@ abstract class State extends Stream<String> {
   /**
    * This kills that state, so you can not return back to this state
    * */
-  void killteState() {
+  void killState() {
     _controller.close();
   }
 
