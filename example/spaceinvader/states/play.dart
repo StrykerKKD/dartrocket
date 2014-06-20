@@ -11,11 +11,22 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    Button leftButton = new Button(this, "leftButton", "L")
+    /*Button leftButton = new Button(this, "leftButton", "L")
         ..x = 0
         ..y = game.stage.sourceHeight - 100;
 
     Button rightButton = new Button(this, "rightButton", "R");
+    rightButton
+        ..x = game.stage.sourceWidth - rightButton.width.toInt()
+        ..y = game.stage.sourceHeight - 100;*/
+
+    Button leftButton = new Button.textureatlas(this, 'spaceinvader',
+        'flatDark23', 'L')
+        ..x = 0
+        ..y = game.stage.sourceHeight - 100;
+
+    Button rightButton = new Button.textureatlas(this, 'spaceinvader',
+        'flatDark24', "R");
     rightButton
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
@@ -44,8 +55,8 @@ class Play extends State {
 
     Group<Sprite> bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
-      bullets.add(new Sprite(this, "bullet", addToStage: false, isMoveAble: true
-          )..vy = -500);
+      bullets.add(new Sprite.textureatlas(this, 'spaceinvader', 'laserBlue01',
+          addToStage: false, isMoveAble: true)..vy = -500);
     }
 
     Ufo ufo;

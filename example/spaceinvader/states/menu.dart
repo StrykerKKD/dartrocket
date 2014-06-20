@@ -18,7 +18,18 @@ class Menu extends State {
         ..defaultTextFormat.size = 28
         ..width = 800;
 
-    Button btn = new Button(this, "buttonUp", "continue")
+    /*Button btn = new Button(this, "buttonUp", "continue")
+        ..x = 300
+        ..y = 400
+        ..onTouchEnd.listen((_) {
+          killState();
+        })
+        ..onMouseClick.listen((_) {
+          killState();
+        });*/
+
+    Button btn2 = new Button.textureatlas(this, 'spaceinvader', 'blue_button04',
+        'continue')
         ..x = 300
         ..y = 400
         ..onTouchEnd.listen((_) {
@@ -27,5 +38,6 @@ class Menu extends State {
         ..onMouseClick.listen((_) {
           killState();
         });
+
   }
 }

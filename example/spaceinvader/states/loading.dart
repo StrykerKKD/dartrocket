@@ -13,13 +13,15 @@ class Loading extends State {
     game.addDataMap({
       "ship": "images/playerShip1_blue.png",
       "ufo": "images/ufoRed.png",
-      "bullet": "images/laserBlue01.png",
+      //"bullet": "images/laserBlue01.png",
       "background":"images/purple.png",
-      "buttonUp":"images/blue_button04.png",
-      "buttonDown":"images/blue_button05.png",
-      "leftButton":"images/flatDark23.png",
-      "rightButton":"images/flatDark24.png"
+      //"buttonUp":"images/blue_button04.png",
+      //"buttonDown":"images/blue_button05.png",
+      //"leftButton":"images/flatDark23.png",
+      //"rightButton":"images/flatDark24.png"
     });
+    
+    game.resourceManager.addTextureAtlas('spaceinvader', 'images/spaceinvader', TextureAtlasFormat.JSON);
     
     game.resourceManager.addSound("laser", "sounds/sfx_laser1.ogg");
   }
