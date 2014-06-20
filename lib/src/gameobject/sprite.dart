@@ -71,6 +71,15 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       this.addToStage();
     }
   }
+
+  Sprite.textureatlas(State stateContext,String textureAtlasName ,String resourceName, {bool
+      addToStage: true, bool isMoveAble: true}) : super(stateContext.game.resourceManager.getTextureAtlas(textureAtlasName).getBitmapData(resourceName)) {
+    this.isMoveAble = isMoveAble;
+    _context = stateContext;
+    if (addToStage) {
+      this.addToStage();
+    }
+  }
   /**
    * Controlls how the object is moving.
    * This implementation is good enough for simple sprites.

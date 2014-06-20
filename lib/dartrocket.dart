@@ -1,7 +1,7 @@
 library dartrocket;
 
 export "dart:html" show KeyCode;
-export "package:stagexl/stagexl.dart" show TransitionFunction, Color;
+export "package:stagexl/stagexl.dart" show TransitionFunction, Color, TextureAtlasFormat;
 
 import "dart:async";
 import "dart:html" show window, document, CanvasElement;

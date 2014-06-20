@@ -20,11 +20,30 @@ class Button extends InteractiveBitmap {
   /**
    * Makes a Button object.
    */
-  Button(State context, String resourceName, String text, {bool addToStage:
-      true}) : super(context.game.resourceManager.getBitmapData(resourceName)) {
-    _context = context;
+  Button(State stateContext, String resourceName, String text, {bool addToStage:
+      true}) : super(stateContext.game.resourceManager.getBitmapData(resourceName)) {
+    _context = stateContext;
 
-    buttonText = new Text(context, text, addToStage: false)
+    buttonText = new Text(stateContext, text, addToStage: false)
+        ..width = width
+        ..height = height
+        ..defaultTextFormat.align = StageXL.TextFormatAlign.CENTER
+        ..mouseEnabled = false;
+    buttonText
+        ..defaultTextFormat.topMargin = (buttonText.height -
+            buttonText.textHeight) ~/ 2
+        ..text = text;
+
+    if (addToStage) {
+      this.addToStage();
+    }
+  }
+
+  Button.textureatlas(State stateContext,String textureAtlasName ,String resourceName, String
+      text, {bool addToStage: true}) : super(stateContext.game.resourceManager.getTextureAtlas(textureAtlasName).getBitmapData(resourceName)) {
+    _context = stateContext;
+
+    buttonText = new Text(stateContext, text, addToStage: false)
         ..width = width
         ..height = height
         ..defaultTextFormat.align = StageXL.TextFormatAlign.CENTER
