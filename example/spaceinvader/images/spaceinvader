@@ -1,0 +1,76 @@
+{"frames": {
+
+"blue_button04.png":
+{
+	"frame": {"x":2,"y":260,"w":190,"h":49},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":190,"h":49},
+	"sourceSize": {"w":190,"h":49}
+},
+"blue_button05.png":
+{
+	"frame": {"x":2,"y":311,"w":190,"h":45},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":190,"h":45},
+	"sourceSize": {"w":190,"h":45}
+},
+"flatDark23.png":
+{
+	"frame": {"x":103,"y":404,"w":80,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
+	"sourceSize": {"w":80,"h":80}
+},
+"flatDark24.png":
+{
+	"frame": {"x":185,"y":404,"w":80,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":80,"h":80},
+	"sourceSize": {"w":80,"h":80}
+},
+"laserBlue01.png":
+{
+	"frame": {"x":267,"y":404,"w":9,"h":54},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":9,"h":54},
+	"sourceSize": {"w":9,"h":54}
+},
+"playerShip1_blue.png":
+{
+	"frame": {"x":2,"y":404,"w":99,"h":75},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":99,"h":75},
+	"sourceSize": {"w":99,"h":75}
+},
+"purple.png":
+{
+	"frame": {"x":2,"y":2,"w":256,"h":256},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},
+	"sourceSize": {"w":256,"h":256}
+},
+"ufoRed.png":
+{
+	"frame": {"x":194,"y":311,"w":91,"h":91},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":91,"h":91},
+	"sourceSize": {"w":91,"h":91}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "spaceinvader.png",
+	"format": "RGBA8888",
+	"size": {"w":287,"h":486},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:adf0709d9755f90f9a014d7ccec14e7e:926f9a2e7ce8b02c60f0261e1101bf12:ac658eed246039feca866690e57f59a9$"
+}
+}
