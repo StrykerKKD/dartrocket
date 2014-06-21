@@ -6,7 +6,8 @@ class Ship extends Sprite {
   bool movingRight = false;
 
   Ship(context, resourceName) : super(context, resourceName);
-
+  Ship.textureatlas(stateContext, textureAtlasName, resourceName) :
+      super.textureatlas(stateContext, textureAtlasName, resourceName);
 
   @override
   bool advanceTime(num time) {

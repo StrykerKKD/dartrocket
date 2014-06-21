@@ -1,20 +1,22 @@
 part of spaceinvader;
 
 class Ufo extends Sprite {
-  
+
   bool moveRight = true;
   bool moving = false;
   int deltaX;
 
   Ufo(State context, String resourceName) : super(context, resourceName);
+  Ufo.textureatlas(stateContext, textureAtlasName, resourceName) :
+      super.textureatlas(stateContext, textureAtlasName, resourceName);
 
   @override
   bool advanceTime(num time) {
-       
-    if (y > (game.stage.sourceHeight - height)  || alive == false) {
+
+    if (y > (game.stage.sourceHeight - height) || alive == false) {
       alive = false;
       game.stage.removeChild(this);
-      game.stage.juggler.remove(this);      
+      game.stage.juggler.remove(this);
     }
     if (!moving) {
       if (moveRight) {

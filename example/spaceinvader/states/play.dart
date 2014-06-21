@@ -4,7 +4,12 @@ class Play extends State {
   Play(String name, [String nextState]) : super(name, nextState);
 
   run() {
-    Background bg = new Background(this, "background", isMoveable: true)
+    /*Background bg = new Background(this, "background", isMovable: true)
+        ..vx = 100
+        ..vy = 250;*/
+
+    Background bg = new Background.textureatlas(this, 'spaceinvader', 'purple',
+        isMovable: true)
         ..vx = 100
         ..vy = 250;
 
@@ -31,7 +36,13 @@ class Play extends State {
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
 
-    Ship player = new Ship(this, "ship")
+    /*Ship player = new Ship(this, "ship")
+        ..x = game.stage.sourceWidth ~/ 2
+        ..y = game.stage.sourceHeight - 200
+        ..vx = 300;*/
+
+    Ship player = new Ship.textureatlas(this, 'spaceinvader', 'playerShip1_blue'
+        )
         ..x = game.stage.sourceWidth ~/ 2
         ..y = game.stage.sourceHeight - 200
         ..vx = 300;
@@ -56,14 +67,19 @@ class Play extends State {
     Group<Sprite> bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
       bullets.add(new Sprite.textureatlas(this, 'spaceinvader', 'laserBlue01',
-          addToStage: false, isMoveAble: true)..vy = -500);
+          addToStage: false, isMovable: true)..vy = -500);
     }
 
     Ufo ufo;
     Group<Ufo> ufos = new Group<Ufo>();
     for (int j = 0; j < 1; j++) {
       for (int i = 0; i < 7; i++) {
-        ufo = new Ufo(this, "ufo")
+        /*ufo = new Ufo(this, "ufo")
+            ..x = (i * 100 + 10)
+            ..y = 100 * j
+            ..vy = 30
+            ..alive = true;*/
+        ufo = new Ufo.textureatlas(this, 'spaceinvader', 'ufoRed')
             ..x = (i * 100 + 10)
             ..y = 100 * j
             ..vy = 30
