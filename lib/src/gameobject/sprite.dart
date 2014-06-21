@@ -34,7 +34,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Does the sprite move?
    */
-  bool isMoveAble;
+  bool isMovable;
 
   State _context;
 
@@ -63,18 +63,20 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * 
    * */
   Sprite(State stateContext, String resourceName, {bool addToStage: true, bool
-      isMoveAble: true}) : super(stateContext.game.resourceManager.getBitmapData(
+      isMovable: true}) : super(stateContext.game.resourceManager.getBitmapData(
       resourceName)) {
-    this.isMoveAble = isMoveAble;
+    this.isMovable = isMovable;
     _context = stateContext;
     if (addToStage) {
       this.addToStage();
     }
   }
 
-  Sprite.textureatlas(State stateContext,String textureAtlasName ,String resourceName, {bool
-      addToStage: true, bool isMoveAble: true}) : super(stateContext.game.resourceManager.getTextureAtlas(textureAtlasName).getBitmapData(resourceName)) {
-    this.isMoveAble = isMoveAble;
+  Sprite.textureatlas(State stateContext, String textureAtlasName, String
+      resourceName, {bool addToStage: true, bool isMovable: true}) : super(
+      stateContext.game.resourceManager.getTextureAtlas(textureAtlasName
+      ).getBitmapData(resourceName)) {
+    this.isMovable = isMovable;
     _context = stateContext;
     if (addToStage) {
       this.addToStage();
@@ -106,7 +108,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   addToStage() {
     _context.game.stage.addChild(this);
-    if (isMoveAble) {
+    if (isMovable) {
       _context.game.stage.juggler.add(this);
     }
   }
@@ -117,7 +119,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   removeFromStage() {
     alive = false;
     _context.game.stage.removeChild(this);
-    if (isMoveAble) {
+    if (isMovable) {
       _context.game.stage.juggler.remove(this);
     }
   }
