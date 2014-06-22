@@ -16,15 +16,6 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    /*Button leftButton = new Button(this, "leftButton", "L")
-        ..x = 0
-        ..y = game.stage.sourceHeight - 100;
-
-    Button rightButton = new Button(this, "rightButton", "R");
-    rightButton
-        ..x = game.stage.sourceWidth - rightButton.width.toInt()
-        ..y = game.stage.sourceHeight - 100;*/
-
     Button leftButton = new Button.textureatlas(this, 'spaceinvader',
         'flatDark23', 'L')
         ..x = 0
@@ -35,11 +26,6 @@ class Play extends State {
     rightButton
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
-
-    /*Ship player = new Ship(this, "ship")
-        ..x = game.stage.sourceWidth ~/ 2
-        ..y = game.stage.sourceHeight - 200
-        ..vx = 300;*/
 
     Ship player = new Ship.textureatlas(this, 'spaceinvader', 'playerShip1_blue'
         )
@@ -74,11 +60,6 @@ class Play extends State {
     Group<Ufo> ufos = new Group<Ufo>();
     for (int j = 0; j < 1; j++) {
       for (int i = 0; i < 7; i++) {
-        /*ufo = new Ufo(this, "ufo")
-            ..x = (i * 100 + 10)
-            ..y = 100 * j
-            ..vy = 30
-            ..alive = true;*/
         ufo = new Ufo.textureatlas(this, 'spaceinvader', 'ufoRed')
             ..x = (i * 100 + 10)
             ..y = 100 * j
