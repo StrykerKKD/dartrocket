@@ -4,10 +4,7 @@ class Play extends State {
   Play(String name, [String nextState]) : super(name, nextState);
 
   run() {
-    /*Background bg = new Background(this, "background", isMovable: true)
-        ..vx = 100
-        ..vy = 250;*/
-
+    
     Background bg = new Background.textureatlas(this, 'spaceinvader', 'purple',
         isMovable: true)
         ..vx = 100
