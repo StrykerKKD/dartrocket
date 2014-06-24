@@ -5,7 +5,6 @@ class Ship extends Sprite {
   bool movingLeft = false;
   bool movingRight = false;
 
-  Ship(context, resourceName) : super(context, resourceName);
   Ship.textureatlas(stateContext, textureAtlasName, resourceName) :
       super.textureatlas(stateContext, textureAtlasName, resourceName);
 

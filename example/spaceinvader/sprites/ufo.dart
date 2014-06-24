@@ -6,7 +6,6 @@ class Ufo extends Sprite {
   bool moving = false;
   int deltaX;
 
-  Ufo(State context, String resourceName) : super(context, resourceName);
   Ufo.textureatlas(stateContext, textureAtlasName, resourceName) :
       super.textureatlas(stateContext, textureAtlasName, resourceName);
 
