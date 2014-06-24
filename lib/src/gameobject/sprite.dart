@@ -54,17 +54,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   num vy = 0;
 
   /**
-   * Creates a Sprite object.
+   * Create a Sprite object from [StageXL.BitmapData].
    * 
    * * stateContext: context of the State, which this object is in
-   * * resourceName: name of the resource for the sprite
+   * * bitmapData: bitmapdata for the sprite
    * * addToStage: automatically add the sprite to the stage?
    * * isMoveAble: will the sprite move?
    * 
    * */
-  Sprite(State stateContext, String resourceName, {bool addToStage: true, bool
-      isMovable: true}) : super(stateContext.game.resourceManager.getBitmapData(
-      resourceName)) {
+  Sprite.bitmapdata(State stateContext, StageXL.BitmapData bitmapData, {bool
+      addToStage: true, bool isMovable: true}) : super(bitmapData) {
     this.isMovable = isMovable;
     _context = stateContext;
     if (addToStage) {
@@ -72,16 +71,27 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     }
   }
 
+  /**
+   * Create a Sprite object from an image.
+   * 
+   * * resourceName: name of the resource in the resourcesManager
+   */
+  Sprite.image(State stateContext, String resourceName, {bool addToStage:
+      true, bool isMovable: true}) : this.bitmapdata(stateContext,
+      stateContext.game.resourceManager.getBitmapData(resourceName), addToStage:
+      addToStage, isMovable: isMovable);
+  
+  /**
+   * Create a Sprite object from an image, which is inside a texture atlas(JSON).
+   * 
+   * * textureAtlasName: name of the texture atlas in the resourceManager
+   * * resourceName: name of the resource in the texture atlas(image name without extension) 
+   */
   Sprite.textureatlas(State stateContext, String textureAtlasName, String
-      resourceName, {bool addToStage: true, bool isMovable: true}) : super(
-      stateContext.game.resourceManager.getTextureAtlas(textureAtlasName
-      ).getBitmapData(resourceName)) {
-    this.isMovable = isMovable;
-    _context = stateContext;
-    if (addToStage) {
-      this.addToStage();
-    }
-  }
+      resourceName, {bool addToStage: true, bool isMovable: true}) : this.bitmapdata(
+      stateContext, stateContext.game.resourceManager.getTextureAtlas(textureAtlasName
+      ).getBitmapData(resourceName), addToStage: addToStage, isMovable: isMovable);
+  
   /**
    * Controlls how the object is moving.
    * This implementation is good enough for simple sprites.
