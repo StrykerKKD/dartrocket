@@ -25,16 +25,14 @@ class Background implements StageXL.Animatable {
   bool isMovable;
 
   /**
-   * Makes a new (tile)Background object.
+   * Create tile based background from [StageXL.BitmapData].
    */
-  Background(State stateContext, String resourceName, {bool isMovable:
-      false, bool addToStage: true, bool repeatX: true, bool repeatY: true}) : super()
-      {
-
+  Background.bitmapdata(State stateContext, StageXL.BitmapData bitmapData, {bool
+      isMovable: false, bool addToStage: true, bool repeatX: true, bool repeatY:
+      true}) {
     _context = stateContext;
 
-    StageXL.BitmapData backgroundTileBitmapdata =
-        stateContext.game.resourceManager.getBitmapData(resourceName);
+    StageXL.BitmapData backgroundTileBitmapdata = bitmapData;
     StageXL.Bitmap backgroundTileBitmap;
 
     int yTimes = (_context.game.stage.sourceHeight /
@@ -60,42 +58,30 @@ class Background implements StageXL.Animatable {
       this.addToStage();
     }
   }
+  
+  /**
+   * Create a Background object from an image.
+   * 
+   * * resourceName: name of the image in the resourcesManager
+   */
+  Background.image(State stateContext, String resourceName, {bool isMovable:
+      false, bool addToStage: true, bool repeatX: true, bool repeatY: true}) :
+      this.bitmapdata(stateContext, stateContext.game.resourceManager.getBitmapData(
+      resourceName), isMovable: isMovable, addToStage: addToStage, repeatX: repeatX,
+      repeatY: repeatY);
 
+  /**
+   * Create a Background object from an image, which is inside a texture atlas(JSON).
+   * 
+   * * textureAtlasName: name of the texture atlas in the resourceManager
+   * * resourceName: name of the resource in the texture atlas(image name without extension) 
+   */
   Background.textureatlas(State stateContext, String textureAtlasName, String
       resourceName, {bool isMovable: false, bool addToStage: true, bool repeatX:
-      true, bool repeatY: true}) : super() {
-
-    _context = stateContext;
-
-    StageXL.BitmapData backgroundTileBitmapdata =
-        stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
-        .getBitmapData(resourceName);
-    StageXL.Bitmap backgroundTileBitmap;
-
-    int yTimes = (_context.game.stage.sourceHeight /
-        backgroundTileBitmapdata.height).ceil();
-    int xTimes = (_context.game.stage.sourceWidth /
-        backgroundTileBitmapdata.width).ceil();
-
-    if (!repeatX) xTimes = 1;
-    if (!repeatY) yTimes = 1;
-
-    for (int i = -1; i < yTimes; i++) {
-      for (int j = -1; j < xTimes; j++) {
-        backgroundTileBitmap = new StageXL.Bitmap(backgroundTileBitmapdata);
-        backgroundTileBitmap
-            ..x = backgroundTileBitmap.width * j
-            ..y = backgroundTileBitmap.height * i;
-        _backgroundTileList.add(backgroundTileBitmap);
-      }
-    }
-
-    this.isMovable = isMovable;
-    if (addToStage) {
-      this.addToStage();
-    }
-
-  }
+      true, bool repeatY: true}) : this.bitmapdata(stateContext,
+      stateContext.game.resourceManager.getTextureAtlas(textureAtlasName
+      ).getBitmapData(resourceName), isMovable: isMovable, addToStage: addToStage,
+      repeatX: repeatX, repeatY: repeatY);
 
   addToStage() {
     _backgroundTileList.forEach((tile) {

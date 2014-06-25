@@ -74,7 +74,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Create a Sprite object from an image.
    * 
-   * * resourceName: name of the resource in the resourcesManager
+   * * resourceName: name of the image in the resourcesManager
    */
   Sprite.image(State stateContext, String resourceName, {bool addToStage:
       true, bool isMovable: true}) : this.bitmapdata(stateContext,
