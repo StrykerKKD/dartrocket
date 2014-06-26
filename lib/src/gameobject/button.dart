@@ -49,9 +49,10 @@ class Button extends InteractiveBitmap {
    * * resourceName: name of the image in the resourcesManager
    */
   Button.image(State stateContext, String resourceName, String text, {bool
-      addToStage: true}) : this.bitmapdata(stateContext,
-      stateContext.game.resourceManager.getBitmapData(resourceName), text, addToStage:
-      addToStage);
+      addToStage: true}) 
+    : this.bitmapdata(stateContext, 
+        stateContext.game.resourceManager.getBitmapData(resourceName), 
+        text, addToStage: addToStage);
   
   /**
    * Create Button from an image inside a texture atlas.
@@ -59,10 +60,12 @@ class Button extends InteractiveBitmap {
    * * textureAtlasName: name of the texture atlas in the resourceManager
    * * resourceName: name of the resource in the texture atlas(image name without extension)
    */
-  Button.textureatlas(State stateContext, String textureAtlasName, String
-      resourceName, String text, {bool addToStage: true}) : this.bitmapdata(
-      stateContext, stateContext.game.resourceManager.getTextureAtlas(textureAtlasName
-      ).getBitmapData(resourceName), text, addToStage: addToStage);
+  Button.textureatlas(State stateContext, String textureAtlasName, 
+      String resourceName, String text, {bool addToStage: true}) 
+    : this.bitmapdata(stateContext, 
+        stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
+          .getBitmapData(resourceName), 
+        text, addToStage: addToStage);
 
   set x(int x) {
     super.x = x;
