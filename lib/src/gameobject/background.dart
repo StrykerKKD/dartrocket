@@ -21,7 +21,7 @@ class Background implements StageXL.Animatable {
   static const String SCALE_FULL_Y = "scaleFullY";
   static const String SCALE_FULL_XY = "scaleFullXY";
 
-  static const String DEFAULT_REPEAT_MODE = REPEAT_XY;
+  static const String DEFAULT_REPEAT_MODE = REPEAT_NONE;
   static const String DEFAULT_SCALE_MODE = SCALE_NONE;
 
   /**
@@ -73,13 +73,40 @@ class Background implements StageXL.Animatable {
             backgroundTileBitmapdata.width).ceil();
         break;
     }
+    
+    
+    double xScale = 1.0;
+    double yScale = 1.0;
+    
+    switch (scaleMode) {
+      case SCALE_NONE:
+        break;
+      case SCALE_FULL_X:
+        xTimes = 1;
+        xScale = (_context.game.stage.sourceWidth / 
+            backgroundTileBitmapdata.width);
+        break;
+      case SCALE_FULL_Y:
+        yTimes = 1;
+        yScale = (_context.game.stage.sourceHeight /
+            backgroundTileBitmapdata.height);
+        break;
+      case SCALE_FULL_XY:
+        xScale = (_context.game.stage.sourceWidth / 
+                    backgroundTileBitmapdata.width);
+        yScale = (_context.game.stage.sourceHeight /
+                    backgroundTileBitmapdata.height);
+        break;
+    }
 
-    for (int i = -1; i < yTimes; i++) {
-      for (int j = -1; j < xTimes; j++) {
+    for (int i = 0; i < yTimes+1; i++) {
+      for (int j = 0; j < xTimes+1; j++) {
         backgroundTileBitmap = new StageXL.Bitmap(backgroundTileBitmapdata);
         backgroundTileBitmap
             ..x = backgroundTileBitmap.width * j
-            ..y = backgroundTileBitmap.height * i;
+            ..y = backgroundTileBitmap.height * i
+            ..scaleX = xScale
+            ..scaleY = yScale;
         _backgroundTileList.add(backgroundTileBitmap);
       }
     }
@@ -136,12 +163,27 @@ class Background implements StageXL.Animatable {
     _backgroundTileList.forEach((tile) {
       tile.x = tile.x + vx * time;
       tile.y = tile.y + vy * time;
-
-      if (tile.x >= _context.game.stage.sourceWidth) {
-        tile.x = tile.x - _context.game.stage.sourceWidth - tile.width;
-      } else if (tile.y >= _context.game.stage.sourceHeight) {
-        tile.y = tile.y - _context.game.stage.sourceHeight - tile.height;
+      
+      if (vx > 0) {
+        if (tile.x >= _context.game.stage.sourceWidth) {
+          tile.x = tile.x - _context.game.stage.sourceWidth - tile.width;
+        }
+      } else if (vx < 0) {
+        if(tile.x <= -tile.width){
+          tile.x = tile.x + _context.game.stage.sourceWidth + tile.width;
+        }
       }
+      
+      if (vy > 0) {
+        if (tile.y >= _context.game.stage.sourceHeight) {
+          tile.y = tile.y - _context.game.stage.sourceHeight - tile.height;
+        }
+      } else if (vy < 0) {
+        if(tile.y <= -tile.height){
+          tile.y = tile.y + _context.game.stage.sourceHeight + tile.height; 
+        }
+      }
+      
     });
 
   }
