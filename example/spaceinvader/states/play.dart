@@ -6,7 +6,7 @@ class Play extends State {
   run() {
     
     Background bg = new Background.textureatlas(this, 'spaceinvader', 'purple',
-        isMovable: true)
+        isMovable: true,repeatMode: Background.REPEAT_XY)
         ..vx = 100
         ..vy = 250;
 
