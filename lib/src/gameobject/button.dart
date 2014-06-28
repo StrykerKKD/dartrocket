@@ -60,8 +60,8 @@ class Button extends InteractiveBitmap {
    * * textureAtlasName: name of the texture atlas in the resourceManager
    * * resourceName: name of the resource in the texture atlas(image name without extension)
    */
-  Button.textureatlas(State stateContext, String textureAtlasName, 
-      String resourceName, String text, {bool addToStage: true}) 
+  Button.textureatlas(State stateContext, String resourceName, 
+      String textureAtlasName, String text, {bool addToStage: true}) 
     : this.bitmapdata(stateContext, 
         stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
           .getBitmapData(resourceName), 

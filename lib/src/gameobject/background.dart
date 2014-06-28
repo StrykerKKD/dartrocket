@@ -138,8 +138,8 @@ class Background implements StageXL.Animatable {
    * * textureAtlasName: name of the texture atlas in the resourceManager
    * * resourceName: name of the resource in the texture atlas(image name without extension) 
    */
-  Background.textureatlas(State stateContext, String textureAtlasName, 
-      String resourceName, 
+  Background.textureatlas(State stateContext, String resourceName,
+      String textureAtlasName,  
       {bool isMovable: false, bool addToStage: true, 
        String repeatMode: DEFAULT_REPEAT_MODE, 
        String scaleMode: DEFAULT_SCALE_MODE}) 

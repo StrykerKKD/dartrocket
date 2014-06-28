@@ -88,8 +88,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * * textureAtlasName: name of the texture atlas in the resourceManager
    * * resourceName: name of the resource in the texture atlas(image name without extension) 
    */
-  Sprite.textureatlas(State stateContext, String textureAtlasName, 
-      String resourceName, {bool addToStage: true, bool isMovable: true}) 
+  Sprite.textureatlas(State stateContext, String resourceName, 
+      String textureAtlasName, {bool addToStage: true, bool isMovable: true}) 
     : this.bitmapdata(stateContext, 
         stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
           .getBitmapData(resourceName), 
