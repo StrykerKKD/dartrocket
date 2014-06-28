@@ -18,7 +18,7 @@ class Menu extends State {
         ..defaultTextFormat.size = 28
         ..width = 800;
 
-    Button btn2 = new Button.textureatlas(this, 'spaceinvader', 'blue_button04',
+    Button btn2 = new Button.textureatlas(this, 'blue_button04', 'spaceinvader',
         'continue')
         ..x = 300
         ..y = 400

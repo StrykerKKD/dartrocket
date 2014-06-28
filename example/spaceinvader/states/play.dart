@@ -5,26 +5,26 @@ class Play extends State {
 
   run() {
     
-    Background bg = new Background.textureatlas(this, 'spaceinvader', 'purple',
-        isMovable: true,repeatMode: Background.REPEAT_XY)
+    Background bg = new Background.textureatlas(this, 'purple', 'spaceinvader',
+        isMovable: true, repeatMode: Background.REPEAT_XY)
         ..vx = 100
         ..vy = 250;
 
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    Button leftButton = new Button.textureatlas(this, 'spaceinvader',
-        'flatDark23', 'L')
+    Button leftButton = new Button.textureatlas(this, 'flatDark23',
+        'spaceinvader', 'L')
         ..x = 0
         ..y = game.stage.sourceHeight - 100;
 
-    Button rightButton = new Button.textureatlas(this, 'spaceinvader',
-        'flatDark24', "R");
+    Button rightButton = new Button.textureatlas(this, 'flatDark24',
+        'spaceinvader', "R");
     rightButton
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
 
-    Ship player = new Ship.textureatlas(this, 'spaceinvader', 'playerShip1_blue'
+    Ship player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader' 
         )
         ..x = game.stage.sourceWidth ~/ 2
         ..y = game.stage.sourceHeight - 200
@@ -48,16 +48,15 @@ class Play extends State {
 
 
     Group<Sprite> bullets = new Group<Sprite>();
-    for (int i = 0; i < 5; i++) {
-      bullets.add(new Sprite.textureatlas(this, 'spaceinvader', 'laserBlue01',
-          addToStage: false, isMovable: true)..vy = -500);
+    for (int i = 0; i < 5; i++) {      
+      bullets.add(game.add.sprite('laserBlue01', addToStage: false)..vy=-500);
     }
 
     Ufo ufo;
     Group<Ufo> ufos = new Group<Ufo>();
     for (int j = 0; j < 1; j++) {
       for (int i = 0; i < 7; i++) {
-        ufo = new Ufo.textureatlas(this, 'spaceinvader', 'ufoRed')
+        ufo = new Ufo.textureatlas(this, 'ufoRed', 'spaceinvader')
             ..x = (i * 100 + 10)
             ..y = 100 * j
             ..vy = 30

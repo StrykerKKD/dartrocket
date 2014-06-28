@@ -19,7 +19,10 @@ Game game;
 void main() {
 
   game = new Game(color:Color.Wheat,fullScreen: true);
-
+  
+  game.add.defaultResourceMode = ResourceMode.TEXTUREATLAS;
+  game.add.defaultTextureAtlasName = 'spaceinvader';
+  
   game.stateManager.addStateMap({
     "loading": new Loading("loading", "menu"),
     "menu": new Menu("menu","play"),

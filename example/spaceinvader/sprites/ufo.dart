@@ -6,8 +6,8 @@ class Ufo extends Sprite {
   bool moving = false;
   int deltaX;
 
-  Ufo.textureatlas(stateContext, textureAtlasName, resourceName) :
-      super.textureatlas(stateContext, textureAtlasName, resourceName);
+  Ufo.textureatlas(stateContext, resourceName, textureAtlasName) :
+      super.textureatlas(stateContext, resourceName, textureAtlasName);
 
   @override
   bool advanceTime(num time) {
