@@ -49,7 +49,8 @@ class Game {
    * [StateManager] object
    * */
   StateManager stateManager;
-
+  
+  GameObjectFactory add;
   /**
    * Creates a new Game object.
    * Parameters:
@@ -85,6 +86,7 @@ class Game {
     renderLoop = new StageXL.RenderLoop();
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
+    add = new GameObjectFactory();
 
     stage.align = StageXL.StageAlign.NONE;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;

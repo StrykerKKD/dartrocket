@@ -107,9 +107,9 @@ abstract class State extends Stream<String> {
   load() {}
 
   /**
-   * You must overwrite this for using the state.
+   * Called after load has completed.
    * 
-   * Called after load has completed. 
+   * ** You must overwrite this for using the state. ** 
    * */
   run();
 
@@ -142,12 +142,14 @@ abstract class State extends Stream<String> {
   void _constructor() {
     load();
     game.resourceManager.load().then((_) {
+      game.add.currentContext = game.stateManager.currentState;
       run();
     });
   }
 
   void _destructor() {
-
+    
+    game.add.currentContext = null;
     game.stage.removeChildren();
     game.stage.juggler.clear();
     Event.ALL_EVENT.forEach((event) {

@@ -36,6 +36,7 @@ class StateManager {
   
   State _currentState;
   StreamSubscription _currentSubscription;
+  
   /**
    * This constructor is only used by the [Game]'s constructor.
    * 
@@ -123,6 +124,8 @@ class StateManager {
     }
 
   }
+  
+  State get currentState => _currentState; 
   
   //not used
   /*
