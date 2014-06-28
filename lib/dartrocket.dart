@@ -21,4 +21,5 @@ part "src/gameobject/text.dart";
 part "src/gameobject/sound.dart";
 part "src/gameobject/button.dart";
 
-part "src/static/event.dart";
+part "src/constants/event.dart";
+part "src/constants/resourcemode.dart";
