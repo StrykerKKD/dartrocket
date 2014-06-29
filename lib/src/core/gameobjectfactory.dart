@@ -2,8 +2,11 @@ part of dartrocket;
 
 class GameObjectFactory {
 
+  static const String IMAGE = 'image';
+    static const String TEXTUREATLAS = 'textureatlas';
+  
   State currentContext;
-  String defaultResourceMode = ResourceMode.IMAGE;
+  String defaultResourceMode = IMAGE;
   String defaultTextureAtlasName;
 
   Sprite sprite(String resourceName, {String textureAtlasName,String resourceMode, bool addToStage:
@@ -13,10 +16,12 @@ class GameObjectFactory {
       resourceMode = defaultResourceMode;
     }
 
-    if (resourceMode == ResourceMode.IMAGE) {
+    if (resourceMode == IMAGE) {
+      
       return new Sprite.image(currentContext, resourceName, addToStage:
           addToStage, isMovable: isMovable);
-    } else if (resourceMode == ResourceMode.TEXTUREATLAS) {
+    
+    } else if (resourceMode == TEXTUREATLAS) {
       
       if(textureAtlasName==null){
         textureAtlasName = defaultTextureAtlasName;
