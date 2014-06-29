@@ -3,6 +3,19 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.3
+  * EventListeners on stage automatically destroyed after state change
+  * Button class is simplified, easier to set coordinates
+  * Fix typo :KillState
+  * TextureAtlas contructor for Button and Sprite
+  * Fix typo: isMovable
+  * Updated README
+  * Named contructor for Sprite,Button,Background: bitmapdata,image,textureatlas
+  * Background has repeat and scale mode
+  * Background works with all kind of vx and vy value
+  * GameObjectFactory added
+  * Background.color constructor for static color backgrounds
+
 #### Pub version 0.1.2
   * New Button class
   * Fullscreen mode, which keeps the aspect ratio(game.dart)
