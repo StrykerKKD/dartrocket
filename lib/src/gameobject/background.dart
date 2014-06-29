@@ -116,6 +116,19 @@ class Background implements StageXL.Animatable {
       this.addToStage();
     }
   }
+  
+  /**
+   * Create static colored background. 
+   */
+  Background.color(State stateContext, 
+       {int width: 1, int height: 1, bool transparent: false, 
+        int color: 4294967295, num pixelRatio: 1.0,
+        String repeatMode: DEFAULT_REPEAT_MODE, 
+        String scaleMode: DEFAULT_SCALE_MODE})
+      : this.bitmapdata(stateContext, 
+          new StageXL.BitmapData(width,height,transparent,color,pixelRatio),
+          repeatMode: repeatMode, scaleMode: scaleMode
+      );
 
   /**
    * Create a Background object from an image.
@@ -130,7 +143,7 @@ class Background implements StageXL.Animatable {
         stateContext.game.resourceManager.getBitmapData(resourceName), 
         isMovable: isMovable, addToStage: addToStage, 
         repeatMode: repeatMode, scaleMode: scaleMode
-      );
+    );
 
   /**
    * Create a Background object from an image, which is inside a texture atlas(JSON).
@@ -147,7 +160,8 @@ class Background implements StageXL.Animatable {
       stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
         .getBitmapData(resourceName), 
       isMovable: isMovable, addToStage: addToStage, 
-      repeatMode: repeatMode, scaleMode: scaleMode);
+      repeatMode: repeatMode, scaleMode: scaleMode
+    );
 
   addToStage() {
     _backgroundTileList.forEach((tile) {
