@@ -4,6 +4,9 @@ class Menu extends State {
   Menu(String name, [String nextState]) : super(name, nextState);
 
   run() {
+    
+    Background background = new Background.color(this, color: Color.Aqua, 
+        scaleMode: Background.SCALE_FULL_XY);
 
     Text titleText = new Text(this, "SpaceInvader")
         ..x = 200
