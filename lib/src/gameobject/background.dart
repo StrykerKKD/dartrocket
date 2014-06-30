@@ -121,12 +121,14 @@ class Background implements StageXL.Animatable {
    * Create static colored background. 
    */
   Background.color(State stateContext, 
-       {int width: 1, int height: 1, bool transparent: false, 
+       {bool isMovable: false, bool addToStage: true, 
+        int width: 1, int height: 1, bool transparent: false, 
         int color: 4294967295, num pixelRatio: 1.0,
         String repeatMode: DEFAULT_REPEAT_MODE, 
         String scaleMode: DEFAULT_SCALE_MODE})
       : this.bitmapdata(stateContext, 
           new StageXL.BitmapData(width,height,transparent,color,pixelRatio),
+          isMovable: isMovable, addToStage: addToStage,
           repeatMode: repeatMode, scaleMode: scaleMode
       );
 
