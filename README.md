@@ -1,4 +1,4 @@
-<a rel="nofollow"><img src="http://www.logomaker.com/logo-images/6b330ef382354ce2.gif"/></a>
+<a rel="nofollow"><img src="http://www.logomaker.com/logo-images/ef441a3196b57d73.gif"/></a>
 
 DartRocket is a HTML5 Game Framework, which is written in Dart and uses the StageXL rendering engine.
 The main goal of this framework is to provide an easy to use solution for HTML5 game making with the Dart language.
