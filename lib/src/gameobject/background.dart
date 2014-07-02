@@ -177,27 +177,27 @@ class Background implements StageXL.Animatable {
   @override
   bool advanceTime(num time) {
     _backgroundTileList.forEach((tile) {
-      tile.x = tile.x + vx * time;
-      tile.y = tile.y + vy * time;
+      tile.x = (tile.x + vx * time).round();
+      tile.y = (tile.y + vy * time).round();
       
-      if (vx > 0) {
-        if (tile.x >= _context.game.stage.sourceWidth) {
-          tile.x = tile.x - _context.game.stage.sourceWidth - tile.width;
-        }
-      } else if (vx < 0) {
-        if(tile.x <= -tile.width){
-          tile.x = tile.x + _context.game.stage.sourceWidth + tile.width;
-        }
+      if (vx > 0 && tile.x >= _context.game.stage.sourceWidth) {
+          
+        tile.x = tile.x - _context.game.stage.sourceWidth - tile.width;
+      
+      } else if (vx < 0 && tile.x <= -tile.width) {
+          
+        tile.x = tile.x + _context.game.stage.sourceWidth + tile.width;
+        
       }
       
-      if (vy > 0) {
-        if (tile.y >= _context.game.stage.sourceHeight) {
-          tile.y = tile.y - _context.game.stage.sourceHeight - tile.height;
-        }
-      } else if (vy < 0) {
-        if(tile.y <= -tile.height){
-          tile.y = tile.y + _context.game.stage.sourceHeight + tile.height; 
-        }
+      if (vy > 0 && tile.y >= _context.game.stage.sourceHeight) {
+
+        tile.y = tile.y - _context.game.stage.sourceHeight - tile.height;
+
+      } else if (vy < 0 && tile.y <= -tile.height) {
+        
+        tile.y = tile.y + _context.game.stage.sourceHeight + tile.height; 
+        
       }
       
     });
