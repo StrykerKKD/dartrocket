@@ -7,8 +7,11 @@ class GameObjectFactory {
 
   State currentContext;
   String defaultResourceMode = IMAGE;
-  String defaultTextureAtlasName;
-
+  String defaultTextureAtlasName = "";
+  
+  /**
+   * Creates a sprite from image or texture atlas.
+   */
   Sprite sprite(String resourceName, {String textureAtlasName, 
     String resourceMode, bool addToStage: true, bool isMovable: true}) {
 
@@ -34,6 +37,32 @@ class GameObjectFactory {
         
     }
 
+  }
+  
+  /**
+   * Creates multiple sprite from image or texture atlas.
+   */
+  List<Sprite> multipleSprite(int quantity, String resourceName, 
+      {String textureAtlasName, String resourceMode, 
+       bool addToStage: true, bool isMovable: true}){
+    
+    List<Sprite> _returnSpriteList = new List<Sprite>();
+    
+    if (resourceMode == null) {
+      resourceMode = defaultResourceMode;
+    }
+    
+    if (textureAtlasName == null) {
+      textureAtlasName = defaultTextureAtlasName;
+    }
+    
+    for (int i;i < quantity;i++) {
+      _returnSpriteList.add(sprite(resourceName, textureAtlasName: textureAtlasName, 
+                             resourceMode: resourceMode, addToStage: addToStage,
+                             isMovable: isMovable));
+    }
+    
+    return _returnSpriteList;
   }
 
 }
