@@ -69,16 +69,16 @@ class Play extends State {
     Sound laserSound = new Sound(this, "laser");
 
     Sprite bullet;
-    Timer bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_)
-        {
-      if (bullets.any((item) => !item.alive)) {
-        bullet = bullets.firstWhere((item) => !item.alive)
-            ..x = player.x + player.width ~/ 2
-            ..y = player.y
-            ..alive = true;
+    Timer bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), 
+      (_){
+        if (bullets.any((item) => !item.alive)) {
+          bullet = bullets.firstWhere((item) => !item.alive)
+              ..x = player.x + player.width ~/ 2
+              ..y = player.y
+              ..alive = true;
 
-        bullet.addToStage();
-        laserSound.play();
+          bullet.addToStage();
+          laserSound.play();
       }
     });
 

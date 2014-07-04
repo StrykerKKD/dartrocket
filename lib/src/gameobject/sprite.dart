@@ -101,10 +101,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * You can make the sprite move with changing the vx or vy value.
    */
   bool advanceTime(num time) {
-    if ((x <= 0 || x >= _context.game.stage.sourceWidth) || (y <= 0 || y >=
-        _context.game.stage.sourceHeight)) {
+    if ((x <= 0 || x >= _context.game.stage.sourceWidth) || 
+        (y <= 0 || y >= _context.game.stage.sourceHeight)) {
       removeFromStage();
     }
+    
     x = x + vx * time;
     y = y + vy * time;
   }
