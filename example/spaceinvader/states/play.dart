@@ -112,7 +112,7 @@ class Play extends State {
         killState();
       }
 
-      ufos.forEachAlive((ufo) {
+      /*ufos.forEachAlive((ufo) {
         bullets.forEachAlive((bullet) {
           if (ufo.hitTestObject(bullet)) {
             ufo.alive = false;
@@ -124,6 +124,17 @@ class Play extends State {
           bulletTimer.cancel();
           killState();
         }
+      });*/
+      
+      game.physics.collison(ufos, bullets, (Ufo ufo,Sprite bullet){
+        ufo.alive = false;
+        bullet.removeFromStage();
+        scoreText.text = "Score: ${score+=10}";
+      });
+      
+      game.physics.collison(ufos, player, (Ufo ufo, Ship player){
+        bulletTimer.cancel();
+        killState();
       });
 
     });
