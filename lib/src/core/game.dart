@@ -50,7 +50,16 @@ class Game {
    * */
   StateManager stateManager;
   
+  /**
+   * [GameObjectFactory] object
+   */
   GameObjectFactory add;
+  
+  /**
+   * [Physics] object
+   */
+  Physics physics;
+  
   /**
    * Creates a new Game object.
    * Parameters:
@@ -87,6 +96,7 @@ class Game {
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
     add = new GameObjectFactory();
+    physics = new Physics();
 
     stage.align = StageXL.StageAlign.NONE;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;
