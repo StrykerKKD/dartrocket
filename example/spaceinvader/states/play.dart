@@ -13,13 +13,17 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    Button leftButton = new Button.textureatlas(this, 'flatDark23',
+    /*Button leftButton = new Button.textureatlas(this, 'flatDark23',
         'spaceinvader', 'L')
+        ..x = 0
+        ..y = game.stage.sourceHeight - 100;*/
+    Button leftButton = game.add.button('flatDark23', 'L')
         ..x = 0
         ..y = game.stage.sourceHeight - 100;
 
-    Button rightButton = new Button.textureatlas(this, 'flatDark24',
-        'spaceinvader', "R");
+    /*Button rightButton = new Button.textureatlas(this, 'flatDark24',
+        'spaceinvader', "R");*/
+    Button rightButton = game.add.button('flatDark24', 'R');
     rightButton
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
