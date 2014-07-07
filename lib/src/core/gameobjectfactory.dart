@@ -40,6 +40,38 @@ class GameObjectFactory {
   }
   
   /**
+   * Create a button from image or texture atlas.
+   */
+  Button button(String resourceName, String text, 
+                {String textureAtlasName, String resourceMode,
+                 bool addToStage: true}) {
+    
+    if (resourceMode == null) {
+      resourceMode = defaultResourceMode;
+    }
+    
+    switch (resourceMode) {
+      
+      case IMAGE:
+        
+        return new Button.image(currentContext, resourceName, text,
+            addToStage: addToStage);
+      
+      case TEXTUREATLAS:
+        
+        if (textureAtlasName == null) {
+          textureAtlasName = defaultTextureAtlasName;
+        }
+        
+        return new Button.textureatlas(currentContext, resourceName, 
+            textureAtlasName, text,addToStage: addToStage);
+    }
+    
+    
+  }
+  
+  
+  /**
    * Creates multiple sprite from image or texture atlas.
    */
   List<Sprite> multipleSprite(int quantity, String resourceName, 
@@ -64,5 +96,5 @@ class GameObjectFactory {
     
     return _returnSpriteList;
   }
-
+  
 }
