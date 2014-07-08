@@ -13,16 +13,10 @@ class Play extends State {
     int score = 0;
     Text scoreText = new Text(this, "Score: $score", size: 20);
 
-    /*Button leftButton = new Button.textureatlas(this, 'flatDark23',
-        'spaceinvader', 'L')
-        ..x = 0
-        ..y = game.stage.sourceHeight - 100;*/
     Button leftButton = game.add.button('flatDark23', 'L')
         ..x = 0
         ..y = game.stage.sourceHeight - 100;
 
-    /*Button rightButton = new Button.textureatlas(this, 'flatDark24',
-        'spaceinvader', "R");*/
     Button rightButton = game.add.button('flatDark24', 'R');
     rightButton
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
@@ -115,20 +109,6 @@ class Play extends State {
         bulletTimer.cancel();
         killState();
       }
-
-      /*ufos.forEachAlive((ufo) {
-        bullets.forEachAlive((bullet) {
-          if (ufo.hitTestObject(bullet)) {
-            ufo.alive = false;
-            bullet.removeFromStage();
-            scoreText.text = "Score: ${score+=10}";
-          }
-        });
-        if (ufo.hitTestObject(player)) {
-          bulletTimer.cancel();
-          killState();
-        }
-      });*/
       
       game.physics.collison(ufos, bullets, (Ufo ufo,Sprite bullet){
         ufo.alive = false;

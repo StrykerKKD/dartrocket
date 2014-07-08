@@ -13,7 +13,7 @@ class Loading extends State {
     game.resourceManager.addTextureAtlas('spaceinvader', 'images/spaceinvader',
         TextureAtlasFormat.JSON);
 
-    game.resourceManager.addSound("laser", "sounds/sfx_laser1.ogg");
+    game.resourceManager.addSound('laser', 'sounds/sfx_laser1.ogg');
   }
 
   run() {
