@@ -71,6 +71,7 @@ class Button extends InteractiveBitmap {
     super.x = x;
     buttonText.x = x;
   }
+  
   set y(int y) {
     super.y = y;
     buttonText.y = y;
