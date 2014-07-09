@@ -182,21 +182,21 @@ class Background implements StageXL.Animatable {
       
       if (vx > 0 && tile.x >= _context.game.stage.sourceWidth) {
           
-        tile.x = tile.x - _context.game.stage.sourceWidth - tile.width;
+        tile.x = (tile.x - _context.game.stage.sourceWidth - tile.width).round();
       
       } else if (vx < 0 && tile.x <= -tile.width) {
           
-        tile.x = tile.x + _context.game.stage.sourceWidth + tile.width;
+        tile.x = (tile.x + _context.game.stage.sourceWidth + tile.width).round();
         
       }
       
       if (vy > 0 && tile.y >= _context.game.stage.sourceHeight) {
 
-        tile.y = tile.y - _context.game.stage.sourceHeight - tile.height;
+        tile.y = (tile.y - _context.game.stage.sourceHeight - tile.height).round();
 
       } else if (vy < 0 && tile.y <= -tile.height) {
         
-        tile.y = tile.y + _context.game.stage.sourceHeight + tile.height; 
+        tile.y = (tile.y + _context.game.stage.sourceHeight + tile.height).round(); 
         
       }
       

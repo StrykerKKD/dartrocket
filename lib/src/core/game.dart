@@ -49,17 +49,17 @@ class Game {
    * [StateManager] object
    * */
   StateManager stateManager;
-  
+
   /**
    * [GameObjectFactory] object
    */
   GameObjectFactory add;
-  
+
   /**
    * [Physics] object
    */
   Physics physics;
-  
+
   /**
    * Creates a new Game object.
    * Parameters:
@@ -73,22 +73,20 @@ class Game {
   Game({int width: 800, int height: 600, bool webGL: false, int frameRate:
       30, int color: StageXL.Color.Black, bool fullScreen: false}) {
 
-    canvas = new CanvasElement()
-        ..setAttribute("screencanvas", "true")
-        ..width = width
-        ..height = height;
-    document.body.children.add(canvas);
-
     if (fullScreen) {
       double scale = 1.0;
       double ratioWidth = (window.innerWidth) / width;
       double ratioHeight = (window.innerHeight) / height;
       scale = (ratioWidth < ratioHeight) ? ratioWidth : ratioHeight;
-
-      canvas
-          ..width = (scale * width).toInt()
-          ..height = (scale * height).toInt();
+      width = (scale * width).toInt();
+      height = (scale * height).toInt();
     }
+
+    canvas = new CanvasElement()
+        ..setAttribute("screencanvas", "true")
+        ..width = width
+        ..height = height;
+    document.body.children.add(canvas);
 
     stage = new StageXL.Stage(canvas, width: width, height: height, webGL:
         webGL, frameRate: frameRate, color: color);
