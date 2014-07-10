@@ -3,7 +3,7 @@ part of spaceinvader;
 class End extends State {
   End(String name): super(name);
 
-  run() {
+  create() {
 
     Text text = new Text(this,"The End. Bye Bye")
         ..x = 300

@@ -5,7 +5,7 @@ class Second extends State {
   
   static bool runned = false;
   
-  run() {
+  create() {
     Text text = new Text(this,"Second State")
         ..x = 300
         ..y = 300;

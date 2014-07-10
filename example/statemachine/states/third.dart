@@ -5,7 +5,7 @@ class Third extends State {
 
   static bool runned = false;
 
-  run() {
+  create() {
     
     Text text = new Text(this,"Third State")
         ..x = 300

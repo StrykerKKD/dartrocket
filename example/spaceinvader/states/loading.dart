@@ -16,7 +16,7 @@ class Loading extends State {
     game.resourceManager.addSound('laser', 'sounds/sfx_laser1.ogg');
   }
 
-  run() {
+  create() {
     killState();
   }
 
