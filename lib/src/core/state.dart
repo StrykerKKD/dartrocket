@@ -111,7 +111,12 @@ abstract class State extends Stream<String> {
    * 
    * ** You must overwrite this for using the state. ** 
    * */
-  run();
+  create();
+  
+  /**
+   * overwrite if you want do something in the loop.
+   */
+  update(){}
 
   /**
    * Gets the name of the state.
@@ -143,7 +148,10 @@ abstract class State extends Stream<String> {
     load();
     game.resourceManager.load().then((_) {
       game.add.currentContext = game.stateManager.currentState;
-      run();
+      create();
+      game.stage.onEnterFrame.listen((_){
+        update();
+      });
     });
   }
 
