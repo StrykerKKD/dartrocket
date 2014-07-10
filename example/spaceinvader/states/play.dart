@@ -3,15 +3,24 @@ part of spaceinvader;
 class Play extends State {
   Play(String name, [String nextState]) : super(name, nextState);
 
-  run() {
-    
+  int score;
+  Text scoreText;
+  
+  Ship player;
+  Group<Sprite> bullets;
+  Group<Ufo> ufos;
+  
+  Timer bulletTimer;
+
+  create() {
+
     Background bg = new Background.textureatlas(this, 'purple', 'spaceinvader',
         isMovable: true, repeatMode: Background.REPEAT_XY)
         ..vx = 100
         ..vy = 250;
 
-    int score = 0;
-    Text scoreText = new Text(this, "Score: $score", size: 20);
+    score = 0;
+    scoreText = new Text(this, "Score: $score", size: 20);
 
     Button leftButton = game.add.button('flatDark23', 'L')
         ..x = 0
@@ -22,8 +31,7 @@ class Play extends State {
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
 
-    Ship player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader' 
-        )
+    player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader')
         ..x = game.stage.sourceWidth ~/ 2
         ..y = game.stage.sourceHeight - 200
         ..vx = 300;
@@ -45,13 +53,13 @@ class Play extends State {
     });
 
 
-    Group<Sprite> bullets = new Group<Sprite>();
-    for (int i = 0; i < 5; i++) {      
-      bullets.add(game.add.sprite('laserBlue01', addToStage: false)..vy=-500);
+    bullets = new Group<Sprite>();
+    for (int i = 0; i < 5; i++) {
+      bullets.add(game.add.sprite('laserBlue01', addToStage: false)..vy = -500);
     }
 
     Ufo ufo;
-    Group<Ufo> ufos = new Group<Ufo>();
+    ufos = new Group<Ufo>();
     for (int j = 0; j < 1; j++) {
       for (int i = 0; i < 7; i++) {
         ufo = new Ufo.textureatlas(this, 'ufoRed', 'spaceinvader')
@@ -67,16 +75,15 @@ class Play extends State {
     Sound laserSound = new Sound(this, "laser");
 
     Sprite bullet;
-    Timer bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), 
-      (_){
-        if (bullets.any((item) => !item.alive)) {
-          bullet = bullets.firstWhere((item) => !item.alive)
-              ..x = player.x + player.width ~/ 2
-              ..y = player.y
-              ..alive = true;
+    bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_) {
+      if (bullets.any((item) => !item.alive)) {
+        bullet = bullets.firstWhere((item) => !item.alive)
+            ..x = player.x + player.width ~/ 2
+            ..y = player.y
+            ..alive = true;
 
-          bullet.addToStage();
-          laserSound.play();
+        bullet.addToStage();
+        laserSound.play();
       }
     });
 
@@ -102,25 +109,25 @@ class Play extends State {
           break;
       }
     });
+    
+  }
 
-    game.stage.onEnterFrame.listen((_) {
+  update() {
+    if (!ufos.anyAlive()) {
+      bulletTimer.cancel();
+      killState();
+    }
 
-      if (!ufos.anyAlive()) {
-        bulletTimer.cancel();
-        killState();
-      }
-      
-      game.physics.collison(ufos, bullets, (Ufo ufo,Sprite bullet){
-        ufo.alive = false;
-        bullet.removeFromStage();
-        scoreText.text = "Score: ${score+=10}";
-      });
-      
-      game.physics.collison(ufos, player, (Ufo ufo, Ship player){
-        bulletTimer.cancel();
-        killState();
-      });
+    game.physics.collison(ufos, bullets, (Ufo ufo, Sprite bullet) {
+      ufo.alive = false;
+      bullet.removeFromStage();
+      scoreText.text = "Score: ${score+=10}";
+    });
 
+    game.physics.collison(ufos, player, (Ufo ufo, Ship player) {
+      bulletTimer.cancel();
+      killState();
     });
   }
+
 }
