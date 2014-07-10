@@ -107,14 +107,18 @@ abstract class State extends Stream<String> {
   load() {}
 
   /**
-   * Called after load has completed.
+   * Create game objects in this method.
+   * 
+   * It's called after load has completed.
    * 
    * ** You must overwrite this for using the state. ** 
    * */
   create();
   
   /**
-   * overwrite if you want do something in the loop.
+   * Overwrite if you want do something in the loop.
+   * 
+   * It's called when an EnterFrame event happens on the stage.
    */
   update(){}
 
