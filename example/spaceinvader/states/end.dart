@@ -5,7 +5,7 @@ class End extends State {
 
   create() {
 
-    Text text = new Text(this,"The End. Bye Bye")
+    game.add.text("The End. Bye Bye")
         ..x = 300
         ..y = 300
         ..width = 500;

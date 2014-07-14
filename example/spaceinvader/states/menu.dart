@@ -5,17 +5,16 @@ class Menu extends State {
 
   create() {
 
-    Background background = new Background.color(this, color: Color.Aqua,
+    new Background.color(this, color: Color.Aqua,
         scaleMode: Background.SCALE_FULL_XY);
 
-    Text titleText = new Text(this, "SpaceInvader")
+    game.add.text("SpaceInvader")
         ..x = 200
         ..y = 100
         ..defaultTextFormat.size = 56
         ..width = 600;
 
-    String instructions = "You can move with left(<-) and right(->) cursor.";
-    Text instructionsText = new Text(this, instructions)
+    game.add.text("You can move with left(<-) and right(->) cursor.")
         ..x = 40
         ..y = 300
         ..defaultTextFormat.size = 28

@@ -14,13 +14,13 @@ class Play extends State {
 
   create() {
 
-    Background bg = new Background.textureatlas(this, 'purple', 'spaceinvader',
-        isMovable: true, repeatMode: Background.REPEAT_XY)
+    Background bg = game.add.background('purple',isMovable: true, 
+        repeatMode: Background.REPEAT_XY)
         ..vx = 100
         ..vy = 250;
 
     score = 0;
-    scoreText = new Text(this, "Score: $score", size: 20);
+    scoreText = game.add.text("Score: $score", size: 20);
 
     Button leftButton = game.add.button('flatDark23', 'L')
         ..x = 0
@@ -72,7 +72,7 @@ class Play extends State {
     }
 
 
-    Sound laserSound = new Sound(this, "laser");
+    Sound laserSound = game.add.sound("laser");
 
     Sprite bullet;
     bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_) {
