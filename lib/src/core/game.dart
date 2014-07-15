@@ -118,4 +118,10 @@ class Game {
       resourceManager.addBitmapData(name, url);
     });
   }
+  
+  bool get autoHiDpi => StageXL.Stage.autoHiDpi;
+  
+  bool get isMobile => StageXL.Stage.isMobile;
+  
+  num get devicePixelRatio => StageXL.Stage.devicePixelRatio;
 }
