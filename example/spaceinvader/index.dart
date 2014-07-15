@@ -18,7 +18,7 @@ Game game;
 
 void main() {
 
-  game = new Game(color:Color.Wheat, fullScreen: true);
+  game = new Game(fullScreen: true);
   
   game.add.defaultResourceMode = GameObjectFactory.TEXTUREATLAS;
   game.add.defaultTextureAtlasName = 'spaceinvader';

@@ -5,9 +5,8 @@ class Menu extends State {
 
   create() {
 
-    new Background.color(this, color: Color.Aqua,
-        scaleMode: Background.SCALE_FULL_XY);
-
+    game.add.background('purple', repeatMode: Background.REPEAT_XY);
+    
     game.add.text("SpaceInvader")
         ..x = 200
         ..y = 100

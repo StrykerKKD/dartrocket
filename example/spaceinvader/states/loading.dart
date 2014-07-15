@@ -5,8 +5,10 @@ class Loading extends State {
   Loading(String name, [String nextState]) : super(name, nextState);
 
   load() {
-
-    Text text = new Text(this, "Loading...")
+    
+    new Background.color(this, color: Color.Beige, scaleMode: Background.SCALE_FULL_XY);
+    
+    new Text(this,"Loading...")
         ..x = 400
         ..y = 300;
 
