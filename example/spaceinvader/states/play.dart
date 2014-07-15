@@ -14,7 +14,8 @@ class Play extends State {
 
   create() {
 
-    game.add.background('purple',isMovable: true, repeatMode: Background.REPEAT_XY)
+    game.add.background('purple',isMovable: true, 
+        repeatMode: Background.REPEAT_XY)
         ..vx = 100
         ..vy = 250;
 
@@ -31,7 +32,6 @@ class Play extends State {
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
 
-          
       leftButton.onTouchBegin.listen((_) {
         player.movingLeft = true;
       });
