@@ -14,45 +14,46 @@ class Play extends State {
 
   create() {
 
-    Background bg = game.add.background('purple',isMovable: true, 
-        repeatMode: Background.REPEAT_XY)
+    game.add.background('purple',isMovable: true, repeatMode: Background.REPEAT_XY)
         ..vx = 100
         ..vy = 250;
 
     score = 0;
     scoreText = game.add.text("Score: $score", size: 20);
-
-    Button leftButton = game.add.button('flatDark23', 'L')
+    
+    if(game.isMobile){
+      Button leftButton = game.add.button('flatDark23', 'L')
         ..x = 0
         ..y = game.stage.sourceHeight - 100;
 
-    Button rightButton = game.add.button('flatDark24', 'R');
-    rightButton
+      Button rightButton = game.add.button('flatDark24', 'R');
+      rightButton
         ..x = game.stage.sourceWidth - rightButton.width.toInt()
         ..y = game.stage.sourceHeight - 100;
 
+          
+      leftButton.onTouchBegin.listen((_) {
+        player.movingLeft = true;
+      });
+
+      leftButton.onTouchEnd.listen((_) {
+        player.movingLeft = false;
+      });
+
+      rightButton.onTouchBegin.listen((_) {
+        player.movingRight = true;
+      });
+
+      rightButton.onTouchEnd.listen((_) {
+        player.movingRight = false;
+      });
+    }
+    
     player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader')
-        ..x = game.stage.sourceWidth ~/ 2
-        ..y = game.stage.sourceHeight - 200
-        ..vx = 300;
-
-    leftButton.onTouchBegin.listen((_) {
-      player.movingLeft = true;
-    });
-
-    leftButton.onTouchEnd.listen((_) {
-      player.movingLeft = false;
-    });
-
-    rightButton.onTouchBegin.listen((_) {
-      player.movingRight = true;
-    });
-
-    rightButton.onTouchEnd.listen((_) {
-      player.movingRight = false;
-    });
-
-
+      ..x = game.stage.sourceWidth ~/ 2
+      ..y = game.stage.sourceHeight - 200
+      ..vx = 300;
+    
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
       bullets.add(game.add.sprite('laserBlue01', addToStage: false)..vy = -500);
