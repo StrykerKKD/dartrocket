@@ -1,12 +1,47 @@
 part of dartrocket;
 
+/**
+ * GameObjectFactory is a quick way to make gameobjects.
+ * 
+ * The GameObjectFactory is automatically made when you make a game instances.
+ * 
+ * You can define a defaultResourceMode, which can be image or texture atlas.
+ * 
+ * You have a defaultTextureAtlas, so you don't have to give the name of the 
+ * same texture atlas every time, when you want to make a gameobject.
+ * 
+ * Usage:
+ *     //You can acces it thou the game object and its called 'add'
+ *     game.add
+ * 
+ *     //You can change the default values
+ *     game.add.defaultResourceMode = game.add.TEXTUREATLAS;
+ *     game.add.defaultTextureAtlasName = "someOtherTextureAtlasName";
+ * 
+ *     //Making a simple sprite
+ *     game.add.sprite('imageName');
+ */
+
 class GameObjectFactory {
 
   static const String IMAGE = 'image';
   static const String TEXTUREATLAS = 'textureatlas';
-
+  
+  /**
+   * The current state's context, which the game is in.
+   * 
+   * **This is automatically updated.**
+   */
   State currentContext;
+  
+  /**
+   * Default resource mode(Image).
+   */
   String defaultResourceMode = IMAGE;
+  
+  /**
+   * Default texture atlas name("").
+   */
   String defaultTextureAtlasName = "";
   
   /**
