@@ -6,3 +6,4 @@ homepage: https://github.com/StrykerKKD/dartrocket
 dependencies:
   browser: '>=0.10.0+2 <0.11.0'
   stagexl: '>=0.9.2+1 <0.10.0'
+  unittest: any
