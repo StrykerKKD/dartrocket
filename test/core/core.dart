@@ -7,6 +7,8 @@ import 'dart:async';
 part 'idlestate.dart';
 part 'pausestate.dart';
 part 'killstate.dart';
+part 'pauseandkillstate.dart';
+part 'pauseandidle.dart';
 
 void main() {
 
@@ -52,6 +54,18 @@ void main() {
       game.stateManager.initState("pauseState");
       new Timer(new Duration(milliseconds: 100), () {
         expect(game.stateManager.currentState.name, equals("idleState"));
+      });
+    });
+
+    test('complicated transition', () {
+      game = new Game();
+      game.stateManager.addStateMap({
+        "pKState": new PauseAndKillState("pKState", "pIState"),
+        "pIState": new PauseAndIdle("pIState", "pKState")
+      });
+      game.stateManager.initState("pKState");
+      new Timer(new Duration(milliseconds: 100), () {
+        expect(game.stateManager.currentState.name, equals("pIState"));
       });
     });
 
