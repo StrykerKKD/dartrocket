@@ -33,7 +33,7 @@ void main() {
       expect(game.stateManager.currentState.name, isNot("idleState2"));
     });
 
-    test('transition fromm KillState to IdleSatet', () {
+    test('transition from KillState to IdleSatet', () {
       game = new Game();
       game.stateManager.addStateMap({
         "killState": new KillState("killState", "idleState"),
@@ -45,7 +45,7 @@ void main() {
       });
     });
 
-    test('transition fromm PauseState to IdleState', () {
+    test('transition from PauseState to IdleState', () {
       game = new Game();
       game.stateManager.addStateMap({
         "pauseState": new PauseState("pauseState", "idleState"),
@@ -57,7 +57,7 @@ void main() {
       });
     });
 
-    test('complicated transition', () {
+    test('do a complicated transition', () {
       game = new Game();
       game.stateManager.addStateMap({
         "pKState": new PauseAndKillState("pKState", "pIState"),
