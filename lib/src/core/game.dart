@@ -59,6 +59,16 @@ class Game {
    * [Physics] object
    */
   Physics physics;
+  
+  /**
+   * [World] object
+   */
+  World world;
+  
+  /**
+   * [Camera] object
+   */
+  Camera camera;
 
   /**
    * Creates a new Game object.
@@ -95,6 +105,8 @@ class Game {
     stateManager = new StateManager(this);
     add = new GameObjectFactory();
     physics = new Physics();
+    world = new World(this);
+    camera = new Camera(this,world);
 
     stage.align = StageXL.StageAlign.NONE;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;

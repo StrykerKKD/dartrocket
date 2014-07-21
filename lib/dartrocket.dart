@@ -14,6 +14,8 @@ part "src/core/state.dart";
 part "src/core/group.dart";
 part "src/core/gameobjectfactory.dart";
 part "src/core/physics.dart";
+part "src/core/world.dart";
+part "src/core/camera.dart";
 
 part "src/gameobject/interactive_bitmap.dart";
 part "src/gameobject/sprite.dart";
