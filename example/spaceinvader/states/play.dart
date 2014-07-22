@@ -56,7 +56,7 @@ class Play extends State {
     
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
-      bullets.add(game.add.sprite('laserBlue01', addToStage: false)..vy = -500);
+      bullets.add(game.add.sprite('laserBlue01', addToWorld: false)..vy = -500);
     }
 
     Ufo ufo;
@@ -83,7 +83,7 @@ class Play extends State {
             ..y = player.y
             ..alive = true;
 
-        bullet.addToStage();
+        bullet.addToWorld();
         laserSound.play();
       }
     });
@@ -121,7 +121,7 @@ class Play extends State {
 
     game.physics.collison(ufos, bullets, (Ufo ufo, Sprite bullet) {
       ufo.alive = false;
-      bullet.removeFromStage();
+      bullet.removeFromWorld();
       scoreText.text = "Score: ${score+=10}";
     });
 

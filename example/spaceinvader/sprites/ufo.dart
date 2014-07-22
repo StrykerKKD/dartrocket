@@ -14,8 +14,7 @@ class Ufo extends Sprite {
 
     if (y > (game.stage.sourceHeight - height) || alive == false) {
       alive = false;
-      game.stage.removeChild(this);
-      game.stage.juggler.remove(this);
+      removeFromWorld();
     }
     if (!moving) {
       if (moveRight) {
