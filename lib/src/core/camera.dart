@@ -1,6 +1,6 @@
 part of dartrocket;
 
-class Camera extends StageXL.Sprite {
+class Camera extends StageXL.DisplayObjectContainer {
   Game _game;
   World _world;
   
