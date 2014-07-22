@@ -162,7 +162,8 @@ abstract class State extends Stream<String> {
   void _destructor() {
     
     game.add.currentContext = null;
-    game.stage.removeChildren();
+    game.camera.removeChildren();
+    game.world.removeChildren();
     game.stage.juggler.clear();
     Event.ALL_EVENT.forEach((event) {
       //killing stage eventlisteners
