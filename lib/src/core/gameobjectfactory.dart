@@ -49,11 +49,11 @@ class GameObjectFactory {
    */
   Sprite sprite(String resourceName, 
                 {String textureAtlasName: null, String resourceMode: null, 
-                 bool addToStage: true, bool isMovable: true}) {
+                 bool addToWorld: true, bool isMovable: true}) {
     
     return new Sprite.bitmapdata(currentContext, 
         _getBitmapData(resourceName,resourceMode,textureAtlasName),
-        addToStage:addToStage, isMovable: isMovable);
+        addToWorld:addToWorld, isMovable: isMovable);
 
   }
   
@@ -62,13 +62,13 @@ class GameObjectFactory {
    */
   List<Sprite> multipleSprite(int quantity, String resourceName, 
       {String textureAtlasName: null, String resourceMode: null, 
-       bool addToStage: true, bool isMovable: true}){
+       bool addToWorld: true, bool isMovable: true}){
       
     List<Sprite> _returnSpriteList = new List<Sprite>();
       
     for (int i;i < quantity;i++) {
       _returnSpriteList.add(sprite(resourceName, textureAtlasName: textureAtlasName, 
-                                   resourceMode: resourceMode, addToStage: addToStage,
+                                   resourceMode: resourceMode, addToWorld: addToWorld,
                                    isMovable: isMovable));
     }
       
@@ -81,11 +81,11 @@ class GameObjectFactory {
    */
   Button button(String resourceName, String text, 
                 {String textureAtlasName: null, String resourceMode: null,
-                 bool addToStage: true}) {
+                 bool addToWorld: true}) {
     
     return new Button.bitmapdata(currentContext, 
         _getBitmapData(resourceName,resourceMode,textureAtlasName),text,
-        addToStage: addToStage);
+        addToWorld: addToWorld);
     
   }
   
@@ -94,10 +94,10 @@ class GameObjectFactory {
    */
   Text text(String text, 
             {String font: 'Arial', int size: 14, int color: StageXL.Color.Black,
-             bool addToStage:true}) {
+             bool addToWorld:true}) {
     
     return new Text(currentContext,text,font:font, size:size,color:color, 
-        addToStage: addToStage);
+        addToWorld: addToWorld);
   }
   
   /**
@@ -107,12 +107,12 @@ class GameObjectFactory {
    */
   Background background(String resourceName, 
                         {String textureAtlasName: null, String resourceMode: null,
-                          bool isMovable: false, bool addToStage: true, 
+                          bool isMovable: false, bool addToWorld: true, 
                           String repeatMode: null, String scaleMode: null}) {
     
     return new Background.bitmapdata(currentContext, 
         _getBitmapData(resourceName, resourceMode, textureAtlasName),
-        isMovable: isMovable, addToStage: addToStage, 
+        isMovable: isMovable, addToWorld: addToWorld, 
         repeatMode: repeatMode, scaleMode: scaleMode);
     
   }

@@ -10,19 +10,19 @@ class Text extends StageXL.TextField {
    * Makes a new text object.
    */
   Text(State context, String text, {String font: 'Arial', int size: 14, int color:
-      StageXL.Color.Black,bool addToStage:true}) : super() {
+      StageXL.Color.Black,bool addToWorld:true}) : super() {
     
     this.text = text;
     
     this.defaultTextFormat = new StageXL.TextFormat(font, size, color);
     
     _context = context;
-    if(addToStage){
-      _context.game.stage.addChild(this);
+    if(addToWorld){
+      _context.game.world.addChild(this);
     }
   }
   
-  addToStage(){
-    _context.game.stage.addChild(this);
+  addToWorld(){
+    _context.game.world.addChild(this);
   }
 }

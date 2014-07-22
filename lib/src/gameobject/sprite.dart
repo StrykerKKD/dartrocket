@@ -63,11 +63,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * 
    * */
   Sprite.bitmapdata(State stateContext, StageXL.BitmapData bitmapData, 
-      {bool addToStage: true, bool isMovable: true}) : super(bitmapData) {
+      {bool addToWorld: true, bool isMovable: true}) : super(bitmapData) {
     this.isMovable = isMovable;
     _context = stateContext;
-    if (addToStage) {
-      this.addToStage();
+    if (addToWorld) {
+      this.addToWorld();
     }
   }
 
@@ -77,10 +77,10 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * * resourceName: name of the image in the resourcesManager
    */
   Sprite.image(State stateContext, String resourceName, 
-      {bool addToStage: true, bool isMovable: true}) 
+      {bool addToWorld: true, bool isMovable: true}) 
     : this.bitmapdata(stateContext,
         stateContext.game.resourceManager.getBitmapData(resourceName), 
-        addToStage: addToStage, isMovable: isMovable);
+        addToWorld: addToWorld, isMovable: isMovable);
   
   /**
    * Create a Sprite object from an image, which is inside a texture atlas(JSON).
@@ -89,11 +89,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * * resourceName: name of the resource in the texture atlas(image name without extension) 
    */
   Sprite.textureatlas(State stateContext, String resourceName, 
-      String textureAtlasName, {bool addToStage: true, bool isMovable: true}) 
+      String textureAtlasName, {bool addToWorld: true, bool isMovable: true}) 
     : this.bitmapdata(stateContext, 
         stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
           .getBitmapData(resourceName), 
-          addToStage: addToStage, isMovable: isMovable);
+          addToWorld: addToWorld, isMovable: isMovable);
   
   /**
    * Controlls how the object is moving.
@@ -103,7 +103,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   bool advanceTime(num time) {
     if ((x <= 0 || x >= _context.game.stage.sourceWidth) || 
         (y <= 0 || y >= _context.game.stage.sourceHeight)) {
-      removeFromStage();
+      removeFromWorld();
     }
     
     x = x + vx * time;
@@ -120,8 +120,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Sprite will be added to the stage and to the juggler if the sprite is moveable.
    */
-  addToStage() {
-    _context.game.stage.addChild(this);
+  addToWorld() {
+    _context.game.world.addChild(this);
     if (isMovable) {
       _context.game.stage.juggler.add(this);
     }
@@ -130,9 +130,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Removes the sprite from the stage and juggler.
    */
-  removeFromStage() {
+  removeFromWorld() {
     alive = false;
-    _context.game.stage.removeChild(this);
+    _context.game.world.removeChild(this);
     if (isMovable) {
       _context.game.stage.juggler.remove(this);
     }

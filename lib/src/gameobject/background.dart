@@ -42,7 +42,7 @@ class Background implements StageXL.Animatable {
    * Create tile based background from [StageXL.BitmapData].
    */
   Background.bitmapdata(State stateContext, StageXL.BitmapData bitmapData, 
-      {bool isMovable: false, bool addToStage: true, 
+      {bool isMovable: false, bool addToWorld: true, 
         String repeatMode: DEFAULT_REPEAT_MODE, 
         String scaleMode: DEFAULT_SCALE_MODE}) {
     
@@ -112,8 +112,8 @@ class Background implements StageXL.Animatable {
     }
 
     this.isMovable = isMovable;
-    if (addToStage) {
-      this.addToStage();
+    if (addToWorld) {
+      this.addToWorld();
     }
   }
   
@@ -121,14 +121,14 @@ class Background implements StageXL.Animatable {
    * Create static colored background. 
    */
   Background.color(State stateContext, 
-       {bool isMovable: false, bool addToStage: true, 
+       {bool isMovable: false, bool addToWorld: true, 
         int width: 1, int height: 1, bool transparent: false, 
         int color: 4294967295, num pixelRatio: 1.0,
         String repeatMode: DEFAULT_REPEAT_MODE, 
         String scaleMode: DEFAULT_SCALE_MODE})
       : this.bitmapdata(stateContext, 
           new StageXL.BitmapData(width,height,transparent,color,pixelRatio),
-          isMovable: isMovable, addToStage: addToStage,
+          isMovable: isMovable, addToWorld: addToWorld,
           repeatMode: repeatMode, scaleMode: scaleMode
       );
 
@@ -138,12 +138,12 @@ class Background implements StageXL.Animatable {
    * * resourceName: name of the image in the resourcesManager
    */
   Background.image(State stateContext, String resourceName, 
-      {bool isMovable: false, bool addToStage: true, 
+      {bool isMovable: false, bool addToWorld: true, 
        String repeatMode: DEFAULT_REPEAT_MODE, 
        String scaleMode: DEFAULT_SCALE_MODE}) 
     : this.bitmapdata(stateContext, 
         stateContext.game.resourceManager.getBitmapData(resourceName), 
-        isMovable: isMovable, addToStage: addToStage, 
+        isMovable: isMovable, addToWorld: addToWorld, 
         repeatMode: repeatMode, scaleMode: scaleMode
     );
 
@@ -155,19 +155,19 @@ class Background implements StageXL.Animatable {
    */
   Background.textureatlas(State stateContext, String resourceName,
       String textureAtlasName,  
-      {bool isMovable: false, bool addToStage: true, 
+      {bool isMovable: false, bool addToWorld: true, 
        String repeatMode: DEFAULT_REPEAT_MODE, 
        String scaleMode: DEFAULT_SCALE_MODE}) 
     : this.bitmapdata( stateContext, 
       stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
         .getBitmapData(resourceName), 
-      isMovable: isMovable, addToStage: addToStage, 
+      isMovable: isMovable, addToWorld: addToWorld, 
       repeatMode: repeatMode, scaleMode: scaleMode
     );
 
-  addToStage() {
+  addToWorld() {
     _backgroundTileList.forEach((tile) {
-      _context.game.stage.addChild(tile);
+      _context.game.world.addChild(tile);
     });
     if (isMovable) {
       _context.game.stage.juggler.add(this);

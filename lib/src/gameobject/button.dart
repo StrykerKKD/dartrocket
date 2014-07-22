@@ -25,10 +25,10 @@ class Button extends InteractiveBitmap {
    * * addToStage: add the button to the stage?
    */
   Button.bitmapdata(State stateContext, StageXL.BitmapData bitmapData, String
-      text, {bool addToStage: true}) : super(bitmapData) {
+      text, {bool addToWorld: true}) : super(bitmapData) {
     _context = stateContext;
 
-    buttonText = new Text(stateContext, text, addToStage: false)
+    buttonText = new Text(stateContext, text, addToWorld: false)
         ..width = width
         ..height = height
         ..defaultTextFormat.align = StageXL.TextFormatAlign.CENTER
@@ -38,8 +38,8 @@ class Button extends InteractiveBitmap {
             buttonText.textHeight) ~/ 2
         ..text = text;
 
-    if (addToStage) {
-      this.addToStage();
+    if (addToWorld) {
+      this.addToWorld();
     }
   }
   
@@ -49,10 +49,10 @@ class Button extends InteractiveBitmap {
    * * resourceName: name of the image in the resourcesManager
    */
   Button.image(State stateContext, String resourceName, String text, {bool
-      addToStage: true}) 
+      addToWorld: true}) 
     : this.bitmapdata(stateContext, 
         stateContext.game.resourceManager.getBitmapData(resourceName), 
-        text, addToStage: addToStage);
+        text, addToWorld: addToWorld);
   
   /**
    * Create Button from an image inside a texture atlas.
@@ -61,11 +61,11 @@ class Button extends InteractiveBitmap {
    * * resourceName: name of the resource in the texture atlas(image name without extension)
    */
   Button.textureatlas(State stateContext, String resourceName, 
-      String textureAtlasName, String text, {bool addToStage: true}) 
+      String textureAtlasName, String text, {bool addToWorld: true}) 
     : this.bitmapdata(stateContext, 
         stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
           .getBitmapData(resourceName), 
-        text, addToStage: addToStage);
+        text, addToWorld: addToWorld);
 
   set x(int x) {
     super.x = x;
@@ -77,9 +77,9 @@ class Button extends InteractiveBitmap {
     buttonText.y = y;
   }
 
-  addToStage() {
-    _context.game.stage.addChild(this);
-    _context.game.stage.addChild(buttonText);
+  addToWorld() {
+    _context.game.world.addChild(this);
+    _context.game.world.addChild(buttonText);
   }
 
   State get context => _context;
