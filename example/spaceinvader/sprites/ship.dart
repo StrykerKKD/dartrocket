@@ -13,7 +13,7 @@ class Ship extends Sprite {
 
     if (movingLeft && x >= 0) {
       x = x - vx * time;
-    } else if (movingRight && x <= context.game.stage.sourceWidth - width) {
+    } else if (movingRight && x <= context.game.world.width - width) {
       x = x + vx * time;
     }
     return true;

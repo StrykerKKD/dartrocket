@@ -153,7 +153,7 @@ abstract class State extends Stream<String> {
     game.resourceManager.load().then((_) {
       game.add.currentContext = game.stateManager.currentState;
       create();
-      game.stage.onEnterFrame.listen((_){
+      game.world.onEnterFrame.listen((_){
         update();
       });
     });
@@ -164,11 +164,11 @@ abstract class State extends Stream<String> {
     game.add.currentContext = null;
     game.camera.removeChildren();
     game.world.removeChildren();
-    game.stage.juggler.clear();
+    game.world.juggler.clear();
     Event.ALL_EVENT.forEach((event) {
       //killing stage eventlisteners
-      if (game.stage.hasEventListener(event)) {
-        game.stage.removeEventListeners(event);
+      if (game.world.hasEventListener(event)) {
+        game.world.removeEventListeners(event);
       }
     });
 

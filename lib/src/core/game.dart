@@ -105,7 +105,7 @@ class Game {
     stateManager = new StateManager(this);
     add = new GameObjectFactory();
     physics = new Physics();
-    world = new World(this);
+    world = new World(this,width,height);
     camera = new Camera(this,world);
 
     stage.align = StageXL.StageAlign.NONE;
@@ -116,7 +116,7 @@ class Game {
       StageXL.Multitouch.inputMode = StageXL.MultitouchInputMode.TOUCH_POINT;
     }
 
-    stage.focus = stage;
+    stage.focus = world;
 
   }
 

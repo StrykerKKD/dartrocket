@@ -25,12 +25,12 @@ class Play extends State {
     if(game.isMobile){
       Button leftButton = game.add.button('flatDark23', 'L')
         ..x = 0
-        ..y = game.stage.sourceHeight - 100;
+        ..y = game.world.height - 100;
 
       Button rightButton = game.add.button('flatDark24', 'R');
       rightButton
-        ..x = game.stage.sourceWidth - rightButton.width.toInt()
-        ..y = game.stage.sourceHeight - 100;
+        ..x = game.world.width - rightButton.width.toInt()
+        ..y = game.world.height - 100;
 
       leftButton.onTouchBegin.listen((_) {
         player.movingLeft = true;
@@ -50,8 +50,8 @@ class Play extends State {
     }
     
     player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader')
-      ..x = game.stage.sourceWidth ~/ 2
-      ..y = game.stage.sourceHeight - 200
+      ..x = game.world.width ~/ 2
+      ..y = game.world.height - 200
       ..vx = 300;
     
     bullets = new Group<Sprite>();
@@ -88,7 +88,7 @@ class Play extends State {
       }
     });
 
-    game.stage.onKeyDown.listen((value) {
+    game.world.onKeyDown.listen((value) {
       switch (value.keyCode) {
         case KeyCode.LEFT:
           player.movingLeft = true;
@@ -100,7 +100,7 @@ class Play extends State {
 
     });
 
-    game.stage.onKeyUp.listen((value) {
+    game.world.onKeyUp.listen((value) {
       switch (value.keyCode) {
         case KeyCode.LEFT:
           player.movingLeft = false;
