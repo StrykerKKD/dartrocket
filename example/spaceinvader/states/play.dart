@@ -5,24 +5,26 @@ class Play extends State {
 
   int score;
   Text scoreText;
-  
+
   Ship player;
   Group<Sprite> bullets;
   Group<Ufo> ufos;
-  
+
   Timer bulletTimer;
 
   create() {
 
-    game.add.background('purple',isMovable: true, 
+    game.add.background(
+        'purple',
+        isMovable: true,
         repeatMode: Background.REPEAT_XY)
         ..vx = 100
         ..vy = 250;
 
     score = 0;
     scoreText = game.add.text("Score: $score", size: 20);
-    
-    if(game.isMobile){
+
+    /*if(game.isMobile){
       Button leftButton = game.add.button('flatDark23', 'L')
         ..x = 0
         ..y = game.world.height - 100;
@@ -47,13 +49,13 @@ class Play extends State {
       rightButton.onTouchEnd.listen((_) {
         player.movingRight = false;
       });
-    }
-    
+    }*/
+
     player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader')
-      ..x = game.world.width ~/ 2
-      ..y = game.world.height - 200
-      ..vx = 300;
-    
+        ..x = game.world.width ~/ 2
+        ..y = game.world.height - 200
+        ..vx = 300;
+
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
       bullets.add(game.add.sprite('laserBlue01', addToWorld: false)..vy = -500);
@@ -88,13 +90,13 @@ class Play extends State {
       }
     });
 
-    game.world.onKeyDown.listen((value) {
+    /*game.world.onKeyDown.listen((value) {
       switch (value.keyCode) {
         case KeyCode.LEFT:
-          player.movingLeft = true;
+          player.goLeft();
           break;
         case KeyCode.RIGHT:
-          player.movingRight = true;
+          player.goRight();
           break;
       }
 
@@ -103,14 +105,24 @@ class Play extends State {
     game.world.onKeyUp.listen((value) {
       switch (value.keyCode) {
         case KeyCode.LEFT:
-          player.movingLeft = false;
+          player.nodirection();
           break;
         case KeyCode.RIGHT:
-          player.movingRight = false;
+          player.nodirection();
           break;
       }
-    });
-    
+    });*/
+
+    game.keyboard.checkKey(
+        KeyCode.LEFT,
+        () => player.moveLeft = true,
+        () => player.moveLeft = false);
+
+    game.keyboard.checkKey(
+        KeyCode.RIGHT,
+        () => player.moveRight = true,
+        () => player.moveRight = false);
+
   }
 
   update() {
