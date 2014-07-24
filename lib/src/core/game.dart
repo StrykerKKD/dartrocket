@@ -69,6 +69,11 @@ class Game {
    * [Camera] object
    */
   Camera camera;
+  
+  /**
+   * [Keyboard] object
+   */
+  Keyboard keyboard;
 
   /**
    * Creates a new Game object.
@@ -107,6 +112,7 @@ class Game {
     physics = new Physics();
     world = new World(this,width,height);
     camera = new Camera(this,world);
+    keyboard = new Keyboard(this);
 
     stage.align = StageXL.StageAlign.NONE;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;
