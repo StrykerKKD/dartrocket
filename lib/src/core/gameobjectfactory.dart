@@ -124,6 +124,12 @@ class GameObjectFactory {
     return new Sound(currentContext, soundName, volume: volume, pan: pan);
   }
   
+  StageXL.Tween tween(Sprite sprite, num time, 
+                      [StageXL.EaseFunction transitionFunction = 
+                       StageXL.TransitionFunction.linear]) {
+    return new StageXL.Tween(sprite, time, transitionFunction);
+  }
+  
   
   StageXL.BitmapData _getBitmapData(String resourceName,
                                     [String resourceMode,
