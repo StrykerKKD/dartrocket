@@ -101,8 +101,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * You can make the sprite move with changing the vx or vy value.
    */
   bool advanceTime(num time) {
-    if ((x <= 0 || x >= _context.game.stage.sourceWidth) || 
-        (y <= 0 || y >= _context.game.stage.sourceHeight)) {
+    if ((x <= 0 || x >= _context.game.world.width) || 
+        (y <= 0 || y >= _context.game.world.height)) {
       removeFromWorld();
     }
     
@@ -123,7 +123,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   addToWorld() {
     _context.game.world.addChild(this);
     if (isMovable) {
-      _context.game.stage.juggler.add(this);
+      _context.game.world.juggler.add(this);
     }
   }
 
@@ -134,7 +134,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     alive = false;
     _context.game.world.removeChild(this);
     if (isMovable) {
-      _context.game.stage.juggler.remove(this);
+      _context.game.world.juggler.remove(this);
     }
   }
 
