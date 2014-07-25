@@ -6,7 +6,7 @@ class Keyboard {
 
   Keyboard(this._game);
 
-  void downAndUpKeyHandler(keyCode, Function downHandler, Function upHandler) {
+  void onDownAndUpKeyHandler(keyCode, Function downHandler, Function upHandler) {
     _game.world.onKeyDown.listen((keyboarEvent) {
       if (keyboarEvent.keyCode == keyCode) {
         downHandler();
