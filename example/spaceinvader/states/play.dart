@@ -90,38 +90,15 @@ class Play extends State {
       }
     });
 
-    /*game.world.onKeyDown.listen((value) {
-      switch (value.keyCode) {
-        case KeyCode.LEFT:
-          player.goLeft();
-          break;
-        case KeyCode.RIGHT:
-          player.goRight();
-          break;
-      }
-
-    });
-
-    game.world.onKeyUp.listen((value) {
-      switch (value.keyCode) {
-        case KeyCode.LEFT:
-          player.nodirection();
-          break;
-        case KeyCode.RIGHT:
-          player.nodirection();
-          break;
-      }
-    });*/
-
-    game.keyboard.checkKey(
+    game.keyboard.downAndUpKeyHandler(
         KeyCode.LEFT,
-        () => player.moveLeft = true,
-        () => player.moveLeft = false);
+        player.goLeft,
+        player.stopLeft);
 
-    game.keyboard.checkKey(
+    game.keyboard.downAndUpKeyHandler(
         KeyCode.RIGHT,
-        () => player.moveRight = true,
-        () => player.moveRight = false);
+        player.goRight,
+        player.stopRight);
 
   }
 
