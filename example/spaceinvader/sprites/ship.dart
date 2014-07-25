@@ -35,7 +35,7 @@ class Ship extends Sprite {
     movingLeft = false;
   }
 
-  void goRight([int distanceX]) {
+  void goRight() {
     movingRight = true;
   }
 
