@@ -2,11 +2,9 @@ part of spaceinvader;
 
 class Ship extends Sprite {
 
-  bool moveLeft = false;
-  bool moveRight = false;
-  int dirLeft = -1;
-  int dirRight = 1;
-  int xDir = 0;
+  bool moving = true;
+  bool movingLeft = false;
+  bool movingRight = false;
 
   Ship.textureatlas(stateContext, resourceName, textureAtlasName) :
       super.textureatlas(
@@ -17,23 +15,33 @@ class Ship extends Sprite {
   @override
   bool advanceTime(num time) {
 
-    /*if (!movingRight && movingLeft) {
+    if (!movingRight && movingLeft) {
       x = x - vx * time;
-    } 
+    }
     if (!movingLeft && movingRight) {
       x = x + vx * time;
-    }*/
-    
-    if (moveLeft) {
-      xDir += dirLeft;
     }
-    if (moveRight) {
-      xDir += dirRight;
-    }
-    x = x + xDir * vx * time;
-    xDir = 0;
-    
+
     return true;
   }
+
+  Timer actualTimer;
+
+  void goLeft() {
+    movingLeft = true;
+  }
+
+  void stopLeft() {
+    movingLeft = false;
+  }
+
+  void goRight([int distanceX]) {
+    movingRight = true;
+  }
+
+  void stopRight() {
+    movingRight = false;
+  }
+
 
 }
