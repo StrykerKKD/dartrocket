@@ -74,6 +74,11 @@ class Game {
    * [Keyboard] object
    */
   Keyboard keyboard;
+  
+  /**
+   * [Touch] object
+   */
+  Touch touch;
 
   /**
    * Creates a new Game object.
@@ -113,6 +118,7 @@ class Game {
     world = new World(this,width,height);
     camera = new Camera(this,world);
     keyboard = new Keyboard(this);
+    touch = new Touch(this);
 
     stage.align = StageXL.StageAlign.NONE;
     stage.scaleMode = StageXL.StageScaleMode.SHOW_ALL;
