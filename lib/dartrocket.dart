@@ -26,5 +26,6 @@ part "src/gameobject/sound.dart";
 part "src/gameobject/button.dart";
 
 part "src/input/keyboard.dart";
+part "src/input/touch.dart";
 
 part "src/constants/event.dart";
