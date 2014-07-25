@@ -24,33 +24,6 @@ class Play extends State {
     score = 0;
     scoreText = game.add.text("Score: $score", size: 20);
 
-    /*if(game.isMobile){
-      Button leftButton = game.add.button('flatDark23', 'L')
-        ..x = 0
-        ..y = game.world.height - 100;
-
-      Button rightButton = game.add.button('flatDark24', 'R');
-      rightButton
-        ..x = game.world.width - rightButton.width.toInt()
-        ..y = game.world.height - 100;
-
-      leftButton.onTouchBegin.listen((_) {
-        player.movingLeft = true;
-      });
-
-      leftButton.onTouchEnd.listen((_) {
-        player.movingLeft = false;
-      });
-
-      rightButton.onTouchBegin.listen((_) {
-        player.movingRight = true;
-      });
-
-      rightButton.onTouchEnd.listen((_) {
-        player.movingRight = false;
-      });
-    }*/
-
     player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader')
         ..x = game.world.width ~/ 2
         ..y = game.world.height - 200
@@ -90,15 +63,39 @@ class Play extends State {
       }
     });
 
-    game.keyboard.downAndUpKeyHandler(
-        KeyCode.LEFT,
-        player.goLeft,
-        player.stopLeft);
 
-    game.keyboard.downAndUpKeyHandler(
-        KeyCode.RIGHT,
-        player.goRight,
-        player.stopRight);
+
+    if (game.isMobile) {
+
+      Button leftButton = game.add.button('flatDark23', 'L')
+          ..x = 0
+          ..y = game.world.height - 100;
+
+      Button rightButton = game.add.button('flatDark24', 'R');
+      rightButton
+          ..x = game.world.width - rightButton.width.toInt()
+          ..y = game.world.height - 100;
+
+      game.touch.onTouchBeginAndEnd(leftButton, player.goLeft, player.stopLeft);
+
+      game.touch.onTouchBeginAndEnd(
+          rightButton,
+          player.goRight,
+          player.stopRight);
+
+    } else {
+
+      game.keyboard.onDownAndUpKeyHandler(
+          KeyCode.LEFT,
+          player.goLeft,
+          player.stopLeft);
+
+      game.keyboard.onDownAndUpKeyHandler(
+          KeyCode.RIGHT,
+          player.goRight,
+          player.stopRight);
+
+    }
 
   }
 
