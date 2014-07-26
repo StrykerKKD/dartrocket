@@ -19,7 +19,6 @@ This is how the most basic structure looks like with only one state.
  
   <body>   
     <script type="application/dart" src="index.dart"></script>
-    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
     <script src="packages/browser/dart.js"></script>
   </body>
 </html>
@@ -53,8 +52,12 @@ class Play extends State {
     //loading resources here(image,sound, textureatlas etc..)
   }
   
-  run() {
-    //game logic goes here
+  create() {
+    //create gameobjects and event handlers    
+  }
+  
+  update(){
+    //game loop: usually for handling physics
   }
 }
 ```
