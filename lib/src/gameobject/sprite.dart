@@ -35,6 +35,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Does the sprite move?
    */
   bool isMovable;
+  
+  bool _movingUp = false;
+  bool _movingDown = false;
+  bool _movingLeft = false;
+  bool _movingRight = false;
 
   State _context;
 
@@ -46,12 +51,12 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Horizontal speed of the sprite.
    * */
-  num vx = 0;
+  num speedX = 0;
 
   /**
    * Vertical speed of the sprite
    * */
-  num vy = 0;
+  num speedY = 0;
 
   /**
    * Create a Sprite object from [StageXL.BitmapData].
@@ -106,8 +111,20 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       removeFromWorld();
     }
     
-    x = x + vx * time;
-    y = y + vy * time;
+    if(!_movingDown && _movingUp){
+      y = y - speedY * time;
+    }
+    if(!_movingUp && _movingDown){
+      y = y + speedY * time;
+    }
+    if(!_movingRight && _movingLeft){
+      x = x - speedX * time;  
+    }
+    if(!_movingLeft && _movingRight){
+      x = x + speedX * time;     
+    }
+    //x = x + speedX * time;
+    //y = y + speedY * time;
   }
   /**
    * Put the pivot point into the center of the sprite.
@@ -142,5 +159,42 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Gets the context(State) in which the Sprite was created.
    */
   State get context => _context;
+  
+  void go(String direction, {int speedX, int speedY}){
+    switch(direction){
+      case 'up':
+        _movingUp = true;
+        break;
+      case 'down':
+        _movingDown = true;
+        break;
+      case 'left':
+        _movingLeft = true;
+        break;
+      case 'right':
+        _movingRight = true;
+        break;
+    }
+    if(speedX != null) this.speedX = speedX;
+    if(speedY != null) this.speedY = speedY;
+    
+  }
+  
+  void stop(String direction){
+    switch(direction){
+      case 'up':
+        _movingUp = false;
+          break;
+      case 'down':
+        _movingDown = false;
+        break;
+      case 'left':
+        _movingLeft = false;
+        break;
+      case 'right':
+        _movingRight = false;
+        break;
+    }
+  }
 
 }

@@ -16,10 +16,10 @@ class Ship extends Sprite {
   bool advanceTime(num time) {
 
     if (!movingRight && movingLeft) {
-      x = x - vx * time;
+      x = x - speedX * time;
     }
     if (!movingLeft && movingRight) {
-      x = x + vx * time;
+      x = x + speedX * time;
     }
 
     return true;

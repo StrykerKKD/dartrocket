@@ -27,11 +27,12 @@ class Play extends State {
     player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader')
         ..x = game.world.width ~/ 2
         ..y = game.world.height - 200
-        ..vx = 300;
+        ..speedX = 300;
 
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
-      bullets.add(game.add.sprite('laserBlue01', addToWorld: false)..vy = -500);
+      bullets.add(
+          game.add.sprite('laserBlue01', addToWorld: false)..go("up", speedY: 500));
     }
 
     Ufo ufo;
@@ -41,7 +42,7 @@ class Play extends State {
         ufo = new Ufo.textureatlas(this, 'ufoRed', 'spaceinvader')
             ..x = (i * 100 + 10)
             ..y = 100 * j
-            ..vy = 30
+            ..speedY = 30
             ..alive = true;
         ufos.add(ufo);
       }

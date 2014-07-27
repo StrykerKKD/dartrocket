@@ -31,7 +31,7 @@ class Ufo extends Sprite {
           };
 
     }
-    y = y + vy * time;
+    y = y + speedY * time;
     return true;
   }
 }
