@@ -8,7 +8,6 @@ part 'states/menu.dart';
 part 'states/play.dart';
 part 'states/end.dart';
 
-part 'sprites/ship.dart';
 part 'sprites/ufo.dart';
 
 
