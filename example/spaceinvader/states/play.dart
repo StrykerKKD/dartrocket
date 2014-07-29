@@ -6,7 +6,7 @@ class Play extends State {
   int score;
   Text scoreText;
 
-  Ship player;
+  Sprite player;
   Group<Sprite> bullets;
   Group<Ufo> ufos;
 
@@ -24,10 +24,9 @@ class Play extends State {
     score = 0;
     scoreText = game.add.text("Score: $score", size: 20);
 
-    player = new Ship.textureatlas(this, 'playerShip1_blue', 'spaceinvader')
+    player = game.add.sprite('playerShip1_blue')
         ..x = game.world.width ~/ 2
-        ..y = game.world.height - 200
-        ..speedX = 300;
+        ..y = game.world.height - 200;
 
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
@@ -65,7 +64,7 @@ class Play extends State {
     });
 
 
-
+    player.speedX = 300;
     if (game.isMobile) {
 
       Button leftButton = game.add.button('flatDark23', 'L')
@@ -77,30 +76,44 @@ class Play extends State {
           ..x = game.world.width - rightButton.width.toInt()
           ..y = game.world.height - 100;
 
-      game.touch.onTouchBeginAndEnd(leftButton, player.goLeft, player.stopLeft);
+      game.touch.onTouchBeginAndEnd(
+          leftButton,
+          () => player.go('left'),
+          () => player.stop('left'));
 
       game.touch.onTouchBeginAndEnd(
           rightButton,
-          player.goRight,
-          player.stopRight);
+          () => player.go('right'),
+          () => player.stop('right'));
 
     } else {
 
       game.keyboard.onDownAndUpKeyHandler(
           KeyCode.LEFT,
-          player.goLeft,
-          player.stopLeft);
+          () => player.go('left'),
+          () => player.stop('left'));
 
       game.keyboard.onDownAndUpKeyHandler(
           KeyCode.RIGHT,
-          player.goRight,
-          player.stopRight);
+          () => player.go('right'),
+          () => player.stop('right'));
 
     }
 
+
+    //player.go('none', speedX: 0, speedY: 0);
   }
 
   update() {
+
+    /*player.speedX = 0;
+    if(game.keyboard.isDown(KeyCode.LEFT)){
+      player.speedX = -300;
+    }else if(game.keyboard.isDown(KeyCode.RIGHT)){
+      player.speedX = 300;
+    }*/
+
+
     if (!ufos.anyAlive()) {
       bulletTimer.cancel();
       killState();
@@ -112,7 +125,7 @@ class Play extends State {
       scoreText.text = "Score: ${score+=10}";
     });
 
-    game.physics.collison(ufos, player, (Ufo ufo, Ship player) {
+    game.physics.collison(ufos, player, (Ufo ufo, Sprite player) {
       bulletTimer.cancel();
       killState();
     });
