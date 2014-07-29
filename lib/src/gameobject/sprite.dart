@@ -40,6 +40,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   bool _movingDown = false;
   bool _movingLeft = false;
   bool _movingRight = false;
+  bool _movingFree = false;
 
   State _context;
 
@@ -111,6 +112,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       removeFromWorld();
     }
     
+    if(_movingFree){
+      x = x + speedX * time;
+      y = y + speedY * time;
+    }
+    
     if(!_movingDown && _movingUp){
       y = y - speedY * time;
     }
@@ -123,8 +129,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     if(!_movingLeft && _movingRight){
       x = x + speedX * time;     
     }
-    //x = x + speedX * time;
-    //y = y + speedY * time;
+    
   }
   /**
    * Put the pivot point into the center of the sprite.
@@ -174,9 +179,19 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       case 'right':
         _movingRight = true;
         break;
+      case 'none':
+        _movingFree = true;
+        
+        if(speedX != null) this.speedX = speedX;
+        if(speedY != null) this.speedY = speedY;
+        
+        break;
     }
-    if(speedX != null) this.speedX = speedX;
-    if(speedY != null) this.speedY = speedY;
+    
+    if(speedX != null && direction != 'none') this.speedX = speedX.abs();
+    if(speedY != null && direction != 'none') this.speedY = speedY.abs();
+    
+    
     
   }
   
@@ -193,6 +208,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         break;
       case 'right':
         _movingRight = false;
+        break;
+      case 'none':
+        _movingFree = false;
         break;
     }
   }
