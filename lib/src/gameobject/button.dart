@@ -76,12 +76,18 @@ class Button extends InteractiveBitmap {
     super.y = y;
     buttonText.y = y;
   }
-
+  
+  /**
+   * Add button to the world.
+   */
   addToWorld() {
     _context.game.world.addChild(this);
     _context.game.world.addChild(buttonText);
   }
-
+  
+  /**
+   * Get state which the button was made.
+   */
   State get context => _context;
 
 }

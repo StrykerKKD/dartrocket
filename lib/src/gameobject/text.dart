@@ -21,7 +21,9 @@ class Text extends StageXL.TextField {
       this.addToWorld();
     }
   }
-  
+  /**
+   * Add text to the world.
+   */
   addToWorld(){
     _context.game.world.addChild(this);
   }

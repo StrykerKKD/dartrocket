@@ -164,7 +164,10 @@ class Background implements StageXL.Animatable {
       isMovable: isMovable, addToWorld: addToWorld, 
       repeatMode: repeatMode, scaleMode: scaleMode
     );
-
+  
+  /**
+   * Add background to the world.
+   */
   addToWorld() {
     _backgroundTileList.forEach((tile) {
       _context.game.world.addChild(tile);
@@ -201,6 +204,7 @@ class Background implements StageXL.Animatable {
       }
       
     });
+    return true;
 
   }
 }
