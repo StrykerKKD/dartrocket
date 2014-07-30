@@ -130,6 +130,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       x = x + speedX * time;     
     }
     
+    return true;
+    
   }
   /**
    * Put the pivot point into the center of the sprite.
@@ -190,8 +192,6 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     
     if(speedX != null && direction != 'none') this.speedX = speedX.abs();
     if(speedY != null && direction != 'none') this.speedY = speedY.abs();
-    
-    
     
   }
   
