@@ -31,7 +31,7 @@ class Play extends State {
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
       bullets.add(
-          game.add.sprite('laserBlue01', addToWorld: false)..go("up", speedY: 500));
+          game.add.sprite('laserBlue01', addToWorld: false)..go(speedY: 500));
     }
 
     Ufo ufo;
@@ -64,7 +64,7 @@ class Play extends State {
     });
 
 
-    player.speedX = 300;
+    /*player.speedX = 300;
     if (game.isMobile) {
 
       Button leftButton = game.add.button('flatDark23', 'L')
@@ -98,7 +98,7 @@ class Play extends State {
           () => player.go('right'),
           () => player.stop('right'));
 
-    }
+    }*/
 
 
     //player.go('none', speedX: 0, speedY: 0);

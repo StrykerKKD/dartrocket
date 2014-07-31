@@ -41,6 +41,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   bool _movingLeft = false;
   bool _movingRight = false;
   bool _movingFree = false;
+  bool _canMove = false;
 
   State _context;
 
@@ -52,12 +53,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Horizontal speed of the sprite.
    * */
-  num speedX = 0;
+  num _speedX = 0;
 
   /**
    * Vertical speed of the sprite
    * */
-  num speedY = 0;
+  num _speedY = 0;
+  
+  num directionX = 1;
+  
+  num directionY = 1;
 
   /**
    * Create a Sprite object from [StageXL.BitmapData].
@@ -112,23 +117,24 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       removeFromWorld();
     }
     
-    if(_movingFree){
-      x = x + speedX * time;
-      y = y + speedY * time;
-    }
-    
     if(!_movingDown && _movingUp){
-      y = y - speedY * time;
+      directionY = -1;
     }
     if(!_movingUp && _movingDown){
-      y = y + speedY * time;
+      directionY = 1;
     }
     if(!_movingRight && _movingLeft){
-      x = x - speedX * time;  
+      directionX = -1; 
     }
     if(!_movingLeft && _movingRight){
-      x = x + speedX * time;     
+      directionX = 1;    
     }
+    
+    if(_canMove){
+      x = x + directionX * _speedX * time;
+      y = y + directionY * _speedY * time;
+    }
+    
     
     return true;
     
@@ -167,52 +173,34 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   State get context => _context;
   
-  void go(String direction, {int speedX, int speedY}){
-    switch(direction){
-      case 'up':
-        _movingUp = true;
-        break;
-      case 'down':
-        _movingDown = true;
-        break;
-      case 'left':
-        _movingLeft = true;
-        break;
-      case 'right':
-        _movingRight = true;
-        break;
-      case 'none':
-        _movingFree = true;
-        
-        if(speedX != null) this.speedX = speedX;
-        if(speedY != null) this.speedY = speedY;
-        
-        break;
-    }
+  void go({int speedX, int speedY}){
+    if(speedX != null) this.speedX = speedX;
+    if(speedY != null) this.speedY = speedY;
     
-    if(speedX != null && direction != 'none') this.speedX = speedX.abs();
-    if(speedY != null && direction != 'none') this.speedY = speedY.abs();
+    _canMove = true;
     
   }
   
-  void stop(String direction){
-    switch(direction){
-      case 'up':
-        _movingUp = false;
-          break;
-      case 'down':
-        _movingDown = false;
-        break;
-      case 'left':
-        _movingLeft = false;
-        break;
-      case 'right':
-        _movingRight = false;
-        break;
-      case 'none':
-        _movingFree = false;
-        break;
-    }
+  void stop(){
+    _canMove = false;
   }
+  
+  void set speedX(num speed){
+    if(speed.isNegative){
+      directionX = -1;
+    }
+    _speedX = speed.abs();
+  }
+  
+  void set speedY(num speed){
+      if(speed.isNegative){
+        directionY = -1;
+      }
+      _speedY = speed.abs();
+    }
+  
+  num get speedX => _speedX;
+  
+  num get speedY => _speedY;
 
 }
