@@ -31,7 +31,7 @@ class Play extends State {
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
       bullets.add(
-          game.add.sprite('laserBlue01', addToWorld: false)..go(speedY: 500));
+          game.add.sprite('laserBlue01', addToWorld: false)..speedY = -500);
     }
 
     Ufo ufo;
@@ -100,18 +100,16 @@ class Play extends State {
 
     }*/
 
-
-    //player.go('none', speedX: 0, speedY: 0);
   }
 
   update() {
 
-    /*player.speedX = 0;
-    if(game.keyboard.isDown(KeyCode.LEFT)){
+    player.speedX = 0;
+    if (game.keyboard.isDown(KeyCode.LEFT)) {
       player.speedX = -300;
-    }else if(game.keyboard.isDown(KeyCode.RIGHT)){
+    } else if (game.keyboard.isDown(KeyCode.RIGHT)) {
       player.speedX = 300;
-    }*/
+    }
 
 
     if (!ufos.anyAlive()) {

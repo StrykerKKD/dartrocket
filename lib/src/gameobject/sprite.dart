@@ -31,19 +31,12 @@ part of dartrocket;
 
 class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
-  /**
-   * Does the sprite move?
-   */
-  bool isMovable;
-  
-  bool _movingUp = false;
-  bool _movingDown = false;
-  bool _movingLeft = false;
-  bool _movingRight = false;
-  bool _movingFree = false;
-  bool _canMove = false;
-
   State _context;
+
+  /**
+     * Does the sprite move?
+     */
+  bool isMovable;
 
   /**
    * Is the sprite alive?
@@ -53,15 +46,15 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Horizontal speed of the sprite.
    * */
-  num _speedX = 0;
+  num speedX = 0;
 
   /**
    * Vertical speed of the sprite
    * */
-  num _speedY = 0;
-  
+  num speedY = 0;
+
   num directionX = 1;
-  
+
   num directionY = 1;
 
   /**
@@ -73,8 +66,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * * isMoveAble: will the sprite move?
    * 
    * */
-  Sprite.bitmapdata(State stateContext, StageXL.BitmapData bitmapData, 
-      {bool addToWorld: true, bool isMovable: true}) : super(bitmapData) {
+  Sprite.bitmapdata(State stateContext, StageXL.BitmapData bitmapData,
+      {bool addToWorld: true, bool isMovable: true}) : super(
+      bitmapData) {
     this.isMovable = isMovable;
     _context = stateContext;
     if (addToWorld) {
@@ -87,57 +81,45 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * 
    * * resourceName: name of the image in the resourcesManager
    */
-  Sprite.image(State stateContext, String resourceName, 
-      {bool addToWorld: true, bool isMovable: true}) 
-    : this.bitmapdata(stateContext,
-        stateContext.game.resourceManager.getBitmapData(resourceName), 
-        addToWorld: addToWorld, isMovable: isMovable);
-  
+  Sprite.image(State stateContext, String resourceName, {bool addToWorld: true,
+      bool isMovable: true})
+      : this.bitmapdata(
+          stateContext,
+          stateContext.game.resourceManager.getBitmapData(resourceName),
+          addToWorld: addToWorld,
+          isMovable: isMovable);
+
   /**
    * Create a Sprite object from an image, which is inside a texture atlas(JSON).
    * 
    * * textureAtlasName: name of the texture atlas in the resourceManager
    * * resourceName: name of the resource in the texture atlas(image name without extension) 
    */
-  Sprite.textureatlas(State stateContext, String resourceName, 
-      String textureAtlasName, {bool addToWorld: true, bool isMovable: true}) 
-    : this.bitmapdata(stateContext, 
-        stateContext.game.resourceManager.getTextureAtlas(textureAtlasName)
-          .getBitmapData(resourceName), 
-          addToWorld: addToWorld, isMovable: isMovable);
-  
+  Sprite.textureatlas(State stateContext, String resourceName,
+      String textureAtlasName, {bool addToWorld: true, bool isMovable: true})
+      : this.bitmapdata(
+          stateContext,
+          stateContext.game.resourceManager.getTextureAtlas(
+              textureAtlasName).getBitmapData(resourceName),
+          addToWorld: addToWorld,
+          isMovable: isMovable);
+
   /**
    * Controlls how the object is moving.
    * This implementation is good enough for simple sprites.
    * You can make the sprite move with changing the vx or vy value.
    */
   bool advanceTime(num time) {
-    if ((x <= 0 || x >= _context.game.world.width) || 
+    if ((x <= 0 || x >= _context.game.world.width) ||
         (y <= 0 || y >= _context.game.world.height)) {
       removeFromWorld();
     }
-    
-    if(!_movingDown && _movingUp){
-      directionY = -1;
-    }
-    if(!_movingUp && _movingDown){
-      directionY = 1;
-    }
-    if(!_movingRight && _movingLeft){
-      directionX = -1; 
-    }
-    if(!_movingLeft && _movingRight){
-      directionX = 1;    
-    }
-    
-    if(_canMove){
-      x = x + directionX * _speedX * time;
-      y = y + directionY * _speedY * time;
-    }
-    
-    
+
+    x = x + directionX * speedX * time;
+    y = y + directionY * speedY * time;
+
     return true;
-    
+
   }
   /**
    * Put the pivot point into the center of the sprite.
@@ -173,34 +155,10 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   State get context => _context;
   
-  void go({int speedX, int speedY}){
-    if(speedX != null) this.speedX = speedX;
-    if(speedY != null) this.speedY = speedY;
-    
-    _canMove = true;
-    
+  void set direction(num angle){
+    num radian = angle * (math.PI/180);
+    directionX = math.cos(radian);
+    directionY = math.sin(radian);
   }
-  
-  void stop(){
-    _canMove = false;
-  }
-  
-  void set speedX(num speed){
-    if(speed.isNegative){
-      directionX = -1;
-    }
-    _speedX = speed.abs();
-  }
-  
-  void set speedY(num speed){
-      if(speed.isNegative){
-        directionY = -1;
-      }
-      _speedY = speed.abs();
-    }
-  
-  num get speedX => _speedX;
-  
-  num get speedY => _speedY;
 
 }

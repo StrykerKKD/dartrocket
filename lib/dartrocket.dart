@@ -5,9 +5,11 @@ export "package:stagexl/stagexl.dart" show Color, TextureAtlasFormat,
     TransitionFunction, Tween;
 
 import "dart:async";
+import "dart:math" as math;
 import "dart:collection" show ListBase;
 import "dart:html" show window, document, CanvasElement, KeyCode;
 import "package:stagexl/stagexl.dart" as StageXL;
+
 
 part "src/core/game.dart";
 part "src/core/statemanager.dart";
