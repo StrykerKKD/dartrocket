@@ -53,9 +53,15 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * */
   num speedY = 0;
 
-  num directionX = 1;
+  num directionX = 0;
 
-  num directionY = 1;
+  num directionY = 0;
+
+  num upDirection = -1;
+  num downDirection = 1;
+  num leftDirection = -1;
+  num rightDirection = 1;
+
 
   /**
    * Create a Sprite object from [StageXL.BitmapData].
@@ -154,11 +160,33 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Gets the context(State) in which the Sprite was created.
    */
   State get context => _context;
-  
-  void set direction(num angle){
-    num radian = angle * (math.PI/180);
+
+  void set direction(num angle) {
+    num radian = angle * (math.PI / 180);
     directionX = math.cos(radian);
     directionY = math.sin(radian);
+  }
+
+  move(String direction) {
+    switch (direction) {
+      case 'up':
+        directionY = upDirection;
+        break;
+      case 'down':
+        directionY = downDirection;
+        break;
+      case 'left':
+        directionX = leftDirection;
+        break;
+      case 'right':
+        directionX = rightDirection;
+        break;
+    }
+  }
+
+  stop({stopDirectionX: true, stopDirectionY: true}) {
+    if (stopDirectionX) directionX = 0;
+    if (stopDirectionY) directionY = 0;
   }
 
 }

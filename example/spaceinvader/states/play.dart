@@ -26,12 +26,14 @@ class Play extends State {
 
     player = game.add.sprite('playerShip1_blue')
         ..x = game.world.width ~/ 2
-        ..y = game.world.height - 200;
+        ..y = game.world.height - 200
+        ..speedX = 300;
 
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
-      bullets.add(
-          game.add.sprite('laserBlue01', addToWorld: false)..speedY = -500);
+      bullets.add(game.add.sprite('laserBlue01', addToWorld: false)
+          ..speedY = 500
+          ..move('up'));
     }
 
     Ufo ufo;
@@ -104,11 +106,11 @@ class Play extends State {
 
   update() {
 
-    player.speedX = 0;
+    player.stop();
     if (game.keyboard.isDown(KeyCode.LEFT)) {
-      player.speedX = -300;
+      player.move('left');
     } else if (game.keyboard.isDown(KeyCode.RIGHT)) {
-      player.speedX = 300;
+      player.move('right');
     }
 
 
