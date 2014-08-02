@@ -53,14 +53,15 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * */
   num speedY = 0;
 
-  num directionX = 0;
+  StageXL.Vector mainDirection = new StageXL.Vector.zero();
 
-  num directionY = 0;
-
-  num upDirection = -1;
-  num downDirection = 1;
-  num leftDirection = -1;
-  num rightDirection = 1;
+  StageXL.Vector upDirection = new StageXL.Vector(0, -1);
+  StageXL.Vector downDirection = new StageXL.Vector(0, 1);
+  StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
+  StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
+  
+  //TODO: add it into move() and rotate this too when the sprite is rotated
+  StageXL.Rectangle maxArea = new StageXL.Rectangle(-1, -1, 2, 2);
 
 
   /**
@@ -121,8 +122,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       removeFromWorld();
     }
 
-    x = x + directionX * speedX * time;
-    y = y + directionY * speedY * time;
+    x = x + mainDirection.x * speedX * time;
+    y = y + mainDirection.y * speedY * time;
 
     return true;
 
@@ -161,32 +162,37 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   State get context => _context;
 
-  void set direction(num angle) {
-    num radian = angle * (math.PI / 180);
-    directionX = math.cos(radian);
-    directionY = math.sin(radian);
+  void rotate(num rads) {
+    rotation += rads;
+    upDirection = upDirection.rotate(rads);
+    downDirection = downDirection.rotate(rads);
+    leftDirection = leftDirection.rotate(rads);
+    rightDirection = rightDirection.rotate(rads);
   }
+
+  /*void set rotate(num angle) {
+    mainDirection.rotate(angle * (math.PI / 180));
+  }*/
 
   move(String direction) {
     switch (direction) {
-      case 'up':
-        directionY = upDirection;
+      case 'forward':
+        mainDirection += upDirection;
         break;
-      case 'down':
-        directionY = downDirection;
+      case 'backward':
+        mainDirection += downDirection;
         break;
       case 'left':
-        directionX = leftDirection;
+        mainDirection += leftDirection;
         break;
       case 'right':
-        directionX = rightDirection;
+        mainDirection += rightDirection;
         break;
     }
   }
 
-  stop({stopDirectionX: true, stopDirectionY: true}) {
-    if (stopDirectionX) directionX = 0;
-    if (stopDirectionY) directionY = 0;
+  stop() {
+    if (!mainDirection.isZero) mainDirection = new StageXL.Vector.zero();
   }
 
 }
