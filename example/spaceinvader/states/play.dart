@@ -33,7 +33,7 @@ class Play extends State {
     for (int i = 0; i < 5; i++) {
       bullets.add(game.add.sprite('laserBlue01', addToWorld: false)
           ..speedY = 500
-          ..move('up'));
+          ..move('forward'));
     }
 
     Ufo ufo;
@@ -109,7 +109,8 @@ class Play extends State {
     player.stop();
     if (game.keyboard.isDown(KeyCode.LEFT)) {
       player.move('left');
-    } else if (game.keyboard.isDown(KeyCode.RIGHT)) {
+    }
+    if (game.keyboard.isDown(KeyCode.RIGHT)) {
       player.move('right');
     }
 
