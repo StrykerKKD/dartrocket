@@ -176,9 +176,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   move(String direction) {
     switch (direction) {
+      case 'up':
       case 'forward':
         mainDirection += upDirection;
         break;
+      case 'down':
       case 'backward':
         mainDirection += downDirection;
         break;
