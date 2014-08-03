@@ -3,6 +3,20 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.4
+  * Physics class added with collison method
+  * Breaking change: load,create,update methods for a state
+  * GameObjectFactory can make every game object except Background.color
+  * Added autoHiDpi, isMobile, devicePixelRatio getter for game object
+  * Unit test added for StateManager
+  * New container classes: World and Camera for a new World-Camera system
+  * Using game.world instead of game.stage everywhere
+  * GameObjectFactory has tween method for making tweens
+  * Exported Tweem class so you can use it
+  * New classes: Keyboard, Touch for input event handling
+  * New movment system for the Sprite class
+  * New example to show the new movement system
+  
 #### Pub version 0.1.3
   * EventListeners on stage automatically destroyed after state change
   * Button class is simplified, easier to set coordinates
