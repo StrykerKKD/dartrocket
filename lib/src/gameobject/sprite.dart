@@ -10,7 +10,7 @@ part of dartrocket;
  * 1. You can just make one Sprite object. This is a good way for making simple 
  * Sprite object. For example: bullets
  * 2. You can extend the Sprite class and make your very own Sprite object. It's
- * good for making more complex Sprite objects. For example: player, ufo
+ * good for making more complex Sprite objects. For example: ufo
  * 
  * Examples:
  *      //First case
@@ -26,7 +26,9 @@ part of dartrocket;
  *          //make some more complex movement
  *        }
  *      }
- * You can find more examples about Sprite class in the Space Invader example.
+ * You can find more examples about Sprite class in the spaceinvader example.
+ * 
+ * Check out the movementsystem example to see how the sprites can move.
  * */
 
 class Sprite extends InteractiveBitmap implements StageXL.Animatable {
@@ -34,8 +36,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   State _context;
 
   /**
-     * Does the sprite move?
-     */
+   * Does the sprite move?
+   */
   bool isMovable;
 
   /**
@@ -59,9 +61,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   StageXL.Vector downDirection = new StageXL.Vector(0, 1);
   StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
   StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
-  
-  //TODO: add it into move() and rotate this too when the sprite is rotated
-  StageXL.Rectangle maxArea = new StageXL.Rectangle(-1, -1, 2, 2);
+
+  final StageXL.Vector zeroVector = new StageXL.Vector.zero();
 
 
   /**
@@ -112,9 +113,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
           isMovable: isMovable);
 
   /**
-   * Controlls how the object is moving.
-   * This implementation is good enough for simple sprites.
-   * You can make the sprite move with changing the vx or vy value.
+   * Defines where the sprite will move next.
    */
   bool advanceTime(num time) {
     if ((x <= 0 || x >= _context.game.world.width) ||
@@ -161,40 +160,70 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Gets the context(State) in which the Sprite was created.
    */
   State get context => _context;
-
-  void rotate(num rads) {
-    rotation += rads;
-    upDirection = upDirection.rotate(rads);
-    downDirection = downDirection.rotate(rads);
-    leftDirection = leftDirection.rotate(rads);
-    rightDirection = rightDirection.rotate(rads);
+  
+  /**
+   * Set the horizontal and vertical speed with the same value.
+   */
+  void set speed(num speed){
+    speedX = speed;
+    speedY = speed;
   }
 
-  /*void set rotate(num angle) {
-    mainDirection.rotate(angle * (math.PI / 180));
-  }*/
+  /**
+   * Rotate the sprite in radians.
+   */
+  void rotateRadians(num radians) {
+    rotation += radians;
+    mainDirection = mainDirection.rotate(radians);
+    upDirection = upDirection.rotate(radians);
+    downDirection = downDirection.rotate(radians);
+    leftDirection = leftDirection.rotate(radians);
+    rightDirection = rightDirection.rotate(radians);
+  }
 
+  /**
+   * Rotate the sprite in angles.
+   */
+  void rotateAngles(num angles) {
+    rotateRadians(angles * (math.PI / 180));
+  }
+
+  /**
+   * Moving the sprite in a direction.
+   * 
+   * Direction can be: up/forward, down/backward, left, right
+   */
   move(String direction) {
+    //mainDirection = zeroVector;
+    StageXL.Vector newDirection = mainDirection;
     switch (direction) {
       case 'up':
       case 'forward':
-        mainDirection += upDirection;
+        newDirection += upDirection;
         break;
       case 'down':
       case 'backward':
-        mainDirection += downDirection;
+        newDirection += downDirection;
         break;
       case 'left':
-        mainDirection += leftDirection;
+        newDirection += leftDirection;
         break;
       case 'right':
-        mainDirection += rightDirection;
+        newDirection += rightDirection;
         break;
+    }
+    if (newDirection.length > 1) {
+      mainDirection = newDirection.scaleLength(1);
+    } else {
+      mainDirection = newDirection;
     }
   }
 
+  /**
+   * Stops the movement of the sprite.
+   */
   stop() {
-    if (!mainDirection.isZero) mainDirection = new StageXL.Vector.zero();
+    if (!mainDirection.isZero) mainDirection = zeroVector;
   }
 
 }
