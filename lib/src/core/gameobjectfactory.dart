@@ -1,7 +1,7 @@
 part of dartrocket;
 
 /**
- * GameObjectFactory is a quick way to make gameobjects.
+ * GameObjectFactory is the supermarket of gameobjects.
  * 
  * The GameObjectFactory is automatically made when you make a game instances.
  * 
@@ -124,6 +124,9 @@ class GameObjectFactory {
     return new Sound(currentContext, soundName, volume: volume, pan: pan);
   }
   
+  /**
+   * Creates a tween.
+   */
   StageXL.Tween tween(Sprite sprite, num time, 
                       [StageXL.EaseFunction transitionFunction = 
                        StageXL.TransitionFunction.linear]) {

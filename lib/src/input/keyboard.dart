@@ -5,10 +5,12 @@ class Keyboard {
   Game _game;
 
   Map<int, bool> _isDownMap = new Map<int, bool>();
-
+  
   Keyboard(this._game);
 
-
+  /**
+   * Handling onDownKey and a onKeyUp events for a key.
+   */
   void onDownAndUpKeyHandler(int keyCode, Function downHandler,
       Function upHandler) {
     _game.world.onKeyDown.listen((keyboarEvent) {
@@ -24,6 +26,9 @@ class Keyboard {
     });
   }
 
+  /**
+   * Is the key pressed down?
+   */
   bool isDown(int keyCode) {
     if (!_isDownMap.containsKey(keyCode)) {
       _addIsDownListener(keyCode);

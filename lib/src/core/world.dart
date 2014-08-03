@@ -1,5 +1,10 @@
 part of dartrocket;
 
+/**
+ * The world is where almmost all of the game objects live.
+ * 
+ * The world object is made automatically when you make a game object.
+ */
 class World extends StageXL.DisplayObjectContainer {
   Game _game;
   
