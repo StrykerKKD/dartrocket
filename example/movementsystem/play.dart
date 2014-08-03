@@ -15,8 +15,7 @@ class Play extends State {
     player = game.add.sprite('playerShip')
         ..x = game.world.width ~/ 2
         ..y = game.world.height ~/ 2
-        ..speedX = 200
-        ..speedY = 200
+        ..speed = 200
         ..center();
   }
 
@@ -37,10 +36,10 @@ class Play extends State {
     }
 
     if (game.keyboard.isDown(KeyCode.Q)) {
-      player.rotate(-0.1);
+      player.rotateAngles(-5);
     }
     if (game.keyboard.isDown(KeyCode.E)) {
-      player.rotate(0.1);
+      player.rotateAngles(5);
     }
   }
 }
