@@ -10,6 +10,9 @@ class Play extends State {
   Group<Sprite> bullets;
   Group<Ufo> ufos;
 
+  Button leftButton;
+  Button rightButton;
+
   Timer bulletTimer;
 
   create() {
@@ -66,52 +69,39 @@ class Play extends State {
     });
 
 
-    /*player.speedX = 300;
     if (game.isMobile) {
 
-      Button leftButton = game.add.button('flatDark23', 'L')
+      leftButton = game.add.button('flatDark23', 'L')
           ..x = 0
           ..y = game.world.height - 100;
 
-      Button rightButton = game.add.button('flatDark24', 'R');
+      rightButton = game.add.button('flatDark24', 'R');
       rightButton
           ..x = game.world.width - rightButton.width.toInt()
           ..y = game.world.height - 100;
 
-      game.touch.onTouchBeginAndEnd(
-          leftButton,
-          () => player.go('left'),
-          () => player.stop('left'));
-
-      game.touch.onTouchBeginAndEnd(
-          rightButton,
-          () => player.go('right'),
-          () => player.stop('right'));
-
-    } else {
-
-      game.keyboard.onDownAndUpKeyHandler(
-          KeyCode.LEFT,
-          () => player.go('left'),
-          () => player.stop('left'));
-
-      game.keyboard.onDownAndUpKeyHandler(
-          KeyCode.RIGHT,
-          () => player.go('right'),
-          () => player.stop('right'));
-
-    }*/
+    }
 
   }
 
   update() {
 
     player.stop();
-    if (game.keyboard.isDown(KeyCode.LEFT)) {
-      player.move('left');
-    }
-    if (game.keyboard.isDown(KeyCode.RIGHT)) {
-      player.move('right');
+
+    if (game.isMobile) {
+      if (leftButton.isDownByTouch()) {
+        player.move('left');
+      }
+      if (rightButton.isDownByTouch()) {
+        player.move('right');
+      }
+    } else {
+      if (game.keyboard.isDown(KeyCode.LEFT)) {
+        player.move('left');
+      }
+      if (game.keyboard.isDown(KeyCode.RIGHT)) {
+        player.move('right');
+      }
     }
 
 
