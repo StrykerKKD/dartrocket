@@ -55,6 +55,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * */
   num speedY = 0;
 
+  /**
+   * Horizontal acceleration of the sprite.
+   */
+  num accelerationX = 0;
+
+  /**
+   * Vertical acceleration of the sprite.
+   */
+  num accelerationY = 0;
+
   StageXL.Vector mainDirection = new StageXL.Vector.zero();
 
   StageXL.Vector upDirection = new StageXL.Vector(0, -1);
@@ -123,6 +133,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     x = x + mainDirection.x * speedX * time;
     y = y + mainDirection.y * speedY * time;
+    print('$speedY');
 
     return true;
 
@@ -160,17 +171,25 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Gets the context(State) in which the Sprite was created.
    */
   State get context => _context;
-  
+
   /**
    * Set the horizontal and vertical speed with the same value.
    */
-  void set speed(num speed){
+  void set speed(num speed) {
     speedX = speed;
     speedY = speed;
   }
+  
+  /**
+   * Set the horizontal and vertical acceleration with the same value.
+   */
+  void set acceleration(num acceleration) {
+    accelerationX = acceleration;
+    accelerationY = acceleration;
+  }
 
   /**
-   * Rotate the sprite in radians.
+   * Rotate the sprite and it's direction vectors in radians.
    */
   void rotateRadians(num radians) {
     rotation += radians;
@@ -182,7 +201,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   }
 
   /**
-   * Rotate the sprite in angles.
+   * Rotate the sprite and it's direction vectors in angles.
    */
   void rotateAngles(num angles) {
     rotateRadians(angles * (math.PI / 180));
@@ -194,24 +213,26 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Direction can be: up/forward, down/backward, left, right
    */
   move(String direction) {
-    //mainDirection = zeroVector;
+    
     StageXL.Vector newDirection = mainDirection;
+    
     switch (direction) {
-      case 'up':
-      case 'forward':
+      case Direction.UP:
+      case Direction.FORWARD:
         newDirection += upDirection;
         break;
-      case 'down':
-      case 'backward':
+      case Direction.DOWN:
+      case Direction.BACKWARD:
         newDirection += downDirection;
         break;
-      case 'left':
+      case Direction.LEFT:
         newDirection += leftDirection;
         break;
-      case 'right':
+      case Direction.RIGHT:
         newDirection += rightDirection;
         break;
     }
+    
     if (newDirection.length > 1) {
       mainDirection = newDirection.scaleLength(1);
     } else {
