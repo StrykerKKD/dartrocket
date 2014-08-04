@@ -31,3 +31,4 @@ part "src/input/keyboard.dart";
 part "src/input/touch.dart";
 
 part "src/constants/event.dart";
+part "src/constants/direction.dart";
