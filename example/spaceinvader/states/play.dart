@@ -36,7 +36,9 @@ class Play extends State {
     for (int i = 0; i < 5; i++) {
       bullets.add(game.add.sprite('laserBlue01', addToWorld: false)
           ..speedY = 500
-          ..move('up'));
+          ..move('up')
+          ..killOutOfBounds = true);
+
     }
 
     Ufo ufo;

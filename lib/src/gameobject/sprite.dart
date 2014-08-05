@@ -4,22 +4,22 @@ part of dartrocket;
  * Sprite is the most basic game object.
  * The Sprite is interactive meaning you can use event listeners with it.
  * The Sprite is Animatable, so you can move it around the stage.
- * 
+ *
  * There is 2 use case for this class:
- * 
- * 1. You can just make one Sprite object. This is a good way for making simple 
+ *
+ * 1. You can just make one Sprite object. This is a good way for making simple
  * Sprite object. For example: bullets
  * 2. You can extend the Sprite class and make your very own Sprite object. It's
  * good for making more complex Sprite objects. For example: ufo
- * 
+ *
  * Examples:
  *      //First case
  *      Sprite bullet = new Sprite(this,"bullet");
- * 
+ *
  *      //Second case
  *      class Ufo extends Sprite{
  *        Ufo(State context, String resourceName) : super(context, resourceName);
- *        
+ *
  *        //You can make your own advanceTime method
  *        @override
  *        bool advanceTime(num time) {
@@ -27,7 +27,7 @@ part of dartrocket;
  *        }
  *      }
  * You can find more examples about Sprite class in the spaceinvader example.
- * 
+ *
  * Check out the movementsystem example to see how the sprites can move.
  * */
 
@@ -44,6 +44,10 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Is the sprite alive?
    * */
   bool alive = false;
+
+  bool checkWorldBounds = false;
+
+  bool killOutOfBounds = false;
 
   /**
    * Horizontal speed of the sprite.
@@ -77,12 +81,12 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   /**
    * Create a Sprite object from [StageXL.BitmapData].
-   * 
+   *
    * * stateContext: context of the State, which this object is in
    * * bitmapData: bitmapdata for the sprite
    * * addToStage: automatically add the sprite to the stage?
    * * isMoveAble: will the sprite move?
-   * 
+   *
    * */
   Sprite.bitmapdata(State stateContext, StageXL.BitmapData bitmapData,
       {bool addToWorld: true, bool isMovable: true}) : super(
@@ -96,7 +100,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   /**
    * Create a Sprite object from an image.
-   * 
+   *
    * * resourceName: name of the image in the resourcesManager
    */
   Sprite.image(State stateContext, String resourceName, {bool addToWorld: true,
@@ -109,9 +113,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   /**
    * Create a Sprite object from an image, which is inside a texture atlas(JSON).
-   * 
+   *
    * * textureAtlasName: name of the texture atlas in the resourceManager
-   * * resourceName: name of the resource in the texture atlas(image name without extension) 
+   * * resourceName: name of the resource in the texture atlas(image name without extension)
    */
   Sprite.textureatlas(State stateContext, String resourceName,
       String textureAtlasName, {bool addToWorld: true, bool isMovable: true})
@@ -126,14 +130,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Defines where the sprite will move next.
    */
   bool advanceTime(num time) {
-    if ((x <= 0 || x >= _context.game.world.width) ||
-        (y <= 0 || y >= _context.game.world.height)) {
+    if (killOutOfBounds &&
+        (x + width <= 0 || x - width >= _context.game.world.width) ||
+        (y + height <= 0 || y - height >= _context.game.world.height)) {
       removeFromWorld();
     }
 
     x = x + mainDirection.x * speedX * time;
     y = y + mainDirection.y * speedY * time;
-    print('$speedY');
 
     return true;
 
@@ -179,7 +183,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     speedX = speed;
     speedY = speed;
   }
-  
+
   /**
    * Set the horizontal and vertical acceleration with the same value.
    */
@@ -209,13 +213,13 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   /**
    * Moving the sprite in a direction.
-   * 
+   *
    * Direction can be: up/forward, down/backward, left, right
    */
   move(String direction) {
-    
+
     StageXL.Vector newDirection = mainDirection;
-    
+
     switch (direction) {
       case Direction.UP:
       case Direction.FORWARD:
@@ -232,7 +236,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         newDirection += rightDirection;
         break;
     }
-    
+
     if (newDirection.length > 1) {
       mainDirection = newDirection.scaleLength(1);
     } else {
