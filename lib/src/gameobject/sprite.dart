@@ -35,6 +35,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   State _context;
 
+  num _accelerationScale = 0;
+
   /**
    * Does the sprite move?
    */
@@ -47,6 +49,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   bool checkWorldBounds = false;
 
+  /**
+   * Kill Sprite if it's out of the world's bounds.
+   */
   bool killOutOfBounds = false;
 
   /**
@@ -69,7 +74,19 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   num accelerationY = 0;
 
+  /**
+   * The maximum speed limit for the Sprite.
+   */
+  num maxSpeed = 0;
+
+  /**
+   * The minimum speed limit for the Sprite.
+   */
+  num minSpeed = 0;
+
   StageXL.Vector mainDirection = new StageXL.Vector.zero();
+
+  StageXL.Vector accelerationDirection = new StageXL.Vector.zero();
 
   StageXL.Vector upDirection = new StageXL.Vector(0, -1);
   StageXL.Vector downDirection = new StageXL.Vector(0, 1);
@@ -249,6 +266,26 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   stop() {
     if (!mainDirection.isZero) mainDirection = zeroVector;
+  }
+
+  speedUP() {
+    if (speedX < maxSpeed || speedY < maxSpeed) {
+      _accelerationScale = 1;
+    } else {
+      _accelerationScale = 0;
+    }
+  }
+
+  slowDown() {
+    if (speedX > minSpeed || speedY > minSpeed) {
+      _accelerationScale = -1;
+    } else {
+      _accelerationScale = 0;
+    }
+  }
+  
+  stopChangingSpeed() {
+    _accelerationScale = 0;
   }
 
 }
