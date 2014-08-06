@@ -284,7 +284,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     }
   }
   
-  stopChangingSpeed() {
+  stopSpeedChange() {
     _accelerationScale = 0;
   }
 
