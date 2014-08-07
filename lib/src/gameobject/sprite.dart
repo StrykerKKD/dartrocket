@@ -35,7 +35,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   State _context;
 
-  num _accelerationScale = 0;
+  num _accelerationDirection = 0;
 
   /**
    * Does the sprite move?
@@ -153,6 +153,17 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       removeFromWorld();
     }
 
+    if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
+      _accelerationDirection = 0;
+    }
+
+    if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
+      _accelerationDirection = 0;
+    }
+    
+    speedX += _accelerationDirection * accelerationX * time;
+    speedY += _accelerationDirection * accelerationY * time;
+    
     x = x + mainDirection.x * speedX * time;
     y = y + mainDirection.y * speedY * time;
 
@@ -269,23 +280,31 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   }
 
   speedUP() {
-    if (speedX < maxSpeed || speedY < maxSpeed) {
-      _accelerationScale = 1;
+    if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
+      _accelerationDirection = 0;
     } else {
-      _accelerationScale = 0;
+      _accelerationDirection = 1;
     }
   }
 
   slowDown() {
-    if (speedX > minSpeed || speedY > minSpeed) {
-      _accelerationScale = -1;
+    if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
+      _accelerationDirection = 0;
     } else {
-      _accelerationScale = 0;
+      _accelerationDirection = -1;
     }
   }
-  
+
   stopSpeedChange() {
-    _accelerationScale = 0;
+    _accelerationDirection = 0;
+  }
+
+  bool _speedOverEqualMaxSpeed() {
+    return (speedX >= maxSpeed || speedY >= maxSpeed);
+  }
+
+  bool _speedUnderEqualMinSpeed() {
+    return (speedX <= minSpeed || speedY <= minSpeed);
   }
 
 }
