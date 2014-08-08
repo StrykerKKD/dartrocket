@@ -67,7 +67,7 @@ class Play extends State {
 You can find additional examples in the documentation and in the [examples directory](https://github.com/StrykerKKD/dartrocket/tree/master/example) in dartrocket's github repo.
 
 ##Documentation
-You can find the the current documentation on pub page of [dartrocket](http://pub.dartlang.org/packages/dartrocket).
+ [DartRocket's Documentation on dartdocs.org](http://www.dartdocs.org/documentation/dartrocket/0.1.4/index.html#dartrocket).
 
 ##Support/Forum
 If you have any question or problem. Just make a topic and ask.
