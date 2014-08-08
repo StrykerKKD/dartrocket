@@ -1,5 +1,9 @@
 part of dartrocket;
 
+/**
+ * Handling some keyboard events.
+ */
+
 class Keyboard {
 
   Game _game;

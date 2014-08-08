@@ -1,5 +1,9 @@
 part of dartrocket;
 
+/**
+ * Handling a special touch event.
+ */
+
 class Touch {
 
   Game _game;

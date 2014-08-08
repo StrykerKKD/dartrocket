@@ -1,5 +1,9 @@
 part of dartrocket;
 
+/**
+ * This class contains the contants of every event.
+ */
+
 class Event {
   // DiplayObject events
   static const String ADDED = "added";
