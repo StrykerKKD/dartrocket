@@ -73,7 +73,7 @@ You can find the the current documentation on pub page of [dartrocket](http://pu
 The Framework has a [blog](http://dartrocket.blogspot.hu), which will provide information about how the development is going.
 
 ##Examples
-These examples build will be updated at least when there is a new version of DartRocket.
+These example's build will be updated, when there is a new version of DartRocket.
  
  [StateMachine](http://strykerkkd.github.io/js/projects/build/example/statemachine/index.html) show how the statemanager work.
  
