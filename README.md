@@ -69,6 +69,10 @@ You can find additional examples in the documentation and in the [examples direc
 ##Documentation
 You can find the the current documentation on pub page of [dartrocket](http://pub.dartlang.org/packages/dartrocket).
 
+##Support/Forum
+If you have any question or problem. Just make a topic and ask.
+[DartRocket's forum](http://ost.io/@StrykerKKD/dartrocket)
+
 ##Blog
 The Framework has a [blog](http://dartrocket.blogspot.hu), which will provide information about how the development is going.
 
