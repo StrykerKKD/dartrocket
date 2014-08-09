@@ -20,12 +20,22 @@ class Play extends State {
         ..minSpeed = 0
         ..maxSpeed = 300
         ..center();
+
+    game.keyboard.onKeyDownAndKeyUpHandler(
+        KeyCode.J,
+        player.speedUP,
+        player.stopSpeedChange);
+    game.keyboard.onKeyDownAndKeyUpHandler(
+        KeyCode.K,
+        player.slowDown,
+        player.stopSpeedChange);
   }
 
   @override
   update() {
     player.stop();
-    player.stopSpeedChange();
+    //player.stopSpeedChange();
+
     if (game.keyboard.isDown(KeyCode.W)) {
       player.move('forward');
     }
@@ -45,12 +55,12 @@ class Play extends State {
     if (game.keyboard.isDown(KeyCode.E)) {
       player.rotateAngles(5);
     }
-    
-    if(game.keyboard.isDown(KeyCode.J)) {
+
+    /*if (game.keyboard.isDown(KeyCode.J)) {
       player.speedUP();
     }
-    if(game.keyboard.isDown(KeyCode.K)){
+    if (game.keyboard.isDown(KeyCode.K)) {
       player.slowDown();
-    }
+    }*/
   }
 }
