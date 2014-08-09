@@ -84,6 +84,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   num minSpeed = 0;
 
+  /**
+   * The direction where the sprite is heading.
+   * */
   StageXL.Vector mainDirection = new StageXL.Vector.zero();
 
   StageXL.Vector upDirection = new StageXL.Vector(0, -1);
