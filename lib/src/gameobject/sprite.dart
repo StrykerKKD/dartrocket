@@ -262,8 +262,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         newDirection += rightDirection;
         break;
     }
-
-    if (newDirection.length > 1) {
+    if (newDirection.length > 1.001) {
       mainDirection = newDirection.scaleLength(1);
     } else {
       mainDirection = newDirection;
