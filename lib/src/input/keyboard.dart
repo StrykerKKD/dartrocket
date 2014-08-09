@@ -13,8 +13,8 @@ class Keyboard {
   Keyboard(this._game);
 
   /**
-	 * Handling onKeyDown events for a key.
-	 * */
+   * Handling onKeyDown events for a key.
+   * */
   void onKeyDown(int keyCode, Function handler) {
     _game.world.onKeyDown.listen((keyboardEvent) {
       if (keyboardEvent.keyCode == keyCode) {
