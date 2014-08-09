@@ -161,10 +161,10 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
       _accelerationDirection = 0;
     }
-    
+
     speedX += _accelerationDirection * accelerationX * time;
     speedY += _accelerationDirection * accelerationY * time;
-    
+
     x = x + mainDirection.x * speedX * time;
     y = y + mainDirection.y * speedY * time;
 
@@ -278,7 +278,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   stop() {
     if (!mainDirection.isZero) mainDirection = zeroVector;
   }
-  
+
   /**
    * Speed up the sprite's movement.
    */
@@ -289,7 +289,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       _accelerationDirection = 1;
     }
   }
-  
+
   /**
    * Slows down the sprite's movement.
    */
@@ -300,7 +300,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       _accelerationDirection = -1;
     }
   }
-  
+
   /**
    * Stop the acceleration, both speed up and slow down.
    */
