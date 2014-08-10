@@ -133,7 +133,6 @@ class GameObjectFactory {
     return new StageXL.Tween(sprite, time, transitionFunction);
   }
   
-  
   StageXL.BitmapData _getBitmapData(String resourceName,
                                     [String resourceMode,
                                      String textureAtlasName]){

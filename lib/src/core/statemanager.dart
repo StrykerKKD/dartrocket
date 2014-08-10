@@ -35,6 +35,7 @@ class StateManager {
   Map<String, StreamSubscription> _subscriptionMap;
   
   State _currentState;
+  
   StreamSubscription _currentSubscription;
   
   /**

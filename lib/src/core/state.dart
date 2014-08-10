@@ -48,6 +48,7 @@ abstract class State extends Stream<String> {
   static const String _PAUSE = "PAUSE";
 
   StreamController<String> _controller;
+  
   String _name;
 
   /**

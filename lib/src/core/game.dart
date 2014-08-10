@@ -29,22 +29,27 @@ part of dartrocket;
  * */
 
 class Game {
+  
   /**
    * The canvas element that we are using.
    * */
   CanvasElement canvas;
+  
   /**
    * [StageXL.Stage] object
    * */
   StageXL.Stage stage;
+  
   /**
    * [StageXL.RenderLoop] object
    * */
   StageXL.RenderLoop renderLoop;
+  
   /**
    * [StageXL.ResourceManager] object
    * */
   StageXL.ResourceManager resourceManager;
+  
   /**
    * [StateManager] object
    * */
@@ -59,22 +64,22 @@ class Game {
    * [Physics] object
    */
   Physics physics;
-  
+
   /**
    * [World] object
    */
   World world;
-  
+
   /**
    * [Camera] object
    */
   Camera camera;
-  
+
   /**
    * [Keyboard] object
    */
   Keyboard keyboard;
-  
+
   /**
    * [Touch] object
    */
@@ -90,8 +95,8 @@ class Game {
    * * color: backgroundcolor of the stage
    * * fullScreen: stage gets full screen and keeps the aspect ratio
    * */
-  Game({int width: 800, int height: 600, bool webGL: false, int frameRate:
-      30, int color: StageXL.Color.Black, bool fullScreen: false}) {
+  Game({int width: 800, int height: 600, bool webGL: false, int frameRate: 30,
+      int color: StageXL.Color.Black, bool fullScreen: false}) {
 
     if (fullScreen) {
       double scale = 1.0;
@@ -108,15 +113,20 @@ class Game {
         ..height = height;
     document.body.children.add(canvas);
 
-    stage = new StageXL.Stage(canvas, width: width, height: height, webGL:
-        webGL, frameRate: frameRate, color: color);
+    stage = new StageXL.Stage(
+        canvas,
+        width: width,
+        height: height,
+        webGL: webGL,
+        frameRate: frameRate,
+        color: color);
     renderLoop = new StageXL.RenderLoop();
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
     add = new GameObjectFactory();
     physics = new Physics();
-    world = new World(this,width,height);
-    camera = new Camera(this,world);
+    world = new World(this, width, height);
+    camera = new Camera(this, world);
     keyboard = new Keyboard(this);
     touch = new Touch(this);
 
@@ -142,10 +152,10 @@ class Game {
       resourceManager.addBitmapData(name, url);
     });
   }
-  
+
   bool get autoHiDpi => StageXL.Stage.autoHiDpi;
-  
+
   bool get isMobile => StageXL.Stage.isMobile;
-  
+
   num get devicePixelRatio => StageXL.Stage.devicePixelRatio;
 }

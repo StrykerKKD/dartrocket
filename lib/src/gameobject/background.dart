@@ -7,10 +7,12 @@ part of dartrocket;
  * Basically the background is just a bunch of tiles.
  */
 class Background implements StageXL.Animatable {
-  List<StageXL.Bitmap> _backgroundTileList = new List<StageXL.Bitmap>();
+  
   State _context;
-
-
+    
+  List<StageXL.Bitmap> _backgroundTileList = new List<StageXL.Bitmap>();
+  
+  
   static const String REPEAT_NONE = "repeatNone";
   static const String REPEAT_X = "repeatX";
   static const String REPEAT_Y = "repeatY";
@@ -37,7 +39,8 @@ class Background implements StageXL.Animatable {
    * Is the background movable.
    */
   bool isMovable;
-
+   
+  
   /**
    * Create tile based background from [StageXL.BitmapData].
    */

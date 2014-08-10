@@ -37,6 +37,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   num _accelerationDirection = 0;
 
+  StageXL.Vector _newDirection;
+
   /**
    * Does the sprite move?
    */
@@ -247,28 +249,28 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   move(String direction) {
 
-    StageXL.Vector newDirection = mainDirection;
+    _newDirection = mainDirection;
 
     switch (direction) {
       case Direction.UP:
       case Direction.FORWARD:
-        newDirection += upDirection;
+        _newDirection += upDirection;
         break;
       case Direction.DOWN:
       case Direction.BACKWARD:
-        newDirection += downDirection;
+        _newDirection += downDirection;
         break;
       case Direction.LEFT:
-        newDirection += leftDirection;
+        _newDirection += leftDirection;
         break;
       case Direction.RIGHT:
-        newDirection += rightDirection;
+        _newDirection += rightDirection;
         break;
     }
-    if (newDirection.length > 1.001) {
-      mainDirection = newDirection.scaleLength(1);
+    if (_newDirection.length > 1.001) {
+      mainDirection = _newDirection.scaleLength(1);
     } else {
-      mainDirection = newDirection;
+      mainDirection = _newDirection;
     }
   }
 
@@ -307,6 +309,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   stopSpeedChange() {
     _accelerationDirection = 0;
   }
+
 
   bool _speedOverEqualMaxSpeed() {
     return (speedX >= maxSpeed || speedY >= maxSpeed);

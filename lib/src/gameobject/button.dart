@@ -12,6 +12,7 @@ part of dartrocket;
 class Button extends InteractiveBitmap {
 
   State _context;
+  
   /**
    * Text on the button.
    */
@@ -96,8 +97,6 @@ class Button extends InteractiveBitmap {
    */
   State get context => _context;
 
-  Map<String, bool> _isDownBy = new Map<String, bool>();
-
   /**
    * Checks if the button is held down by touch.
    */
@@ -115,5 +114,7 @@ class Button extends InteractiveBitmap {
     return _isDownBy['touch'];
 
   }
+  
+  Map<String, bool> _isDownBy = new Map<String, bool>();
 
 }

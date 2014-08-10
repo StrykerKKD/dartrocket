@@ -4,6 +4,7 @@ part of dartrocket;
  * This class represents a Text in the game.
  */
 class Text extends StageXL.TextField {
+  
   State _context;
   
   /**
@@ -21,6 +22,7 @@ class Text extends StageXL.TextField {
       this.addToWorld();
     }
   }
+  
   /**
    * Add text to the world.
    */
