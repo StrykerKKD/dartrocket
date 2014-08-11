@@ -19,6 +19,7 @@ class Play extends State {
         ..acceleration = 50
         ..minSpeed = 0
         ..maxSpeed = 300
+        ..checkWorldBounds = true
         ..center();
 
     game.keyboard.onKeyDownAndKeyUpHandler(

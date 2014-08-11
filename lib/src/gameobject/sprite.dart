@@ -39,6 +39,10 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   StageXL.Vector _newDirection;
 
+  final StageXL.Vector _zeroOneVector = new StageXL.Vector(0, 1);
+
+  final StageXL.Vector _oneZeroVector = new StageXL.Vector(1, 0);
+
   /**
    * Does the sprite move?
    */
@@ -49,6 +53,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * */
   bool alive = false;
 
+  /**
+   * Sprite can't go outside of the bounds of the world.
+   */
   bool checkWorldBounds = false;
 
   /**
@@ -154,6 +161,18 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         (x + width <= 0 || x - width >= _context.game.world.width) ||
         (y + height <= 0 || y - height >= _context.game.world.height)) {
       removeFromWorld();
+    }
+
+    if (checkWorldBounds) {
+      if ((y - pivotY <= 0 && mainDirection.y < 0) ||
+          (y + height - pivotY >= _context.game.world.height && mainDirection.y > 0)) {
+        mainDirection *= _oneZeroVector;
+      }
+
+      if ((x - pivotX <= 0 && mainDirection.x < 0) ||
+          (x + width - pivotX >= _context.game.world.width && mainDirection.x > 0)) {
+        mainDirection *= _zeroOneVector;
+      }
     }
 
     if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
