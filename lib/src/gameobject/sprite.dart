@@ -42,6 +42,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   final StageXL.Vector _zeroOneVector = new StageXL.Vector(0, 1);
 
   final StageXL.Vector _oneZeroVector = new StageXL.Vector(1, 0);
+  
+  static const int _NO_ACCELERATION_DIRECTION = 0;
+  
+  static const int _SPEED_UP_DIRECTION = 1;
+  
+  static const int _SLOW_DOWN_DIRECTION = -1;
+  
+  static const int _MAX_LENGTH_FOR_MAIN_DIRECTION = 1;
+  
+  static const double _MAX_LENGTH_WITH_PRECISION = 1.001;
 
   /**
    * Does the sprite move?
@@ -286,8 +296,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         _newDirection += rightDirection;
         break;
     }
-    if (_newDirection.length > 1.001) {
-      mainDirection = _newDirection.scaleLength(1);
+    
+    if (_newDirection.length > _MAX_LENGTH_WITH_PRECISION) {
+      mainDirection = _newDirection.scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
     } else {
       mainDirection = _newDirection;
     }
@@ -305,9 +316,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   speedUP() {
     if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
-      _accelerationDirection = 0;
+      _accelerationDirection = _NO_ACCELERATION_DIRECTION;
     } else {
-      _accelerationDirection = 1;
+      _accelerationDirection = _SPEED_UP_DIRECTION;
     }
   }
 
@@ -316,9 +327,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   slowDown() {
     if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
-      _accelerationDirection = 0;
+      _accelerationDirection = _NO_ACCELERATION_DIRECTION;
     } else {
-      _accelerationDirection = -1;
+      _accelerationDirection = _SLOW_DOWN_DIRECTION;
     }
   }
 
@@ -326,7 +337,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Stop the acceleration, both speed up and slow down.
    */
   stopSpeedChange() {
-    _accelerationDirection = 0;
+    _accelerationDirection = _NO_ACCELERATION_DIRECTION;
   }
 
 
