@@ -150,17 +150,6 @@ class Game {
 
   }
 
-  /**
-   * Adds a map of BitmapData to reasourceManager.
-   * Example:
-   *     game.addDataMap({"imageName":"imageUri"});
-   * */
-  void addDataMap(Map<String, String> dataMap) {
-    dataMap.forEach((name, url) {
-      resourceManager.addBitmapData(name, url);
-    });
-  }
-
   bool get autoHiDpi => StageXL.Stage.autoHiDpi;
 
   bool get isMobile => StageXL.Stage.isMobile;
