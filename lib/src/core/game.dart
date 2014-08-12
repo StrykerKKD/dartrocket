@@ -29,27 +29,27 @@ part of dartrocket;
  * */
 
 class Game {
-  
+
   /**
    * The canvas element that we are using.
    * */
   CanvasElement canvas;
-  
+
   /**
    * [StageXL.Stage] object
    * */
   StageXL.Stage stage;
-  
+
   /**
    * [StageXL.RenderLoop] object
    * */
   StageXL.RenderLoop renderLoop;
-  
+
   /**
    * [StageXL.ResourceManager] object
    * */
   StageXL.ResourceManager resourceManager;
-  
+
   /**
    * [StateManager] object
    * */
@@ -96,13 +96,18 @@ class Game {
    * * fullScreen: stage gets full screen and keeps the aspect ratio
    * */
   Game({int width: 800, int height: 600, bool webGL: false, int frameRate: 30,
-      int color: StageXL.Color.Black, bool fullScreen: false}) {
+      int color: StageXL.Color.Black, bool fullScreen: false, num minScale: 0.8,
+      num maxScale: 1.2}) {
 
     if (fullScreen) {
-      double scale = 1.0;
+      
       double ratioWidth = (window.innerWidth) / width;
       double ratioHeight = (window.innerHeight) / height;
-      scale = (ratioWidth < ratioHeight) ? ratioWidth : ratioHeight;
+      double scale = (ratioWidth < ratioHeight) ? ratioWidth : ratioHeight;
+      
+      if(scale < minScale) scale = minScale;
+      if(scale > maxScale) scale = maxScale;
+      
       width = (scale * width).toInt();
       height = (scale * height).toInt();
     }
@@ -120,6 +125,7 @@ class Game {
         webGL: webGL,
         frameRate: frameRate,
         color: color);
+    
     renderLoop = new StageXL.RenderLoop();
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
