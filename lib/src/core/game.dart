@@ -94,6 +94,8 @@ class Game {
    * * framerate: framerate of the game
    * * color: backgroundcolor of the stage
    * * fullScreen: stage gets full screen and keeps the aspect ratio
+   * * minScale: lower limit of the scale value
+   * * maxScale: upper limit of the scale value
    * */
   Game({int width: 800, int height: 600, bool webGL: false, int frameRate: 30,
       int color: StageXL.Color.Black, bool fullScreen: false, num minScale: 0.8,
