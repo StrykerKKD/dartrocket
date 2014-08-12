@@ -30,7 +30,8 @@ class Play extends State {
     player = game.add.sprite('playerShip1_blue')
         ..x = game.world.width ~/ 2
         ..y = game.world.height - 200
-        ..speedX = 300;
+        ..speedX = 300
+        ..checkWorldBounds = true;
 
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
