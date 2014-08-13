@@ -121,7 +121,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    *
    * * stateContext: context of the State, which this object is in
    * * bitmapData: bitmapdata for the sprite
-   * * addToStage: automatically add the sprite to the stage?
+   * * addToWorld: automatically add the sprite to the world?
    * * isMoveAble: will the sprite move?
    *
    * */
@@ -211,7 +211,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   }
 
   /**
-   * Sprite will be added to the stage and to the juggler if the sprite is moveable.
+   * Sprite will be added to the world and to the juggler if the sprite is moveable.
    */
   addToWorld() {
     _context.game.world.addChild(this);
@@ -221,7 +221,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   }
 
   /**
-   * Removes the sprite from the stage and juggler.
+   * Removes the sprite from the world and juggler.
    */
   removeFromWorld() {
     alive = false;

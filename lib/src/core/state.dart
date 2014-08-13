@@ -119,7 +119,7 @@ abstract class State extends Stream<String> {
   /**
    * Overwrite if you want do something in the loop.
    * 
-   * It's called when an EnterFrame event happens on the stage.
+   * It's called when an EnterFrame event happens on the world.
    */
   update(){}
 
@@ -167,7 +167,7 @@ abstract class State extends Stream<String> {
     game.world.removeChildren();
     game.world.juggler.clear();
     Event.ALL_EVENT.forEach((event) {
-      //killing stage eventlisteners
+      //killing world eventlisteners
       if (game.world.hasEventListener(event)) {
         game.world.removeEventListeners(event);
       }

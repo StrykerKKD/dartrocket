@@ -28,7 +28,7 @@ class Button extends InteractiveBitmap {
    * 
    * * stateContext: current state you are in
    * * text: label of the button
-   * * addToStage: add the button to the stage?
+   * * addToWorld: add the button to the world?
    */
   Button.bitmapdata(State stateContext, StageXL.BitmapData bitmapData,
       String text, {bool addToWorld: true}) : super(
