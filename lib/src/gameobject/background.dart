@@ -30,6 +30,7 @@ class Background implements StageXL.Animatable {
    * Horizontal speed of the tiles
    */
   int vx = 0;
+  
   /**
    * Vertical speed of the tiles.
    */

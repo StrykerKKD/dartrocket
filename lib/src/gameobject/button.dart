@@ -13,6 +13,11 @@ class Button extends InteractiveBitmap {
 
   State _context;
   
+  Map<String, bool> _isDownBy = new Map<String, bool>();
+  
+  static const String TOUCH_INPUT = 'touch';
+  static const String MOUSE_INPUT = 'mouse';
+  
   /**
    * Text on the button.
    */
@@ -101,20 +106,53 @@ class Button extends InteractiveBitmap {
    * Checks if the button is held down by touch.
    */
   bool isDownByTouch() {
-    if (!_isDownBy.containsKey('touch')) {
-      _isDownBy['touch'] = false;
+    if (!_isDownBy.containsKey(TOUCH_INPUT)) {
+      _isDownBy[TOUCH_INPUT] = false;
+      
       onTouchBegin.listen((_) {
-        _isDownBy['touch'] = true;
+        _isDownBy[TOUCH_INPUT] = true;
       });
+      
       onTouchEnd.listen((_) {
-        _isDownBy['touch'] = false;
+        _isDownBy[TOUCH_INPUT] = false;
       });
 
     }
-    return _isDownBy['touch'];
+    return _isDownBy[TOUCH_INPUT];
 
   }
   
-  Map<String, bool> _isDownBy = new Map<String, bool>();
+  /**
+   * Checks if the button is held down by mouse.
+   */
+  bool isDownByMouse() {
+    if(!_isDownBy.containsKey(MOUSE_INPUT)){
+      _isDownBy[MOUSE_INPUT] = false;
+      
+      onMouseDown.listen((_){
+        _isDownBy[MOUSE_INPUT] = true;
+      });
+      
+      onMouseUp.listen((_){
+        _isDownBy[MOUSE_INPUT] = false;
+      });
+    }
+    return _isDownBy[MOUSE_INPUT];
+  }
+  
+  /**
+   * Checks if the button is held down by an input(touch or mouse).
+   */
+  bool isDownBy(String input) {
+    if(!_isDownBy.containsKey(input)){
+      switch(input){
+        case TOUCH_INPUT:
+          return isDownByTouch();
+        case MOUSE_INPUT:
+          return isDownByMouse();
+      }
+    }
+    return _isDownBy[input];
+  }
 
 }
