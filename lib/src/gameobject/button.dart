@@ -12,12 +12,12 @@ part of dartrocket;
 class Button extends InteractiveBitmap {
 
   State _context;
-  
+
   Map<String, bool> _isDownBy = new Map<String, bool>();
-  
+
   static const String TOUCH_INPUT = 'touch';
   static const String MOUSE_INPUT = 'mouse';
-  
+
   /**
    * Text on the button.
    */
@@ -108,11 +108,11 @@ class Button extends InteractiveBitmap {
   bool isDownByTouch() {
     if (!_isDownBy.containsKey(TOUCH_INPUT)) {
       _isDownBy[TOUCH_INPUT] = false;
-      
+
       onTouchBegin.listen((_) {
         _isDownBy[TOUCH_INPUT] = true;
       });
-      
+
       onTouchEnd.listen((_) {
         _isDownBy[TOUCH_INPUT] = false;
       });
@@ -121,31 +121,31 @@ class Button extends InteractiveBitmap {
     return _isDownBy[TOUCH_INPUT];
 
   }
-  
+
   /**
    * Checks if the button is held down by mouse.
    */
   bool isDownByMouse() {
-    if(!_isDownBy.containsKey(MOUSE_INPUT)){
+    if (!_isDownBy.containsKey(MOUSE_INPUT)) {
       _isDownBy[MOUSE_INPUT] = false;
-      
-      onMouseDown.listen((_){
+
+      onMouseDown.listen((_) {
         _isDownBy[MOUSE_INPUT] = true;
       });
-      
-      onMouseUp.listen((_){
+
+      onMouseUp.listen((_) {
         _isDownBy[MOUSE_INPUT] = false;
       });
     }
     return _isDownBy[MOUSE_INPUT];
   }
-  
+
   /**
    * Checks if the button is held down by an input(touch or mouse).
    */
   bool isDownBy(String input) {
-    if(!_isDownBy.containsKey(input)){
-      switch(input){
+    if (!_isDownBy.containsKey(input)) {
+      switch (input) {
         case TOUCH_INPUT:
           return isDownByTouch();
         case MOUSE_INPUT:
