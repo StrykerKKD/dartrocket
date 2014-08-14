@@ -6,63 +6,9 @@ The main goal of this framework is to provide an easy to use solution for HTML5 
 ***
 
 ##How to start?
-This is how the most basic structure looks like with only one state.
+Please check out the [wiki](https://github.com/StrykerKKD/dartrocket/wiki).
 
- * Create index.html file, which has 
-```
- <!DOCTYPE html>
-
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
-  </head>
- 
-  <body>   
-    <script type="application/dart" src="index.dart"></script>
-    <script src="packages/browser/dart.js"></script>
-  </body>
-</html>
-```
- * Create index.dart
-```
-library mygame;
-
-import 'package:dartrocket/dartrocket.dart';
-
-part "play.dart";
-
-void main() {
-  
-  //adding play state to the statemanager
-  game.stateManager.addState("play",new Play("play"));
-  
-  //start the play state
-  game.stateManager.initState("play");
-}
-```
- * Create play.dart
- 
-```
- part of mygame;
-
-class Play extends State {
-  Play(String name, [String nextState]): super(name, nextState);
-
-  load() {
-    //loading resources here(image,sound, textureatlas etc..)
-  }
-  
-  create() {
-    //create gameobjects and event handlers    
-  }
-  
-  update(){
-    //game loop: usually for handling physics and input events(moving the player)
-  }
-}
-```
+For fast start you can use the [basic template](https://github.com/StrykerKKD/dartrocket/tree/master/example/projecttemplate).
 
 You can find additional examples in the documentation and in the [examples directory](https://github.com/StrykerKKD/dartrocket/tree/master/example) in dartrocket's github repo.
 
