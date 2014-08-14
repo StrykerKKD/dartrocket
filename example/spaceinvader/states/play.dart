@@ -70,7 +70,7 @@ class Play extends State {
         laserSound.play();
       }
     });
-
+    
 
     if (game.isMobile) {
 
@@ -92,19 +92,23 @@ class Play extends State {
     player.stop();
 
     if (game.isMobile) {
+      
       if (leftButton.isDownByTouch()) {
         player.move('left');
       }
       if (rightButton.isDownByTouch()) {
-        player.move('right');
+        player.move('right');      
       }
+      
     } else {
+      
       if (game.keyboard.isDown(KeyCode.LEFT)) {
         player.move('left');
       }
       if (game.keyboard.isDown(KeyCode.RIGHT)) {
         player.move('right');
       }
+      
     }
 
 
