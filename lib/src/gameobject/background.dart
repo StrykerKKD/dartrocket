@@ -12,6 +12,8 @@ class Background implements StageXL.Animatable {
 
   List<StageXL.Bitmap> _backgroundTileList = new List<StageXL.Bitmap>();
 
+  int _plusBuffImage = 1;
+
 
   static const String REPEAT_NONE = "repeatNone";
   static const String REPEAT_X = "repeatX";
@@ -98,8 +100,10 @@ class Background implements StageXL.Animatable {
         break;
     }
 
-    for (int i = 0; i < yTimes + 1; i++) {
-      for (int j = 0; j < xTimes + 1; j++) {
+    if (!isMovable) _plusBuffImage = 0;
+
+    for (int i = 0; i < yTimes + _plusBuffImage; i++) {
+      for (int j = 0; j < xTimes + _plusBuffImage; j++) {
         backgroundTileBitmap = new StageXL.Bitmap(backgroundTileBitmapdata);
         backgroundTileBitmap
             ..x = backgroundTileBitmap.width * j
