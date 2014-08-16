@@ -29,4 +29,9 @@ class Camera extends StageXL.DisplayObjectContainer {
         break;
     }
   }
+  
+  void follow(Sprite target) {
+    
+  }
+  
 }
