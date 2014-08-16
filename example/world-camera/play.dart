@@ -2,6 +2,8 @@ part of worldcamera;
 
 class Play extends State {
   Play(String name) : super(name);
+  
+  int dist = 5;
 
   load() {
     game.resourceManager.addBitmapData('ship', 'playerShip1_blue.png');
@@ -10,13 +12,21 @@ class Play extends State {
 
   create() {
     game.add.background('background');
+  }
 
-    int dist = 10;
-
-    game.keyboard.onKeyDown(KeyCode.UP, () => game.camera.move('up', dist));
-    game.keyboard.onKeyDown(KeyCode.DOWN, () => game.camera.move('down', dist));
-    game.keyboard.onKeyDown(KeyCode.LEFT, () => game.camera.move('left', dist));
-    game.keyboard.onKeyDown(KeyCode.RIGHT, () => game.camera.move('right', dist));
+  update() {
+    if (game.keyboard.isDown(KeyCode.UP)) {
+      game.camera.move('up', dist);
+    }
+    if (game.keyboard.isDown(KeyCode.DOWN)) {
+      game.camera.move('down', dist);
+    }
+    if (game.keyboard.isDown(KeyCode.LEFT)) {
+      game.camera.move('left', dist);
+    }
+    if (game.keyboard.isDown(KeyCode.RIGHT)) {
+      game.camera.move('right', dist);
+    }
   }
 
 }
