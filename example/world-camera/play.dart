@@ -19,6 +19,8 @@ class Play extends State {
         ..y = 200;
     
     game.camera.follow(player);
+    
+    game.keyboard.onKeyDown(KeyCode.SPACE, ()=>game.camera.unfollow());
   }
 
   update() {
@@ -50,6 +52,7 @@ class Play extends State {
     if (game.keyboard.isDown(KeyCode.D)) {
       player.move('right');
     }
+    
     
   }
 

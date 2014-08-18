@@ -67,6 +67,11 @@ class Camera extends StageXL.DisplayObjectContainer {
     _following = true;
 
   }
+  
+  void unfollow() {
+    _following = false;
+    _targetSprite = null;
+  }
 
   void update() {
     if (_following) {
