@@ -156,6 +156,7 @@ abstract class State extends Stream<String> {
       create();
       game.world.onEnterFrame.listen((_){
         update();
+        game.camera.update();
       });
     });
   }
