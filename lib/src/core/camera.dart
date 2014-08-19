@@ -36,7 +36,10 @@ class Camera extends StageXL.DisplayObjectContainer {
     pivotX = width ~/ 2;
     pivotY = height ~/ 2;
   }
-
+  
+  /**
+   * Moves the camera by distance.
+   */
   void moveDistance(String direction, {int distance: 5}) {
     switch (direction) {
       case Direction.UP:
@@ -53,23 +56,24 @@ class Camera extends StageXL.DisplayObjectContainer {
         break;
     }
   }
-
-
-
-
+  
+  /**
+   * Camera will follow the target.
+   */
   void follow(Sprite target) {
-
     _targetSprite = target;
     _following = true;
-
   }
   
+  /**
+   * Camera will not follow the target.
+   */
   void unfollow() {
     _following = false;
     _targetSprite = null;
   }
-
-  void update() {
+  
+  void _update() {
     if (_following) {
       _targetWorldX = _world.x + _targetSprite.x;
       _targetWorldY = _world.y + _targetSprite.y;
