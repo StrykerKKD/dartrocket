@@ -171,7 +171,6 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         ((x + width <= 0 || x - width >= _context.game.world.width) ||
             (y + height <= 0 || y - height >= _context.game.world.height))) {
       removeFromWorld();
-      print('here');
     }
 
     if (checkWorldBounds) {
