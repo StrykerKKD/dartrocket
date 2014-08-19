@@ -27,8 +27,6 @@ class Camera extends StageXL.DisplayObjectContainer {
    */
   num height;
 
-  StageXL.Point focusPoint;
-
   Camera(this._game, this._world) {
     _game.stage.addChild(this);
 
@@ -37,8 +35,6 @@ class Camera extends StageXL.DisplayObjectContainer {
 
     pivotX = width ~/ 2;
     pivotY = height ~/ 2;
-    print('pivot: $pivotX, $pivotY');
-    //focusPoint = new StageXL.Point(pivotX, pivotY);
   }
 
   void moveDistance(String direction, {int distance: 5}) {
