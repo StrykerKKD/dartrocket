@@ -66,7 +66,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Sprite can't go outside of the bounds of the world.
    */
-  bool checkWorldBounds = false;
+  bool collideWorldBounds = false;
 
   /**
    * Kill Sprite if it's out of the world's bounds.
@@ -173,7 +173,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       removeFromWorld();
     }
 
-    if (checkWorldBounds) {
+    if (collideWorldBounds) {
       if ((y - pivotY <= 0 && mainDirection.y < 0) ||
           (y + height - pivotY >= _context.game.world.height && mainDirection.y > 0)) {
         mainDirection *= _oneZeroVector;
