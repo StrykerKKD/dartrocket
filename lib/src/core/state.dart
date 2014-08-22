@@ -4,7 +4,7 @@ part of dartrocket;
  * State is an absract class that represents a state of the game.
  * 
  * For using it you need to extend the state and call it's constructor, after that
- * you have to owerwrite the run() methode.
+ * you have to owerwrite the create() methode.
  * 
  * There 2 **important** methode that controls the state:
  * 
@@ -18,14 +18,15 @@ part of dartrocket;
  * 
  * Example:
  *     class MyState extends State{
- *       //You can genrate it with DartEditor's quikfix
- *       MyState(String name, [String nextState]): super(name, nextState);
+ *       //You only need constructor if you want to set the nextState with constructor
+ *       //If you don't want it then you don't need to implement a constructor
+ *       MyState(String nextState): super(nextState);
  *       
- *       load(){
+ *       load() {
  *        //loading stuff
  *       }
  *       
- *       run(){         
+ *       create() {         
  *       
  *         //running stuff
  *         if(playerLost){
@@ -34,11 +35,15 @@ part of dartrocket;
  *           endState(); 
  *         }else{
  *           //player won so we go to the next level and never return
- *           nextState = "nextLevel";
- *           terminateState();
+ *           terminateState("nextLevel");
  *         }
  *         
  *       }
+ * 
+ *       load() {
+ *       
+ *       }
+ * 
  *     }
  * 
  * */
@@ -48,7 +53,10 @@ abstract class State {
   static const String _PAUSE = "PAUSE";
 
   StreamController<String> _controller;
-
+  
+  /**
+   * The name of the State.
+   */
   String name;
 
   /**

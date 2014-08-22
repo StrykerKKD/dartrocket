@@ -10,7 +10,7 @@ part of dartrocket;
  * 
  * **Important:** The StateManager manages the flow of the game, 
  * but does not controll it. The Manager starts the next state based on the
- * current state's _nextStateName value.
+ * current state's _nextState value.
  * This means that you can change the flow of the game in the current State.
  * 
  * Two events can happen when the StateManager changes the state:
@@ -38,11 +38,6 @@ class StateManager {
   
   StreamSubscription _currentSubscription;
   
-  /**
-   * This constructor is only used by the [Game]'s constructor.
-   * 
-   * **DO NOT USE IT.**
-   * */
   StateManager(this._game) {
     _stateMap = new Map<String, State>();
     _subscriptionMap = new Map<String, StreamSubscription>();

@@ -2,6 +2,28 @@ part of dartrocket;
 
 /**
  * Handling some keyboard events.
+ * 
+ * Example:
+ *      game.keyboard.onKeyDown(KeyCode.Space, (){
+ *        player.jump();
+ *      });
+ *      
+ *      //if handler function needs parameter
+ *      game.keyboard.onKeyDownAndKeyUpHandler(KeyCode.W, 
+ *        ()=>ship.speedUp(20), 
+ *        ()=>ship.stopSpeeding());
+ *      
+ *      //if handler don't need parameter you can us it this way
+ *      game.keyboard.onKeyDownAndKeyUpHandler(KeyCode.W, 
+ *        ship.speedUp, 
+ *        ship.stopSpeeding());
+ * 
+ *      //isDown is best used inside update loop in state
+ *      update() {
+ *        if(game.keyboard.isDown(KeyCode.Space)) {
+ *          player.jump();
+ *        }
+ *      }
  */
 
 class Keyboard {

@@ -13,13 +13,13 @@ part of dartrocket;
  *  
  * Your main file should look something like this:
  *     void main(){
- *       Game game = new Game("canvas");
+ *       Game game = new Game();
  *       
  *       //Add states to the stateManager
  *       game.stateManager.addStateMap({
- *         "first": new First("first", "second"),
- *         "second": new Second("second", "third"),
- *         "third": new Third("third")
+ *         "first": new First("second"),
+ *         "second": new Second("third"),
+ *         "third": new Third()
  *       });
  *       
  *       //Start the first state
@@ -89,13 +89,14 @@ class Game {
    * Creates a new Game object.
    * Parameters:
    * 
-   * * canvasID: ID of the canvas without the #(hasmark)
+   * * width: width of the canvas
+   * * height: height of the canvas
    * * webGL: use WebGL renderer?
    * * framerate: framerate of the game
    * * color: backgroundcolor of the stage
    * * fullScreen: stage gets full screen and keeps the aspect ratio
-   * * minScale: lower limit of the scale value (used, when fullScreen is true)
-   * * maxScale: upper limit of the scale value (used, when fullScreen is true)
+   * * minScale: lower limit of the scale value (used, when fullScreen is true) default value:0.8
+   * * maxScale: upper limit of the scale value (used, when fullScreen is true) default value:1.2
    * */
   Game({int width: 800, int height: 600, bool webGL: false, int frameRate: 30,
       int color: StageXL.Color.Black, bool fullScreen: false, num minScale: 0.8,
@@ -151,8 +152,14 @@ class Game {
   }
 
   bool get autoHiDpi => StageXL.Stage.autoHiDpi;
-
+  
+  /**
+   * Is the device a mobile?
+   */
   bool get isMobile => StageXL.Stage.isMobile;
-
+  
+  /**
+   * Give back the pixel ratio.
+   */
   num get devicePixelRatio => StageXL.Stage.devicePixelRatio;
 }

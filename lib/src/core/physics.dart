@@ -1,5 +1,9 @@
 part of dartrocket;
 
+/**
+ * Physics class can solve collison between gameobject for now.
+ */
+
 class Physics {
   
   /**
@@ -10,6 +14,14 @@ class Physics {
    * collisonHandler runs, when two object hits each other.
    * The two actual object in collison is the input parameters 
    * for the collisonHandler.
+   * 
+   * Example:
+   *      player and enemy can be a Sprite or Group
+   *      game.physics.collision(bullet,enemy,(bullet, enemy) {
+   *        enemy.kill();
+   *        bullet.kill();
+   *        score++;
+   *      });
    * 
    */
   void collison(var object1, var object2, Function

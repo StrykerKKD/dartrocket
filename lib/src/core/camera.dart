@@ -1,7 +1,17 @@
 part of dartrocket;
 
 /**
- * Camera can change the view of the world.
+ * You view the world thru the camera.
+ * 
+ * Example:
+ *      //This will move the camera upwards by 10 pixel
+ *      game.camera.moveDistance(Direction.UP,distance:10);
+ * 
+ *      //follows the player, which must be a Sprite
+ *      game.camera.follow(player);
+ * 
+ *      //unfollow the followed Sprite
+ *      game.camera.unfollow();
  */
 class Camera extends StageXL.DisplayObjectContainer {
 
@@ -18,12 +28,12 @@ class Camera extends StageXL.DisplayObjectContainer {
   num _targetWorldY;
 
   /**
-   * Widht of the world.
+   * Widht of the camera.
    */
   num width;
 
   /**
-   * Height of the world.
+   * Height of the camera.
    */
   num height;
 
