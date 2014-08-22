@@ -3,6 +3,25 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.5
+  * Using vector based directions for controlling the sprite
+  * Acceleration added to the Sprite class
+  * Moving system example
+  * Getting started guide in the wiki
+  * onKeyDown and Up handler for keyboard
+  * CollideWorldBounds added to sprite, so you can't go outside of the bounds
+  * KillOutOfBounds added which can kill the sprite if it's go outside of the bounds
+  * min and max scale value for fullscreen mode
+  * Button has 3 isDown method to handle click or touch events
+  * Project template in repo
+  * Fix: using world instead of stage everywhere
+  * Camera can follow a sprite and you can unfollow it
+  * Camera example added
+  * Breaking: Removed name paramter from State constructor
+  * Added nextState parameter to killState and endState methods
+  * Removed Stream extend from State and made listen into a private method
+  * Updated the documentation
+
 #### Pub version 0.1.4
   * Physics class added with collison method
   * Breaking change: load,create,update methods for a state
