@@ -48,8 +48,8 @@ abstract class State extends Stream<String> {
   static const String _PAUSE = "PAUSE";
 
   StreamController<String> _controller;
-  
-  String _name;
+
+  String name;
 
   /**
    * The next state's name.
@@ -71,9 +71,12 @@ abstract class State extends Stream<String> {
    * * _name: the state's name
    * * nextState: next state's name(optional)
    * */
-  State(this._name, [String nextState = null]) : nextState = nextState {
-    _controller = new StreamController<String>(onListen: _onListen, onPause:
-        _onPause, onResume: _onResume, onCancel: _onCancel);
+  State([String nextState]) : nextState = nextState {
+    _controller = new StreamController<String>(
+        onListen: _onListen,
+        onPause: _onPause,
+        onResume: _onResume,
+        onCancel: _onCancel);
   }
 
   /**
@@ -83,7 +86,10 @@ abstract class State extends Stream<String> {
    * */
   StreamSubscription<String> listen(void onData(String line), {void
       onError(Error error), void onDone(), bool cancelOnError}) {
-    return _controller.stream.listen(onData, onError: onError, onDone: onDone,
+    return _controller.stream.listen(
+        onData,
+        onError: onError,
+        onDone: onDone,
         cancelOnError: cancelOnError);
   }
 
@@ -115,18 +121,13 @@ abstract class State extends Stream<String> {
    * ** You must overwrite this for using the state. ** 
    * */
   create();
-  
+
   /**
    * Overwrite if you want do something in the loop.
    * 
    * It's called when an EnterFrame event happens on the world.
    */
-  update(){}
-
-  /**
-   * Gets the name of the state.
-   * */
-  String get name => _name;
+  update() {}
 
   /**
    * You can send message to the StateManager.
@@ -138,14 +139,16 @@ abstract class State extends Stream<String> {
   /**
    * This methodes end the state, but we can come back to this state
    * */
-  void endState() {
+  void endState([String nextState]) {
+    if (nextState != null) this.nextState = nextState;
     _controller.add(_PAUSE);
   }
 
   /**
    * This kills that state, so you can not return back to this state
    * */
-  void killState() {
+  void killState([String nextState]) {
+    if (nextState != null) this.nextState = nextState;
     _controller.close();
   }
 
@@ -154,7 +157,7 @@ abstract class State extends Stream<String> {
     game.resourceManager.load().then((_) {
       game.add.currentContext = game.stateManager.currentState;
       create();
-      game.world.onEnterFrame.listen((_){
+      game.world.onEnterFrame.listen((_) {
         update();
         game.camera._update();
       });
@@ -162,7 +165,7 @@ abstract class State extends Stream<String> {
   }
 
   void _destructor() {
-    
+
     game.add.currentContext = null;
     game.camera.removeChildren();
     game.world.removeChildren();
