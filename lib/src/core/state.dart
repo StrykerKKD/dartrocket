@@ -43,7 +43,7 @@ part of dartrocket;
  * 
  * */
 
-abstract class State extends Stream<String> {
+abstract class State {
 
   static const String _PAUSE = "PAUSE";
 
@@ -79,35 +79,6 @@ abstract class State extends Stream<String> {
         onCancel: _onCancel);
   }
 
-  /**
-   * This methode can only be used by the [StateManager]'s object.
-   * 
-   * **DO NOT USE IT.**
-   * */
-  StreamSubscription<String> listen(void onData(String line), {void
-      onError(Error error), void onDone(), bool cancelOnError}) {
-    return _controller.stream.listen(
-        onData,
-        onError: onError,
-        onDone: onDone,
-        cancelOnError: cancelOnError);
-  }
-
-  void _onListen() {
-    _constructor();
-  }
-
-  void _onPause() {
-    _destructor();
-  }
-
-  void _onResume() {
-    _constructor();
-  }
-
-  void _onCancel() {
-    _destructor();
-  }
   /**
    * Overwrite if you want to load resources.
    * */
@@ -152,6 +123,15 @@ abstract class State extends Stream<String> {
     _controller.close();
   }
 
+  StreamSubscription<String> _start(void onData(String line), {void
+      onError(Error error), void onDone(), bool cancelOnError}) {
+    return _controller.stream.listen(
+        onData,
+        onError: onError,
+        onDone: onDone,
+        cancelOnError: cancelOnError);
+  }
+
   void _constructor() {
     load();
     game.resourceManager.load().then((_) {
@@ -165,7 +145,6 @@ abstract class State extends Stream<String> {
   }
 
   void _destructor() {
-
     game.add.currentContext = null;
     game.camera.removeChildren();
     game.world.removeChildren();
@@ -176,8 +155,25 @@ abstract class State extends Stream<String> {
         game.world.removeEventListeners(event);
       }
     });
-
   }
+
+  void _onListen() {
+    _constructor();
+  }
+
+  void _onPause() {
+    _destructor();
+  }
+
+  void _onResume() {
+    _constructor();
+  }
+
+  void _onCancel() {
+    _destructor();
+  }
+
+
 
 
 }
