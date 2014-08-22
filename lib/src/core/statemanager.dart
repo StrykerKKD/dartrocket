@@ -71,7 +71,7 @@ class StateManager {
    * */
   void initState(String state) {
     _currentState = _stateMap[state];
-    _currentSubscription = _currentState.listen(_messageHandler, onDone:
+    _currentSubscription = _currentState._start(_messageHandler, onDone:
         _onDoneHandler);
     //new state so we add the state's subscription to the _subscriptionMap
     _subscriptionMap[_currentState.name] = _currentSubscription;
@@ -118,7 +118,7 @@ class StateManager {
         _currentSubscription.resume();
       }
     } else {
-      _currentSubscription = _currentState.listen(_messageHandler, onDone:
+      _currentSubscription = _currentState._start(_messageHandler, onDone:
           _onDoneHandler);
       //new state so we add the state's subscription to the _subscriptionMap
       _subscriptionMap[_currentState.name] = _currentSubscription;
