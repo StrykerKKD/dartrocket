@@ -1,11 +1,11 @@
 part of core_test;
 
 class PauseState extends State {
-  PauseState(String name,[String nextState = null]) : super(name,nextState);
+  PauseState(String nextState) : super(nextState);
 
   
   @override
-  create() {    
-    endState();
+  create() {
+    endState(nextState);
   }
 }

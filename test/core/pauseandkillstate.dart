@@ -1,7 +1,7 @@
 part of core_test;
 
 class PauseAndKillState extends State {
-  PauseAndKillState(String name,[String nextState]) : super(name,nextState);
+  PauseAndKillState(String nextState) : super(nextState);
   
 
   static bool pauseIt = true;
@@ -9,9 +9,9 @@ class PauseAndKillState extends State {
   create() {
     if(pauseIt){
       pauseIt = false;
-      endState();
+      endState(nextState);
     }else{
-      killState();
+      killState(nextState);
     }
   }
 }

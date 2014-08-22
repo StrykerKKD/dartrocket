@@ -1,8 +1,7 @@
 part of core_test;
 
 class IdleState extends State {
-  IdleState(String name) : super(name);
-  
+  IdleState([String nextState]) : super(nextState);
 
   @override
   create() {
