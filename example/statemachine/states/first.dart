@@ -8,8 +8,6 @@ class First extends State {
         ..x = 300
         ..y = 300;
     
-    print("$nextState");
-    
     new Timer(new Duration(seconds: 3), killState);
   }
 }
