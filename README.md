@@ -13,7 +13,7 @@ For fast start you can use the [basic template](https://github.com/StrykerKKD/da
 You can find additional examples in the documentation and in the [examples directory](https://github.com/StrykerKKD/dartrocket/tree/master/example) in dartrocket's github repo.
 
 ##Documentation
- [DartRocket's Documentation on dartdocs.org](http://www.dartdocs.org/documentation/dartrocket/0.1.4/index.html#dartrocket).
+ [DartRocket's Documentation on dartdocs.org](http://www.dartdocs.org/documentation/dartrocket/0.1.5/index.html#dartrocket).
 
 ##Support/Forum
 If you have any question or problem. Just make a topic and ask.
