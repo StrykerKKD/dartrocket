@@ -52,6 +52,7 @@ class StateManager {
    * Add a state to the state manager.
    * */
   void addState(String name, State state) {
+    state.name = name;
     state.game = _game;
     _stateMap[name] = state;
   }
@@ -60,10 +61,9 @@ class StateManager {
    * Add a map of states to the statemanager.
    * */
   void addStateMap(Map<String, State> map) {
-    map.forEach((_, state) {
-      state.game = _game;
+    map.forEach((name, state) {
+      addState(name,state);
     });
-    _stateMap.addAll(map);
   }
   
   /**
@@ -77,7 +77,7 @@ class StateManager {
     _subscriptionMap[_currentState.name] = _currentSubscription;
   }
   
-  //Current state send and endState
+  //Current state send a message through the stream
   void _messageHandler(message) {
     if (message == State._PAUSE) {
       new Future(_currentSubscription.pause).then(_nextState);
