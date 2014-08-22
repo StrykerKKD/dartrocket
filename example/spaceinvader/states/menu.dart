@@ -1,7 +1,6 @@
 part of spaceinvader;
 
 class Menu extends State {
-  Menu(String name, [String nextState]) : super(name, nextState);
 
   create() {
 
@@ -23,10 +22,10 @@ class Menu extends State {
         ..x = 300
         ..y = 400
         ..onTouchEnd.listen((_) {
-          killState();
+          killState("play");
         })
         ..onMouseClick.listen((_) {
-          killState();
+          killState("play");
         });
 
   }

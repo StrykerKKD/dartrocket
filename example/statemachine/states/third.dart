@@ -1,13 +1,12 @@
 part of statemachine;
 
 class Third extends State {
-  Third(String name, [String nextState]): super(name, nextState);
 
   static bool runned = false;
 
   create() {
-    
-    Text text = new Text(this,"Third State")
+
+    Text text = new Text(this, "Third State")
         ..x = 300
         ..y = 300;
 

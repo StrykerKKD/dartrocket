@@ -10,7 +10,7 @@ void main() {
   Game game = new Game();
   
   //adding the play state to the statemanager
-  game.stateManager.addState('play', new Play('play'));
+  game.stateManager.addState('play', new Play());
   
   //start the play state
   game.stateManager.initState('play');

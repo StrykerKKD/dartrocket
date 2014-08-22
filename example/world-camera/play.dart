@@ -17,10 +17,11 @@ class Play extends State {
         ..speed = 200
         ..x = 200
         ..y = 200;
-    
+
     game.camera.follow(player);
-    
-    game.keyboard.onKeyDown(KeyCode.SPACE, ()=>game.camera.unfollow());
+
+    game.keyboard.onKeyDown(KeyCode.SPACE, game.camera.unfollow);
+
   }
 
   update() {
@@ -37,7 +38,7 @@ class Play extends State {
       game.camera.moveDistance('right');
     }
 
-    
+
     player.stop();
 
     if (game.keyboard.isDown(KeyCode.W)) {
@@ -52,8 +53,8 @@ class Play extends State {
     if (game.keyboard.isDown(KeyCode.D)) {
       player.move('right');
     }
-    
-    
+
+
   }
 
 }

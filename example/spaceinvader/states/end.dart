@@ -1,7 +1,6 @@
 part of spaceinvader;
 
 class End extends State {
-  End(String name): super(name);
 
   create() {
     

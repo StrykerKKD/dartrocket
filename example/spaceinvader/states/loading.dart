@@ -2,8 +2,6 @@ part of spaceinvader;
 
 class Loading extends State {
 
-  Loading(String name, [String nextState]) : super(name, nextState);
-
   load() {
     
     new Background.color(this, color: Color.Beige, scaleMode: Background.SCALE_FULL_XY);
@@ -19,7 +17,7 @@ class Loading extends State {
   }
 
   create() {
-    killState();
+    killState("menu");
   }
 
 

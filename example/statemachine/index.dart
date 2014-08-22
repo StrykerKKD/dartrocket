@@ -14,9 +14,9 @@ void main() {
   Game game = new Game(color:Color.LightGreen);
 
   game.stateManager.addStateMap({
-    "first": new First("first", "second"),
-    "second": new Second("second", "third"),
-    "third": new Third("third")
+    "first": new First("second"),
+    "second": new Second("third"),
+    "third": new Third()
   });
 
   game.stateManager.initState("first");

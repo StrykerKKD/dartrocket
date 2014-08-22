@@ -1,7 +1,6 @@
 part of spaceinvader;
 
 class Play extends State {
-  Play(String name, [String nextState]) : super(name, nextState);
 
   int score;
   Text scoreText;
@@ -31,7 +30,7 @@ class Play extends State {
         ..x = game.world.width ~/ 2
         ..y = game.world.height - 200
         ..speedX = 300
-        ..checkWorldBounds = true;
+        ..collideWorldBounds = true;
 
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
@@ -114,7 +113,7 @@ class Play extends State {
 
     if (!ufos.anyAlive()) {
       bulletTimer.cancel();
-      killState();
+      killState("end");
     }
 
     game.physics.collison(ufos, bullets, (Ufo ufo, Sprite bullet) {
@@ -125,7 +124,7 @@ class Play extends State {
 
     game.physics.collison(ufos, player, (Ufo ufo, Sprite player) {
       bulletTimer.cancel();
-      killState();
+      killState("end");
     });
   }
 

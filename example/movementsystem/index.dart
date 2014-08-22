@@ -7,7 +7,7 @@ part 'play.dart';
 void main() {
   Game game = new Game();
 
-  game.stateManager.addState('play', new Play('play'));
+  game.stateManager.addState('play', new Play());
 
   game.stateManager.initState('play');
 }

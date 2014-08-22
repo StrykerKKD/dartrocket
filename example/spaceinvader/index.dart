@@ -23,10 +23,10 @@ void main() {
   game.add.defaultTextureAtlasName = 'spaceinvader';
   
   game.stateManager.addStateMap({
-    "loading": new Loading("loading", "menu"),
-    "menu": new Menu("menu","play"),
-    "play": new Play("play","end"),
-    "end": new End("end")
+    "loading": new Loading(),
+    "menu": new Menu(),
+    "play": new Play(),
+    "end": new End()
   });
   game.stateManager.initState("loading");
 }

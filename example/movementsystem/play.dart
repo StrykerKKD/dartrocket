@@ -1,7 +1,6 @@
 part of movementsystem;
 
 class Play extends State {
-  Play(String name) : super(name);
 
   Sprite player;
 
@@ -19,7 +18,7 @@ class Play extends State {
         ..acceleration = 50
         ..minSpeed = 0
         ..maxSpeed = 300
-        ..checkWorldBounds = true
+        ..collideWorldBounds = true
         ..center();
 
     game.keyboard.onKeyDownAndKeyUpHandler(
