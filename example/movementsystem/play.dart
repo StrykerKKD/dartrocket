@@ -19,7 +19,7 @@ class Play extends State {
         ..minSpeed = 0
         ..maxSpeed = 300
         ..collideWorldBounds = true
-        ..center();
+        ..centerPivot();
 
     game.keyboard.onKeyDownAndKeyUpHandler(
         KeyCode.J,
