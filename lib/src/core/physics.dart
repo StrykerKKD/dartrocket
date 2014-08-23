@@ -5,7 +5,16 @@ part of dartrocket;
  */
 
 class Physics {
-  
+
+  num garvitySpeed = 0;
+
+  StageXL.Vector gravityDirection = new StageXL.Vector.zero();
+
+  StageXL.Vector upDirection = new StageXL.Vector(0, -1);
+  StageXL.Vector downDirection = new StageXL.Vector(0, 1);
+  StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
+  StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
+
   /**
    * Resolve collison between two gameobject.
    * 
@@ -24,8 +33,8 @@ class Physics {
    *      });
    * 
    */
-  void collison(var object1, var object2, Function
-      collisonHandler(item1, itme2)) {
+  void collison(var object1, var object2, Function collisonHandler(item1,
+      itme2)) {
 
     if (object1 is Group && object2 is Group) {
 
@@ -67,6 +76,35 @@ class Physics {
 
     }
 
+  }
+
+  void setGravityDirection(String direction) {
+    switch (direction) {
+      case Direction.UP:
+        gravityDirection = upDirection;
+        break;
+      case Direction.DOWN:
+        gravityDirection = downDirection;
+        break;
+      case Direction.LEFT:
+        gravityDirection = leftDirection;
+        break;
+      case Direction.RIGHT:
+        gravityDirection = rightDirection;
+        break;
+
+    }
+  }
+  
+  void rotateGravityDirectionsInAngles(num angles) {
+    rotateGravityDirectionsInRads(angles * (math.PI / 180));
+  }
+  
+  void rotateGravityDirectionsInRads(num rads) {
+    upDirection = upDirection.rotate(rads);
+    downDirection = downDirection.rotate(rads);
+    leftDirection = leftDirection.rotate(rads);
+    rightDirection = rightDirection.rotate(rads);
   }
 
 }
