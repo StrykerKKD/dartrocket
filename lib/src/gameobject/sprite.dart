@@ -39,6 +39,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   StageXL.Vector _newDirection;
 
+  final StageXL.Vector _zeroVector = new StageXL.Vector.zero();
+
   final StageXL.Vector _zeroOneVector = new StageXL.Vector(0, 1);
 
   final StageXL.Vector _oneZeroVector = new StageXL.Vector(1, 0);
@@ -113,9 +115,6 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
   StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
 
-  final StageXL.Vector zeroVector = new StageXL.Vector.zero();
-
-
   /**
    * Create a Sprite object from [StageXL.BitmapData].
    *
@@ -170,6 +169,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     if (killOutOfBounds &&
         ((x + width <= 0 || x - width >= _context.game.world.width) ||
             (y + height <= 0 || y - height >= _context.game.world.height))) {
+      alive = false;
       removeFromWorld();
     }
 
@@ -196,8 +196,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     speedX += _accelerationDirection * accelerationX * time;
     speedY += _accelerationDirection * accelerationY * time;
 
-    x = x + mainDirection.x * speedX * time;
-    y = y + mainDirection.y * speedY * time;
+    x = x +
+        (mainDirection.x * speedX +
+            _context.game.physics.gravityDirection.x * _context.game.physics.garvitySpeed) *
+            time;
+    y = y +
+        (mainDirection.y * speedY +
+            _context.game.physics.gravityDirection.y * _context.game.physics.garvitySpeed) *
+            time;
 
     return true;
 
@@ -205,7 +211,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Put the pivot point into the center of the sprite.
    */
-  void center() {
+  void centerPivot() {
     pivotX = bitmapData.width / 2;
     pivotY = bitmapData.height / 2;
   }
@@ -213,7 +219,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Sprite will be added to the world and to the juggler if the sprite is moveable.
    */
-  addToWorld() {
+  void addToWorld() {
+    alive = true;
     _context.game.world.addChild(this);
     if (isMovable) {
       _context.game.world.juggler.add(this);
@@ -223,7 +230,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Removes the sprite from the world and juggler.
    */
-  removeFromWorld() {
+  void removeFromWorld() {
     alive = false;
     _context.game.world.removeChild(this);
     if (isMovable) {
@@ -276,7 +283,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    *
    * Direction can be: up/forward, down/backward, left, right
    */
-  move(String direction) {
+  void move(String direction) {
 
     _newDirection = mainDirection;
 
@@ -307,14 +314,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Stops the movement of the sprite.
    */
-  stop() {
-    if (!mainDirection.isZero) mainDirection = zeroVector;
+  void stop() {
+    if (!mainDirection.isZero) mainDirection = _zeroVector;
   }
 
   /**
    * Speed up the sprite's movement.
    */
-  speedUP() {
+  void speedUP() {
     if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
       _accelerationDirection = _NO_ACCELERATION_DIRECTION;
     } else {
@@ -325,7 +332,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Slows down the sprite's movement.
    */
-  slowDown() {
+  void slowDown() {
     if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
       _accelerationDirection = _NO_ACCELERATION_DIRECTION;
     } else {
@@ -336,7 +343,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Stop the acceleration, both speed up and slow down.
    */
-  stopSpeedChange() {
+  void stopSpeedChange() {
     _accelerationDirection = _NO_ACCELERATION_DIRECTION;
   }
 
