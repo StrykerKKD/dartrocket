@@ -30,3 +30,7 @@ These example's build will be updated, when there is a new version of DartRocket
  [SpaceInvader](http://strykerkkd.github.io/js/projects/build/example/spaceinvader/index.html) show a basic space invader game.
  
  [MovementSystem](http://strykerkkd.github.io/js/projects/build/example/movementsystem/index.html) show how the sprite can move.
+ You can move with w,a,s,d and you can rotate with q,e and you can accelerate with j,k.
+
+ [World-Camera](http://strykerkkd.github.io/js/projects/build/example/world-camera/index.html) show how the camera works.
+ You can move the ship with w,a,s,d, you can unfollow the ship with Space and you can move camera with cursors.
