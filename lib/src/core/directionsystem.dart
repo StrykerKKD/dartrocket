@@ -83,14 +83,14 @@ class DirectionSystem {
   }
   
   /**
-   * Set the main direction's x component to null.
+   * Set the main direction's x component to zero.
    */
   void nullMainDirectionX() {
     mainDirection *= _zeroOneVector;
   }
   
   /**
-   * Set the main direction's y component to null.
+   * Set the main direction's y component to zero.
    */
   void nullMainDirectionY() {
     mainDirection *= _oneZeroVector;
