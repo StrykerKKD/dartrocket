@@ -37,23 +37,12 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   num _accelerationDirection = 0;
 
-  StageXL.Vector _newDirection;
-
-  final StageXL.Vector _zeroVector = new StageXL.Vector.zero();
-
-  final StageXL.Vector _zeroOneVector = new StageXL.Vector(0, 1);
-
-  final StageXL.Vector _oneZeroVector = new StageXL.Vector(1, 0);
-
   static const int _NO_ACCELERATION_DIRECTION = 0;
 
   static const int _SPEED_UP_DIRECTION = 1;
 
   static const int _SLOW_DOWN_DIRECTION = -1;
 
-  static const int _MAX_LENGTH_FOR_MAIN_DIRECTION = 1;
-
-  static const double _MAX_LENGTH_WITH_PRECISION = 1.001;
 
   /**
    * Does the sprite move?
@@ -104,16 +93,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * The minimum speed limit for the Sprite.
    */
   num minSpeed = 0;
-
+  
   /**
-   * The direction where the sprite is heading.
-   * */
-  StageXL.Vector mainDirection = new StageXL.Vector.zero();
-
-  StageXL.Vector upDirection = new StageXL.Vector(0, -1);
-  StageXL.Vector downDirection = new StageXL.Vector(0, 1);
-  StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
-  StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
+   * Sprite's vector based direction system.
+   */
+  DirectionSystem directionSystem = new DirectionSystem();
 
   /**
    * Create a Sprite object from [StageXL.BitmapData].
@@ -174,14 +158,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     }
 
     if (collideWorldBounds) {
-      if ((y - pivotY <= 0 && mainDirection.y < 0) ||
-          (y + height - pivotY >= _context.game.world.height && mainDirection.y > 0)) {
-        mainDirection *= _oneZeroVector;
+      if ((y - pivotY <= 0 && directionSystem.mainDirection.y < 0) ||
+          (y + height - pivotY >= _context.game.world.height &&
+              directionSystem.mainDirection.y > 0)) {
+        directionSystem.nullMainDirectionY();
       }
 
-      if ((x - pivotX <= 0 && mainDirection.x < 0) ||
-          (x + width - pivotX >= _context.game.world.width && mainDirection.x > 0)) {
-        mainDirection *= _zeroOneVector;
+      if ((x - pivotX <= 0 && directionSystem.mainDirection.x < 0) ||
+          (x + width - pivotX >= _context.game.world.width &&
+              directionSystem.mainDirection.x > 0)) {
+        directionSystem.nullMainDirectionX();
       }
     }
 
@@ -197,11 +183,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     speedY += _accelerationDirection * accelerationY * time;
 
     x = x +
-        (mainDirection.x * speedX +
+        (directionSystem.mainDirection.x * speedX +
             _context.game.physics.gravityDirection.x * _context.game.physics.garvitySpeed) *
             time;
     y = y +
-        (mainDirection.y * speedY +
+        (directionSystem.mainDirection.y * speedY +
             _context.game.physics.gravityDirection.y * _context.game.physics.garvitySpeed) *
             time;
 
@@ -260,19 +246,15 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   }
 
   /**
-   * Rotate the sprite and it's direction vectors in radians.
+   * Rotate the sprite and it's direction system in radians.
    */
   void rotateRadians(num radians) {
     rotation += radians;
-    mainDirection = mainDirection.rotate(radians);
-    upDirection = upDirection.rotate(radians);
-    downDirection = downDirection.rotate(radians);
-    leftDirection = leftDirection.rotate(radians);
-    rightDirection = rightDirection.rotate(radians);
+    directionSystem.rotateDirectionsRadians(radians);
   }
 
   /**
-   * Rotate the sprite and it's direction vectors in angles.
+   * Rotate the sprite and it's direction system in angles.
    */
   void rotateAngles(num angles) {
     rotateRadians(angles * (math.PI / 180));
@@ -284,38 +266,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Direction can be: up/forward, down/backward, left, right
    */
   void move(String direction) {
-
-    _newDirection = mainDirection;
-
-    switch (direction) {
-      case Direction.UP:
-      case Direction.FORWARD:
-        _newDirection += upDirection;
-        break;
-      case Direction.DOWN:
-      case Direction.BACKWARD:
-        _newDirection += downDirection;
-        break;
-      case Direction.LEFT:
-        _newDirection += leftDirection;
-        break;
-      case Direction.RIGHT:
-        _newDirection += rightDirection;
-        break;
-    }
-
-    if (_newDirection.length > _MAX_LENGTH_WITH_PRECISION) {
-      mainDirection = _newDirection.scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
-    } else {
-      mainDirection = _newDirection;
-    }
+    directionSystem.addToMainDirection(direction);
   }
 
   /**
    * Stops the movement of the sprite.
    */
   void stop() {
-    if (!mainDirection.isZero) mainDirection = _zeroVector;
+    directionSystem.nullMainDirection();
   }
 
   /**
