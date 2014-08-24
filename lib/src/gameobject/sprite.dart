@@ -65,6 +65,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   bool killOutOfBounds = false;
 
   /**
+   * Enable gravity for this Sprite.
+   */
+  bool enableGravity = false;
+
+  /**
    * Horizontal speed of the sprite.
    * */
   num speedX = 0;
@@ -169,6 +174,11 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
               directionSystem.mainDirection.x > 0)) {
         directionSystem.nullMainDirectionX();
       }
+    }
+
+    if (!enableGravity &&
+        !_context.game.physics.gravityDirectionSystem.mainDirection.isZero) {
+      _context.game.physics.gravityDirectionSystem.nullMainDirection();
     }
 
     if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {

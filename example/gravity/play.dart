@@ -22,6 +22,7 @@ class Play extends State {
         ..minSpeed = 0
         ..maxSpeed = 400
         ..killOutOfBounds = true
+        ..enableGravity = true
         ..centerPivot();
 
   }
