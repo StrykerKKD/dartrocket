@@ -93,9 +93,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * The minimum speed limit for the Sprite.
    */
   num minSpeed = 0;
-  
+
   /**
-   * Sprite's vector based direction system.
+   * Sprite's vector based [DirectionSystem].
    */
   DirectionSystem directionSystem = new DirectionSystem();
 
@@ -184,11 +184,13 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     x = x +
         (directionSystem.mainDirection.x * speedX +
-            _context.game.physics.gravityDirection.x * _context.game.physics.garvitySpeed) *
+            _context.game.physics.gravityDirectionSystem.mainDirection.x *
+                _context.game.physics.garvitySpeed) *
             time;
     y = y +
         (directionSystem.mainDirection.y * speedY +
-            _context.game.physics.gravityDirection.y * _context.game.physics.garvitySpeed) *
+            _context.game.physics.gravityDirectionSystem.mainDirection.y *
+                _context.game.physics.garvitySpeed) *
             time;
 
     return true;
