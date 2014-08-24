@@ -2,18 +2,23 @@ part of dartrocket;
 
 /**
  * Physics class can solve collison between gameobject for now.
+ * 
+ * Example:
+ *      //you can acces the physics object this way
+ *      game.physics
  */
 
 class Physics {
 
+  /**
+   * Speed of gravity.
+   */
   num garvitySpeed = 0;
-
-  StageXL.Vector gravityDirection = new StageXL.Vector.zero();
-
-  StageXL.Vector upDirection = new StageXL.Vector(0, -1);
-  StageXL.Vector downDirection = new StageXL.Vector(0, 1);
-  StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
-  StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
+  
+  /**
+   * Gravity's [DirectionSystem].
+   */
+  DirectionSystem gravityDirectionSystem = new DirectionSystem();
 
   /**
    * Resolve collison between two gameobject.
@@ -78,33 +83,36 @@ class Physics {
 
   }
 
+  /**
+   * Set the gravity's direction.
+   * 
+   * Direction can be: up/forward, down/backward, left, right
+   */
   void setGravityDirection(String direction) {
-    switch (direction) {
-      case Direction.UP:
-        gravityDirection = upDirection;
-        break;
-      case Direction.DOWN:
-        gravityDirection = downDirection;
-        break;
-      case Direction.LEFT:
-        gravityDirection = leftDirection;
-        break;
-      case Direction.RIGHT:
-        gravityDirection = rightDirection;
-        break;
-
-    }
+    gravityDirectionSystem.setMainDirection(direction);
   }
   
-  void rotateGravityDirectionsInAngles(num angles) {
-    rotateGravityDirectionsInRads(angles * (math.PI / 180));
+  /**
+   * Set the gravity's direction to zero vector.
+   * 
+   * This means the gravity wont have a direction and this means there will be no gravity.
+   */
+  void nullGravityDirection() {
+    gravityDirectionSystem.nullMainDirection();
   }
   
-  void rotateGravityDirectionsInRads(num rads) {
-    upDirection = upDirection.rotate(rads);
-    downDirection = downDirection.rotate(rads);
-    leftDirection = leftDirection.rotate(rads);
-    rightDirection = rightDirection.rotate(rads);
+  /**
+   * Rotate gravity direction vectors(main, up, down, left, right) in angles.
+   */
+  void rotateGravityDirectionsAngles(num angles) {
+    rotateGravityDirectionsRads(angles * (math.PI / 180));
+  }
+  
+  /**
+   * Rotate gravity direction vectors(main, up, down, left, right) in radians.
+   */
+  void rotateGravityDirectionsRads(num radians) {
+    gravityDirectionSystem.rotateDirectionsRadians(radians);
   }
 
 }
