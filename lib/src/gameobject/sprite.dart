@@ -155,39 +155,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Defines where the sprite will move next.
    */
   bool advanceTime(num time) {
-    if (killOutOfBounds &&
-        ((x + width <= 0 || x - width >= _context.game.world.width) ||
-            (y + height <= 0 || y - height >= _context.game.world.height))) {
-      alive = false;
-      removeFromWorld();
-    }
+    
+    _checkKillOutOfBounds();
 
-    if (collideWorldBounds) {
-      if ((y - pivotY <= 0 && directionSystem.mainDirection.y < 0) ||
-          (y + height - pivotY >= _context.game.world.height &&
-              directionSystem.mainDirection.y > 0)) {
-        directionSystem.nullMainDirectionY();
-      }
+    _checkCollideWorldBounds();
 
-      if ((x - pivotX <= 0 && directionSystem.mainDirection.x < 0) ||
-          (x + width - pivotX >= _context.game.world.width &&
-              directionSystem.mainDirection.x > 0)) {
-        directionSystem.nullMainDirectionX();
-      }
-    }
+    _checkEnableGravity();
 
-    if (!enableGravity &&
-        !_context.game.physics.gravityDirectionSystem.mainDirection.isZero) {
-      _context.game.physics.gravityDirectionSystem.nullMainDirection();
-    }
-
-    if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
-      _accelerationDirection = 0;
-    }
-
-    if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
-      _accelerationDirection = 0;
-    }
+    _checkSpeedLimits();
 
     speedX += _accelerationDirection * accelerationX * time;
     speedY += _accelerationDirection * accelerationY * time;
@@ -317,6 +292,48 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     _accelerationDirection = _NO_ACCELERATION_DIRECTION;
   }
 
+  
+  void _checkKillOutOfBounds() {
+    if (killOutOfBounds &&
+        ((x + width <= 0 || x - width >= _context.game.world.width) ||
+            (y + height <= 0 || y - height >= _context.game.world.height))) {
+      alive = false;
+      removeFromWorld();
+    }
+  }
+
+  void _checkCollideWorldBounds() {
+    if (collideWorldBounds) {
+      if ((y - pivotY <= 0 && directionSystem.mainDirection.y < 0) ||
+          (y + height - pivotY >= _context.game.world.height &&
+              directionSystem.mainDirection.y > 0)) {
+        directionSystem.nullMainDirectionY();
+      }
+
+      if ((x - pivotX <= 0 && directionSystem.mainDirection.x < 0) ||
+          (x + width - pivotX >= _context.game.world.width &&
+              directionSystem.mainDirection.x > 0)) {
+        directionSystem.nullMainDirectionX();
+      }
+    }
+  }
+
+  void _checkEnableGravity() {
+    if (!enableGravity &&
+        !_context.game.physics.gravityDirectionSystem.mainDirection.isZero) {
+      _context.game.physics.gravityDirectionSystem.nullMainDirection();
+    }
+  }
+
+  void _checkSpeedLimits() {
+    if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
+      _accelerationDirection = 0;
+    }
+
+    if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
+      _accelerationDirection = 0;
+    }
+  }
 
   bool _speedOverEqualMaxSpeed() {
     return (speedX >= maxSpeed || speedY >= maxSpeed);
