@@ -36,6 +36,12 @@ class Camera extends StageXL.DisplayObjectContainer {
    * Height of the camera.
    */
   num height;
+  
+  /**
+   * Camera's [DirectionSystem]
+   */
+  DirectionSystem cameraDirectionSystem = new DirectionSystem()
+    ..rotateDirectionsAngles(180);
 
   Camera(this._game, this._world) {
     _game.stage.addChild(this);
