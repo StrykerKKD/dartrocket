@@ -1,5 +1,6 @@
 part of dartrocket;
 
+//TODO: support compass directions
 class DirectionSystem {
 
   final StageXL.Vector _zeroVector = new StageXL.Vector.zero();
