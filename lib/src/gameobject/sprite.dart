@@ -114,8 +114,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    *
    * */
   Sprite.bitmapdata(State stateContext, StageXL.BitmapData bitmapData,
-      {bool addToWorld: true, bool isMovable: true}) : super(
-      bitmapData) {
+      {bool addToWorld: true, bool isMovable: true})
+      : super(bitmapData) {
     this.isMovable = isMovable;
     _context = stateContext;
     if (addToWorld) {
@@ -155,7 +155,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Defines where the sprite will move next.
    */
   bool advanceTime(num time) {
-    
+
     _checkKillOutOfBounds();
 
     _checkCollideWorldBounds();
@@ -181,6 +181,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     return true;
 
   }
+
   /**
    * Put the pivot point into the center of the sprite.
    */
@@ -255,6 +256,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   void move(String direction) {
     directionSystem.addToMainDirection(direction);
   }
+  
+  //TODO: make it work
+  void moveBy(String direction, {int distance: 0}) {
+
+  }
+  
+  //TODO: make it work
+  void moveTo(int x, int y) {
+
+  }
 
   /**
    * Stops the movement of the sprite.
@@ -292,7 +303,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     _accelerationDirection = _NO_ACCELERATION_DIRECTION;
   }
 
-  
+
   void _checkKillOutOfBounds() {
     if (killOutOfBounds &&
         ((x + width <= 0 || x - width >= _context.game.world.width) ||
