@@ -145,7 +145,7 @@ abstract class State {
     game.resourceManager.load().then((_) {
       game.add.currentContext = game.stateManager.currentState;
       create();
-      game.world.onEnterFrame.listen((_) {
+      game.world.onEnterFrame.listen((StageXL.EnterFrameEvent event) {
         update();
         game.camera._update();
       });
