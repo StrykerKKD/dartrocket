@@ -250,18 +250,42 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   /**
    * Moving the sprite in a direction.
+   * 
+   * This method uses the [DirectionSystem]'s addToMainDirection method, which means
+   * that the input direction will be added to the main direction.
+   * 
+   * This means that opposite directions will to stop the sprite movements.
+   * It also means that it's easy to make the sprite move diagonally and
+   * it also make transition between directions better.
+   * 
+   * Diagonal moving: adding together two non-oposite directions make the sprite move diagonally.
+   * For example: up + left will make the sprite move up-left direction.
    *
-   * Direction can be: up/forward, down/backward, left, right
+   * Please use [Direction]'s static members for the input.
    */
   void move(String direction) {
     directionSystem.addToMainDirection(direction);
   }
   
+  /**
+   * Moving the sprite in only one direction.
+   * 
+   * This method uses [DirectionSystem]'s setMainDirection method, which means
+   * that the main direction will be the input direction.
+   * 
+   * This means instant direction change and opposite directions wont stop the sprite.
+   * 
+   * Please use [Direction]'s static members for the input.
+   */
+  void moveSetDirection(String direction) {
+    directionSystem.setMainDirection(direction);
+  }
+
   //TODO: make it work
   void moveBy(String direction, {int distance: 0}) {
 
   }
-  
+
   //TODO: make it work
   void moveTo(int x, int y) {
 
