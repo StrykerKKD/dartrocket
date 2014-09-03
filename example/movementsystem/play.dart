@@ -37,22 +37,35 @@ class Play extends State {
     //player.stopSpeedChange();
 
     if (game.keyboard.isDown(KeyCode.W)) {
-      player.move('forward');
+      player.move(Direction.UP);
     }
     if (game.keyboard.isDown(KeyCode.S)) {
-      player.move('backward');
+      player.move(Direction.DOWN);
     }
     if (game.keyboard.isDown(KeyCode.A)) {
-      player.move('left');
+      player.move(Direction.LEFT);
     }
     if (game.keyboard.isDown(KeyCode.D)) {
-      player.move('right');
+      player.move(Direction.RIGHT);
     }
 
     if (game.keyboard.isDown(KeyCode.Q)) {
-      player.rotateAngles(-5);
+      player.move(Direction.UPLEFT);
     }
     if (game.keyboard.isDown(KeyCode.E)) {
+      player.move(Direction.UPRIGHT);
+    }
+    if (game.keyboard.isDown(KeyCode.Y)) {
+      player.move(Direction.DOWNLEFT);
+    }
+    if (game.keyboard.isDown(KeyCode.X)) {
+      player.move(Direction.DOWNRIGHT);
+    }
+
+    if (game.keyboard.isDown(KeyCode.J)) {
+      player.rotateAngles(-5);
+    }
+    if (game.keyboard.isDown(KeyCode.K)) {
       player.rotateAngles(5);
     }
 
