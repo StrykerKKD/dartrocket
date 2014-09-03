@@ -19,19 +19,19 @@ class DirectionSystem {
   StageXL.Vector downDirection = new StageXL.Vector(0, 1);
   StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
   StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
-  
-  StageXL.Vector leftUpDirection;
-  StageXL.Vector rightUpDirection;
-  
-  StageXL.Vector leftDownDirection;
-  StageXL.Vector rightDownDirection;
-  
+
+  StageXL.Vector upLeftDirection;
+  StageXL.Vector upRightDirection;
+
+  StageXL.Vector downLeftDirection;
+  StageXL.Vector downRightDirection;
+
   DirectionSystem() {
-    leftUpDirection = upDirection.rotate(-90 * (math.PI / 180));
-    rightUpDirection = upDirection.rotate(90 * (math.PI / 180));
-    
-    leftDownDirection = downDirection.rotate(90 * (math.PI / 180));
-    rightDownDirection = downDirection.rotate(-90 * (math.PI / 180));
+    upLeftDirection = upDirection.rotate(-90 * (math.PI / 180));
+    upRightDirection = upDirection.rotate(90 * (math.PI / 180));
+
+    downLeftDirection = downDirection.rotate(90 * (math.PI / 180));
+    downRightDirection = downDirection.rotate(-90 * (math.PI / 180));
   }
 
   /**
@@ -55,6 +55,19 @@ class DirectionSystem {
         break;
       case Direction.RIGHT:
         mainDirection += rightDirection;
+        break;
+
+      case Direction.UPLEFT:
+        mainDirection += upLeftDirection;
+        break;
+      case Direction.UPRIGHT:
+        mainDirection += upRightDirection;
+        break;
+      case Direction.DOWNLEFT:
+        mainDirection += downLeftDirection;
+        break;
+      case Direction.DOWNRIGHT:
+        mainDirection += downRightDirection;
         break;
     }
 
@@ -85,6 +98,19 @@ class DirectionSystem {
       case Direction.RIGHT:
         mainDirection = rightDirection;
         break;
+
+      case Direction.UPLEFT:
+        mainDirection = upLeftDirection;
+        break;
+      case Direction.UPRIGHT:
+        mainDirection = upRightDirection;
+        break;
+      case Direction.DOWNLEFT:
+        mainDirection = downLeftDirection;
+        break;
+      case Direction.DOWNRIGHT:
+        mainDirection = downRightDirection;
+        break;
     }
   }
 
@@ -94,14 +120,14 @@ class DirectionSystem {
   void nullMainDirection() {
     if (!mainDirection.isZero) mainDirection = _zeroVector;
   }
-  
+
   /**
    * Set the main direction's x component to zero.
    */
   void nullMainDirectionX() {
     mainDirection *= _zeroOneVector;
   }
-  
+
   /**
    * Set the main direction's y component to zero.
    */
@@ -114,10 +140,16 @@ class DirectionSystem {
    */
   void rotateDirectionsRadians(num radians) {
     mainDirection = mainDirection.rotate(radians);
+    
     upDirection = upDirection.rotate(radians);
     downDirection = downDirection.rotate(radians);
     leftDirection = leftDirection.rotate(radians);
     rightDirection = rightDirection.rotate(radians);
+    
+    upLeftDirection = upLeftDirection.rotate(radians);
+    upRightDirection = upRightDirection.rotate(radians);
+    downLeftDirection = downLeftDirection.rotate(radians);
+    downRightDirection = downRightDirection.rotate(radians);
   }
 
   /**
