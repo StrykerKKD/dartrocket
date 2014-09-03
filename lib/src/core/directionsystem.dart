@@ -1,6 +1,5 @@
 part of dartrocket;
 
-//TODO: support compass directions
 class DirectionSystem {
 
   final StageXL.Vector _zeroVector = new StageXL.Vector.zero();
@@ -20,7 +19,20 @@ class DirectionSystem {
   StageXL.Vector downDirection = new StageXL.Vector(0, 1);
   StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
   StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
-
+  
+  StageXL.Vector leftUpDirection;
+  StageXL.Vector rightUpDirection;
+  
+  StageXL.Vector leftDownDirection;
+  StageXL.Vector rightDownDirection;
+  
+  DirectionSystem() {
+    leftUpDirection = upDirection.rotate(-90 * (math.PI / 180));
+    rightUpDirection = upDirection.rotate(90 * (math.PI / 180));
+    
+    leftDownDirection = downDirection.rotate(90 * (math.PI / 180));
+    rightDownDirection = downDirection.rotate(-90 * (math.PI / 180));
+  }
 
   /**
    * Add a direction to the main direction vector.
