@@ -27,17 +27,21 @@ class DirectionSystem {
   StageXL.Vector downRightDirection;
 
   DirectionSystem() {
-    upLeftDirection = upDirection.rotate(-90 * (math.PI / 180));
-    upRightDirection = upDirection.rotate(90 * (math.PI / 180));
-
-    downLeftDirection = downDirection.rotate(90 * (math.PI / 180));
-    downRightDirection = downDirection.rotate(-90 * (math.PI / 180));
+    upLeftDirection = upDirection.rotate(_makeRadians(-45));
+    upRightDirection = upDirection.rotate(_makeRadians(45));
+    
+    downLeftDirection = downDirection.rotate(_makeRadians(45));
+    downRightDirection = downDirection.rotate(_makeRadians(-45));
   }
 
   /**
-   * Add a direction to the main direction vector.
+   * Add a direction to the main direction.
+   * 
+   * The method add another direction vector to the main direction and
+   * it will scale down the main direction if the main direction vector's langth is bigger then 1.
+   * In another world the main direction will stay as an unit vector.
    *
-   * Direction can be: up/forward, down/backward, left, right
+   * Direction can be: up/forward, down/backward, left, right, upleft, upright, downleft, downright
    */
   void addToMainDirection(String direction) {
 
@@ -80,7 +84,7 @@ class DirectionSystem {
   /**
    * Sets the main direction vector.
    * 
-   * Direction can be: up/forward, down/backward, left, right
+   * Direction can be: up/forward, down/backward, left, right, upleft, upright, downleft, downright
    */
   void setMainDirection(String direction) {
     switch (direction) {
@@ -136,7 +140,7 @@ class DirectionSystem {
   }
 
   /**
-   * Rotate direction vectors(main, up, down, left, right) in radians.
+   * Rotate direction vectors(main, up, down, left, right, upleft, upright, downleft, downright) in radians.
    */
   void rotateDirectionsRadians(num radians) {
     mainDirection = mainDirection.rotate(radians);
@@ -153,9 +157,11 @@ class DirectionSystem {
   }
 
   /**
-   * Rotate direction vectors(main, up, down, left, right) in angles.
+   * Rotate direction vectors(main, up, down, left, right, upleft, upright, downleft, downright) in angles.
    */
   void rotateDirectionsAngles(num angles) {
-    rotateDirectionsRadians(angles * (math.PI / 180));
+    rotateDirectionsRadians(_makeRadians(angles));
   }
+  
+  num _makeRadians(num angles) => angles * (math.PI / 180);
 }
