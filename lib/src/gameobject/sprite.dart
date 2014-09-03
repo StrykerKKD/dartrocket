@@ -273,7 +273,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * This method uses [DirectionSystem]'s setMainDirection method, which means
    * that the main direction will be the input direction.
    * 
-   * This means instant direction change and opposite directions wont stop the sprite.
+   * This means instant direction change and opposite directions wont stop the sprite and
+   * also means that two non-opposite direction wont cause diagonal movement.
    * 
    * Please use [Direction]'s static members for the input.
    */
