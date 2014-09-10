@@ -282,7 +282,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     directionSystem.setMainDirection(direction);
   }
 
-  //TODO: make it work
+  //TODO: test it out
   void moveBy(String direction, {int distance: 0}) {
     directionSystem.setMainDirection(direction);
 
@@ -290,9 +290,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     y = y + directionSystem.mainDirection.y * distance;
   }
 
-  //TODO: make it work
+  //TODO: stop it if it reaches it's goal
   void moveTo(int x, int y) {
-
+    directionSystem.setMainDirectionFromTo(this.x, this.y, x, y);
   }
 
   /**
