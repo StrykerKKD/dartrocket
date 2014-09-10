@@ -29,14 +29,14 @@ class DirectionSystem {
   DirectionSystem() {
     upLeftDirection = upDirection.rotate(_makeRadians(-45));
     upRightDirection = upDirection.rotate(_makeRadians(45));
-    
+
     downLeftDirection = downDirection.rotate(_makeRadians(45));
     downRightDirection = downDirection.rotate(_makeRadians(-45));
   }
 
   /**
    * Add a direction to the main direction.
-   * 
+   *
    * The method add another direction vector to the main direction and
    * it will scale down the main direction if the main direction vector's langth is bigger then 1.
    * In another world the main direction will stay as an unit vector.
@@ -83,7 +83,7 @@ class DirectionSystem {
 
   /**
    * Sets the main direction vector.
-   * 
+   *
    * Direction can be: up/forward, down/backward, left, right, upleft, upright, downleft, downright
    */
   void setMainDirection(String direction) {
@@ -119,6 +119,13 @@ class DirectionSystem {
   }
 
   /**
+   * Sets the main direction based on two coordinates.
+   */
+  void setMainDirectionFromTo(int fromX, int fromY, int toX, int toY){
+    mainDirection = new StageXL.Vector(toX - fromX, toY - fromY).scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
+  }
+
+  /**
    * Set the main direction to zero vector.
    */
   void nullMainDirection() {
@@ -144,12 +151,12 @@ class DirectionSystem {
    */
   void rotateDirectionsRadians(num radians) {
     mainDirection = mainDirection.rotate(radians);
-    
+
     upDirection = upDirection.rotate(radians);
     downDirection = downDirection.rotate(radians);
     leftDirection = leftDirection.rotate(radians);
     rightDirection = rightDirection.rotate(radians);
-    
+
     upLeftDirection = upLeftDirection.rotate(radians);
     upRightDirection = upRightDirection.rotate(radians);
     downLeftDirection = downLeftDirection.rotate(radians);
@@ -162,6 +169,6 @@ class DirectionSystem {
   void rotateDirectionsAngles(num angles) {
     rotateDirectionsRadians(_makeRadians(angles));
   }
-  
+
   num _makeRadians(num angles) => angles * (math.PI / 180);
 }
