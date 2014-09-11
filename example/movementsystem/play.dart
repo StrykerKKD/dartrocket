@@ -29,11 +29,15 @@ class Play extends State {
         KeyCode.K,
         player.slowDown,
         player.stopSpeedChange);
+
+    game.stage.onMouseClick.listen((event){
+      player.moveTo(event.localX.round(), event.localY.round());
+    });
   }
 
   @override
   update() {
-    player.stop();
+    //player.stop();
     //player.stopSpeedChange();
 
     if (game.keyboard.isDown(KeyCode.W)) {
