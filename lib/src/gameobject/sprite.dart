@@ -37,6 +37,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   num _accelerationDirection = 0;
 
+  Function _checker;
+
   static const int _NO_ACCELERATION_DIRECTION = 0;
 
   static const int _SPEED_UP_DIRECTION = 1;
@@ -164,6 +166,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     _checkSpeedLimits();
 
+    if(_checker != null) _checker();
+
     speedX += _accelerationDirection * accelerationX * time;
     speedY += _accelerationDirection * accelerationY * time;
 
@@ -290,9 +294,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     y = y + directionSystem.mainDirection.y * distance;
   }
 
-  //TODO: stop it if it reaches it's goal
+  //TODO: is this implementation good enough?
   void moveTo(int x, int y) {
-    directionSystem.setMainDirectionFromTo(this.x, this.y, x, y);
+    directionSystem.setMainDirectionFromTo(this.x.round(), this.y.round(), x, y);
+
+    _checker = (){
+      if((this.x - x).abs() <= 5 && (this.y - y).abs() <= 5){
+        stop();
+        _checker = null;
+      }
+    };
   }
 
   /**
