@@ -30,7 +30,7 @@ class Play extends State {
         player.slowDown,
         player.stopSpeedChange);
 
-    game.stage.onMouseClick.listen((event){
+    game.stage.onMouseClick.listen((event) {
       player.moveTo(event.localX.round(), event.localY.round());
     });
   }
@@ -41,37 +41,37 @@ class Play extends State {
     //player.stopSpeedChange();
 
     if (game.keyboard.isDown(KeyCode.W)) {
-      player.move(Direction.UP);
+      player.moveBy(Direction.UP);
     }
     if (game.keyboard.isDown(KeyCode.S)) {
-      player.move(Direction.DOWN);
+      player.moveBy(Direction.DOWN);
     }
     if (game.keyboard.isDown(KeyCode.A)) {
-      player.move(Direction.LEFT);
+      player.moveBy(Direction.LEFT);
     }
     if (game.keyboard.isDown(KeyCode.D)) {
-      player.move(Direction.RIGHT);
+      player.moveBy(Direction.RIGHT);
     }
 
     if (game.keyboard.isDown(KeyCode.Q)) {
-      player.move(Direction.UPLEFT);
+      player.moveBy(Direction.UPLEFT);
     }
     if (game.keyboard.isDown(KeyCode.E)) {
-      player.move(Direction.UPRIGHT);
+      player.moveBy(Direction.UPRIGHT);
     }
     if (game.keyboard.isDown(KeyCode.Y)) {
-      player.move(Direction.DOWNLEFT);
+      player.moveBy(Direction.DOWNLEFT);
     }
     if (game.keyboard.isDown(KeyCode.X)) {
-      player.move(Direction.DOWNRIGHT);
+      player.moveBy(Direction.DOWNRIGHT);
     }
 
-    if (game.keyboard.isDown(KeyCode.J)) {
+    /*if (game.keyboard.isDown(KeyCode.J)) {
       player.rotateAngles(-5);
     }
     if (game.keyboard.isDown(KeyCode.K)) {
       player.rotateAngles(5);
-    }
+    }*/
 
     /*if (game.keyboard.isDown(KeyCode.J)) {
       player.speedUP();
