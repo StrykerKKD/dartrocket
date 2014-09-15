@@ -124,6 +124,30 @@ class DirectionSystem {
   void setMainDirectionFromTo(int fromX, int fromY, int toX, int toY){
     mainDirection = new StageXL.Vector(toX - fromX, toY - fromY).scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
   }
+  
+  StageXL.Vector getDirection(String direction) {
+    switch (direction) {
+          case Direction.UP:
+          case Direction.FORWARD:
+            return upDirection;
+          case Direction.DOWN:
+          case Direction.BACKWARD:
+            return downDirection;
+          case Direction.LEFT:
+            return leftDirection;
+          case Direction.RIGHT:
+            return rightDirection;
+
+          case Direction.UPLEFT:
+            return upLeftDirection;
+          case Direction.UPRIGHT:
+            return upRightDirection;
+          case Direction.DOWNLEFT:
+            return downLeftDirection;
+          case Direction.DOWNRIGHT:
+            return downRightDirection;
+        }
+  }
 
   /**
    * Set the main direction to zero vector.
