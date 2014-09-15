@@ -37,7 +37,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   num _accelerationDirection = 0;
 
-  Function _checker;
+  Function _checkDestination;
 
   static const int _NO_ACCELERATION_DIRECTION = 0;
 
@@ -166,7 +166,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     _checkSpeedLimits();
 
-    if(_checker != null) _checker();
+    if (_checkDestination != null) _checkDestination();
 
     speedX += _accelerationDirection * accelerationX * time;
     speedY += _accelerationDirection * accelerationY * time;
@@ -286,22 +286,40 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     directionSystem.setMainDirection(direction);
   }
 
-  //TODO: test it out
-  void moveBy(String direction, {int distance: 0}) {
-    directionSystem.setMainDirection(direction);
+  //TODO: doc
+  void moveBy(String direction, {int distance: 5}) {
+    StageXL.Vector directionVector = directionSystem.getDirection(direction);
 
-    x = x + directionSystem.mainDirection.x * distance;
-    y = y + directionSystem.mainDirection.y * distance;
+    moveTo(
+        (x + directionVector.x * distance).round(),
+        (y + directionVector.y * distance).round());
   }
 
-  //TODO: is this implementation good enough?
+  //TODO: doc
   void moveTo(int x, int y) {
-    directionSystem.setMainDirectionFromTo(this.x.round(), this.y.round(), x, y);
+    directionSystem.setMainDirectionFromTo(
+        this.x.round(),
+        this.y.round(),
+        x,
+        y);
 
-    _checker = (){
-      if((this.x - x).abs() <= 5 && (this.y - y).abs() <= 5){
+    num smallestDiffX = (this.x - x).abs() + 1;
+    num smallestDiffY = (this.y - y).abs() + 1;
+
+    num currentDiffX;
+    num currentDiffY;
+
+    _checkDestination = () {
+      currentDiffX = (this.x - x).abs();
+      currentDiffY = (this.y - y).abs();
+      if (currentDiffX <= smallestDiffX && currentDiffY <= smallestDiffY) {
+        smallestDiffX = currentDiffX;
+        smallestDiffY = currentDiffY;
+      } else {
         stop();
-        _checker = null;
+        this.x = x;
+        this.y = y;
+        _checkDestination = null;
       }
     };
   }
