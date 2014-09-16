@@ -282,11 +282,13 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    *
    * Please use [Direction]'s static members for the input.
    */
-  void moveSetDirection(String direction) {
+  void moveOneDirection(String direction) {
     directionSystem.setMainDirection(direction);
   }
 
-  //TODO: doc
+  /**
+   * Moving the sprite by a given distance.
+   */
   void moveBy(String direction, {int distance: 5}) {
     StageXL.Vector directionVector = directionSystem.getDirection(direction);
 
@@ -295,7 +297,9 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
         (y + directionVector.y * distance).round());
   }
 
-  //TODO: doc
+  /**
+   * Moving the sprite to the given coordinate.
+   */
   void moveTo(int x, int y) {
     directionSystem.setMainDirectionFromTo(
         this.x.round(),
@@ -312,6 +316,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     _checkDestination = () {
       currentDiffX = (this.x - x).abs();
       currentDiffY = (this.y - y).abs();
+
       if (currentDiffX <= smallestDiffX && currentDiffY <= smallestDiffY) {
         smallestDiffX = currentDiffX;
         smallestDiffY = currentDiffY;
@@ -393,6 +398,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     }
   }
 
+  bool _speedOverEqualMaxSpeed() {
+    return (speedX >= maxSpeed || speedY >= maxSpeed);
+  }
+
+  bool _speedUnderEqualMinSpeed() {
+    return (speedX <= minSpeed || speedY <= minSpeed);
+  }
+
   void _checkSpeedLimits() {
     if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
       _accelerationDirection = 0;
@@ -401,14 +414,6 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
       _accelerationDirection = 0;
     }
-  }
-
-  bool _speedOverEqualMaxSpeed() {
-    return (speedX >= maxSpeed || speedY >= maxSpeed);
-  }
-
-  bool _speedUnderEqualMinSpeed() {
-    return (speedX <= minSpeed || speedY <= minSpeed);
   }
 
 }
