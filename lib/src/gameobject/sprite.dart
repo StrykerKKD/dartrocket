@@ -37,7 +37,16 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   num _accelerationDirection = 0;
 
-  Function _checkDestination;
+  num _destinationX;
+  num _destinationY;
+
+  num _smallestDiffX;
+  num _smallestDiffY;
+
+  num _currentDiffX;
+  num _currentDiffY;
+
+  bool _checkLocation = false;
 
   static const int _NO_ACCELERATION_DIRECTION = 0;
 
@@ -166,7 +175,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     _checkSpeedLimits();
 
-    if (_checkDestination != null) _checkDestination();
+    _checkDestination();
 
     speedX += _accelerationDirection * accelerationX * time;
     speedY += _accelerationDirection * accelerationY * time;
@@ -301,32 +310,21 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Moving the sprite to the given coordinate.
    */
   void moveTo(int x, int y) {
+
+    _destinationX = x;
+    _destinationY = y;
+
+    _smallestDiffX = null;
+    _smallestDiffY = null;
+
+    _checkLocation = true;
+
     directionSystem.setMainDirectionFromTo(
         this.x.round(),
         this.y.round(),
-        x,
-        y);
+        _destinationX,
+        _destinationY);
 
-    num smallestDiffX = (this.x - x).abs() + 1;
-    num smallestDiffY = (this.y - y).abs() + 1;
-
-    num currentDiffX;
-    num currentDiffY;
-
-    _checkDestination = () {
-      currentDiffX = (this.x - x).abs();
-      currentDiffY = (this.y - y).abs();
-
-      if (currentDiffX <= smallestDiffX && currentDiffY <= smallestDiffY) {
-        smallestDiffX = currentDiffX;
-        smallestDiffY = currentDiffY;
-      } else {
-        stop();
-        this.x = x;
-        this.y = y;
-        _checkDestination = null;
-      }
-    };
   }
 
   /**
@@ -334,6 +332,8 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    */
   void stop() {
     directionSystem.nullMainDirection();
+
+    _checkLocation = false;
   }
 
   /**
@@ -413,6 +413,32 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
       _accelerationDirection = 0;
+    }
+  }
+
+  void _checkDestination() {
+    if (_checkLocation) {
+
+      _currentDiffX = (this.x - _destinationX).abs();
+      _currentDiffY = (this.y - _destinationY).abs();
+
+      if (_smallestDiffX == null) _smallestDiffX = _currentDiffX + 1;
+      if (_smallestDiffY == null) _smallestDiffY = _currentDiffY + 1;
+
+
+      if (_currentDiffX <= _smallestDiffX && _currentDiffY <= _smallestDiffY) {
+        _smallestDiffX = _currentDiffX;
+        _smallestDiffY = _currentDiffY;
+      } else {
+        stop();
+
+        this.x = _destinationX;
+        this.y = _destinationY;
+
+        _smallestDiffX = null;
+        _smallestDiffY = null;
+
+      }
     }
   }
 
