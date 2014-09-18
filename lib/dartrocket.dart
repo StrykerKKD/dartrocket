@@ -16,10 +16,8 @@ part "src/core/statemanager.dart";
 part "src/core/state.dart";
 part "src/core/group.dart";
 part "src/core/gameobjectfactory.dart";
-part "src/core/physics.dart";
 part "src/core/world.dart";
 part "src/core/camera.dart";
-part "src/core/directionsystem.dart";
 
 part "src/gameobject/interactive_bitmap.dart";
 part "src/gameobject/sprite.dart";
@@ -27,6 +25,10 @@ part "src/gameobject/background.dart";
 part "src/gameobject/text.dart";
 part "src/gameobject/sound.dart";
 part "src/gameobject/button.dart";
+
+part "src/physics/physics.dart";
+part "src/physics/directionsystem.dart";
+part "src/physics/movementsystem.dart";
 
 part "src/input/keyboard.dart";
 part "src/input/touch.dart";
