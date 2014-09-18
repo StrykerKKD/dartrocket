@@ -83,22 +83,34 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Horizontal speed of the sprite.
    * */
-  num speedX = 0;
+  num get speedX => _speedVector.x;
+
+  void set speedX(num speed) {
+    _speedVector = new StageXL.Vector(speed, _speedVector.y);
+  }
 
   /**
    * Vertical speed of the sprite
    * */
-  num speedY = 0;
+  num get speedY => _speedVector.y;
+
+  void set speedY(num speed) {
+    _speedVector = new StageXL.Vector(_speedVector.x, speed);
+  }
+
+  StageXL.Vector _speedVector = new StageXL.Vector.zero();
 
   /**
    * Horizontal acceleration of the sprite.
    */
-  num accelerationX = 0;
+  //num accelerationX = 0;
 
   /**
    * Vertical acceleration of the sprite.
    */
-  num accelerationY = 0;
+  //num accelerationY = 0;
+
+  StageXL.Vector _accelerationVector = new StageXL.Vector.zero();
 
   /**
    * The maximum speed limit for the Sprite.
@@ -177,22 +189,20 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     _checkDestination();
 
-    speedX += _accelerationDirection * accelerationX * time;
-    speedY += _accelerationDirection * accelerationY * time;
+    _speedVector += _accelerationVector.scale(_accelerationDirection * time);
 
-    x = x +
-        (directionSystem.mainDirection.x * speedX +
-            _context.game.physics.gravityDirectionSystem.mainDirection.x *
-                _context.game.physics.garvitySpeed) *
-            time;
-    y = y +
-        (directionSystem.mainDirection.y * speedY +
-            _context.game.physics.gravityDirectionSystem.mainDirection.y *
-                _context.game.physics.garvitySpeed) *
-            time;
+    _addDistance(
+        ((directionSystem.mainDirection * _speedVector) +
+            _context.game.physics.gravityDirectionSystem.mainDirection.scale(
+                _context.game.physics.garvitySpeed)).scale(time));
 
     return true;
 
+  }
+
+  void _addDistance(StageXL.Vector distanceVector) {
+    x += distanceVector.x;
+    y += distanceVector.y;
   }
 
   /**
@@ -234,16 +244,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Set the horizontal and vertical speed with the same value.
    */
   void set speed(num speed) {
-    speedX = speed;
-    speedY = speed;
+    _speedVector = new StageXL.Vector(speed, speed);
   }
 
   /**
    * Set the horizontal and vertical acceleration with the same value.
    */
   void set acceleration(num acceleration) {
-    accelerationX = acceleration;
-    accelerationY = acceleration;
+    _accelerationVector = new StageXL.Vector(acceleration, acceleration);
   }
 
   /**
@@ -399,11 +407,13 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   }
 
   bool _speedOverEqualMaxSpeed() {
-    return (speedX >= maxSpeed || speedY >= maxSpeed);
+    //return (speedX >= maxSpeed || speedY >= maxSpeed);
+    return (_speedVector.x >= maxSpeed || _speedVector.y >= maxSpeed);
   }
 
   bool _speedUnderEqualMinSpeed() {
-    return (speedX <= minSpeed || speedY <= minSpeed);
+    //return (speedX <= minSpeed || speedY <= minSpeed);
+    return (_speedVector.x <= minSpeed || _speedVector.y <= minSpeed);
   }
 
   void _checkSpeedLimits() {
