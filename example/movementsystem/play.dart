@@ -37,23 +37,23 @@ class Play extends State {
 
   @override
   update() {
-    //player.stop();
+    player.stop();
     //player.stopSpeedChange();
 
     if (game.keyboard.isDown(KeyCode.W)) {
-      player.moveBy(Direction.UP);
+      player.move(Direction.UP);
     }
     if (game.keyboard.isDown(KeyCode.S)) {
-      player.moveBy(Direction.DOWN);
+      player.move(Direction.DOWN);
     }
     if (game.keyboard.isDown(KeyCode.A)) {
-      player.moveBy(Direction.LEFT);
+      player.move(Direction.LEFT);
     }
     if (game.keyboard.isDown(KeyCode.D)) {
-      player.moveBy(Direction.RIGHT);
+      player.move(Direction.RIGHT);
     }
 
-    if (game.keyboard.isDown(KeyCode.Q)) {
+    /*if (game.keyboard.isDown(KeyCode.Q)) {
       player.moveBy(Direction.UPLEFT);
     }
     if (game.keyboard.isDown(KeyCode.E)) {
@@ -64,14 +64,14 @@ class Play extends State {
     }
     if (game.keyboard.isDown(KeyCode.X)) {
       player.moveBy(Direction.DOWNRIGHT);
-    }
+    }*/
 
-    /*if (game.keyboard.isDown(KeyCode.J)) {
+    if (game.keyboard.isDown(KeyCode.Q)) {
       player.rotateAngles(-5);
     }
-    if (game.keyboard.isDown(KeyCode.K)) {
+    if (game.keyboard.isDown(KeyCode.E)) {
       player.rotateAngles(5);
-    }*/
+    }
 
     /*if (game.keyboard.isDown(KeyCode.J)) {
       player.speedUP();
