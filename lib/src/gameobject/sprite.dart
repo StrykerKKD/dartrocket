@@ -103,12 +103,20 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Horizontal acceleration of the sprite.
    */
-  //num accelerationX = 0;
+  num get accelerationX => _accelerationVector.x;
+
+  void set accelerationX(num acc) {
+    _accelerationVector = new StageXL.Vector(acc, _accelerationVector.y);
+  }
 
   /**
    * Vertical acceleration of the sprite.
    */
-  //num accelerationY = 0;
+  num get accelerationY => _accelerationVector.y;
+
+  void set accelerationY(num acc) {
+    _accelerationVector = new StageXL.Vector(_accelerationVector.x, acc);
+  }
 
   StageXL.Vector _accelerationVector = new StageXL.Vector.zero();
 
