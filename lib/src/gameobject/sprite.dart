@@ -407,12 +407,10 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   }
 
   bool _speedOverEqualMaxSpeed() {
-    //return (speedX >= maxSpeed || speedY >= maxSpeed);
     return (_speedVector.x >= maxSpeed || _speedVector.y >= maxSpeed);
   }
 
   bool _speedUnderEqualMinSpeed() {
-    //return (speedX <= minSpeed || speedY <= minSpeed);
     return (_speedVector.x <= minSpeed || _speedVector.y <= minSpeed);
   }
 
