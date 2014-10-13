@@ -83,6 +83,8 @@ class MovementSystem {
 
   num minSpeed = 0;
 
+  DirectionSystem get directionSystem => _directionSystem;
+
 //=============================================================================
 
   MovementSystem(this._gameObject);
@@ -92,7 +94,7 @@ class MovementSystem {
   /**
    * Defines where the game object will move next.
    */
-  bool update(num time) {
+  void update(num time) {
 
     _checkSpeedLimits();
 
@@ -106,7 +108,6 @@ class MovementSystem {
 
     _nullMainVelocity();
 
-    return true;
   }
 
 //=============================================================================

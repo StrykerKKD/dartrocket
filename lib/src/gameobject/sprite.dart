@@ -35,26 +35,6 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   State _context;
 
-  num _accelerationDirection = 0;
-
-  num _destinationX;
-  num _destinationY;
-
-  num _smallestDiffX;
-  num _smallestDiffY;
-
-  num _currentDiffX;
-  num _currentDiffY;
-
-  bool _checkLocation = false;
-
-  static const int _NO_ACCELERATION_DIRECTION = 0;
-
-  static const int _SPEED_UP_DIRECTION = 1;
-
-  static const int _SLOW_DOWN_DIRECTION = -1;
-
-
   /**
    * Does the sprite move?
    */
@@ -83,57 +63,61 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
   /**
    * Horizontal speed of the sprite.
    * */
-  num get speedX => _speedVector.x;
+  num get speedX => movementSystem.speedX;
 
   void set speedX(num speed) {
-    _speedVector = new StageXL.Vector(speed, _speedVector.y);
+    movementSystem.speedX = speed;
   }
 
   /**
    * Vertical speed of the sprite
    * */
-  num get speedY => _speedVector.y;
+  num get speedY => movementSystem.speedY;
 
   void set speedY(num speed) {
-    _speedVector = new StageXL.Vector(_speedVector.x, speed);
+    movementSystem.speedY = speed;
   }
-
-  StageXL.Vector _speedVector = new StageXL.Vector.zero();
 
   /**
    * Horizontal acceleration of the sprite.
    */
-  num get accelerationX => _accelerationVector.x;
+  num get accelerationX => movementSystem.accelerationX;
 
   void set accelerationX(num acc) {
-    _accelerationVector = new StageXL.Vector(acc, _accelerationVector.y);
+    movementSystem.accelerationX = acc;
   }
 
   /**
    * Vertical acceleration of the sprite.
    */
-  num get accelerationY => _accelerationVector.y;
+  num get accelerationY => movementSystem.accelerationY;
 
   void set accelerationY(num acc) {
-    _accelerationVector = new StageXL.Vector(_accelerationVector.x, acc);
+    movementSystem.accelerationY = acc;
   }
-
-  StageXL.Vector _accelerationVector = new StageXL.Vector.zero();
 
   /**
    * The maximum speed limit for the Sprite.
    */
-  num maxSpeed = 0;
+  num get maxSpeed => movementSystem.maxSpeed;
+
+  void set maxSpeed(num speed) {
+    movementSystem.maxSpeed = speed;
+  }
 
   /**
    * The minimum speed limit for the Sprite.
    */
-  num minSpeed = 0;
+  num get minSpeed => movementSystem.minSpeed;
+
+  void set minSpeed(num speed) {
+    movementSystem.minSpeed = speed;
+  }
 
   /**
-   * Sprite's vector based [DirectionSystem].
+   * Sprite's [MovementSystem].
    */
-  DirectionSystem directionSystem = new DirectionSystem();
+  MovementSystem movementSystem;
 
   /**
    * Create a Sprite object from [StageXL.BitmapData].
@@ -149,6 +133,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
       : super(bitmapData) {
     this.isMovable = isMovable;
     _context = stateContext;
+    movementSystem = new MovementSystem(this);
     if (addToWorld) {
       this.addToWorld();
     }
@@ -193,24 +178,14 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
     _checkEnableGravity();
 
-    _checkSpeedLimits();
+    movementSystem.addVelocity(
+        _context.game.physics.gravityDirectionSystem.mainDirection.scale(
+            _context.game.physics.garvitySpeed));
 
-    _checkDestination();
-
-    _speedVector += _accelerationVector.scale(_accelerationDirection * time);
-
-    _addDistance(
-        ((directionSystem.mainDirection * _speedVector) +
-            _context.game.physics.gravityDirectionSystem.mainDirection.scale(
-                _context.game.physics.garvitySpeed)).scale(time));
+    movementSystem.update(time);
 
     return true;
 
-  }
-
-  void _addDistance(StageXL.Vector distanceVector) {
-    x += distanceVector.x;
-    y += distanceVector.y;
   }
 
   /**
@@ -252,29 +227,28 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Set the horizontal and vertical speed with the same value.
    */
   void set speed(num speed) {
-    _speedVector = new StageXL.Vector(speed, speed);
+    movementSystem.speed = speed;
   }
 
   /**
    * Set the horizontal and vertical acceleration with the same value.
    */
   void set acceleration(num acceleration) {
-    _accelerationVector = new StageXL.Vector(acceleration, acceleration);
+    movementSystem.acceleration = acceleration;
   }
 
   /**
    * Rotate the sprite and it's direction system in radians.
    */
   void rotateRadians(num radians) {
-    rotation += radians;
-    directionSystem.rotateDirectionsRadians(radians);
+    movementSystem.rotateRadians(radians);
   }
 
   /**
    * Rotate the sprite and it's direction system in angles.
    */
   void rotateAngles(num angles) {
-    rotateRadians(angles * (math.PI / 180));
+    movementSystem.rotateAngles(angles);
   }
 
   /**
@@ -293,7 +267,7 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Please use [Direction]'s static members for the input.
    */
   void move(String direction) {
-    directionSystem.addToMainDirection(direction);
+    movementSystem.move(direction);
   }
 
   /**
@@ -308,77 +282,49 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
    * Please use [Direction]'s static members for the input.
    */
   void moveOneDirection(String direction) {
-    directionSystem.setMainDirection(direction);
+    movementSystem.moveOneDirection(direction);
   }
 
   /**
    * Moving the sprite by a given distance.
    */
   void moveBy(String direction, {int distance: 5}) {
-    StageXL.Vector directionVector = directionSystem.getDirection(direction);
-
-    moveTo(
-        (x + directionVector.x * distance).round(),
-        (y + directionVector.y * distance).round());
+    movementSystem.moveBy(direction,distance: distance);
   }
 
   /**
    * Moving the sprite to the given coordinate.
    */
   void moveTo(int x, int y) {
-
-    _destinationX = x;
-    _destinationY = y;
-
-    _smallestDiffX = null;
-    _smallestDiffY = null;
-
-    _checkLocation = true;
-
-    directionSystem.setMainDirectionFromTo(
-        this.x.round(),
-        this.y.round(),
-        _destinationX,
-        _destinationY);
-
+    movementSystem.moveTo(x, y);
   }
 
   /**
    * Stops the movement of the sprite.
    */
   void stop() {
-    directionSystem.nullMainDirection();
-
-    _checkLocation = false;
+    movementSystem.stop();
   }
 
   /**
    * Speed up the sprite's movement.
    */
   void speedUP() {
-    if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
-      _accelerationDirection = _NO_ACCELERATION_DIRECTION;
-    } else {
-      _accelerationDirection = _SPEED_UP_DIRECTION;
-    }
+    movementSystem.speedUP();
   }
 
   /**
    * Slows down the sprite's movement.
    */
   void slowDown() {
-    if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
-      _accelerationDirection = _NO_ACCELERATION_DIRECTION;
-    } else {
-      _accelerationDirection = _SLOW_DOWN_DIRECTION;
-    }
+    movementSystem.slowDown();
   }
 
   /**
    * Stop the acceleration, both speed up and slow down.
    */
   void stopSpeedChange() {
-    _accelerationDirection = _NO_ACCELERATION_DIRECTION;
+    movementSystem.stopSpeedChange();
   }
 
 
@@ -393,16 +339,18 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
 
   void _checkCollideWorldBounds() {
     if (collideWorldBounds) {
-      if ((y - pivotY <= 0 && directionSystem.mainDirection.y < 0) ||
+      if ((y - pivotY <= 0 &&
+          movementSystem.directionSystem.mainDirection.y < 0) ||
           (y + height - pivotY >= _context.game.world.height &&
-              directionSystem.mainDirection.y > 0)) {
-        directionSystem.nullMainDirectionY();
+              movementSystem.directionSystem.mainDirection.y > 0)) {
+        movementSystem.directionSystem.nullMainDirectionY();
       }
 
-      if ((x - pivotX <= 0 && directionSystem.mainDirection.x < 0) ||
+      if ((x - pivotX <= 0 &&
+          movementSystem.directionSystem.mainDirection.x < 0) ||
           (x + width - pivotX >= _context.game.world.width &&
-              directionSystem.mainDirection.x > 0)) {
-        directionSystem.nullMainDirectionX();
+              movementSystem.directionSystem.mainDirection.x > 0)) {
+        movementSystem.directionSystem.nullMainDirectionX();
       }
     }
   }
@@ -411,50 +359,6 @@ class Sprite extends InteractiveBitmap implements StageXL.Animatable {
     if (!enableGravity &&
         !_context.game.physics.gravityDirectionSystem.mainDirection.isZero) {
       _context.game.physics.gravityDirectionSystem.nullMainDirection();
-    }
-  }
-
-  bool _speedOverEqualMaxSpeed() {
-    return (_speedVector.x >= maxSpeed || _speedVector.y >= maxSpeed);
-  }
-
-  bool _speedUnderEqualMinSpeed() {
-    return (_speedVector.x <= minSpeed || _speedVector.y <= minSpeed);
-  }
-
-  void _checkSpeedLimits() {
-    if (_speedOverEqualMaxSpeed() && _accelerationDirection == 1) {
-      _accelerationDirection = 0;
-    }
-
-    if (_speedUnderEqualMinSpeed() && _accelerationDirection == -1) {
-      _accelerationDirection = 0;
-    }
-  }
-
-  void _checkDestination() {
-    if (_checkLocation) {
-
-      _currentDiffX = (this.x - _destinationX).abs();
-      _currentDiffY = (this.y - _destinationY).abs();
-
-      if (_smallestDiffX == null) _smallestDiffX = _currentDiffX + 1;
-      if (_smallestDiffY == null) _smallestDiffY = _currentDiffY + 1;
-
-
-      if (_currentDiffX <= _smallestDiffX && _currentDiffY <= _smallestDiffY) {
-        _smallestDiffX = _currentDiffX;
-        _smallestDiffY = _currentDiffY;
-      } else {
-        stop();
-
-        this.x = _destinationX;
-        this.y = _destinationY;
-
-        _smallestDiffX = null;
-        _smallestDiffY = null;
-
-      }
     }
   }
 
