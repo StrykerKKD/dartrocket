@@ -124,7 +124,7 @@ class DirectionSystem {
   void setMainDirectionFromTo(int fromX, int fromY, int toX, int toY){
     mainDirection = new StageXL.Vector(toX - fromX, toY - fromY).scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
   }
-  
+
   StageXL.Vector getDirection(String direction) {
     switch (direction) {
           case Direction.UP:
@@ -146,6 +146,9 @@ class DirectionSystem {
             return downLeftDirection;
           case Direction.DOWNRIGHT:
             return downRightDirection;
+
+          default:
+            throw new ArgumentError("Argument must be a Direction");
         }
   }
 
