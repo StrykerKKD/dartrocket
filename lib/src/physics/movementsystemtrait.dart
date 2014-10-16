@@ -6,12 +6,6 @@ abstract class MovementSystemTrait {
 
 //=============================================================================
 
-  void initMovementSystem(StageXL.DisplayObject gameObject) {
-    movementSystem = new MovementSystem(gameObject);
-  }
-
-//=============================================================================
-
   /**
    * Horizontal speed of the sprite.
    * */
