@@ -2,50 +2,50 @@ part of dartrocket;
 
 /**
  * State is an absract class that represents a state of the game.
- * 
+ *
  * For using it you need to extend the state and call it's constructor, after that
  * you have to owerwrite the create() methode.
- * 
+ *
  * There 2 **important** methode that controls the state:
- * 
+ *
  * * endState: This methodes end the state, but we can come back to this state
  * * killState: This kills that state, so you can not return back to this state
- * 
+ *
  * **Important:** After you call terminateState you can never go back to this state.
  * If you want to return to a state use endState method.
- * 
+ *
  * **Important:** You can controll where you want to go with nextState method.
- * 
+ *
  * Example:
  *     class MyState extends State{
  *       //You only need constructor if you want to set the nextState with constructor
  *       //If you don't want it then you don't need to implement a constructor
  *       MyState(String nextState): super(nextState);
- *       
+ *
  *       load() {
  *        //loading stuff
  *       }
- *       
- *       create() {         
- *       
+ *
+ *       create() {
+ *
  *         //running stuff
  *         if(playerLost){
  *           //menu will be the next state and we can try again
  *           nextState = "menu";
- *           endState(); 
+ *           endState();
  *         }else{
  *           //player won so we go to the next level and never return
  *           terminateState("nextLevel");
  *         }
- *         
+ *
  *       }
- * 
+ *
  *       load() {
- *       
+ *
  *       }
- * 
+ *
  *     }
- * 
+ *
  * */
 
 abstract class State {
@@ -53,7 +53,7 @@ abstract class State {
   static const String _PAUSE = "PAUSE";
 
   StreamController<String> _controller;
-  
+
   /**
    * The name of the State.
    */
@@ -61,7 +61,7 @@ abstract class State {
 
   /**
    * The next state's name.
-   * 
+   *
    * **Important:** You can controll where you want to go with this member.
    */
   String nextState;
@@ -73,9 +73,9 @@ abstract class State {
 
   /**
    * This will make a state.
-   * 
+   *
    * Parameters:
-   * 
+   *
    * * _name: the state's name
    * * nextState: next state's name(optional)
    * */
@@ -94,16 +94,16 @@ abstract class State {
 
   /**
    * Create game objects in this method.
-   * 
+   *
    * It's called after load has completed.
-   * 
-   * ** You must overwrite this for using the state. ** 
+   *
+   * ** You must overwrite this for using the state. **
    * */
   create();
 
   /**
    * Overwrite if you want do something in the loop.
-   * 
+   *
    * It's called when an EnterFrame event happens on the world.
    */
   update() {}
@@ -147,7 +147,7 @@ abstract class State {
       create();
       game.world.onEnterFrame.listen((StageXL.EnterFrameEvent event) {
         update();
-        game.camera._update();
+        game.camera._update(event.passedTime);
       });
     });
   }

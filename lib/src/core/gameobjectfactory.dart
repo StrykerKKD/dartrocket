@@ -2,22 +2,22 @@ part of dartrocket;
 
 /**
  * GameObjectFactory is the supermarket of gameobjects.
- * 
+ *
  * The GameObjectFactory is automatically made when you make a game instances.
- * 
+ *
  * You can define a defaultResourceMode, which can be image or texture atlas.
- * 
- * You have a defaultTextureAtlas, so you don't have to give the name of the 
+ *
+ * You have a defaultTextureAtlas, so you don't have to give the name of the
  * same texture atlas every time, when you want to make a gameobject.
- * 
+ *
  * Usage:
  *     //You can acces it thou the game object and its called 'add'
  *     game.add
- * 
+ *
  *     //You can change the default values
  *     game.add.defaultResourceMode = game.add.TEXTUREATLAS;
  *     game.add.defaultTextureAtlasName = "someOtherTextureAtlasName";
- * 
+ *
  *     //Making a simple sprite
  *     game.add.sprite('imageName');
  */
@@ -29,7 +29,7 @@ class GameObjectFactory {
 
   /**
    * The current state's context, which the game is in.
-   * 
+   *
    * **This is automatically updated.**
    */
   State currentContext;
@@ -112,7 +112,7 @@ class GameObjectFactory {
 
   /**
    * Create a background from image or texture atlas.
-   * 
+   *
    * **No color constructor support**
    */
   Background background(String resourceName, {String textureAtlasName: null,
@@ -165,6 +165,9 @@ class GameObjectFactory {
 
         return currentContext.game.resourceManager.getTextureAtlas(
             textureAtlasName).getBitmapData(resourceName);
+
+      default:
+        throw new ArgumentError("Argument must be a valid Resource type");
 
     }
 
