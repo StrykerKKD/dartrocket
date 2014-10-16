@@ -31,7 +31,7 @@ part of dartrocket;
  * Check out the movementsystem example to see how the sprites can move.
  * */
 
-class Sprite extends InteractiveBitmap with MovementSystemTrait implements
+class Sprite extends InteractiveBitmap with MovementSystemMixin implements
     StageXL.Animatable {
 
   State _context;

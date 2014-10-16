@@ -1,6 +1,6 @@
 part of dartrocket;
 
-abstract class MovementSystemTrait {
+abstract class MovementSystemMixin {
 
   MovementSystem movementSystem;
 
