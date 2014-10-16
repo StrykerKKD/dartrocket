@@ -29,6 +29,7 @@ part "src/gameobject/button.dart";
 part "src/physics/physics.dart";
 part "src/physics/directionsystem.dart";
 part "src/physics/movementsystem.dart";
+part "src/physics/movementsystemtrait.dart";
 
 part "src/input/keyboard.dart";
 part "src/input/touch.dart";
