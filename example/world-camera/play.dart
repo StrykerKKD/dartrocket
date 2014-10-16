@@ -19,23 +19,26 @@ class Play extends State {
         ..y = 200;
 
     game.camera.follow(player);
+    game.camera.speed = 200;
 
     game.keyboard.onKeyDown(KeyCode.SPACE, game.camera.unfollow);
 
   }
 
   update() {
+
+    game.camera.stop();
     if (game.keyboard.isDown(KeyCode.UP)) {
-      game.camera.moveDistance('up');
+      game.camera.move('up');
     }
     if (game.keyboard.isDown(KeyCode.DOWN)) {
-      game.camera.moveDistance('down');
+      game.camera.move('down');
     }
     if (game.keyboard.isDown(KeyCode.LEFT)) {
-      game.camera.moveDistance('left');
+      game.camera.move('left');
     }
     if (game.keyboard.isDown(KeyCode.RIGHT)) {
-      game.camera.moveDistance('right');
+      game.camera.move('right');
     }
 
 
