@@ -7,8 +7,12 @@ part of dartrocket;
 class Touch {
 
   Game _game;
+  
+//=============================================================================
 
   Touch(this._game);
+  
+//=============================================================================
   
   /**
    * Handling onTouchBegin and onTouchEnd events for a gameobject.

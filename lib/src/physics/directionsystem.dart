@@ -11,7 +11,8 @@ class DirectionSystem {
   static const int _MAX_LENGTH_FOR_MAIN_DIRECTION = 1;
 
   static const double _MAX_LENGTH_WITH_PRECISION = 1.001;
-
+  
+//=============================================================================
 
   StageXL.Vector mainDirection = new StageXL.Vector.zero();
 
@@ -25,6 +26,8 @@ class DirectionSystem {
 
   StageXL.Vector downLeftDirection;
   StageXL.Vector downRightDirection;
+  
+//=============================================================================
 
   DirectionSystem() {
     upLeftDirection = upDirection.rotate(_makeRadians(-45));
@@ -33,6 +36,8 @@ class DirectionSystem {
     downLeftDirection = downDirection.rotate(_makeRadians(45));
     downRightDirection = downDirection.rotate(_makeRadians(-45));
   }
+  
+//=============================================================================
 
   /**
    * Add a direction to the main direction.
@@ -196,6 +201,8 @@ class DirectionSystem {
   void rotateDirectionsAngles(num angles) {
     rotateDirectionsRadians(_makeRadians(angles));
   }
+  
+//=============================================================================
 
   num _makeRadians(num angles) => angles * (math.PI / 180);
 }

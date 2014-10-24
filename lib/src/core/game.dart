@@ -84,6 +84,8 @@ class Game {
    * [Touch] object
    */
   Touch touch;
+  
+//=============================================================================
 
   /**
    * Creates a new Game object.
@@ -150,6 +152,8 @@ class Game {
     stage.focus = world;
 
   }
+  
+//=============================================================================
 
   bool get autoHiDpi => StageXL.Stage.autoHiDpi;
   

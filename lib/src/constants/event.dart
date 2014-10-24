@@ -70,6 +70,8 @@ class Event {
   static const String TOUCH_ROLL_OUT = "touchRollOut";
   static const String TOUCH_ROLL_OVER = "touchRollOver";
   static const String TOUCH_TAP = "touchTap";
+  
+//=============================================================================
 
   static List<String> ALL_EVENT = [ADDED, ADDED_TO_STAGE, ENTER_FRAME,
       EXIT_FRAME, REMOVED, REMOVED_FROM_STAGE, RESIZE, RENDER, MOUSE_LEAVE, OKAY,

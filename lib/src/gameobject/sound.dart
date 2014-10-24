@@ -15,6 +15,8 @@ class Sound {
    */
   StageXL.SoundTransform settings;
   
+//=============================================================================
+  
   /**
    * Makes a Sound object.
    */
@@ -22,6 +24,8 @@ class Sound {
     sound = context.game.resourceManager.getSound(soundName);
     settings = new StageXL.SoundTransform(volume,pan);
   }
+  
+//=============================================================================
   
   /**
    * Play the sound.

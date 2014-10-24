@@ -51,8 +51,12 @@ part of dartrocket;
 abstract class State {
 
   static const String _PAUSE = "PAUSE";
+  
+//=============================================================================
 
   StreamController<String> _controller;
+  
+//=============================================================================
 
   /**
    * The name of the State.
@@ -70,6 +74,8 @@ abstract class State {
    * Acces to the main game object.
    * */
   Game game;
+  
+//=============================================================================
 
   /**
    * This will make a state.
@@ -87,6 +93,8 @@ abstract class State {
         onCancel: _onCancel);
   }
 
+//=============================================================================
+  
   /**
    * Overwrite if you want to load resources.
    * */
@@ -107,6 +115,8 @@ abstract class State {
    * It's called when an EnterFrame event happens on the world.
    */
   update() {}
+  
+//=============================================================================
 
   /**
    * You can send message to the StateManager.
@@ -130,6 +140,8 @@ abstract class State {
     if (nextState != null) this.nextState = nextState;
     _controller.close();
   }
+  
+//=============================================================================
 
   StreamSubscription<String> _start(void onData(String line), {void
       onError(Error error), void onDone(), bool cancelOnError}) {

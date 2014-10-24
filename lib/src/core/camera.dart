@@ -13,7 +13,7 @@ part of dartrocket;
  *      //unfollow the followed Sprite
  *      game.camera.unfollow();
  */
-class Camera extends StageXL.DisplayObjectContainer with MovementSystemMixin {
+class Camera extends StageXL.DisplayObjectContainer with MovementControl {
 
   Game _game;
 

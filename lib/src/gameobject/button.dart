@@ -11,17 +11,23 @@ part of dartrocket;
  */
 class Button extends InteractiveBitmap {
 
+  static const String TOUCH_INPUT = 'touch';
+  static const String MOUSE_INPUT = 'mouse';
+
+//=============================================================================
+
   State _context;
 
   Map<String, bool> _isDownBy = new Map<String, bool>();
 
-  static const String TOUCH_INPUT = 'touch';
-  static const String MOUSE_INPUT = 'mouse';
+//=============================================================================
 
   /**
    * Text on the button.
    */
   Text buttonText;
+
+//=============================================================================
 
   /**
    * Create a Button from [StageXL.BitmapData ].
@@ -31,8 +37,8 @@ class Button extends InteractiveBitmap {
    * * addToWorld: add the button to the world?
    */
   Button.bitmapdata(State stateContext, StageXL.BitmapData bitmapData,
-      String text, {bool addToWorld: true}) : super(
-      bitmapData) {
+      String text, {bool addToWorld: true})
+      : super(bitmapData) {
     _context = stateContext;
 
     buttonText = new Text(stateContext, text, addToWorld: false)
@@ -41,9 +47,8 @@ class Button extends InteractiveBitmap {
         ..defaultTextFormat.align = StageXL.TextFormatAlign.CENTER
         ..mouseEnabled = false;
     buttonText
-        ..defaultTextFormat.topMargin = (buttonText.height -
-            buttonText.textHeight) ~/
-            2
+        ..defaultTextFormat.topMargin =
+            (buttonText.height - buttonText.textHeight) ~/ 2
         ..text = text;
 
     if (addToWorld) {
@@ -78,6 +83,8 @@ class Button extends InteractiveBitmap {
               textureAtlasName).getBitmapData(resourceName),
           text,
           addToWorld: addToWorld);
+
+//=============================================================================
 
   set x(int x) {
     super.x = x;

@@ -26,6 +26,8 @@ class GameObjectFactory {
 
   static const String IMAGE = 'image';
   static const String TEXTUREATLAS = 'textureatlas';
+  
+//=============================================================================
 
   /**
    * The current state's context, which the game is in.
@@ -43,6 +45,8 @@ class GameObjectFactory {
    * Default texture atlas name("").
    */
   String defaultTextureAtlasName = "";
+  
+//=============================================================================
 
   /**
    * Creates a sprite from image or texture atlas.
@@ -143,6 +147,8 @@ class GameObjectFactory {
       [StageXL.EaseFunction transitionFunction = StageXL.TransitionFunction.linear]) {
     return new StageXL.Tween(sprite, time, transitionFunction);
   }
+  
+//=============================================================================
 
   StageXL.BitmapData _getBitmapData(String resourceName, [String resourceMode,
       String textureAtlasName]) {

@@ -31,8 +31,12 @@ class Keyboard {
   Game _game;
 
   Map<int, bool> _isDownMap = new Map<int, bool>();
+  
+//=============================================================================
 
   Keyboard(this._game);
+  
+//=============================================================================
 
   /**
    * Handling onKeyDown events for a key.
@@ -83,6 +87,8 @@ class Keyboard {
     }
     return _isDownMap[keyCode];
   }
+  
+//=============================================================================
 
   void _addIsDownListener(int keyCode) {
     _isDownMap[keyCode] = false;

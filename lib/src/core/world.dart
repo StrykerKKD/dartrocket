@@ -9,6 +9,8 @@ class World extends StageXL.DisplayObjectContainer {
   
   Game _game;
   
+//=============================================================================
+  
   /**
    * Widht of the world.
    */
@@ -25,6 +27,8 @@ class World extends StageXL.DisplayObjectContainer {
    * Uses the stage's juggler object.
    */
   StageXL.Juggler juggler;
+  
+//=============================================================================
   
   World(this._game, width, height) {
     juggler = _game.stage.juggler;

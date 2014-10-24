@@ -8,13 +8,6 @@ part of dartrocket;
  */
 class Background implements StageXL.Animatable {
 
-  State _context;
-
-  List<StageXL.Bitmap> _backgroundTileList = new List<StageXL.Bitmap>();
-
-  int _plusBuffImage = 1;
-
-
   static const String REPEAT_NONE = "repeatNone";
   static const String REPEAT_X = "repeatX";
   static const String REPEAT_Y = "repeatY";
@@ -27,6 +20,16 @@ class Background implements StageXL.Animatable {
 
   static const String DEFAULT_REPEAT_MODE = REPEAT_NONE;
   static const String DEFAULT_SCALE_MODE = SCALE_NONE;
+
+//=============================================================================
+
+  State _context;
+
+  List<StageXL.Bitmap> _backgroundTileList = new List<StageXL.Bitmap>();
+
+  int _plusBuffImage = 1;
+
+//=============================================================================
 
   /**
    * Horizontal speed of the tiles
@@ -43,6 +46,7 @@ class Background implements StageXL.Animatable {
    */
   bool isMovable;
 
+//=============================================================================
 
   /**
    * Create tile based background from [worldXL.BitmapData].
@@ -64,18 +68,18 @@ class Background implements StageXL.Animatable {
       case REPEAT_NONE:
         break;
       case REPEAT_X:
-        xTimes = (_context.game.world.width /
-            backgroundTileBitmapdata.width).ceil();
+        xTimes =
+            (_context.game.world.width / backgroundTileBitmapdata.width).ceil();
         break;
       case REPEAT_Y:
-        yTimes = (_context.game.world.height /
-            backgroundTileBitmapdata.height).ceil();
+        yTimes =
+            (_context.game.world.height / backgroundTileBitmapdata.height).ceil();
         break;
       case REPEAT_XY:
-        yTimes = (_context.game.world.height /
-            backgroundTileBitmapdata.height).ceil();
-        xTimes = (_context.game.world.width /
-            backgroundTileBitmapdata.width).ceil();
+        yTimes =
+            (_context.game.world.height / backgroundTileBitmapdata.height).ceil();
+        xTimes =
+            (_context.game.world.width / backgroundTileBitmapdata.width).ceil();
         break;
     }
 
@@ -168,6 +172,8 @@ class Background implements StageXL.Animatable {
           addToWorld: addToWorld,
           repeatMode: repeatMode,
           scaleMode: scaleMode);
+
+//=============================================================================
 
   /**
    * Add background to the world.

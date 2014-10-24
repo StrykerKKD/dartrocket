@@ -7,6 +7,8 @@ class Text extends StageXL.TextField {
   
   State _context;
   
+//=============================================================================
+  
   /**
    * Makes a new text object.
    */
@@ -22,6 +24,8 @@ class Text extends StageXL.TextField {
       this.addToWorld();
     }
   }
+  
+//=============================================================================
   
   /**
    * Add text to the world.

@@ -38,10 +38,19 @@ class StateManager {
   
   StreamSubscription _currentSubscription;
   
+//=============================================================================
+  
   StateManager(this._game) {
     _stateMap = new Map<String, State>();
     _subscriptionMap = new Map<String, StreamSubscription>();
   }
+  
+//=============================================================================
+  
+  /**
+   * Gets the currently running state.
+   */
+  State get currentState => _currentState; 
   
   /**
    * Add a state to the state manager.
@@ -71,6 +80,8 @@ class StateManager {
     //new state so we add the state's subscription to the _subscriptionMap
     _subscriptionMap[_currentState.name] = _currentSubscription;
   }
+  
+//=============================================================================
   
   //Current state send a message through the stream
   void _messageHandler(message) {
@@ -121,7 +132,6 @@ class StateManager {
 
   }
   
-  State get currentState => _currentState; 
   
   //not used
   /*
