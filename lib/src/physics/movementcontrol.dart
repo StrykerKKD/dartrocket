@@ -1,13 +1,16 @@
 part of dartrocket;
 
-abstract class MovementSystemMixin {
+/**
+ * Declares a way how to use the [MovementSystem] class.
+ */
+abstract class MovementControl {
 
   MovementSystem movementSystem;
 
 //=============================================================================
 
   /**
-   * Horizontal speed of the sprite.
+   * Horizontal speed of the game object.
    * */
   num get speedX => movementSystem.speedX;
 
@@ -16,7 +19,7 @@ abstract class MovementSystemMixin {
   }
 
   /**
-   * Vertical speed of the sprite
+   * Vertical speed of the game object
    * */
   num get speedY => movementSystem.speedY;
 
@@ -25,7 +28,7 @@ abstract class MovementSystemMixin {
   }
 
   /**
-   * Horizontal acceleration of the sprite.
+   * Horizontal acceleration of the game object.
    */
   num get accelerationX => movementSystem.accelerationX;
 
@@ -34,7 +37,7 @@ abstract class MovementSystemMixin {
   }
 
   /**
-   * Vertical acceleration of the sprite.
+   * Vertical acceleration of the game object.
    */
   num get accelerationY => movementSystem.accelerationY;
 
@@ -43,7 +46,7 @@ abstract class MovementSystemMixin {
   }
 
   /**
-   * The maximum speed limit for the Sprite.
+   * The maximum speed limit for the game object.
    */
   num get maxSpeed => movementSystem.maxSpeed;
 
@@ -52,7 +55,7 @@ abstract class MovementSystemMixin {
   }
 
   /**
-   * The minimum speed limit for the Sprite.
+   * The minimum speed limit for the game object.
    */
   num get minSpeed => movementSystem.minSpeed;
 
@@ -77,14 +80,14 @@ abstract class MovementSystemMixin {
 //=============================================================================
 
   /**
-   * Rotate the sprite and it's direction system in radians.
+   * Rotate the game object and it's direction system in radians.
    */
   void rotateRadians(num radians) {
     movementSystem.rotateRadians(radians);
   }
 
   /**
-   * Rotate the sprite and it's direction system in angles.
+   * Rotate the game object and it's direction system in angles.
    */
   void rotateAngles(num angles) {
     movementSystem.rotateAngles(angles);
@@ -93,17 +96,17 @@ abstract class MovementSystemMixin {
 //=============================================================================
 
   /**
-   * Moving the sprite in a direction.
+   * Moving the game object in a direction.
    *
    * This method uses the [DirectionSystem]'s addToMainDirection method, which means
    * that the input direction will be added to the main direction.
    *
-   * This means that opposite directions will to stop the sprite movements.
-   * It also means that it's easy to make the sprite move diagonally and
+   * This means that opposite directions will to stop the game object movements.
+   * It also means that it's easy to make the game object move diagonally and
    * it also make transition between directions better.
    *
-   * Diagonal moving: adding together two non-oposite directions make the sprite move diagonally.
-   * For example: up + left will make the sprite move up-left direction.
+   * Diagonal moving: adding together two non-oposite directions make the game object move diagonally.
+   * For example: up + left will make the game object move up-left direction.
    *
    * Please use [Direction]'s static members for the input.
    */
@@ -112,12 +115,12 @@ abstract class MovementSystemMixin {
   }
 
   /**
-   * Moving the sprite in only one direction.
+   * Moving the game object in only one direction.
    *
    * This method uses [DirectionSystem]'s setMainDirection method, which means
    * that the main direction will be the input direction.
    *
-   * This means instant direction change and opposite directions wont stop the sprite and
+   * This means instant direction change and opposite directions wont stop the game object and
    * also means that two non-opposite direction wont cause diagonal movement.
    *
    * Please use [Direction]'s static members for the input.
@@ -127,21 +130,21 @@ abstract class MovementSystemMixin {
   }
 
   /**
-   * Moving the sprite by a given distance.
+   * Moving the game object by a given distance.
    */
   void moveBy(String direction, {int distance: 5}) {
     movementSystem.moveBy(direction, distance: distance);
   }
 
   /**
-   * Moving the sprite to the given coordinate.
+   * Moving the game object to the given coordinate.
    */
   void moveTo(int x, int y) {
     movementSystem.moveTo(x, y);
   }
 
   /**
-   * Stops the movement of the sprite.
+   * Stops the movement of the game object.
    */
   void stop() {
     movementSystem.stop();
@@ -150,14 +153,14 @@ abstract class MovementSystemMixin {
 //=============================================================================
 
   /**
-   * Speed up the sprite's movement.
+   * Speed up the game object's movement.
    */
   void speedUP() {
     movementSystem.speedUP();
   }
 
   /**
-   * Slows down the sprite's movement.
+   * Slows down the game object's movement.
    */
   void slowDown() {
     movementSystem.slowDown();
