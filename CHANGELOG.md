@@ -3,6 +3,16 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.6
+  * Unified code structure
+  * new DirectionSystem class
+  * Added relative diagonal directions into constants/direction.dart
+  * new MovementSystem class
+  * new MovementControll mixin, which define how to use the MovementSystem class
+  * using MovementControll in Sprite and Camera class
+  * new physics directory, which contains the moving parts
+  * Exported Shape class, which means you can use basic canvas operations
+
 #### Pub version 0.1.5
   * Using vector based directions for controlling the sprite
   * Acceleration added to the Sprite class
