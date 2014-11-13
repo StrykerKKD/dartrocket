@@ -35,4 +35,4 @@ These example's build will be updated, when there is a new version of DartRocket
  [World-Camera](http://strykerkkd.github.io/js/projects/build/example/world-camera/index.html) shows how the camera works.
  You can move the ship with w,a,s,d, you can unfollow the ship with Space and you can move camera with cursors.
  
- [Gravity](http://strykerkkd.github.io/js/projects/build/example/gravity/index.html) shows the garvity system in the game. You can move the rectangle with w,a,s,d.
+ [Gravity](http://strykerkkd.github.io/js/projects/build/example/gravity/index.html) shows the gravity system in the game. You can move the rectangle with w,a,s,d.
