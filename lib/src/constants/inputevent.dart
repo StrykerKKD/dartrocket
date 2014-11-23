@@ -4,7 +4,7 @@ part of dartrocket;
  * This class contains the contants of every event.
  */
 
-class Event {
+class InputEvent {
   // DiplayObject events
   static const String ADDED = "added";
   static const String ADDED_TO_STAGE = "addedToStage";
@@ -70,16 +70,58 @@ class Event {
   static const String TOUCH_ROLL_OUT = "touchRollOut";
   static const String TOUCH_ROLL_OVER = "touchRollOver";
   static const String TOUCH_TAP = "touchTap";
-  
+
 //=============================================================================
 
-  static List<String> ALL_EVENT = [ADDED, ADDED_TO_STAGE, ENTER_FRAME,
-      EXIT_FRAME, REMOVED, REMOVED_FROM_STAGE, RESIZE, RENDER, MOUSE_LEAVE, OKAY,
-      CANCEL, CHANGE, CONFIRM, SCROLL, OPEN, CLOSE, SELECT, COMPLETE, PROGRESS,
-      KEY_DOWN, KEY_UP, CLICK, DOUBLE_CLICK, MOUSE_DOWN, MOUSE_UP, MOUSE_MOVE,
-      MOUSE_OUT, MOUSE_OVER, MOUSE_WHEEL, MIDDLE_CLICK, MIDDLE_MOUSE_DOWN,
-      MIDDLE_MOUSE_UP, RIGHT_CLICK, RIGHT_MOUSE_DOWN, RIGHT_MOUSE_UP, CONTEXT_MENU,
-      ROLL_OUT, ROLL_OVER, LINK, TEXT_INPUT, TOUCH_BEGIN, TOUCH_END, TOUCH_CANCEL,
-      TOUCH_MOVE, TOUCH_OVER, TOUCH_OUT, TOUCH_ROLL_OUT, TOUCH_ROLL_OVER, TOUCH_TAP,];
+  static List<String> ALL_EVENT = [
+      ADDED,
+      ADDED_TO_STAGE,
+      ENTER_FRAME,
+      EXIT_FRAME,
+      REMOVED,
+      REMOVED_FROM_STAGE,
+      RESIZE,
+      RENDER,
+      MOUSE_LEAVE,
+      OKAY,
+      CANCEL,
+      CHANGE,
+      CONFIRM,
+      SCROLL,
+      OPEN,
+      CLOSE,
+      SELECT,
+      COMPLETE,
+      PROGRESS,
+      KEY_DOWN,
+      KEY_UP,
+      CLICK,
+      DOUBLE_CLICK,
+      MOUSE_DOWN,
+      MOUSE_UP,
+      MOUSE_MOVE,
+      MOUSE_OUT,
+      MOUSE_OVER,
+      MOUSE_WHEEL,
+      MIDDLE_CLICK,
+      MIDDLE_MOUSE_DOWN,
+      MIDDLE_MOUSE_UP,
+      RIGHT_CLICK,
+      RIGHT_MOUSE_DOWN,
+      RIGHT_MOUSE_UP,
+      CONTEXT_MENU,
+      ROLL_OUT,
+      ROLL_OVER,
+      LINK,
+      TEXT_INPUT,
+      TOUCH_BEGIN,
+      TOUCH_END,
+      TOUCH_CANCEL,
+      TOUCH_MOVE,
+      TOUCH_OVER,
+      TOUCH_OUT,
+      TOUCH_ROLL_OUT,
+      TOUCH_ROLL_OVER,
+      TOUCH_TAP,];
 
 }
