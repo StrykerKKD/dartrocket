@@ -25,8 +25,6 @@ void main() {
 
     test('no transition between two idle state', () {
       game = new Game();
-      IdleState idleState1 = new IdleState();
-      IdleState idleState2 = new IdleState();
       game.stateManager.addStateMap({
         "idleState1": new IdleState("idleState2"),
         "idleState2": new IdleState()
