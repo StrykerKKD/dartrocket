@@ -35,7 +35,7 @@ part of dartrocket;
  *           endState();
  *         }else{
  *           //player won so we go to the next level and never return
- *           terminateState("nextLevel");
+ *           killState("nextLevel");
  *         }
  *
  *       }
@@ -50,12 +50,9 @@ part of dartrocket;
 
 abstract class State {
 
-  static const String _PAUSE = "PAUSE";
-  
-//=============================================================================
-
   StreamController<String> _controller;
-  
+  StageXL.EventStreamSubscription<StageXL.EnterFrameEvent> _stateEventSubscription;
+
 //=============================================================================
 
   /**
@@ -74,7 +71,7 @@ abstract class State {
    * Acces to the main game object.
    * */
   Game game;
-  
+
 //=============================================================================
 
   /**
@@ -94,7 +91,7 @@ abstract class State {
   }
 
 //=============================================================================
-  
+
   /**
    * Overwrite if you want to load resources.
    * */
@@ -115,14 +112,24 @@ abstract class State {
    * It's called when an EnterFrame event happens on the world.
    */
   update() {}
-  
+
 //=============================================================================
 
   /**
    * You can send message to the StateManager.
    * */
-  void addMessage(message) {
-    _controller.add(message);
+  void addEvent(String event) {
+    _controller.add(event);
+  }
+  
+  void pause() {
+    _stateEventSubscription.cancel();
+    addEvent(StateEvent.PAUSE);
+  }
+  
+  void resume() {
+    _stateEventSubscription.resume();
+    addEvent(StateEvent.RESUME);
   }
 
   /**
@@ -130,7 +137,7 @@ abstract class State {
    * */
   void endState([String nextState]) {
     if (nextState != null) this.nextState = nextState;
-    _controller.add(_PAUSE);
+    addEvent(StateEvent.END);
   }
 
   /**
@@ -138,9 +145,10 @@ abstract class State {
    * */
   void killState([String nextState]) {
     if (nextState != null) this.nextState = nextState;
+    addEvent(StateEvent.KILL);
     _controller.close();
   }
-  
+
 //=============================================================================
 
   StreamSubscription<String> _start(void onData(String line), {void
@@ -157,7 +165,7 @@ abstract class State {
     game.resourceManager.load().then((_) {
       game.add.currentContext = game.stateManager.currentState;
       create();
-      game.world.onEnterFrame.listen((StageXL.EnterFrameEvent event) {
+      _stateEventSubscription = game.world.onEnterFrame.listen((StageXL.EnterFrameEvent event) {
         update();
         game.camera._update(event.passedTime);
       });
@@ -169,7 +177,7 @@ abstract class State {
     game.camera.removeChildren();
     game.world.removeChildren();
     game.world.juggler.clear();
-    Event.ALL_EVENT.forEach((event) {
+    InputEvent.ALL_EVENT.forEach((event) {
       //killing world eventlisteners
       if (game.world.hasEventListener(event)) {
         game.world.removeEventListeners(event);
