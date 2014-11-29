@@ -33,10 +33,11 @@ part "src/gameobject/button.dart";
 
 //=============================================================================
 
-part "src/physics/physics.dart";
 part "src/physics/directionsystem.dart";
 part "src/physics/movementsystem.dart";
 part "src/physics/movementcontrol.dart";
+part "src/physics/physics.dart";
+part "src/physics/gravity.dart";
 part "src/physics/body.dart";
 
 //=============================================================================

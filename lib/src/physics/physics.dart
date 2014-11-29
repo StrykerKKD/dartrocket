@@ -9,16 +9,8 @@ part of dartrocket;
  */
 
 class Physics {
-
-  /**
-   * Speed of gravity.
-   */
-  num garvitySpeed = 0;
   
-  /**
-   * Gravity's [DirectionSystem].
-   */
-  DirectionSystem gravityDirectionSystem = new DirectionSystem();
+  Gravity gravity = new Gravity(0);
   
 //=============================================================================
 
@@ -83,38 +75,6 @@ class Physics {
 
     }
 
-  }
-
-  /**
-   * Set the gravity's direction.
-   * 
-   * Direction can be: up/forward, down/backward, left, right
-   */
-  void setGravityDirection(String direction) {
-    gravityDirectionSystem.setMainDirection(direction);
-  }
-  
-  /**
-   * Set the gravity's direction to zero vector.
-   * 
-   * This means the gravity wont have a direction and this means there will be no gravity.
-   */
-  void nullGravityDirection() {
-    gravityDirectionSystem.nullMainDirection();
-  }
-  
-  /**
-   * Rotate gravity direction vectors(main, up, down, left, right) in angles.
-   */
-  void rotateGravityDirectionsAngles(num angles) {
-    rotateGravityDirectionsRads(angles * (math.PI / 180));
-  }
-  
-  /**
-   * Rotate gravity direction vectors(main, up, down, left, right) in radians.
-   */
-  void rotateGravityDirectionsRads(num radians) {
-    gravityDirectionSystem.rotateDirectionsRadians(radians);
   }
 
 }
