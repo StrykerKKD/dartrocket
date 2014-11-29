@@ -4,7 +4,7 @@ part of dartrocket;
  * This class contains the contants of every direction.
  */
 
-class Direction {
+abstract class Direction {
 
   static const String UP = "up";
   static const String FORWARD = "forward";

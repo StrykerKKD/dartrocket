@@ -4,7 +4,7 @@ part of dartrocket;
  * This class contains the contants of every event.
  */
 
-class InputEvent {
+abstract class InputEvent {
   // DiplayObject events
   static const String ADDED = "added";
   static const String ADDED_TO_STAGE = "addedToStage";

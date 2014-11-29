@@ -1,7 +1,7 @@
 part of dartrocket;
 
 
-class StateEvent{
+abstract class StateEvent{
   static const String PAUSE = "pause";
   static const String RESUME = "resume";
   static const String START = "start";
