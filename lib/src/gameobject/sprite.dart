@@ -133,9 +133,7 @@ class Sprite extends InteractiveBitmap with MovementControl implements
 
     _checkEnableGravity();
 
-    movementSystem.addVelocity(
-        _context.game.physics.gravityDirectionSystem.mainDirection.scale(
-            _context.game.physics.garvitySpeed));
+    movementSystem.addVelocity(_context.game.physics.gravity.getVelocity());
 
     movementSystem.update(time);
 
@@ -206,8 +204,8 @@ class Sprite extends InteractiveBitmap with MovementControl implements
 
   void _checkEnableGravity() {
     if (!enableGravity &&
-        !_context.game.physics.gravityDirectionSystem.mainDirection.isZero) {
-      _context.game.physics.gravityDirectionSystem.nullMainDirection();
+        !_context.game.physics.gravity.directionSystem.mainDirection.isZero) {
+      _context.game.physics.gravity.directionSystem.nullMainDirection();
     }
   }
 

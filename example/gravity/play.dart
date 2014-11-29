@@ -10,9 +10,9 @@ class Play extends State {
 
   create() {
 
-    game.physics
-        ..garvitySpeed = 150
-        ..setGravityDirection(Direction.DOWN);
+    game.physics.gravity
+        ..speed = 100
+        ..setDirection(Direction.DOWN);
 
     player = game.add.sprite("blueCube")
         ..x = 200
