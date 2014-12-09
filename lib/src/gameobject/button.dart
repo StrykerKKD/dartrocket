@@ -2,7 +2,7 @@ part of dartrocket;
 
 /**
  * Represents a simple Button.
- * 
+ *
  * Example:
  *      Button button = new Button(this, "resourceName", "buttonText")
  *        ..setCoordinates(300, 400)
@@ -31,7 +31,7 @@ class Button extends InteractiveBitmap {
 
   /**
    * Create a Button from [StageXL.BitmapData ].
-   * 
+   *
    * * stateContext: current state you are in
    * * text: label of the button
    * * addToWorld: add the button to the world?
@@ -58,7 +58,7 @@ class Button extends InteractiveBitmap {
 
   /**
    * Create a Button object from an image.
-   * 
+   *
    * * resourceName: name of the image in the resourcesManager
    */
   Button.image(State stateContext, String resourceName, String text,
@@ -71,7 +71,7 @@ class Button extends InteractiveBitmap {
 
   /**
    * Create Button from an image inside a texture atlas.
-   * 
+   *
    * * textureAtlasName: name of the texture atlas in the resourceManager
    * * resourceName: name of the resource in the texture atlas(image name without extension)
    */
@@ -94,6 +94,14 @@ class Button extends InteractiveBitmap {
   set y(int y) {
     super.y = y;
     buttonText.y = y;
+  }
+
+  /**
+   * Put the pivot point into the center of the button.
+   */
+  void centerPivot() {
+    pivotX = bitmapData.width / 2;
+    pivotY = bitmapData.height / 2;
   }
 
   /**
