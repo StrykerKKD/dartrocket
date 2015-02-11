@@ -26,7 +26,7 @@ class GameObjectFactory {
 
   static const String IMAGE = 'image';
   static const String TEXTUREATLAS = 'textureatlas';
-  
+
 //=============================================================================
 
   /**
@@ -45,7 +45,7 @@ class GameObjectFactory {
    * Default texture atlas name("").
    */
   String defaultTextureAtlasName = "";
-  
+
 //=============================================================================
 
   /**
@@ -83,6 +83,37 @@ class GameObjectFactory {
 
     return _returnSpriteList;
 
+  }
+
+  /**
+   * Create a shape.
+   */
+  StageXL.Shape shape() => new StageXL.Shape();
+
+  /**
+   * Create rectangle shape at (x,y) point.
+   */
+  StageXL.Shape rectangle(num x, num y, num width, num height, bool fill, int color) {
+    StageXL.Shape shape = this.shape().graphics.rect(x, y, width, height);
+    if(fill) {
+      shape.graphics.fillColor(color);
+    } else {
+      shape.graphics.strokeColor(color);
+    }
+    return shape;
+  }
+
+  /**
+   * Create a circle shape at (x,y) point.
+   */
+  StageXL.Shape circle(num x, num y, num radius, bool fill, int color) {
+    StageXL.Shape shape = this.shape().graphics.circle(x, y, radius);
+    if(fill) {
+      shape.graphics.fillColor(color);
+    } else {
+      shape.graphics.strokeColor(color);
+    }
+    return shape;
   }
 
   /**
@@ -147,7 +178,7 @@ class GameObjectFactory {
       [StageXL.EaseFunction transitionFunction = StageXL.TransitionFunction.linear]) {
     return new StageXL.Tween(sprite, time, transitionFunction);
   }
-  
+
 //=============================================================================
 
   StageXL.BitmapData _getBitmapData(String resourceName, [String resourceMode,
