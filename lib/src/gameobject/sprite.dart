@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.gameobject;
 
 /**
  * Sprite is the most basic game object.

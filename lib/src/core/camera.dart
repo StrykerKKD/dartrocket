@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.core;
 
 /**
  * You view the world thru the camera.

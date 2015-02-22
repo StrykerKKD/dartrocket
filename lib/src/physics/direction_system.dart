@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.physics;
 
 class DirectionSystem {
 
@@ -204,5 +204,5 @@ class DirectionSystem {
   
 //=============================================================================
 
-  num _makeRadians(num angles) => angles * (math.PI / 180);
+  num _makeRadians(num angles) => angles * (Math.PI / 180);
 }

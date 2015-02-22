@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.physics;
 
 class MovementSystem {
 
@@ -237,7 +237,7 @@ class MovementSystem {
    * Rotate the game object and it's direction system in angles.
    */
   void rotateAngles(num angles) {
-    rotateRadians(angles * (math.PI / 180));
+    rotateRadians(angles * (Math.PI / 180));
   }
 
 //=============================================================================

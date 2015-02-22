@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.core;
 
 /**
  * StateManager stores all of the [State]s and manage the flow of the game.

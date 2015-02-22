@@ -1,7 +1,7 @@
 library DirectionSystem_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartrocket/dartrocket.dart' show DirectionSystem;
+import 'package:dartrocket/src/physics.dart';
 import 'dart:math';
 
 void main() => defineTest();

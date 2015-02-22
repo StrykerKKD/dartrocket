@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.physics;
 
 /**
  * Physics class can solve collison between gameobject for now.
@@ -8,7 +8,7 @@ part of dartrocket;
  *      game.physics
  */
 
-class Physics {
+class PhysicsSystem {
   
   Gravity gravity = new Gravity(0);
   

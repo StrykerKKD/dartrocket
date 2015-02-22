@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.core;
 
 /**
  * Group is a container for Sprite objects.

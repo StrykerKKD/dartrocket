@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.core;
 
 /**
  * Game class is the main entry point of the game framework.
@@ -61,9 +61,9 @@ class Game {
   GameObjectFactory add;
 
   /**
-   * [Physics] object
+   * [PhysicsSystem] object
    */
-  Physics physics;
+  PhysicsSystem physics;
 
   /**
    * [World] object
@@ -135,7 +135,7 @@ class Game {
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
     add = new GameObjectFactory();
-    physics = new Physics();
+    physics = new PhysicsSystem();
     world = new World(this, width, height);
     camera = new Camera(this, world);
     keyboard = new Keyboard(this);

@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.input;
 
 /**
  * Handling some keyboard events.

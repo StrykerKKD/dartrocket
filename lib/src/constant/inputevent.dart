@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.constant;
 
 /**
  * This class contains the contants of every event.

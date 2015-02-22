@@ -1,4 +1,5 @@
-part of dartrocket;
+part of dartrocket.gameobject;
+
 
 /**
  * It's a bitmap wich can have event listeners.

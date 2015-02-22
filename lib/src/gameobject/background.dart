@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.gameobject;
 
 /**
  * You can make (moving)background with this class.

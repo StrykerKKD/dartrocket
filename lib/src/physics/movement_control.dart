@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.physics;
 
 /**
  * Declares a way how to use the [MovementSystem] class.

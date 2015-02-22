@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.core;
 
 /**
  * State is an absract class that represents a state of the game.

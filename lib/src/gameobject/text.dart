@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.gameobject;
 
 /**
  * This class represents a Text in the game.

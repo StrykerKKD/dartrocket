@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.core;
 
 /**
  * GameObjectFactory is the supermarket of gameobjects.

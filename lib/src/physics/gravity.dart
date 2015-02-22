@@ -1,4 +1,4 @@
-part of dartrocket;
+part of dartrocket.physics;
 
 class Gravity {
 
@@ -36,7 +36,7 @@ class Gravity {
    * Rotate gravity direction vectors(main, up, down, left, right) in angles.
    */
   void rotateDirectionsAngles(num angles) {
-    rotateDirectionsRads(angles * (math.PI / 180));
+    rotateDirectionsRads(angles * (Math.PI / 180));
   }
 
   /**
