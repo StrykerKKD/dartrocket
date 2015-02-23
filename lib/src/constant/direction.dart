@@ -16,6 +16,7 @@ abstract class Direction {
 
   static const String RIGHT = "right";
 
+//=============================================================================
 
   static const String UPLEFT = "upleft";
 
@@ -24,5 +25,13 @@ abstract class Direction {
   static const String DOWNLEFT = "downleft";
 
   static const String DOWNRIGHT = "downright";
+
+//=============================================================================
+
+  static List<String> MAIN_DIRECTIONS = [UP,DOWN,LEFT,RIGHT];
+
+  static List<String> DIAGONAL_DIRECTIONS = [UPLEFT,UPRIGHT,DOWNLEFT,DOWNRIGHT];
+
+  static List<String> DIRECTIONS = [UP,DOWN,LEFT,RIGHT,UPLEFT,UPRIGHT,DOWNLEFT,DOWNRIGHT];
 
 }
