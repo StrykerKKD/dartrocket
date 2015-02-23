@@ -11,7 +11,9 @@ class DirectionSystem {
   static const int _MAX_LENGTH_FOR_MAIN_DIRECTION = 1;
 
   static const double _MAX_LENGTH_WITH_PRECISION = 1.001;
-  
+
+  static const num SQRT2_2 = Math.SQRT2/2;
+
 //=============================================================================
 
   StageXL.Vector mainDirection = new StageXL.Vector.zero();
@@ -26,17 +28,17 @@ class DirectionSystem {
 
   StageXL.Vector downLeftDirection;
   StageXL.Vector downRightDirection;
-  
+
 //=============================================================================
 
   DirectionSystem() {
-    upLeftDirection = upDirection.rotate(_makeRadians(-45));
-    upRightDirection = upDirection.rotate(_makeRadians(45));
+    upLeftDirection = new StageXL.Vector(-SQRT2_2, -SQRT2_2);
+    upRightDirection = new StageXL.Vector(SQRT2_2, -SQRT2_2);
 
-    downLeftDirection = downDirection.rotate(_makeRadians(45));
-    downRightDirection = downDirection.rotate(_makeRadians(-45));
+    downLeftDirection = new StageXL.Vector(-SQRT2_2, SQRT2_2);
+    downRightDirection = new StageXL.Vector(SQRT2_2, SQRT2_2);
   }
-  
+
 //=============================================================================
 
   /**
@@ -201,7 +203,7 @@ class DirectionSystem {
   void rotateDirectionsAngles(num angles) {
     rotateDirectionsRadians(_makeRadians(angles));
   }
-  
+
 //=============================================================================
 
   num _makeRadians(num angles) => angles * (Math.PI / 180);
