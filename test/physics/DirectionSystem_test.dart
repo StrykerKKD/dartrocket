@@ -147,7 +147,45 @@ void defineTest() {
     });
   });
 
-  group("GetDirection", () {});
+  group("GetDirection", () {
+    DirectionSystem directionSystem;
+    setUp(() {
+      directionSystem = new DirectionSystem();
+    });
+    tearDown(() {
+      directionSystem = null;
+    });
+    test("Get main directions", () {
+      testGetDirections(directionSystem, Direction.MAIN_DIRECTIONS, [{
+          "x": 0,
+          "y": -1
+        }, {
+          "x": 0,
+          "y": 1
+        }, {
+          "x": -1,
+          "y": 0
+        }, {
+          "x": 1,
+          "y": 0
+        }]);
+    });
+    test("Get diagonal directions", () {
+      testGetDirections(directionSystem, Direction.DIAGONAL_DIRECTIONS, [{
+          "x": -expectedDiagonalValue,
+          "y": -expectedDiagonalValue
+        }, {
+          "x": expectedDiagonalValue,
+          "y": -expectedDiagonalValue
+        }, {
+          "x": -expectedDiagonalValue,
+          "y": expectedDiagonalValue
+        }, {
+          "x": expectedDiagonalValue,
+          "y": expectedDiagonalValue
+        }]);
+    });
+  });
 
   group("NullMainDirection", () {
     DirectionSystem directionSystem;
@@ -182,15 +220,19 @@ void defineTest() {
     tearDown(() {
       directionSystem = null;
     });
-    test("Rotate 45 angles diagonal", () {
+    test("Rotate 45 angles diagonal directions", () {
       directionSystem.rotateDirectionsAngles(45);
       testDirection(directionSystem.upLeftDirection, -1, 0);
       testDirection(directionSystem.upRightDirection, 1, 0);
       testDirection(directionSystem.downLeftDirection, 0, -1);
       testDirection(directionSystem.downRightDirection, 0, 1);
     });
-    test("Rotate 90", () {
-
+    test("Rotate 90 angles main directions", () {
+      directionSystem.rotateDirectionsAngles(90);
+      testDirection(directionSystem.upDirection, 1, 0);
+      testDirection(directionSystem.downDirection, -1, 0);
+      testDirection(directionSystem.leftDirection, 0, -1);
+      testDirection(directionSystem.rightDirection, 0, 1);
     });
   });
 
@@ -213,6 +255,12 @@ void testSetMainDirection(DirectionSystem directionSystem, List directions, List
   for (int i = 0; i < directions.length; i++) {
     directionSystem.setMainDirection(directions[i]);
     testDirection(directionSystem.mainDirection, expectedDirections[i]["x"], expectedDirections[i]["y"]);
+  }
+}
+
+void testGetDirections(DirectionSystem directionSystem, List directions, List<Map> expectedDirections) {
+  for (int i = 0; i < directions.length; i++) {
+    testDirection(directionSystem.getDirection(directions[i]), expectedDirections[i]["x"], expectedDirections[i]["y"]);
   }
 }
 
