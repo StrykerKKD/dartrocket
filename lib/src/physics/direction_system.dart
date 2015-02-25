@@ -12,7 +12,7 @@ class DirectionSystem {
 
   static const double _MAX_LENGTH_WITH_PRECISION = 1.001;
 
-  static const num SQRT2_2 = Math.SQRT2/2;
+  static const num SQRT2_2 = Math.SQRT2 / 2;
 
 //=============================================================================
 
@@ -80,6 +80,8 @@ class DirectionSystem {
       case Direction.DOWNRIGHT:
         mainDirection += downRightDirection;
         break;
+      default:
+        throw new ArgumentError("Argument must be a Direction");
     }
 
     if (mainDirection.length > _MAX_LENGTH_WITH_PRECISION) {
@@ -122,41 +124,42 @@ class DirectionSystem {
       case Direction.DOWNRIGHT:
         mainDirection = downRightDirection;
         break;
+      default:
+        throw new ArgumentError("Argument must be a Direction");
     }
   }
 
   /**
    * Sets the main direction based on two coordinates.
    */
-  void setMainDirectionFromTo(int fromX, int fromY, int toX, int toY){
+  void setMainDirectionFromTo(int fromX, int fromY, int toX, int toY) {
     mainDirection = new StageXL.Vector(toX - fromX, toY - fromY).scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
   }
 
   StageXL.Vector getDirection(String direction) {
     switch (direction) {
-          case Direction.UP:
-          case Direction.FORWARD:
-            return upDirection;
-          case Direction.DOWN:
-          case Direction.BACKWARD:
-            return downDirection;
-          case Direction.LEFT:
-            return leftDirection;
-          case Direction.RIGHT:
-            return rightDirection;
+      case Direction.UP:
+      case Direction.FORWARD:
+        return upDirection;
+      case Direction.DOWN:
+      case Direction.BACKWARD:
+        return downDirection;
+      case Direction.LEFT:
+        return leftDirection;
+      case Direction.RIGHT:
+        return rightDirection;
 
-          case Direction.UPLEFT:
-            return upLeftDirection;
-          case Direction.UPRIGHT:
-            return upRightDirection;
-          case Direction.DOWNLEFT:
-            return downLeftDirection;
-          case Direction.DOWNRIGHT:
-            return downRightDirection;
-
-          default:
-            throw new ArgumentError("Argument must be a Direction");
-        }
+      case Direction.UPLEFT:
+        return upLeftDirection;
+      case Direction.UPRIGHT:
+        return upRightDirection;
+      case Direction.DOWNLEFT:
+        return downLeftDirection;
+      case Direction.DOWNRIGHT:
+        return downRightDirection;
+      default:
+        throw new ArgumentError("Argument must be a Direction");
+    }
   }
 
   /**
