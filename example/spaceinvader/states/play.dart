@@ -58,7 +58,7 @@ class Play extends State {
     Sound laserSound = game.add.sound("laser");
 
     Sprite bullet;
-    bulletTimer = new Timer.periodic(new Duration(milliseconds: 450), (_) {
+    bulletTimer = new Timer.periodic(new Duration(milliseconds: 800), (_) {
       if (bullets.any((item) => !item.alive)) {
         bullet = bullets.firstWhere((item) => !item.alive)
             ..x = player.x + player.width ~/ 2
@@ -69,7 +69,7 @@ class Play extends State {
         laserSound.play();
       }
     });
-    
+
 
     if (game.isMobile) {
 
@@ -91,23 +91,23 @@ class Play extends State {
     player.stop();
 
     if (game.isMobile) {
-      
+
       if (leftButton.isDownByTouch()) {
         player.move('left');
       }
       if (rightButton.isDownByTouch()) {
-        player.move('right');      
+        player.move('right');
       }
-      
+
     } else {
-      
+
       if (game.keyboard.isDown(KeyCode.LEFT)) {
         player.move('left');
       }
       if (game.keyboard.isDown(KeyCode.RIGHT)) {
         player.move('right');
       }
-      
+
     }
 
 
