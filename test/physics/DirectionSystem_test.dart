@@ -243,6 +243,11 @@ void testDirection(direction, x, y) {
   expect(direction.y, equals(y));
 }
 
+void testDirectionRange(direction, startX, endX, startY, endY) {
+  expect(direction.x, inExclusiveRange(startX, endX));
+  expect(direction.y, inExclusiveRange(startY, endY));
+}
+
 void testAddToMainDirection(DirectionSystem directionSystem, List directions, List<Map> expectedDirections, bool doNullMainDirection) {
   for (int i = 0; i < directions.length; i++) {
     directionSystem.addToMainDirection(directions[i]);
