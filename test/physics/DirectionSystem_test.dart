@@ -46,34 +46,16 @@ void defineTest() {
       directionSystem = null;
     });
     test("Testing main directions", () {
-      testAddToMainDirection(directionSystem, Direction.MAIN_DIRECTIONS, [{
-          "x": 0,
-          "y": -1
-        }, {
-          "x": 0,
-          "y": 1
-        }, {
-          "x": -1,
-          "y": 0
-        }, {
-          "x": 1,
-          "y": 0
-        }], true);
+      testAddToMainDirection(directionSystem, Direction.MAIN_DIRECTIONS, 
+          [{"x": 0,"y": -1}, {"x": 0,"y": 1},
+           {"x": -1,"y": 0}, {"x": 1,"y": 0}], true);
     });
     test("Testing diagonal directions", () {
-      testAddToMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS, [{
-          "x": -expectedDiagonalValue,
-          "y": -expectedDiagonalValue
-        }, {
-          "x": expectedDiagonalValue,
-          "y": -expectedDiagonalValue
-        }, {
-          "x": -expectedDiagonalValue,
-          "y": expectedDiagonalValue
-        }, {
-          "x": expectedDiagonalValue,
-          "y": expectedDiagonalValue
-        }], true);
+      testAddToMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS, 
+          [{"x": -expectedDiagonalValue,"y": -expectedDiagonalValue},
+           {"x": expectedDiagonalValue,"y": -expectedDiagonalValue},
+           {"x": -expectedDiagonalValue,"y": expectedDiagonalValue},
+           {"x": expectedDiagonalValue,"y": expectedDiagonalValue}], true);
     });
   });
 
@@ -116,34 +98,16 @@ void defineTest() {
       directionSystem = null;
     });
     test("Testing diagonal directions", () {
-      testSetMainDirection(directionSystem, Direction.MAIN_DIRECTIONS, [{
-          "x": 0,
-          "y": -1
-        }, {
-          "x": 0,
-          "y": 1
-        }, {
-          "x": -1,
-          "y": 0
-        }, {
-          "x": 1,
-          "y": 0
-        }]);
+      testSetMainDirection(directionSystem, Direction.MAIN_DIRECTIONS, 
+          [{"x": 0,"y": -1}, {"x": 0,"y": 1},
+           {"x": -1,"y": 0}, {"x": 1,"y": 0}]);
     });
     test("Testing diagonal directions", () {
-      testSetMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS, [{
-          "x": -expectedDiagonalValue,
-          "y": -expectedDiagonalValue
-        }, {
-          "x": expectedDiagonalValue,
-          "y": -expectedDiagonalValue
-        }, {
-          "x": -expectedDiagonalValue,
-          "y": expectedDiagonalValue
-        }, {
-          "x": expectedDiagonalValue,
-          "y": expectedDiagonalValue
-        }]);
+      testSetMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS, 
+          [{"x": -expectedDiagonalValue,"y": -expectedDiagonalValue},
+           {"x": expectedDiagonalValue,"y": -expectedDiagonalValue},
+           {"x": -expectedDiagonalValue,"y": expectedDiagonalValue},
+           {"x": expectedDiagonalValue,"y": expectedDiagonalValue}]);
     });
   });
 
@@ -156,34 +120,16 @@ void defineTest() {
       directionSystem = null;
     });
     test("Get main directions", () {
-      testGetDirections(directionSystem, Direction.MAIN_DIRECTIONS, [{
-          "x": 0,
-          "y": -1
-        }, {
-          "x": 0,
-          "y": 1
-        }, {
-          "x": -1,
-          "y": 0
-        }, {
-          "x": 1,
-          "y": 0
-        }]);
+      testGetDirections(directionSystem, Direction.MAIN_DIRECTIONS, 
+          [{"x": 0,"y": -1}, {"x": 0,"y": 1}, 
+           {"x": -1,"y": 0}, {"x": 1,"y": 0}]);
     });
     test("Get diagonal directions", () {
-      testGetDirections(directionSystem, Direction.DIAGONAL_DIRECTIONS, [{
-          "x": -expectedDiagonalValue,
-          "y": -expectedDiagonalValue
-        }, {
-          "x": expectedDiagonalValue,
-          "y": -expectedDiagonalValue
-        }, {
-          "x": -expectedDiagonalValue,
-          "y": expectedDiagonalValue
-        }, {
-          "x": expectedDiagonalValue,
-          "y": expectedDiagonalValue
-        }]);
+      testGetDirections(directionSystem, Direction.DIAGONAL_DIRECTIONS, 
+          [{"x": -expectedDiagonalValue,"y": -expectedDiagonalValue}, 
+           {"x": expectedDiagonalValue,"y": -expectedDiagonalValue}, 
+           {"x": -expectedDiagonalValue,"y": expectedDiagonalValue},
+           {"x": expectedDiagonalValue,"y": expectedDiagonalValue}]);
     });
   });
 
@@ -222,21 +168,37 @@ void defineTest() {
     });
     test("Rotate 45 angles diagonal directions", () {
       directionSystem.rotateDirectionsAngles(45);
-      testDirection(directionSystem.upLeftDirection, -1, 0);
-      testDirection(directionSystem.upRightDirection, 1, 0);
-      testDirection(directionSystem.downLeftDirection, 0, -1);
-      testDirection(directionSystem.downRightDirection, 0, 1);
+      testDirectionRange(directionSystem.upLeftDirection, -0.0001, 0.0001, -1, -1);
+      testDirectionRange(directionSystem.upRightDirection, 1, 1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.downLeftDirection, -1, -1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.downRightDirection, -0.0001, 0.0001, 1, 1);
+    });
+    test("Rotate PI/4 radians diagonal directions", () {
+      directionSystem.rotateDirectionsRadians(PI/4);
+      testDirectionRange(directionSystem.upLeftDirection, -0.0001, 0.0001, -1, -1);
+      testDirectionRange(directionSystem.upRightDirection, 1, 1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.downLeftDirection, -1, -1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.downRightDirection, -0.0001, 0.0001, 1, 1);
     });
     test("Rotate 90 angles main directions", () {
       directionSystem.rotateDirectionsAngles(90);
-      testDirection(directionSystem.upDirection, 1, 0);
-      testDirection(directionSystem.downDirection, -1, 0);
-      testDirection(directionSystem.leftDirection, 0, -1);
-      testDirection(directionSystem.rightDirection, 0, 1);
+      testDirectionRange(directionSystem.upDirection, 1, 1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.downDirection, -1, -1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.leftDirection, -0.0001, 0.0001, -1, -1);
+      testDirectionRange(directionSystem.rightDirection, -0.0001, 0.0001, 1, 1);
+    });
+    test("Rotate PI/2 radians main direction", () {
+      directionSystem.rotateDirectionsRadians(PI/2);
+      testDirectionRange(directionSystem.upDirection, 1, 1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.downDirection, -1, -1, -0.0001, 0.0001);
+      testDirectionRange(directionSystem.leftDirection, -0.0001, 0.0001, -1, -1);
+      testDirectionRange(directionSystem.rightDirection, -0.0001, 0.0001, 1, 1);
     });
   });
 
 }
+
+//=============================================================================
 
 void testDirection(direction, x, y) {
   expect(direction.x, equals(x));
@@ -244,8 +206,8 @@ void testDirection(direction, x, y) {
 }
 
 void testDirectionRange(direction, startX, endX, startY, endY) {
-  expect(direction.x, inExclusiveRange(startX, endX));
-  expect(direction.y, inExclusiveRange(startY, endY));
+  expect(direction.x, inInclusiveRange(startX, endX));
+  expect(direction.y, inInclusiveRange(startY, endY));
 }
 
 void testAddToMainDirection(DirectionSystem directionSystem, List directions, List<Map> expectedDirections, bool doNullMainDirection) {
@@ -268,5 +230,3 @@ void testGetDirections(DirectionSystem directionSystem, List directions, List<Ma
     testDirection(directionSystem.getDirection(directions[i]), expectedDirections[i]["x"], expectedDirections[i]["y"]);
   }
 }
-
-num _makeRadians(num angles) => angles * (PI / 180);
