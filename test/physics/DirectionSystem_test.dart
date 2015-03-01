@@ -46,12 +46,12 @@ void defineTest() {
       directionSystem = null;
     });
     test("Testing main directions", () {
-      testAddToMainDirection(directionSystem, Direction.MAIN_DIRECTIONS, 
+      testAddToMainDirection(directionSystem, Direction.MAIN_DIRECTIONS,
           [{"x": 0,"y": -1}, {"x": 0,"y": 1},
            {"x": -1,"y": 0}, {"x": 1,"y": 0}], true);
     });
     test("Testing diagonal directions", () {
-      testAddToMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS, 
+      testAddToMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS,
           [{"x": -expectedDiagonalValue,"y": -expectedDiagonalValue},
            {"x": expectedDiagonalValue,"y": -expectedDiagonalValue},
            {"x": -expectedDiagonalValue,"y": expectedDiagonalValue},
@@ -98,12 +98,12 @@ void defineTest() {
       directionSystem = null;
     });
     test("Testing diagonal directions", () {
-      testSetMainDirection(directionSystem, Direction.MAIN_DIRECTIONS, 
+      testSetMainDirection(directionSystem, Direction.MAIN_DIRECTIONS,
           [{"x": 0,"y": -1}, {"x": 0,"y": 1},
            {"x": -1,"y": 0}, {"x": 1,"y": 0}]);
     });
     test("Testing diagonal directions", () {
-      testSetMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS, 
+      testSetMainDirection(directionSystem, Direction.DIAGONAL_DIRECTIONS,
           [{"x": -expectedDiagonalValue,"y": -expectedDiagonalValue},
            {"x": expectedDiagonalValue,"y": -expectedDiagonalValue},
            {"x": -expectedDiagonalValue,"y": expectedDiagonalValue},
@@ -120,14 +120,14 @@ void defineTest() {
       directionSystem = null;
     });
     test("Get main directions", () {
-      testGetDirections(directionSystem, Direction.MAIN_DIRECTIONS, 
-          [{"x": 0,"y": -1}, {"x": 0,"y": 1}, 
+      testGetDirections(directionSystem, Direction.MAIN_DIRECTIONS,
+          [{"x": 0,"y": -1}, {"x": 0,"y": 1},
            {"x": -1,"y": 0}, {"x": 1,"y": 0}]);
     });
     test("Get diagonal directions", () {
-      testGetDirections(directionSystem, Direction.DIAGONAL_DIRECTIONS, 
-          [{"x": -expectedDiagonalValue,"y": -expectedDiagonalValue}, 
-           {"x": expectedDiagonalValue,"y": -expectedDiagonalValue}, 
+      testGetDirections(directionSystem, Direction.DIAGONAL_DIRECTIONS,
+          [{"x": -expectedDiagonalValue,"y": -expectedDiagonalValue},
+           {"x": expectedDiagonalValue,"y": -expectedDiagonalValue},
            {"x": -expectedDiagonalValue,"y": expectedDiagonalValue},
            {"x": expectedDiagonalValue,"y": expectedDiagonalValue}]);
     });
@@ -158,7 +158,7 @@ void defineTest() {
     });
   });
 
-  group("rotateDirections", () {
+  group("RotateDirections", () {
     DirectionSystem directionSystem;
     setUp(() {
       directionSystem = new DirectionSystem();
@@ -193,6 +193,37 @@ void defineTest() {
       testDirectionRange(directionSystem.downDirection, -1, -1, -0.0001, 0.0001);
       testDirectionRange(directionSystem.leftDirection, -0.0001, 0.0001, -1, -1);
       testDirectionRange(directionSystem.rightDirection, -0.0001, 0.0001, 1, 1);
+    });
+  });
+
+  group("Bad input", () {
+    DirectionSystem directionSystem;
+    setUp(() {
+      directionSystem = new DirectionSystem();
+    });
+    tearDown(() {
+      directionSystem = null;
+    });
+    test("AddToMainDirection", () {
+      expect(()=>directionSystem.addToMainDirection(Direction.UP.toUpperCase()), throwsArgumentError);
+      expect(()=>directionSystem.addToMainDirection("Up"), throwsArgumentError);
+      expect(()=>directionSystem.addToMainDirection("uP"), throwsArgumentError);
+      expect(()=>directionSystem.addToMainDirection("${Direction.UP} "), throwsArgumentError);
+      expect(()=>directionSystem.addToMainDirection(" ${Direction.UP}"), throwsArgumentError);
+    });
+    test("SetMainDirection", () {
+      expect(()=>directionSystem.setMainDirection(Direction.UP.toUpperCase()), throwsArgumentError);
+      expect(()=>directionSystem.setMainDirection("Up"), throwsArgumentError);
+      expect(()=>directionSystem.setMainDirection("uP"), throwsArgumentError);
+      expect(()=>directionSystem.setMainDirection("${Direction.UP} "), throwsArgumentError);
+      expect(()=>directionSystem.setMainDirection(" ${Direction.UP}"), throwsArgumentError);
+    });
+    test("GetDirection", () {
+      expect(()=>directionSystem.getDirection(Direction.UP.toUpperCase()), throwsArgumentError);
+      expect(()=>directionSystem.getDirection("Up"), throwsArgumentError);
+      expect(()=>directionSystem.getDirection("uP"), throwsArgumentError);
+      expect(()=>directionSystem.getDirection("${Direction.UP} "), throwsArgumentError);
+      expect(()=>directionSystem.getDirection(" ${Direction.UP}"), throwsArgumentError);
     });
   });
 
