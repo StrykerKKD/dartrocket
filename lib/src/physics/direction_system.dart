@@ -35,7 +35,7 @@ class DirectionSystem {
    * Add a direction to the main direction.
    *
    * The method add another direction vector to the main direction and
-   * it will scale down the main direction if the main direction vector's langth is bigger then 1.
+   * it will scale down the main direction if the main direction vector's length is bigger then 1.
    * In another world the main direction will stay as an unit vector.
    *
    * Direction can be: up/forward, down/backward, left, right, upleft, upright, downleft, downright
