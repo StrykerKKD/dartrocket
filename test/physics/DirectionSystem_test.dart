@@ -85,8 +85,58 @@ void defineTest() {
     });
   });
 
-  group("AddToMainDirection combinations", () {
-
+  group("AddToMainDirection 2 direction combinations", () {
+    DirectionSystem directionSystem;
+    setUp(() {
+      directionSystem = new DirectionSystem();
+    });
+    tearDown(() {
+      directionSystem = null;
+    });
+    test("Diagonal with 2 direction UP+LEFT", () {
+      directionSystem.addToMainDirection(Direction.UP);
+      directionSystem.addToMainDirection(Direction.LEFT);
+      testDirectionRange(directionSystem.mainDirection, -expectedDiagonalValue - 0.0001, -expectedDiagonalValue + 0.0001,
+        -expectedDiagonalValue - 0.0001, -expectedDiagonalValue + 0.0001);
+    });
+    test("Diagonal with 2 direction UP+RIGHT", () {
+      directionSystem.addToMainDirection(Direction.UP);
+      directionSystem.addToMainDirection(Direction.RIGHT);
+      testDirectionRange(directionSystem.mainDirection, expectedDiagonalValue - 0.0001, expectedDiagonalValue + 0.0001,
+        -expectedDiagonalValue - 0.0001, -expectedDiagonalValue + 0.0001);
+    });
+    test("Diagonal with 2 direction DOWN+LEFT", () {
+      directionSystem.addToMainDirection(Direction.DOWN);
+      directionSystem.addToMainDirection(Direction.LEFT);
+      testDirectionRange(directionSystem.mainDirection, -expectedDiagonalValue - 0.0001, -expectedDiagonalValue + 0.0001,
+        expectedDiagonalValue - 0.0001, expectedDiagonalValue + 0.0001);
+    });
+    test("Diagonal with 2 direction DOWN+RIGHT", () {
+      directionSystem.addToMainDirection(Direction.DOWN);
+      directionSystem.addToMainDirection(Direction.RIGHT);
+      testDirectionRange(directionSystem.mainDirection, expectedDiagonalValue - 0.0001, expectedDiagonalValue + 0.0001,
+        expectedDiagonalValue - 0.0001, expectedDiagonalValue + 0.0001);
+    });
+    test("Diagonal with 2 direction UPLEFT+DOWNLEFT", () {
+      directionSystem.addToMainDirection(Direction.UPLEFT);
+      directionSystem.addToMainDirection(Direction.DOWNLEFT);
+      testDirection(directionSystem.mainDirection, -1, 0);
+    });
+    test("Diagonal with 2 direction UPRIGHT+DOWNRIGHT", () {
+      directionSystem.addToMainDirection(Direction.UPRIGHT);
+      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      testDirection(directionSystem.mainDirection, 1, 0);
+    });
+    test("Diagonal with 2 direction UPLEFT+UPRIGHT", () {
+      directionSystem.addToMainDirection(Direction.UPLEFT);
+      directionSystem.addToMainDirection(Direction.UPRIGHT);
+      testDirection(directionSystem.mainDirection, 0, -1);
+    });
+    test("Diagonal with 2 direction DOWNLEFT+DOWNRIGHT", () {
+      directionSystem.addToMainDirection(Direction.DOWNLEFT);
+      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      testDirection(directionSystem.mainDirection, 0, 1);
+    });
   });
 
   group("SetMainDirection", () {
