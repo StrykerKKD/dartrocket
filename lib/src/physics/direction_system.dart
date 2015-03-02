@@ -23,21 +23,11 @@ class DirectionSystem {
   StageXL.Vector leftDirection = new StageXL.Vector(-1, 0);
   StageXL.Vector rightDirection = new StageXL.Vector(1, 0);
 
-  StageXL.Vector upLeftDirection;
-  StageXL.Vector upRightDirection;
+  StageXL.Vector upLeftDirection = new StageXL.Vector(-SQRT2_2, -SQRT2_2);
+  StageXL.Vector upRightDirection = new StageXL.Vector(SQRT2_2, -SQRT2_2);
 
-  StageXL.Vector downLeftDirection;
-  StageXL.Vector downRightDirection;
-
-//=============================================================================
-
-  DirectionSystem() {
-    upLeftDirection = new StageXL.Vector(-SQRT2_2, -SQRT2_2);
-    upRightDirection = new StageXL.Vector(SQRT2_2, -SQRT2_2);
-
-    downLeftDirection = new StageXL.Vector(-SQRT2_2, SQRT2_2);
-    downRightDirection = new StageXL.Vector(SQRT2_2, SQRT2_2);
-  }
+  StageXL.Vector downLeftDirection = new StageXL.Vector(-SQRT2_2, SQRT2_2);
+  StageXL.Vector downRightDirection = new StageXL.Vector(SQRT2_2, SQRT2_2);
 
 //=============================================================================
 
