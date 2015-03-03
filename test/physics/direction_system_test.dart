@@ -1,7 +1,7 @@
-library DirectionSystem_test;
+library direction_system_test;
 
 import 'package:unittest/unittest.dart';
-import 'package:dartrocket/src/physics.dart';
+import 'package:dartrocket/src/physics.dart' show DirectionSystem;
 import 'package:dartrocket/src/constant.dart' show Direction;
 import 'dart:math';
 
@@ -160,6 +160,8 @@ void defineTest() {
            {"x": expectedDiagonalValue,"y": expectedDiagonalValue}]);
     });
   });
+
+  group("SetMainDirectionFromTo", () {});
 
   group("GetDirection", () {
     DirectionSystem directionSystem;
