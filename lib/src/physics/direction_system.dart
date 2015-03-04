@@ -122,8 +122,9 @@ class DirectionSystem {
   /**
    * Sets the main direction based on two coordinates.
    */
-  void setMainDirectionFromTo(int fromX, int fromY, int toX, int toY) {
-    mainDirection = new StageXL.Vector(toX - fromX, toY - fromY).scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
+  void setMainDirectionFromTo(num fromX, num fromY, num toX, num toY) {
+    mainDirection = new StageXL.Vector(toX - fromX, toY - fromY);
+    if(mainDirection.length > 1.0) mainDirection.scaleLength(_MAX_LENGTH_FOR_MAIN_DIRECTION);
   }
 
   StageXL.Vector getDirection(String direction) {
