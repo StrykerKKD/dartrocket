@@ -161,7 +161,75 @@ void defineTest() {
     });
   });
 
-  group("SetMainDirectionFromTo", () {});
+  group("SetMainDirectionFromTo", () {
+    DirectionSystem directionSystem;
+    setUp(() {
+      directionSystem = new DirectionSystem();
+    });
+    tearDown(() {
+      directionSystem = null;
+    });
+    test("Making main directions", () {
+      directionSystem.setMainDirectionFromTo(0, 0, -1, 0);
+      testDirection(directionSystem.mainDirection, -1, 0);
+      directionSystem.setMainDirectionFromTo(0, 0, 1, 0);
+      testDirection(directionSystem.mainDirection, 1, 0);
+      directionSystem.setMainDirectionFromTo(0, 0, 0, -1);
+      testDirection(directionSystem.mainDirection, 0, -1);
+      directionSystem.setMainDirectionFromTo(0, 0, 0, 1);
+      testDirection(directionSystem.mainDirection, 0, 1);
+    });
+    test("Making diagonal directions", () {
+      directionSystem.setMainDirectionFromTo(0, 0, -expectedDiagonalValue, -expectedDiagonalValue);
+      testDirection(directionSystem.mainDirection, -expectedDiagonalValue, -expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, expectedDiagonalValue, expectedDiagonalValue);
+      testDirection(directionSystem.mainDirection, expectedDiagonalValue, expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, -expectedDiagonalValue, -expectedDiagonalValue);
+      testDirection(directionSystem.mainDirection, -expectedDiagonalValue, -expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, expectedDiagonalValue, expectedDiagonalValue);
+      testDirection(directionSystem.mainDirection, expectedDiagonalValue, expectedDiagonalValue);
+    });
+    test("Testing scaling big main directions", () {
+      directionSystem.setMainDirectionFromTo(0, 0, -2, 0);
+      testDirection(directionSystem.mainDirection, -1, 0);
+      directionSystem.setMainDirectionFromTo(0, 0, 2, 0);
+      testDirection(directionSystem.mainDirection, 1, 0);
+      directionSystem.setMainDirectionFromTo(0, 0, 0, -2);
+      testDirection(directionSystem.mainDirection, 0, -1);
+      directionSystem.setMainDirectionFromTo(0, 0, 0, 2);
+      testDirection(directionSystem.mainDirection, 0, 1);
+    });
+    test("Testing scaling big diagonal directions", () {
+      directionSystem.setMainDirectionFromTo(0, 0, -expectedDiagonalValue * 2, -expectedDiagonalValue * 2);
+      testDirection(directionSystem.mainDirection, -expectedDiagonalValue, -expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, expectedDiagonalValue * 2, expectedDiagonalValue * 2);
+      testDirection(directionSystem.mainDirection, expectedDiagonalValue, expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, -expectedDiagonalValue * 2, -expectedDiagonalValue * 2);
+      testDirection(directionSystem.mainDirection, -expectedDiagonalValue, -expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, expectedDiagonalValue * 2, expectedDiagonalValue * 2);
+      testDirection(directionSystem.mainDirection, expectedDiagonalValue, expectedDiagonalValue);
+    });
+    test("Testing scaling small main directions", () {
+      directionSystem.setMainDirectionFromTo(0, 0, -0.5, 0);
+      testDirection(directionSystem.mainDirection, -1, 0);
+      directionSystem.setMainDirectionFromTo(0, 0, 0.5, 0);
+      testDirection(directionSystem.mainDirection, 1, 0);
+      directionSystem.setMainDirectionFromTo(0, 0, 0, -0.5);
+      testDirection(directionSystem.mainDirection, 0, -1);
+      directionSystem.setMainDirectionFromTo(0, 0, 0, 0.5);
+      testDirection(directionSystem.mainDirection, 0, 1);
+    });
+    test("Testing scaling small diagonal directions", () {
+      directionSystem.setMainDirectionFromTo(0, 0, -expectedDiagonalValue * 0.5, -expectedDiagonalValue * 0.5);
+      testDirection(directionSystem.mainDirection, -expectedDiagonalValue, -expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, expectedDiagonalValue * 0.5, expectedDiagonalValue * 0.5);
+      testDirection(directionSystem.mainDirection, expectedDiagonalValue, expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, -expectedDiagonalValue * 0.5, -expectedDiagonalValue * 0.5);
+      testDirection(directionSystem.mainDirection, -expectedDiagonalValue, -expectedDiagonalValue);
+      directionSystem.setMainDirectionFromTo(0, 0, expectedDiagonalValue * 0.5, expectedDiagonalValue * 0.5);
+      testDirection(directionSystem.mainDirection, expectedDiagonalValue, expectedDiagonalValue);
+    });
+  });
 
   group("GetDirection", () {
     DirectionSystem directionSystem;
