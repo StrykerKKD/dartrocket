@@ -19,4 +19,3 @@ part 'physics/movement_system.dart';
 part 'physics/movement_control.dart';
 part 'physics/physics_system.dart';
 part 'physics/gravity.dart';
-part 'physics/body.dart';
