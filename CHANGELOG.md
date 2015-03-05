@@ -3,6 +3,18 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.7
+  * Added gravity example in DartRocket's repo
+  * Added Mask and Shape classes
+  * Added StateEvent(constant)
+  * Sound can be stopped
+  * New class for gravity
+  * Added centerPivot() for button
+  * GameObjectFactory can create basic shapes
+  * Major library refactor(library structure + unit tests)
+  * Upgrade to StageXL 0.10.3
+  * Improving DirectionSystem
+  
 #### Pub version 0.1.6
   * Unified code structure
   * new DirectionSystem class
