@@ -94,7 +94,8 @@ class GameObjectFactory {
    * Create rectangle shape at (x,y) point.
    */
   StageXL.Shape rectangle(num x, num y, num width, num height, bool fill, int color) {
-    StageXL.Shape shape = this.shape()..graphics.rect(x, y, width, height);
+    StageXL.Shape shape = this.shape();
+    shape.graphics.rect(x, y, width, height);
     if(fill) {
       shape.graphics.fillColor(color);
     } else {
@@ -107,7 +108,8 @@ class GameObjectFactory {
    * Create a circle shape at (x,y) point.
    */
   StageXL.Shape circle(num x, num y, num radius, bool fill, int color) {
-    StageXL.Shape shape = this.shape()..graphics.circle(x, y, radius);
+    StageXL.Shape shape = this.shape();
+    shape.graphics.circle(x, y, radius);
     if(fill) {
       shape.graphics.fillColor(color);
     } else {
