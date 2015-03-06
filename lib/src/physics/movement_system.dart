@@ -35,10 +35,16 @@ class MovementSystem {
 
 //=============================================================================
 
+  /**
+   * Sets the horizontal and vertical speed to the same value.
+   */
   void set speed(num speed) {
     _speed = new StageXL.Vector(speed, speed);
   }
 
+  /**
+   * Sets the horizontal and vertical acceleration to the same value.
+   */
   void set acceleration(num acceleration) {
     _acceleration = new StageXL.Vector(acceleration, acceleration);
   }
@@ -79,10 +85,19 @@ class MovementSystem {
     _acceleration = new StageXL.Vector(_acceleration.x, acc);
   }
 
+  /**
+   * The maximum allowed speed.
+   */
   num maxSpeed = 0;
 
+  /**
+   * The lowest speed allowed.
+   */
   num minSpeed = 0;
 
+  /**
+   * Gets the inner direction system that is used in this movement system.
+   */
   DirectionSystem get directionSystem => _directionSystem;
 
 //=============================================================================
