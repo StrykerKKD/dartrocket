@@ -3,6 +3,12 @@
 This file contains highlights of what changes on each version of the DartRocket
 package.
 
+#### Pub version 0.1.7+1
+ * Fix return bug in Shape constructor
+ * Moving centerPivot() into parent class
+ * More docs for Movement System
+ * Remove multiSprite 
+
 #### Pub version 0.1.7
   * Added gravity example in DartRocket's repo
   * Added Mask and Shape classes
