@@ -144,14 +144,6 @@ class Sprite extends InteractiveBitmap with MovementControl implements
 //=============================================================================
 
   /**
-   * Put the pivot point into the center of the sprite.
-   */
-  void centerPivot() {
-    pivotX = bitmapData.width / 2;
-    pivotY = bitmapData.height / 2;
-  }
-
-  /**
    * Sprite will be added to the world and to the juggler if the sprite is moveable.
    */
   void addToWorld() {

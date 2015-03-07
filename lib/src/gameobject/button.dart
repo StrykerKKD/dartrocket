@@ -97,14 +97,6 @@ class Button extends InteractiveBitmap {
   }
 
   /**
-   * Put the pivot point into the center of the button.
-   */
-  void centerPivot() {
-    pivotX = bitmapData.width / 2;
-    pivotY = bitmapData.height / 2;
-  }
-
-  /**
    * Add button to the world.
    */
   addToWorld() {

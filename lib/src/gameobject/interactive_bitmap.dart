@@ -30,4 +30,12 @@ abstract class InteractiveBitmap extends StageXL.InteractiveObject {
   void render(StageXL.RenderState renderState) {
     if (bitmapData != null) bitmapData.render(renderState);
   }
+  
+  /**
+   * Put the pivot point into the center of the sprite.
+   */
+  void centerPivot() {
+      pivotX = bitmapData.width / 2;
+      pivotY = bitmapData.height / 2;
+    }
 }
