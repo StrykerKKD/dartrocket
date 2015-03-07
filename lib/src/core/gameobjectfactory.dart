@@ -63,29 +63,6 @@ class GameObjectFactory {
   }
 
   /**
-   * Creates multiple sprite from image or texture atlas.
-   */
-  List<Sprite> multipleSprite(int quantity, String resourceName,
-      {String textureAtlasName: null, String resourceMode: null, bool addToWorld:
-      true, bool isMovable: true}) {
-
-    List<Sprite> _returnSpriteList = new List<Sprite>();
-
-    for (int i; i < quantity; i++) {
-      _returnSpriteList.add(
-          sprite(
-              resourceName,
-              textureAtlasName: textureAtlasName,
-              resourceMode: resourceMode,
-              addToWorld: addToWorld,
-              isMovable: isMovable));
-    }
-
-    return _returnSpriteList;
-
-  }
-
-  /**
    * Create a shape.
    */
   StageXL.Shape shape() => new StageXL.Shape();
