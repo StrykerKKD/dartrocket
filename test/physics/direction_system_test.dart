@@ -12,7 +12,7 @@ const expectedDiagonalValue = 0.707106781186547524400844362104849039284835937688
 
 void defineTest() {
 
-  group("Constructor Test", () {
+  group("Direction System Constructor Test", () {
     DirectionSystem directionSystem;
     setUp(() {
       directionSystem = new DirectionSystem();
