@@ -65,6 +65,14 @@ void defineTest() {
             equals(gravity.directionSystem.getDirection(direction).scale(2)));
       });
     });
+    test("Speed(0.5) + (set every directions) => 0.5*(x,y)", () {
+      gravity = new Gravity(0.5);
+      Direction.DIRECTIONS.forEach((direction) {
+        gravity.directionSystem.setMainDirection(direction);
+        expect(gravity.getVelocity(),
+            equals(gravity.directionSystem.getDirection(direction).scale(0.5)));
+      });
+    });
     test("Speed(-1) + (set every directions) => -(x,y)", () {
       gravity = new Gravity(-1);
       Direction.DIRECTIONS.forEach((direction) {
@@ -79,6 +87,14 @@ void defineTest() {
         gravity.directionSystem.setMainDirection(direction);
         expect(gravity.getVelocity(), equals(
             gravity.directionSystem.getDirection(direction).negate().scale(2)));
+      });
+    });
+    test("Speed(-0.5) + (set every directions) => -0.5*(x,y)", () {
+      gravity = new Gravity(-0.5);
+      Direction.DIRECTIONS.forEach((direction) {
+        gravity.directionSystem.setMainDirection(direction);
+        expect(gravity.getVelocity(), equals(
+            gravity.directionSystem.getDirection(direction).negate().scale(0.5)));
       });
     });
   });
