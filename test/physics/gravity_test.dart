@@ -1,12 +1,6 @@
-library gravity_test;
+part of test.physics;
 
-import 'package:unittest/unittest.dart';
-import 'package:dartrocket/src/physics.dart' show Gravity, DirectionSystem;
-import 'package:dartrocket/src/constant.dart' show Direction;
-
-void main() => defineTest();
-
-void defineTest() {
+void gravityTest() {
   group("Gravity Constructor", () {
     Gravity gravity;
     tearDown(() {

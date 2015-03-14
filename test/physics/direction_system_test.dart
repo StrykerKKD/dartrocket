@@ -1,16 +1,9 @@
-library direction_system_test;
-
-import 'package:unittest/unittest.dart';
-import 'package:dartrocket/src/physics.dart' show DirectionSystem;
-import 'package:dartrocket/src/constant.dart' show Direction;
-import 'dart:math';
-
-void main() => defineTest();
+part of test.physics;
 
 //Calculated with Wolfram Alpha: http://www.wolframalpha.com/input/?i=sqrt%282%29%2F2
 const expectedDiagonalValue = 0.7071067811865475244008443621048490392848359376884740;
 
-void defineTest() {
+void directionSystemTest() {
 
   group("Direction System Constructor Test", () {
     DirectionSystem directionSystem;
