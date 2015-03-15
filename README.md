@@ -27,7 +27,7 @@ These example's build will be updated, when there is a new version of DartRocket
  
  [SpaceInvader](http://strykerkkd.github.io/js/projects/build/example/spaceinvader/index.html) shows a basic space invader game.
  
- [StateMachine](http://strykerkkd.github.io/js/projects/build/example/statemachine/index.html) shows how the statemanager work.
+ [StateMachine](http://strykerkkd.github.io/js/projects/build/example/statemachine/index.html) shows how the state manager work.
  
  [MovementSystem](http://strykerkkd.github.io/js/projects/build/example/movementsystem/index.html) shows how the sprite can move.
  You can move with w,a,s,d and you can rotate with q,e and you can accelerate with j,k.
