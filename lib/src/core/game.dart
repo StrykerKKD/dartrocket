@@ -87,6 +87,17 @@ class Game {
   
 //=============================================================================
 
+  static const int DEFAULT_WIDTH = 800;
+  static const int DEFAULT_HEIGHT = 600;
+  static const bool DEFAULT_WEBGL = false;
+  static const int DEFAULT_FRAMERATE = 30;
+  static const int DEFAULT_COLOR = StageXL.Color.Black;
+  static const bool DEFAULT_FULLSCREEN = false;
+  static const num DEFAULT_MIN_SCALE = 0.8;
+  static const num DEFAULT_MAX_SCALE = 0.8;
+
+  //=============================================================================
+
   /**
    * Creates a new Game object.
    * Parameters:
@@ -100,9 +111,9 @@ class Game {
    * * minScale: lower limit of the scale value (used, when fullScreen is true) default value:0.8
    * * maxScale: upper limit of the scale value (used, when fullScreen is true) default value:1.2
    * */
-  Game({int width: 800, int height: 600, bool webGL: false, int frameRate: 30,
-      int color: StageXL.Color.Black, bool fullScreen: false, num minScale: 0.8,
-      num maxScale: 1.2}) {
+  Game({int width: DEFAULT_WIDTH, int height: DEFAULT_HEIGHT, bool webGL: DEFAULT_WEBGL, int frameRate: DEFAULT_FRAMERATE,
+      int color: DEFAULT_COLOR, bool fullScreen: DEFAULT_FULLSCREEN, num minScale: DEFAULT_MIN_SCALE,
+      num maxScale: DEFAULT_MAX_SCALE}) {
 
     if (fullScreen) {
       
@@ -121,6 +132,10 @@ class Game {
         ..setAttribute("screencanvas", "true")
         ..width = width
         ..height = height;
+    //TODO: Put canvas in the middle of the screen
+    /*canvas
+        ..style.paddingLeft = "${(window.innerWidth - width) ~/ 2}px"
+        ..style.paddingTop = "${(window.innerHeight - height) ~/ 2}px";*/
     document.body.children.add(canvas);
 
     stage = new StageXL.Stage(
