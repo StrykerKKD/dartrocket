@@ -26,8 +26,8 @@ package.
   * new DirectionSystem class
   * Added relative diagonal directions into constants/direction.dart
   * new MovementSystem class
-  * new MovementControll mixin, which define how to use the MovementSystem class
-  * using MovementControll in Sprite and Camera class
+  * new MovementControl mixin, which define how to use the MovementSystem class
+  * using MovementControl in Sprite and Camera class
   * new physics directory, which contains the moving parts
   * Exported Shape class, which means you can use basic canvas operations
 
@@ -39,19 +39,19 @@ package.
   * onKeyDown and Up handler for keyboard
   * CollideWorldBounds added to sprite, so you can't go outside of the bounds
   * KillOutOfBounds added which can kill the sprite if it's go outside of the bounds
-  * min and max scale value for fullscreen mode
+  * min and max scale value for full screen mode
   * Button has 3 isDown method to handle click or touch events
   * Project template in repo
   * Fix: using world instead of stage everywhere
   * Camera can follow a sprite and you can unfollow it
   * Camera example added
-  * Breaking: Removed name paramter from State constructor
+  * Breaking: Removed name parameter from State constructor
   * Added nextState parameter to killState and endState methods
   * Removed Stream extend from State and made listen into a private method
   * Updated the documentation
 
 #### Pub version 0.1.4
-  * Physics class added with collison method
+  * Physics class added with collision method
   * Breaking change: load,create,update methods for a state
   * GameObjectFactory can make every game object except Background.color
   * Added autoHiDpi, isMobile, devicePixelRatio getter for game object
@@ -59,19 +59,19 @@ package.
   * New container classes: World and Camera for a new World-Camera system
   * Using game.world instead of game.stage everywhere
   * GameObjectFactory has tween method for making tweens
-  * Exported Tweem class so you can use it
+  * Exported Tween class so you can use it
   * New classes: Keyboard, Touch for input event handling
-  * New movment system for the Sprite class
+  * New movement system for the Sprite class
   * New example to show the new movement system
   
 #### Pub version 0.1.3
   * EventListeners on stage automatically destroyed after state change
   * Button class is simplified, easier to set coordinates
   * Fix typo :KillState
-  * TextureAtlas contructor for Button and Sprite
+  * TextureAtlas constructor for Button and Sprite
   * Fix typo: isMovable
   * Updated README
-  * Named contructor for Sprite,Button,Background: bitmapdata,image,textureatlas
+  * Named constructor for Sprite,Button,Background: bitmap data,image,texture atlas
   * Background has repeat and scale mode
   * Background works with all kind of vx and vy value
   * GameObjectFactory added
@@ -79,8 +79,8 @@ package.
 
 #### Pub version 0.1.2
   * New Button class
-  * Fullscreen mode, which keeps the aspect ratio(game.dart)
-  * Space Invader has fullscreen,buttons and mobile friendlier
+  * Full screen mode, which keeps the aspect ratio(game.dart)
+  * Space Invader has full screen,buttons and mobile friendlier
 
 #### Pub version 0.1.1
   * New Sound class
@@ -90,17 +90,17 @@ package.
   * A lot of new stuff in space invader example
 
 #### Pub version 0.1.0
-  * Breaking: There is onyl one Sprite class and removed other sprite classes
+  * Breaking: There is only one Sprite class and removed other sprite classes
   * New Group class for storing Sprites
-  * SpaceInvader example is refactored due to he canges
-  * TransitionFunction can be acces through game object
+  * SpaceInvader example is refactored due to he changes
+  * TransitionFunction can be access through game object
   * Added InteractiveBitmap helper class
   * Documentation updated
   
 #### Pub version 0.0.9
   * Fixed documentation
   * Breaking: terminateState renamed to killState
-  * Added Documetation site
+  * Added documentation site
 
 #### Pub version 0.0.8
   * Added documentation
