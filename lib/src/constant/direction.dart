@@ -18,20 +18,20 @@ abstract class Direction {
 
 //=============================================================================
 
-  static const String UPLEFT = "upleft";
+  static const String UP_LEFT = "upLeft";
 
-  static const String UPRIGHT = "upright";
+  static const String UP_RIGHT = "upRight";
 
-  static const String DOWNLEFT = "downleft";
+  static const String DOWN_LEFT = "downLeft";
 
-  static const String DOWNRIGHT = "downright";
+  static const String DOWN_RIGHT = "downRight";
 
 //=============================================================================
 
   static List<String> MAIN_DIRECTIONS = [UP,DOWN,LEFT,RIGHT];
 
-  static List<String> DIAGONAL_DIRECTIONS = [UPLEFT,UPRIGHT,DOWNLEFT,DOWNRIGHT];
+  static List<String> DIAGONAL_DIRECTIONS = [UP_LEFT,UP_RIGHT,DOWN_LEFT,DOWN_RIGHT];
 
-  static List<String> DIRECTIONS = [UP,DOWN,LEFT,RIGHT,UPLEFT,UPRIGHT,DOWNLEFT,DOWNRIGHT];
+  static List<String> DIRECTIONS = [UP,DOWN,LEFT,RIGHT,UP_LEFT,UP_RIGHT,DOWN_LEFT,DOWN_RIGHT];
 
 }

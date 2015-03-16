@@ -58,16 +58,16 @@ class DirectionSystem {
         mainDirection += rightDirection;
         break;
 
-      case Direction.UPLEFT:
+      case Direction.UP_LEFT:
         mainDirection += upLeftDirection;
         break;
-      case Direction.UPRIGHT:
+      case Direction.UP_RIGHT:
         mainDirection += upRightDirection;
         break;
-      case Direction.DOWNLEFT:
+      case Direction.DOWN_LEFT:
         mainDirection += downLeftDirection;
         break;
-      case Direction.DOWNRIGHT:
+      case Direction.DOWN_RIGHT:
         mainDirection += downRightDirection;
         break;
       default:
@@ -102,16 +102,16 @@ class DirectionSystem {
         mainDirection = rightDirection;
         break;
 
-      case Direction.UPLEFT:
+      case Direction.UP_LEFT:
         mainDirection = upLeftDirection;
         break;
-      case Direction.UPRIGHT:
+      case Direction.UP_RIGHT:
         mainDirection = upRightDirection;
         break;
-      case Direction.DOWNLEFT:
+      case Direction.DOWN_LEFT:
         mainDirection = downLeftDirection;
         break;
-      case Direction.DOWNRIGHT:
+      case Direction.DOWN_RIGHT:
         mainDirection = downRightDirection;
         break;
       default:
@@ -140,13 +140,13 @@ class DirectionSystem {
       case Direction.RIGHT:
         return rightDirection;
 
-      case Direction.UPLEFT:
+      case Direction.UP_LEFT:
         return upLeftDirection;
-      case Direction.UPRIGHT:
+      case Direction.UP_RIGHT:
         return upRightDirection;
-      case Direction.DOWNLEFT:
+      case Direction.DOWN_LEFT:
         return downLeftDirection;
-      case Direction.DOWNRIGHT:
+      case Direction.DOWN_RIGHT:
         return downRightDirection;
       default:
         throw new ArgumentError("Argument must be a Direction");

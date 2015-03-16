@@ -69,11 +69,11 @@ void directionSystemTest() {
       testDirection(directionSystem.mainDirection, 0, 0);
     });
     test("Null direction by adding together 2 diagonal direction", () {
-      directionSystem.addToMainDirection(Direction.UPLEFT);
-      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      directionSystem.addToMainDirection(Direction.UP_LEFT);
+      directionSystem.addToMainDirection(Direction.DOWN_RIGHT);
       testDirection(directionSystem.mainDirection, 0, 0);
-      directionSystem.addToMainDirection(Direction.UPRIGHT);
-      directionSystem.addToMainDirection(Direction.DOWNLEFT);
+      directionSystem.addToMainDirection(Direction.UP_RIGHT);
+      directionSystem.addToMainDirection(Direction.DOWN_LEFT);
       testDirection(directionSystem.mainDirection, 0, 0);
     });
   });
@@ -111,23 +111,23 @@ void directionSystemTest() {
         expectedDiagonalValue - 0.0001, expectedDiagonalValue + 0.0001);
     });
     test("Diagonal with 2 direction UPLEFT+DOWNLEFT", () {
-      directionSystem.addToMainDirection(Direction.UPLEFT);
-      directionSystem.addToMainDirection(Direction.DOWNLEFT);
+      directionSystem.addToMainDirection(Direction.UP_LEFT);
+      directionSystem.addToMainDirection(Direction.DOWN_LEFT);
       testDirection(directionSystem.mainDirection, -1, 0);
     });
     test("Diagonal with 2 direction UPRIGHT+DOWNRIGHT", () {
-      directionSystem.addToMainDirection(Direction.UPRIGHT);
-      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      directionSystem.addToMainDirection(Direction.UP_RIGHT);
+      directionSystem.addToMainDirection(Direction.DOWN_RIGHT);
       testDirection(directionSystem.mainDirection, 1, 0);
     });
     test("Diagonal with 2 direction UPLEFT+UPRIGHT", () {
-      directionSystem.addToMainDirection(Direction.UPLEFT);
-      directionSystem.addToMainDirection(Direction.UPRIGHT);
+      directionSystem.addToMainDirection(Direction.UP_LEFT);
+      directionSystem.addToMainDirection(Direction.UP_RIGHT);
       testDirection(directionSystem.mainDirection, 0, -1);
     });
     test("Diagonal with 2 direction DOWNLEFT+DOWNRIGHT", () {
-      directionSystem.addToMainDirection(Direction.DOWNLEFT);
-      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      directionSystem.addToMainDirection(Direction.DOWN_LEFT);
+      directionSystem.addToMainDirection(Direction.DOWN_RIGHT);
       testDirection(directionSystem.mainDirection, 0, 1);
     });
   });
@@ -255,17 +255,17 @@ void directionSystemTest() {
       directionSystem = null;
     });
     test("Testing null", () {
-      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      directionSystem.addToMainDirection(Direction.DOWN_RIGHT);
       directionSystem.nullMainDirection();
       testDirection(directionSystem.mainDirection, 0, 0);
     });
     test("Testing nullX", () {
-      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      directionSystem.addToMainDirection(Direction.DOWN_RIGHT);
       directionSystem.nullMainDirectionX();
       testDirection(directionSystem.mainDirection, 0, expectedDiagonalValue);
     });
     test("Testing nullY", () {
-      directionSystem.addToMainDirection(Direction.DOWNRIGHT);
+      directionSystem.addToMainDirection(Direction.DOWN_RIGHT);
       directionSystem.nullMainDirectionY();
       testDirection(directionSystem.mainDirection, expectedDiagonalValue, 0);
     });
