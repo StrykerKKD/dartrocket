@@ -1,7 +1,7 @@
 part of dartrocket.constant;
 
 /**
- * This class contains the contants of every event.
+ * This class contains the constants of every event.
  */
 
 abstract class InputEvent {

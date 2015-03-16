@@ -1,7 +1,7 @@
 part of dartrocket.constant;
 
 /**
- * This class contains the contants of every direction.
+ * This class contains the constants of every direction.
  */
 
 abstract class Direction {

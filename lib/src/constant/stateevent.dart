@@ -1,5 +1,8 @@
 part of dartrocket.constant;
 
+/**
+ * This class contains the constants of state events.
+ */
 
 abstract class StateEvent{
   static const String PAUSE = "pause";
