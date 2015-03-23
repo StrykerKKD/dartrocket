@@ -28,6 +28,16 @@ gameTest() {
       expect(game.canvas.attributes["screencanvas"] == "true", isTrue);
       expect(game.canvas.width, equals(Game.DEFAULT_WIDTH));
       expect(game.canvas.height, equals(Game.DEFAULT_HEIGHT));
+
+      expect(game.stage.align, equals(StageXL.StageAlign.NONE));
+      expect(game.stage.scaleMode, equals(StageXL.StageScaleMode.SHOW_ALL));
+      expect(game.stage.focus, equals(game.world));
+    });
+    //TODO: Why does this work? Need to make it better.
+    test("Fullscreen", () {
+      game = new Game(fullScreen:true);
+      expect(game.canvas.width, equals(Game.DEFAULT_WIDTH * Game.DEFAULT_MIN_SCALE));
+      expect(game.canvas.height, equals(Game.DEFAULT_HEIGHT * Game.DEFAULT_MIN_SCALE));
     });
   });
 }
