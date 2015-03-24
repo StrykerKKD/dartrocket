@@ -34,10 +34,19 @@ gameTest() {
       expect(game.stage.focus, equals(game.world));
     });
     //TODO: Why does this work? Need to make it better.
-    test("Fullscreen", () {
-      game = new Game(fullScreen:true);
-      expect(game.canvas.width, equals(Game.DEFAULT_WIDTH * Game.DEFAULT_MIN_SCALE));
-      expect(game.canvas.height, equals(Game.DEFAULT_HEIGHT * Game.DEFAULT_MIN_SCALE));
+    test("Fullscreen testing maxScale", () {
+      const smallWidht = 128;
+      const smallHeight = 128;
+      game = new Game(width:smallWidht, height:smallHeight, fullScreen:true);
+      expect(game.canvas.width, equals( (smallWidht * Game.DEFAULT_MAX_SCALE).toInt() ));
+      expect(game.canvas.height, equals( (smallHeight * Game.DEFAULT_MAX_SCALE).toInt() ));
+    });
+    test("Fullscreen testing minScale", () {
+      const bigWidht = 4096;
+      const bigHeight = 4096;
+      game = new Game(width: bigWidht, height:bigHeight, fullScreen:true);
+      expect(game.canvas.width, equals( (bigWidht * Game.DEFAULT_MIN_SCALE).toInt() ));
+      expect(game.canvas.height, equals( (bigHeight * Game.DEFAULT_MIN_SCALE).toInt() ));
     });
   });
 }
