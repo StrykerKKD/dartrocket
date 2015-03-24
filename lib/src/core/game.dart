@@ -2,30 +2,30 @@ part of dartrocket.core;
 
 /**
  * Game class is the main entry point of the game framework.
- * 
+ *
  * Game has built in members that helps you acces different classes through
  * your own Game object.
- * 
- * The Game is based on the stateManager,which helps you break up your game into 
+ *
+ * The Game is based on the stateManager,which helps you break up your game into
  * states, so you wont have one big pile of code.
- * 
+ *
  * In your game's main Dart file you only have to deal with managing the states.
- *  
+ *
  * Your main file should look something like this:
  *     void main(){
  *       Game game = new Game();
- *       
+ *
  *       //Add states to the stateManager
  *       game.stateManager.addStateMap({
  *         "first": new First("second"),
  *         "second": new Second("third"),
  *         "third": new Third()
  *       });
- *       
+ *
  *       //Start the first state
  *       game.stateManager.initState("first");
  *     }
- *     
+ *
  * */
 
 class Game {
@@ -84,7 +84,7 @@ class Game {
    * [Touch] object
    */
   Touch touch;
-  
+
 //=============================================================================
 
   static const int DEFAULT_WIDTH = 800;
@@ -94,14 +94,14 @@ class Game {
   static const int DEFAULT_COLOR = StageXL.Color.Black;
   static const bool DEFAULT_FULLSCREEN = false;
   static const num DEFAULT_MIN_SCALE = 0.8;
-  static const num DEFAULT_MAX_SCALE = 0.8;
+  static const num DEFAULT_MAX_SCALE = 1.2;
 
   //=============================================================================
 
   /**
    * Creates a new Game object.
    * Parameters:
-   * 
+   *
    * * width: width of the canvas
    * * height: height of the canvas
    * * webGL: use WebGL renderer?
@@ -116,14 +116,14 @@ class Game {
       num maxScale: DEFAULT_MAX_SCALE}) {
 
     if (fullScreen) {
-      
+
       double ratioWidth = (window.innerWidth) / width;
       double ratioHeight = (window.innerHeight) / height;
       double scale = (ratioWidth < ratioHeight) ? ratioWidth : ratioHeight;
-      
+
       if(scale < minScale) scale = minScale;
       if(scale > maxScale) scale = maxScale;
-      
+
       width = (scale * width).toInt();
       height = (scale * height).toInt();
     }
@@ -145,7 +145,7 @@ class Game {
         webGL: webGL,
         frameRate: frameRate,
         color: color);
-    
+
     renderLoop = new StageXL.RenderLoop();
     resourceManager = new StageXL.ResourceManager();
     stateManager = new StateManager(this);
@@ -167,16 +167,16 @@ class Game {
     stage.focus = world;
 
   }
-  
+
 //=============================================================================
 
   bool get autoHiDpi => StageXL.Stage.autoHiDpi;
-  
+
   /**
    * Is the device a mobile?
    */
   bool get isMobile => StageXL.Stage.isMobile;
-  
+
   /**
    * Give back the pixel ratio.
    */
