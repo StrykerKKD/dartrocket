@@ -13,9 +13,11 @@ import 'package:dartrocket/src/input.dart';
 //=============================================================================
 
 part 'game_test.dart';
+part 'world_test.dart';
 
 //=============================================================================
 
 void main() {
   gameTest();
+  worldTest();
 }
