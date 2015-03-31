@@ -7,7 +7,9 @@ class Sound {
 
   StageXL.Sound _sound;
 
-  StageXL.SoundChannel _soundchannel;
+  StageXL.SoundChannel _soundChannel;
+
+//=============================================================================
 
   /**
    * Setting for Sound(volume, pan).
@@ -16,10 +18,15 @@ class Sound {
 
 //=============================================================================
 
+  static const num DEFAULT_VOLUME = 1;
+  static const num DEFAULT_PAN = 0;
+
+//=============================================================================
+
   /**
    * Makes a Sound object.
    */
-  Sound(State context, String soundName,{num volume:1,num pan:0}){
+  Sound(State context, String soundName,{num volume:DEFAULT_VOLUME,num pan:DEFAULT_PAN}){
     _sound = context.game.resourceManager.getSound(soundName);
     settings = new StageXL.SoundTransform(volume,pan);
   }
@@ -30,11 +37,11 @@ class Sound {
    * Play the sound.
    */
   void play(){
-    _soundchannel = _sound.play(false, settings);
+    _soundChannel = _sound.play(false, settings);
   }
 
   void stop() {
-    _soundchannel.stop();
+    _soundChannel.stop();
   }
 
 }
