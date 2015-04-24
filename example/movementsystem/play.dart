@@ -18,7 +18,7 @@ class Play extends State {
         ..acceleration = 50
         ..minSpeed = 0
         ..maxSpeed = 300
-        ..collideWorldBounds = true
+        ..canCollideWorldBounds = true
         ..centerPivot();
 
     game.keyboard.onKeyDownAndKeyUpHandler(

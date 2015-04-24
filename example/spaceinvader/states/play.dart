@@ -30,14 +30,14 @@ class Play extends State {
         ..x = game.world.width ~/ 2
         ..y = game.world.height - 200
         ..speedX = 300
-        ..collideWorldBounds = true;
+        ..canCollideWorldBounds = true;
 
     bullets = new Group<Sprite>();
     for (int i = 0; i < 5; i++) {
       bullets.add(game.add.sprite('laserBlue01', addToWorld: false)
           ..speedY = 500
           ..move('up')
-          ..killOutOfBounds = true);
+          ..canKillOutOfBounds = true);
 
     }
 
@@ -116,13 +116,13 @@ class Play extends State {
       killState("end");
     }
 
-    game.physics.collison(ufos, bullets, (Ufo ufo, Sprite bullet) {
+    game.physics.collision(ufos, bullets, (Ufo ufo, Sprite bullet) {
       ufo.alive = false;
       bullet.removeFromWorld();
       scoreText.text = "Score: ${score+=10}";
     });
 
-    game.physics.collison(ufos, player, (Ufo ufo, Sprite player) {
+    game.physics.collision(ufos, player, (Ufo ufo, Sprite player) {
       bulletTimer.cancel();
       killState("end");
     });
