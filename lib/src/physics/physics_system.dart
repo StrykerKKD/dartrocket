@@ -1,10 +1,10 @@
 part of dartrocket.physics;
 
 /**
- * Physics class can solve collison between gameobject for now.
+ * Physics class can solve collision between game object for now.
  * 
  * Example:
- *      //you can acces the physics object this way
+ *      //you can access the physics object this way
  *      game.physics
  */
 
@@ -15,13 +15,13 @@ class PhysicsSystem {
 //=============================================================================
 
   /**
-   * Resolve collison between two gameobject.
+   * Resolve collision between two game object.
    * 
-   * The input can be Group, Sprite or custome Sprite.
+   * The input can be Group, Sprite or custom Sprite.
    * 
-   * collisonHandler runs, when two object hits each other.
-   * The two actual object in collison is the input parameters 
-   * for the collisonHandler.
+   * collisionHandler runs, when two object hits each other.
+   * The two actual object in collision is the input parameters
+   * for the collisionHandler.
    * 
    * Example:
    *      player and enemy can be a Sprite or Group
@@ -32,8 +32,8 @@ class PhysicsSystem {
    *      });
    * 
    */
-  void collison(var object1, var object2, Function collisonHandler(item1,
-      itme2)) {
+  void collision(var object1, var object2, Function collisionHandler(item1,
+      item2)) {
 
     if (object1 is Group && object2 is Group) {
 
@@ -41,7 +41,7 @@ class PhysicsSystem {
         object2.forEachAlive((item2) {
 
           if (item1.hitTestObject(item2)) {
-            collisonHandler(item1, item2);
+            collisionHandler(item1, item2);
           }
 
         });
@@ -52,7 +52,7 @@ class PhysicsSystem {
       object2.forEachAlive((item) {
 
         if (item.hitTestObject(object1)) {
-          collisonHandler(object1, item);
+          collisionHandler(object1, item);
         }
 
       });
@@ -62,7 +62,7 @@ class PhysicsSystem {
       object1.forEachAlive((item) {
 
         if (item.hitTestObject(object2)) {
-          collisonHandler(item, object2);
+          collisionHandler(item, object2);
         }
 
       });
@@ -70,7 +70,7 @@ class PhysicsSystem {
     } else if (object1 is Sprite && object2 is Sprite) {
 
       if (object1.hitTestObject(object2)) {
-        collisonHandler(object1, object2);
+        collisionHandler(object1, object2);
       }
 
     }
