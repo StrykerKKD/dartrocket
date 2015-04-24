@@ -51,17 +51,17 @@ class Sprite extends InteractiveBitmap with MovementControl implements
   /**
    * Sprite can't go outside of the bounds of the world.
    */
-  bool collideWorldBounds = false;
+  bool canCollideWorldBounds = false;
 
   /**
    * Kill Sprite if it's out of the world's bounds.
    */
-  bool killOutOfBounds = false;
+  bool canKillOutOfBounds = false;
 
   /**
    * Enable gravity for this Sprite.
    */
-  bool enableGravity = false;
+  bool isGravityEnabled = false;
 
 //=============================================================================
 
@@ -127,11 +127,11 @@ class Sprite extends InteractiveBitmap with MovementControl implements
    */
   bool advanceTime(num time) {
 
-    _checkKillOutOfBounds();
+    if(canKillOutOfBounds) _killOutOfBounds();
 
-    _checkCollideWorldBounds();
+    if(canCollideWorldBounds) _collideWorldBounds();
 
-    _checkEnableGravity();
+    if(!isGravityEnabled && !_context.game.physics.gravity.directionSystem.mainDirection.isZero) _nullGravity();
 
     movementSystem.addVelocity(_context.game.physics.gravity.getVelocity());
 
@@ -144,7 +144,7 @@ class Sprite extends InteractiveBitmap with MovementControl implements
 //=============================================================================
 
   /**
-   * Sprite will be added to the world and to the juggler if the sprite is moveable.
+   * Sprite will be added to the world and to the juggler if the sprite is movable.
    */
   void addToWorld() {
     alive = true;
@@ -167,38 +167,29 @@ class Sprite extends InteractiveBitmap with MovementControl implements
 
 //=============================================================================
 
-  void _checkKillOutOfBounds() {
-    if (killOutOfBounds &&
-        ((x + width <= 0 || x - width >= _context.game.world.width) ||
-            (y + height <= 0 || y - height >= _context.game.world.height))) {
+  void _killOutOfBounds() {
+    if ((x + width <= 0 || x - width >= _context.game.world.width) ||
+        (y + height <= 0 || y - height >= _context.game.world.height)) {
       alive = false;
       removeFromWorld();
     }
   }
 
-  void _checkCollideWorldBounds() {
-    if (collideWorldBounds) {
-      if ((y - pivotY <= 0 &&
-          movementSystem.directionSystem.mainDirection.y < 0) ||
-          (y + height - pivotY >= _context.game.world.height &&
-              movementSystem.directionSystem.mainDirection.y > 0)) {
-        movementSystem.directionSystem.nullMainDirectionY();
-      }
-
-      if ((x - pivotX <= 0 &&
-          movementSystem.directionSystem.mainDirection.x < 0) ||
-          (x + width - pivotX >= _context.game.world.width &&
-              movementSystem.directionSystem.mainDirection.x > 0)) {
-        movementSystem.directionSystem.nullMainDirectionX();
-      }
+  void _collideWorldBounds() {
+    if ((y - pivotY <= 0 && movementSystem.directionSystem.mainDirection.y < 0) ||
+        (y + height - pivotY >= _context.game.world.height && movementSystem.directionSystem.mainDirection.y > 0)) {
+      movementSystem.directionSystem.nullMainDirectionY();
     }
+
+    if ((x - pivotX <= 0 && movementSystem.directionSystem.mainDirection.x < 0) ||
+        (x + width - pivotX >= _context.game.world.width && movementSystem.directionSystem.mainDirection.x > 0)) {
+      movementSystem.directionSystem.nullMainDirectionX();
+    }
+
   }
 
-  void _checkEnableGravity() {
-    if (!enableGravity &&
-        !_context.game.physics.gravity.directionSystem.mainDirection.isZero) {
-      _context.game.physics.gravity.directionSystem.nullMainDirection();
-    }
+  void _nullGravity() {
+    _context.game.physics.gravity.directionSystem.nullMainDirection();
   }
 
 }
