@@ -25,14 +25,14 @@ The Framework has a [blog](http://dartrocket.blogspot.hu), which will provide in
 ## Examples
 These example's build will be updated, when there is a new version of DartRocket.
  
-* [SpaceInvader](http://strykerkkd.github.io/js/projects/build/example/spaceinvader/index.html) shows a basic space invader game.
+* [SpaceInvader](https://github.com/StrykerKKD/dartrocket/tree/master/example/spaceinvader) shows a basic space invader game.
  
-* [StateMachine](http://strykerkkd.github.io/js/projects/build/example/statemachine/index.html) shows how the state manager work.
+* [StateMachine](https://github.com/StrykerKKD/dartrocket/tree/master/example/statemachine) shows how the state manager work.
  
-* [MovementSystem](http://strykerkkd.github.io/js/projects/build/example/movementsystem/index.html) shows how the sprite can move.
+* [MovementSystem](https://github.com/StrykerKKD/dartrocket/tree/master/example/movementsystem) shows how the sprite can move.
  You can move with w,a,s,d and you can rotate with q,e and you can accelerate with j,k.
 
-* [World-Camera](http://strykerkkd.github.io/js/projects/build/example/world-camera/index.html) shows how the camera works.
+* [World-Camera](https://github.com/StrykerKKD/dartrocket/tree/master/example/world-camera) shows how the camera works.
  You can move the ship with w,a,s,d, you can unfollow the ship with Space and you can move camera with cursors.
  
-* [Gravity](http://strykerkkd.github.io/js/projects/build/example/gravity/index.html) shows the gravity system in the game. You can move the rectangle with w,a,s,d.
+* [Gravity](https://github.com/StrykerKKD/dartrocket/tree/master/example/gravity) shows the gravity system in the game. You can move the rectangle with w,a,s,d.
